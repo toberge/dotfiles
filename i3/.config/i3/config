@@ -460,7 +460,7 @@ exec --no-startup-id dropbox
 exec --no-startup-id albert
 #iexec_always --no-startup-id /home/qualitanty/.config/polybar/launch.sh
 
-exec --no-startup-id xautolock -time 30 -locker blurlock # time in mins
+exec --no-startup-id xautolock -time 12 -locker blurlock # time in mins
 
 # whenever you kill the gnome here...
 exec --no-startup-id /usr/bin/xfce-power-manager # for power management
