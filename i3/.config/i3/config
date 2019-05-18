@@ -396,7 +396,7 @@ client.focused_inactive $bg     $bg     $fg  $bg       $bg
 client.unfocused        $bg     $bg     $fg  $bg       $bg
 client.urgent           $bg     $bg     $fg  $bg       $bg
 client.placeholder      $bg     $bg     $fg  $bg       $bg
-#client.background $bg # o rly?
+client.background $bg # o rly?
 
 # bar
 bar {
@@ -413,7 +413,7 @@ bar {
 		#                  border        background        text
 		focused_workspace  $fg           $mellow           $fg
 		inactive_workspace $crisp        $slush            $dimtxt
-		urgent_workspace   $crisp        $dark             $fg
+		urgent_workspace   $crisp        $mellow           $crisp
 	}
 }
 
