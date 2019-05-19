@@ -217,6 +217,9 @@ assign [class="jetbrains-idea"] $ws4
 # web browser(s)
 assign [class="Firefox"] $ws2
 
+# chat apps
+assign [class="discord"] $ws10
+
 #########################
 # float make
 for_window [class="Lxappearance"] floating enable border normal
