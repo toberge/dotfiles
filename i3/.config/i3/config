@@ -49,7 +49,7 @@ gaps inner 20
 gaps outer 0
 
 smart_gaps on
-smart_borders on
+smart_borders no_gaps
 
 # Smart borders (draw borders around container only if it is not the only container on this workspace) 
 # on|no_gaps (on=always activate and no_gaps=only activate if the gap size to the edge of the screen is 0)
