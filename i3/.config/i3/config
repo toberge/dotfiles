@@ -415,8 +415,9 @@ bar {
 
 		#                  border        background        text
 		focused_workspace  $fg           $mellow           $fg
-		inactive_workspace $crisp        $slush            $dimtxt
-		urgent_workspace   $crisp        $mellow           $crisp
+		active_workspace   $dimtxt	 $mellow	   $dimtxt # not on this monitor
+		inactive_workspace $dimtxt       $slush            $dimtxt
+		urgent_workspace   $fg           $slush            $fg     # also applies to mode indicators (and status coloring sometimes?)
 	}
 }
 
@@ -425,6 +426,7 @@ bar {
 # bindsym $mod+d exec rofi -show run -lines 3 -eh 2 -width 100 -padding 400 -opacity "85" -bw 0 -color-window "$bg-color, $bg-color, $bg-color" -color-normal "$bg-color, $text-color, $bg-color, $bg-color, $text-color" -font "Ubuntu Regular 16"
 #bindsym $mod+d exec dmenu_run
 bindsym $mod+d exec dmenu_run -nb "$fg" -nf "$bg" -sb "$bg" -sf "$fg"
+# switch to dmenu_recency maybe?
 # bindsym $mod+Shift+d j4-dmenu-desktop
 # bindsym $mod+Shift+d exec j4-dmenu-desktop --dmenu="(cat ; (stest -flx $(echo $PATH | tr : ' ') | sort -u)) | dmenu"
 bindsym $mod+Shift+d exec /home/qualitanty/.config/i3/j4dd.sh # put script there but wasn't satisfied so the 1st is used
