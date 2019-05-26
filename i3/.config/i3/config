@@ -50,6 +50,7 @@ gaps outer 0
 
 smart_gaps on
 smart_borders no_gaps
+focus_follows_mouse no # point of contention...
 
 # Smart borders (draw borders around container only if it is not the only container on this workspace) 
 # on|no_gaps (on=always activate and no_gaps=only activate if the gap size to the edge of the screen is 0)
@@ -157,8 +158,8 @@ bindsym XF86MonBrightnessUp exec xbacklight -inc 10
 bindsym XF86MonBrightnessDown exec xbacklight -dec 10
 
 # Media player controls
-bindsym XF86AudioPlay exec playerctl play
-bindsym XF86AudioPause exec playerctl pause
+bindsym XF86AudioPlay exec playerctl play-pause # do the toggle
+#bindsym XF86AudioPause exec playerctl pause #doesn't work here
 bindsym XF86AudioNext exec playerctl next
 bindsym XF86AudioPrev exec playerctl previous
 
@@ -418,6 +419,7 @@ bar {
 		active_workspace   $dimtxt	 $mellow	   $dimtxt # not on this monitor
 		inactive_workspace $dimtxt       $slush            $dimtxt
 		urgent_workspace   $fg           $slush            $fg     # also applies to mode indicators (and status coloring sometimes?)
+		# you can add one for binding_mode if you want it separate from urgent_workspace
 	}
 }
 
@@ -459,7 +461,7 @@ exec_always --no-startup-id xinput set-prop 14 284 1 # enable tapping (includes 
 exec --no-startup-id compton -f #--backend xrender #-f for fading effect, --backend because lag when resizing windows (remove if it misbehaves)
 #exec redshift -l 63.41:10.42 -t 6200:3700
 exec --no-startup-id redshift-gtk # you got a config file now
-exec_always --no-startup-id dunst -lb "$bg" -nb "$bg" -cb "$bg" -lf "$fg" -bf "$fg" -cf "$fg" -nf "$fg"
+exec_always --no-startup-id dunst #  -lb "$bg" -nb "$bg" -cb "$bg" -lf "$fg" -bf "$fg" -cf "$fg" -nf "$fg"
 
 exec --no-startup-id dropbox
 exec --no-startup-id albert
