@@ -51,7 +51,7 @@ gaps outer 0
 
 smart_gaps on
 smart_borders no_gaps
-focus_follows_mouse no # point of contention...
+# focus_follows_mouse no # point of contention...
 
 # Smart borders (draw borders around container only if it is not the only container on this workspace) 
 # on|no_gaps (on=always activate and no_gaps=only activate if the gap size to the edge of the screen is 0)
@@ -263,12 +263,30 @@ bindsym $mod+Shift+0 move container to workspace $ws10
 ####################
 # switch em up
 workspace_auto_back_and_forth yes
-bindsym $mod+m workspace back_and_forth
-bindsym $mod+Shift+m move container to workspace back_and_forth; workspace back_and_forth
-
+#bindsym $mod+m workspace back_and_forth
+#bindsym $mod+Shift+m move container to workspace back_and_forth; workspace back_and_forth
 #navigate workspaces next / previous
 bindsym Mod1+Ctrl+Right workspace next
 bindsym Mod1+Ctrl+Left workspace prev
+
+# credits https://gist.github.com/magujs/f8060343b9aedc7e6514
+set $mode-ws-move Move workspace to other monitor
+
+mode "$mode-ws-move" {
+ bindsym Up move workspace to output up
+ bindsym Down move workspace to output down
+ bindsym Left move workspace to output left
+ bindsym Right move workspace to output right
+
+ bindsym k move workspace to output up
+ bindsym j move workspace to output down
+ bindsym h move workspace to output left
+ bindsym l move workspace to output right
+
+ bindsym Escape mode "default"
+}
+
+bindsym $mod+m mode "$mode-ws-move"
 
 ################################
 # reload the configuration file
