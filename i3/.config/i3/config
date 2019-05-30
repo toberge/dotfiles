@@ -27,14 +27,15 @@ font pango: Ubuntu Regular 11
 # configure window borders (default + shortcuts)
 
 #hide_edge_borders none
-default_border pixel
+default_border pixel 
+# change to pixel x everywhere if specific
 default_floating_border normal
 
 # disabling borders and window titles
 hide_edge_borders title # or both, you'll see
 
 bindsym $mod+u border none
-bindsym $mod+y border pixel 1
+bindsym $mod+y border pixel
 bindsym $mod+n border normal
 
 bindsym $mod+Shift+s sticky toggle
@@ -224,10 +225,10 @@ assign [class="discord"] $ws10
 #########################
 # float make
 for_window [class="Lxappearance"] floating enable border normal
-for_window [title="alsamixer"] floating enable border pixel 1
+for_window [title="alsamixer"] floating enable border pixel
 for_window [title="MuseScore: Play Panel"] floating enable
 for_window [class="qt5ct"] floating enable sticky enable border normal
-for_window [class="Galculator"] floating enable border pixel 1
+for_window [class="Galculator"] floating enable border pixel
 for_window [class="gnome-calculator"] floating enable border normal
 for_window [class="Pamac-manager"] floating enable border none
 for_window [class="Godot_Engine"] floating enable border normal
