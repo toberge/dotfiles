@@ -168,29 +168,30 @@ eval $(thefuck --alias) # sudo pip install thefuck first
 alias potato='feh -x ~/Pictures/folded/potato.jpg'
 # w3m -o ext_image_viewer=0 ~/Pictures/folded/potato.jpg
 
-flasher () { while true; do printf \\e[?5h; sleep 0.1; printf \\e[?5l; read -s -n1 -t1 && break; done; }
-
 ############################
 # MEDIA PLAYBACK AND STUFF #
 ############################
-
-# playlist() {
-#   mpv --playlist=$1 --no-video --loop-playlist=inf --shuffle
-# }
-# DOESN'T WORK properly - \'
 
 muse() {
   echo "we go look for mewsic"
   cd /media/Sharelings/Music/
 }
 
-mp3() {
-  mpv *.mp3 --no-video --shuffle --loop-playlist=inf
-  # just to have it here
-}
-
 ple() {
   MODE=1 # indicating not-ple
+
+
+  case $1 in
+	  m4a|mp3|ogg)
+		  MODE="pureple"
+		  ;;
+	  kageki|kage)
+		  echo wakarimas
+		  ;;
+ 	  *)
+		  echo "Usage: ple [filetype/list]"
+		  ;;
+  esac
 
   if [ $1 == "kageki" ] || [ $1 == "kage" ]; then
     MSG='wakarimas'
@@ -230,6 +231,11 @@ ple() {
     echo $MSG
     mpv $LIST --no-video
     echo $THEEND
+  elif [ $MODE == "pureple" ]
+  then
+	  echo "we ple some $1 files"
+	  mpv --no-video --loop-playlist=inf --shuffle *.$1
+
   fi
 }
 alias kool='ple kool'
@@ -328,66 +334,15 @@ jack() {
   javac $1.java && java $1
 }
 
-lejapp() {
-  javac -classpath /usr/local/bin/leJOS_EV3_0.9.1-beta/lib/ev3/ev3classes.jar *.java && jar cvfm $1.jar manifest.txt *.class
-}
-
-# javac -classpath /usr/local/bin/leJOS_EV3_0.9.1-beta/lib/ev3/ev3classes.jar Golfing.java
-# CONNECT DIRECTLY TO EV3, PORT 10.0.1.1
-# setting environment stuff for leJOS
-weshaltlejos() {
-echo "terraforming environment for brick species"
-EV3_HOME="/usr/local/bin/leJOS_EV3_0.9.1-beta"
-PATH=$PATH:$HOME/bin:$EV3_HOME/bin
-LEJOS_EV3_JAVA_HOME="/usr/local/bin/jdk1.7.0_79"
-CLASSPATH=$LEJOS_HOME/lib/ev3/ev3classes.jar:
-JAVA_HOME="/usr/local/bin/jdk1.7.0_79"
-PATH=$PATH:$HOME/bin:$JAVA_HOME/bin
-export EV3_HOME
-export PATH
-export JAVA_HOME
-export LEJOS_EV3_JAVA_HOME
-export CLASSPATH
-sudo update-alternatives --set java /usr/lib/jvm/jdk1.7.0_79/bin/java
-sudo update-alternatives --set javac /usr/lib/jvm/jdk1.7.0_79/bin/javac
-cdjava
-cd leJOSfrom
-echo "all set for leJOS"
-}
-alias wes='weshaltlejos'
-
-#andreOStime
-gremlin() {
-  ssh toberge@gremlin.stud.iie.ntnu.no
-}
-
-#lstest() {
-#  ls -l $1
-#  if $?=2 echo "what did ya do"
-#}
-
-# TODO: configure powerline :lenny:
-#PROMPT_COMMAND='powerline shell left'
-
 ################################
 # FANCY SHIT ON WELCOME SCREEN #
 ################################
 
-#echo
-#fortune riddles #| lolcat -S 410
-#echo
-neofetch
-if [ $? == 127 ];then
-	echo 'no neofetch you moron'
-	apt list neofetch
-	echo
-	screenfetch
-fi
-
-# replaces ye olde screenfetch #| lolcat -S 411
-
-# damn you, intellij or whatever
-# sudo update-alternatives --set java /opt/intellij-idea-community/jre64/bin/java
-# sudo update-alternatives --set javac /opt/intellij-idea-community/jre64/bin/javac
-
-# PS1='$(powerline shell left)'
+#neofetch
+#if [ $? == 127 ];then
+	#echo 'no neofetch you moron'
+	#apt list neofetch
+	#pacman -Q neofetch
+	#echo
+	#screenfetch
+#fi

@@ -466,6 +466,7 @@ exec_always --no-startup-id dunst #  -lb "$bg" -nb "$bg" -cb "$bg" -lf "$fg" -bf
 
 exec --no-startup-id dropbox
 exec --no-startup-id albert
+exec --no-startup-id pamac-tray
 #iexec_always --no-startup-id /home/qualitanty/.config/polybar/launch.sh
 
 exec --no-startup-id xautolock -time 12 -locker blurlock # time in mins
