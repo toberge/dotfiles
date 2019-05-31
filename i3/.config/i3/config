@@ -160,6 +160,7 @@ bindsym XF86MonBrightnessDown exec xbacklight -dec 10
 
 # Media player controls
 bindsym XF86AudioPlay exec playerctl play-pause # do the toggle
+bindsym Scroll_Lock exec playerctl play-pause # for desktoppers
 #bindsym XF86AudioPause exec playerctl pause #doesn't work here
 bindsym XF86AudioNext exec playerctl next
 bindsym XF86AudioPrev exec playerctl previous
@@ -205,7 +206,7 @@ set $ws10 "10 "
 # to find the class
 
 # media players
-assign [title="Spotify"] $ws10
+assign [class="spotify"] $ws10
 assign [class="Clementine"] $ws10
 assign [class="mpv"] $ws9
 
@@ -221,6 +222,15 @@ assign [class="Firefox"] $ws2
 
 # chat apps
 assign [class="discord"] $ws10
+
+# games?
+assign [class="Steam"] $ws8
+
+# startup shortcuts
+bindsym $mod+F2 exec firefox
+bindsym $mod+F4 exec intellij-idea-ultimate-edition
+bindsym $mod+F8 exec steam
+bindsym $mod+F10 exec spotify; exec discord
 
 #########################
 # float make
@@ -477,7 +487,7 @@ exec_always --no-startup-id xinput set-prop 14 284 1 # enable tapping (includes 
 
 ####################
 # various services
-exec --no-startup-id compton -f #--backend xrender #-f for fading effect, --backend because lag when resizing windows (remove if it misbehaves)
+exec --no-startup-id compton --dim-inactive -f #--backend xrender #-f for fading effect, --backend because lag when resizing windows (remove if it misbehaves)
 #exec redshift -l 63.41:10.42 -t 6200:3700
 exec --no-startup-id redshift-gtk # you got a config file now
 exec_always --no-startup-id dunst #  -lb "$bg" -nb "$bg" -cb "$bg" -lf "$fg" -bf "$fg" -cf "$fg" -nf "$fg"

@@ -244,6 +244,29 @@ alias reborn='ple iamreborn'
 alias dab='ple ugoku'
 alias angst='angband -mgcu'
 
+
+gimme() {
+    FACE="?"
+
+    case $1 in # single quotes fix everything
+        shrug)
+            FACE='¯\_(ツ)_/¯'
+            ;;
+        lenny)
+            FACE='( ͡° ͜ʖ ͡°)'
+            ;;
+    esac
+    
+    if [ "$FACE" != "?" ]
+    then
+        echo "Giving you a big ol' $1"
+        echo -n "$FACE" | xclip -selection c # dat -n removes newline, yay
+    else
+        echo "Sorry, no face corresponds to that."
+        echo "Try a nose instead?"
+    fi
+}
+
 # remember the need for spaces here. it's space-sensitive.
 # check out the shuffle thingy
 
