@@ -1,6 +1,11 @@
-#
+# Totally qualified & decreasingly ragtag
 # ~/.bashrc
+# 
+# Bits and pieces assembled from various sources,
+# held together by a slightly strained string of sense.
 #
+# Some things pulled straight from Manjaro's default bashrc,
+# most other things (typically less advanced -_-) written by me.
 
 [[ $- != *i* ]] && return
 
@@ -178,50 +183,31 @@ muse() {
 }
 
 ple() {
-  MODE=1 # indicating not-ple
-
+  MODE=9 # indicating not-ple
 
   case $1 in
-	  m4a|mp3|ogg)
+	  m4a|mp3|ogg|flac)
 		  MODE="pureple"
 		  ;;
 	  kageki|kage)
-		  echo wakarimas
+		  echo "wakarimas"
+                  echo "vewy sowy but it's gone"
 		  ;;
  	  *)
 		  echo "Usage: ple [filetype/list]"
 		  ;;
   esac
 
-  if [ $1 == "kageki" ] || [ $1 == "kage" ]; then
-    MSG='wakarimas'
-    LIST='https://www.youtube.com/playlist?list=PL477PKeQut6-VmAh4X6EkAzsOYWLtHL_G'
-  fi
-  if [ $1 == "iamreborn" ] || [ $1 == "reproduce" ]; then
-    MSG='I AM REBORN'
-    LIST='https://www.youtube.com/watch?v=fZ6s-2hLazs'
-    THEEND='wakarimas'
-    MODE=2
-  fi
+  # the following can be rewritten as case statements, but I'll leave it like this for now
+
   if [ $1 == "yokohama" ] || [ $1 == "alpha" ]; then
     MSG='sequester yourself in a quiet country café'
     LIST='https://www.youtube.com/playlist?list=PL157A64E54AB333EE'
   fi
   if [ $1 == "glt" ]; then
+      echo yeah it wrongk
     MSG='apocalypse nuow'
     LIST='https://www.youtube.com/playlist?list=PL0V1RP49t950z5e_IYNCsoXAUobTa7ppu'
-  fi
-  if [ $1 == "ugoku" ] || [ $1 == "dab" ]; then
-    MSG='ugok now, ku'
-    LIST='https://www.youtube.com/watch?v=M28Gzhxvf9w'
-    THEEND='*dabs*'
-    MODE=2
-  fi
-  if [ $1 == "moanai" ]; then
-    MSG='moanai moanai'
-    LIST='https://www.youtube.com/watch?v=M28Gzhxvf9w' # wrong link
-    THEEND='dja-ar-ni-i'
-    MODE=2
   fi
 
   if [ $MODE == 1 ]; then
@@ -233,9 +219,9 @@ ple() {
     echo $THEEND
   elif [ $MODE == "pureple" ]
   then
-	  echo "we ple some $1 files"
-	  mpv --no-video --loop-playlist=inf --shuffle *.$1
-
+    echo "we ple some $1 files"
+    mpv --no-video --loop-playlist=inf --shuffle *.$1
+    
   fi
 }
 alias kool='ple kool'
@@ -246,14 +232,23 @@ alias angst='angband -mgcu'
 
 
 gimme() {
-    FACE="?"
+    FACE="?" # zis command copies specific "text" to yer clipboard
 
     case $1 in # single quotes fix everything
-        shrug)
+        s|shrug)
             FACE='¯\_(ツ)_/¯'
             ;;
-        lenny)
+        l|lenny)
             FACE='( ͡° ͜ʖ ͡°)'
+            ;;
+        t|flip|table|tableflip)
+            FACE=' (╯°□°）╯︵ ┻━┻'
+            ;;
+        tp|put|tableput)
+            FACE='┬──┬ ノ( ゜-゜ノ)'
+            ;;
+        g|gib)
+            FACE='༼ つ ◕_◕ ༽つ'
             ;;
     esac
     
@@ -315,11 +310,6 @@ cleanpac() {
 # PROGRAMMING SECTION #
 #######################
 
-# mysql shell
-scowl() {
-	mysql -h mysql.stud.iie.ntnu.no -u toberge -p
-}
-
 # getting to java folder
 cdj() {
   echo "we go to ze javalion"
@@ -332,13 +322,6 @@ cdc() {
   echo "we leave ze javalion alone and see"
   cd ../C
 }
-
-# shortcut to java config (Debian distros only, I guess
-setj() {
-  sudo update-alternatives --config java
-  sudo update-alternatives --config javac
-}
-alias setjava='setj'
 
 # packing jar files, cvfm $BaseName.jar manifest.txt *.class
 japp() {
@@ -360,6 +343,12 @@ jack() {
 ################################
 # FANCY SHIT ON WELCOME SCREEN #
 ################################
+
+# gotta have something here, right?
+#echo '========hello master========'
+fortune -e science
+#echo '\==========================/'
+echo
 
 #neofetch
 #if [ $? == 127 ];then
