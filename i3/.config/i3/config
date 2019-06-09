@@ -51,7 +51,7 @@ gaps outer 0
 
 smart_gaps on
 smart_borders no_gaps
-# focus_follows_mouse no # point of contention...
+focus_follows_mouse no # point of contention...
 
 # Smart borders (draw borders around container only if it is not the only container on this workspace) 
 # on|no_gaps (on=always activate and no_gaps=only activate if the gap size to the edge of the screen is 0)
@@ -182,7 +182,7 @@ set $ws10 "10 "
 # to find the class
 
 # media players
-for_window [class="Spotify"] move to workspace $ws10 # real mischievous player
+#for_window [class="Spotify"] move to workspace $ws10 # real mischievous player
 assign [class="Clementine"] $ws10
 assign [class="mpv"] $ws9
 
@@ -206,7 +206,7 @@ assign [class="Steam"] $ws8
 bindsym $mod+F2 exec firefox
 bindsym $mod+F4 exec intellij-idea-ultimate-edition
 bindsym $mod+F8 exec steam
-bindsym $mod+F10 exec spotify; discord; discord-ptb # launch any of those two
+bindsym $mod+F10 exec spotify; exec discord; exec discord-ptb # launch any of those two
 
 #########################
 # float make
