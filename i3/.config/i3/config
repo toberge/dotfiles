@@ -445,7 +445,7 @@ bindsym $mod+Shift+d exec /home/qualitanty/.config/i3/j4dd.sh # put script there
 
 # lock
 # bindsym $mod+Shift+x exec i3lock -uf --color=421820 # 475263
-bindsym $mod+Shift+x exec i3lock-fancy; exec notify-send "locking yer screen"
+bindsym $mod+Shift+x exec i3lock-fancy -p; exec notify-send "locking yer screen"
 #bindsym $mod+Shift+x exec i3lock -f --indicator --color=$dark --verifcolor=$fga #--wrongcolor=$slush
 
 #####################
