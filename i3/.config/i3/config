@@ -463,6 +463,8 @@ exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 &
 
 exec_alwas --no-startup-id xrandr --output HDMI1 --mode 1920x1080 --pos 0x0 --rotate normal --output LVDS1 --primary --mode 1920x1080 --pos 1920x0 --rotate normal --output VIRTUAL1 --off --output DP1 --off --output VGA1 --off # put the .sh files in ~/.screenlayout in one of the /bin folders for easy access 
 
+exec export QT_QPA_PLATFORMTHEME="qt5ct"
+
 exec_always --no-startup-id xinput set-prop 14 292 1 # natural scrolling (on this laptop)
 exec_always --no-startup-id xinput set-prop 14 284 1 # enable tapping (includes middle-click)
 # run xinput list to get device ID
