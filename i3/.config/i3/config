@@ -51,7 +51,7 @@ gaps outer 0
 
 smart_gaps on
 smart_borders no_gaps
-focus_follows_mouse no # point of contention...
+#focus_follows_mouse no # point of contention...
 
 # Smart borders (draw borders around container only if it is not the only container on this workspace) 
 # on|no_gaps (on=always activate and no_gaps=only activate if the gap size to the edge of the screen is 0)
@@ -151,11 +151,11 @@ bindsym XF86AudioPrev exec playerctl previous
 # copy-paste from this thread:
 # https://www.reddit.com/r/i3wm/comments/8yx7ju/i3_screenshot_application/
 # Desktop screenshot
-bindsym --release Print exec "scrot ~/Pictures/screens/$(date --iso-8601='seconds').png -m -e 'xclip -selection c -t image/png < $f'"
+bindsym --release Print exec "scrot ~/Pictures/screens/$(date --iso-8601='seconds').png -m -e 'xclip -selection c -t image/png < $f'"; exec notify-send "scrot-ed entire screen"
 # Choose window
-bindsym --release Mod1+Sys_Req exec "import -window `xwininfo | awk '/.*Window id:.*/ {print $4}'` ~/Pictures/screens/$(date --iso-8601='seconds').png
+bindsym --release Mod1+Sys_Req exec notify-send "select window"; exec "import -window `xwininfo | awk '/.*Window id:.*/ {print $4}'` ~/Pictures/screens/$(date --iso-8601='seconds').png"
 # Selection screenshot
-bindsym --release Shift+Print exec "scrot ~/Pictures/screens/$(date --iso-8601='seconds').png -s -e 'xclip -selection c -t image/png < $f'"
+bindsym --release Shift+Print exec notify-send "select area", exec "scrot ~/Pictures/screens/$(date --iso-8601='seconds').png -s -e 'xclip -selection c -t image/png < $f'"
 
 
   #######################

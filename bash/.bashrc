@@ -179,6 +179,13 @@ alias q='exit'
 alias vi='vim'
 alias v='vim'
 
+alias gs='git status'
+alias gf='git fetch'
+alias gr='git rebase'
+alias gm='git merge'
+alias gp='git push'
+alias gl='git log --oneline --graph --all --decorate'
+
 eval $(thefuck --alias) # sudo pip install thefuck first
 
 # potato() {
