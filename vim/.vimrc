@@ -2,6 +2,30 @@
 " default arch vim config (nice)
 runtime! archlinux.vim
 
+" plug.vim (code from tips page)
+"if empty(glob('~/.vim/autoload/plug.vim'))
+  "silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
+    "\ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+  "autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
+" endif
+
+call plug#begin('~/.vim/plugged')
+
+Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
+Plug 'ycm-core/YouCompleteMe', { 'do': './install.py' }
+
+call plug#end()
+
+
+
+" NERDTree on ctrl+n
+let NERDTreeShowHidden=1
+map <silent> <C-n> :NERDTreeToggle<CR>
+
+" close NERDTree after a file is opened
+let g:NERDTreeQuitOnOpen=1
+
+
 " don't use arrowkeys
 noremap <Up> <NOP>
 noremap <Down> <NOP>
@@ -86,6 +110,8 @@ set notimeout ttimeout ttimeoutlen=200
 set shiftwidth=4
 set softtabstop=4
 set expandtab
+" ALSo maybe this for xtra convenience
+set smarttab " tab to next intent
 
 " Indentation settings for using hard tabs for indent. Display tabs as
 " four characters wide.
