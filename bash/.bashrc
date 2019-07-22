@@ -7,6 +7,8 @@
 # Some things pulled straight from Manjaro's default bashrc,
 # most other things (typically less advanced -_-) written by me.
 
+# also: plz fix indenting sometime, this is kinda annoying
+
 [[ $- != *i* ]] && return
 
 colors() {
@@ -179,11 +181,13 @@ alias q='exit'
 alias vi='vim'
 alias v='vim'
 
-alias gs='git status'
+alias g='git status' # to prevent GhostScript conflict
+alias gs='git status' # remove or not? TBD.
 alias gf='git fetch'
 alias gr='git rebase'
 alias gm='git merge'
 alias gp='git push'
+alias gc='git commit'
 alias gl='git log --oneline --graph --all --decorate'
 
 eval $(thefuck --alias) # sudo pip install thefuck first
@@ -207,16 +211,16 @@ ple() {
   MODE=9 # indicating not-ple
 
   case $1 in
-	  m4a|mp3|ogg|flac)
-		  MODE="pureple"
-		  ;;
-	  kageki|kage)
-		  echo "wakarimas"
-                  echo "vewy sowy but it's gone"
-		  ;;
- 	  *)
-		  echo "Usage: ple [filetype/list]"
-		  ;;
+    m4a|mp3|ogg|flac)
+      MODE="pureple"
+      ;;
+    kageki|kage)
+      echo "wakarimas"
+      echo "vewy sowy but it's gone"
+      ;;
+    *)
+      echo "Usage: ple [filetype/list]"
+      ;;
   esac
 
   # the following can be rewritten as case statements, but I'll leave it like this for now
@@ -336,7 +340,6 @@ cdj() {
   echo "we go to ze javalion"
   cd ~/Dropbox/skoleting/ITHINGDA/java
 }
-alias cdjava='cdj'
 
 cdc() {
   cdj
@@ -366,9 +369,7 @@ jack() {
 ################################
 
 # gotta have something here, right?
-#echo '========hello master========'
 fortune -e science
-#echo '\==========================/'
 echo
 
 #neofetch
