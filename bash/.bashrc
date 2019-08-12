@@ -184,6 +184,7 @@ alias ...='cd ../..'
 alias ....='cd ../../..'
 
 alias q='exit'
+alias ':q'='echo "you aint using vim now"; sleep 2; exit'
 alias vi='vim'
 alias v='vim'
 
@@ -271,21 +272,22 @@ gimme() {
 
     case $1 in # single quotes fix everything
         s|shrug)
-            FACE='¯\_(ツ)_/¯'
+            : '¯\_(ツ)_/¯'
             ;;
         l|lenny)
-            FACE='( ͡° ͜ʖ ͡°)'
+            : '( ͡° ͜ʖ ͡°)'
             ;;
         t|flip|table|tableflip)
-            FACE=' (╯°□°）╯︵ ┻━┻'
+            : ' (╯°□°）╯︵ ┻━┻'
             ;;
         tp|put|tableput)
-            FACE='┬──┬ ノ( ゜-゜ノ)'
+            : '┬──┬ ノ( ゜-゜ノ)'
             ;;
         g|gib)
-            FACE='༼ つ ◕_◕ ༽つ'
+            : '༼ つ ◕_◕ ༽つ'
             ;;
     esac
+    FACE="$_"
     
     if [ "$FACE" != "?" ]
     then
