@@ -3,16 +3,28 @@
 runtime! archlinux.vim
 
 " plug.vim (code from tips page)
-"if empty(glob('~/.vim/autoload/plug.vim'))
-  "silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
-    "\ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-  "autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
-" endif
+if empty(glob('~/.vim/autoload/plug.vim'))
+    silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
+        \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+    autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
+endif
 
 call plug#begin('~/.vim/plugged')
 
 Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
 Plug 'ycm-core/YouCompleteMe', { 'do': './install.py' }
+Plug 'tpope/vim-surround'
+Plug 'tpope/vim-repeat'
+" use gc to comment/uncomment
+Plug 'tpope/vim-commentary'
+" use cp to copy and cv to paste
+Plug 'christoomey/vim-system-copy'
+" use gs to sort
+Plug 'christoomey/vim-sort-motion'
+" <Leader>T to use, <Leader> is \ by default (warum weiß ich nicht)
+Plug 'wincent/Command-T', {
+    \   'do': 'cd ruby/command-t/ext/command-t && ruby extconf.rb && make'
+    \ }
 
 call plug#end()
 
@@ -100,6 +112,8 @@ set cmdheight=2
 
 " Display line numbers on the left
 set number
+set relativenumber
+" ahem, RELATIVE == UsEFUL
 
 " Quickly time out on keycodes, but never time out on mappings
 set notimeout ttimeout ttimeoutlen=200

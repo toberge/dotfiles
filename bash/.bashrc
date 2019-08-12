@@ -177,12 +177,19 @@ fi
 # START OF CUSTOM THINGIES #
 ############################
 
+PATH="$PATH:$HOME/.local/bin/"
+
+alias ..='cd ..'
+alias ...='cd ../..'
+alias ....='cd ../../..'
+
 alias q='exit'
 alias vi='vim'
 alias v='vim'
 
 alias g='git status' # to prevent GhostScript conflict
-alias gs='git status' # remove or not? TBD.
+alias ga='git add'
+alias gaa='git add -A'
 alias gf='git fetch'
 alias gr='git rebase'
 alias gm='git merge'

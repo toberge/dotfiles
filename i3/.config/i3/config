@@ -194,7 +194,7 @@ assign [class="com.oracle.javafx.scenebuilder.app.SceneBuilderApp"] $ws5 # it bu
 assign [class="jetbrains-idea"] $ws4
 
 # web browser(s)
-assign [class="Firefox"] $ws2
+assign [class="Navigator"] $ws2
 
 # chat apps
 assign [class="discord"] $ws10
@@ -214,12 +214,13 @@ for_window [class="Lxappearance"] floating enable border normal
 for_window [title="alsamixer"] floating enable border pixel
 for_window [title="MuseScore: Play Panel"] floating enable
 for_window [class="qt5ct"] floating enable sticky enable border normal
-for_window [class="Galculator"] floating enable border pixel
 for_window [class="gnome-calculator"] floating enable border normal
 for_window [class="Pamac-manager"] floating enable border none
 for_window [class="Godot_Engine"] floating enable border normal
 # my own sanity
 for_window [class="MainApp"] floating enable border normal
+for_window [class="\.Main$"] floating enable border normal
+
 
 ########################
 # switch to workspace
