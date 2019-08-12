@@ -190,11 +190,14 @@ alias v='vim'
 alias g='git status' # to prevent GhostScript conflict
 alias ga='git add'
 alias gaa='git add -A'
+alias gd='git diff'
+alias gdm='git diff origin/master'
 alias gf='git fetch'
 alias gr='git rebase'
 alias gm='git merge'
 alias gp='git push'
 alias gc='git commit'
+alias gcm='git commit -m'
 alias gl='git log --oneline --graph --all --decorate'
 
 eval $(thefuck --alias) # sudo pip install thefuck first

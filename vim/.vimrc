@@ -11,8 +11,15 @@ endif
 
 call plug#begin('~/.vim/plugged')
 
+" ------ complex things ------
 Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
 Plug 'ycm-core/YouCompleteMe', { 'do': './install.py' }
+" <Leader>T to use, <Leader> is \ by default (warum weiß ich nicht)
+Plug 'wincent/Command-T', {
+    \   'do': 'cd ruby/command-t/ext/command-t && ruby extconf.rb && make'
+    \ }
+
+" ------ commands ------
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-repeat'
 " use gc to comment/uncomment
@@ -21,10 +28,11 @@ Plug 'tpope/vim-commentary'
 Plug 'christoomey/vim-system-copy'
 " use gs to sort
 Plug 'christoomey/vim-sort-motion'
-" <Leader>T to use, <Leader> is \ by default (warum weiß ich nicht)
-Plug 'wincent/Command-T', {
-    \   'do': 'cd ruby/command-t/ext/command-t && ruby extconf.rb && make'
-    \ }
+
+" ------ text objects ------
+" (l)ine, (e)ntire buffer
+Plug 'kana/vim-textobj-line'
+Plug 'kana/vim-textobj-entire'
 
 call plug#end()
 
