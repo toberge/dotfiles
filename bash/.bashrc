@@ -177,11 +177,22 @@ fi
 # START OF CUSTOM THINGIES #
 ############################
 
-PATH="$PATH:$HOME/.local/bin/"
+#PATH="$PATH:$HOME/.local/bin/"
+# why did I define PATH in .bashrc?
+# TODO: test if something is broken now
+SKOLE="$HOME/Dropbox/skoleting/ITHINGDA/"
 
 alias ..='cd ..'
 alias ...='cd ../..'
 alias ....='cd ../../..'
+
+alias dot='cd ~/.dotfiles'
+alias cdj="cd $SKOLE/java"
+alias cds="cd $SKOLE/statistikk"
+alias cdc="cd $SKOLE/C"
+alias cdw="cd $SKOLE/web"
+alias cdm="cd $SKOLE/Matematikk\ 2"
+alias cda="cd $SKOLE/algdat"
 
 alias q='exit'
 alias ':q'='echo "you aint using vim now"; sleep 2; exit'
@@ -349,18 +360,6 @@ cleanpac() {
 #######################
 # PROGRAMMING SECTION #
 #######################
-
-# getting to java folder
-cdj() {
-  echo "we go to ze javalion"
-  cd ~/Dropbox/skoleting/ITHINGDA/java
-}
-
-cdc() {
-  cdj
-  echo "we leave ze javalion alone and see"
-  cd ../C
-}
 
 # packing jar files, cvfm $BaseName.jar manifest.txt *.class
 japp() {
