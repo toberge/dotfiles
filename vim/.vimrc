@@ -36,7 +36,7 @@ Plug 'kana/vim-textobj-entire'
 
 call plug#end()
 
-
+autocmd BufWrite *.md :! pandoc % -o /tmp/thing.pdf
 
 " NERDTree on ctrl+n
 let NERDTreeShowHidden=1
