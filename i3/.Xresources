@@ -13,7 +13,8 @@ XTerm*selectToClipboard: true
 
 *fading:                          10
 
-Xcursor.theme: xcursor-breeze
+! WHOOPS... DO make sure to change this if you wanna have consistent theme...
+Xcursor.theme: xcursor-breeze-snow
 Xcursor.size:                     0
 
 URxvt.font:                       xft:Fira Code:size=13
@@ -173,21 +174,4 @@ URxvt*letterSpace:                  -1
 ! URxvt*tabbar-bg:                  colour
 ! URxvt*tabbar-fg:                  colour
 ! URxvt*url-launcher:               string
-
-! The Terminus font uses the following X-names:
-! -xos4-terminus-medium-r-normal--12-120-72-72-c-60-iso10646-1
-! -xos4-terminus-medium-r-normal--14-140-72-72-c-80-iso10646-1
-! -xos4-terminus-medium-r-normal--16-160-72-72-c-80-iso10646-1
-! -xos4-terminus-medium-r-normal--20-200-72-72-c-100-iso10646-1
-! -xos4-terminus-medium-r-normal--22-220-72-72-c-110-iso10646-1
-! -xos4-terminus-medium-r-normal--24-240-72-72-c-120-iso10646-1
-! -xos4-terminus-medium-r-normal--28-280-72-72-c-140-iso10646-1
-! -xos4-terminus-medium-r-normal--32-320-72-72-c-160-iso10646-1
-! -xos4-terminus-bold-r-normal--12-120-72-72-c-60-iso10646-1
-! -xos4-terminus-bold-r-normal--14-140-72-72-c-80-iso10646-1
-! -xos4-terminus-bold-r-normal--16-160-72-72-c-80-iso10646-1
-! -xos4-terminus-bold-r-normal--20-200-72-72-c-100-iso10646-1
-! -xos4-terminus-bold-r-normal--24-240-72-72-c-120-iso10646-1
-! -xos4-terminus-bold-r-normal--28-280-72-72-c-140-iso10646-1
-! -xos4-terminus-bold-r-normal--32-320-72-72-c-160-iso10646-1
 

@@ -188,6 +188,9 @@ alias ':q'='echo "you aint using vim now"; sleep 2; exit'
 alias vi='vim'
 alias v='vim'
 
+alias ll='ls -lh'
+alias la='ls -lha'
+
 alias g='git status' # to prevent GhostScript conflict
 alias ga='git add'
 alias gaa='git add -A'
