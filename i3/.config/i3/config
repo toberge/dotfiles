@@ -472,6 +472,9 @@ exec_always --no-startup-id xinput set-prop 14 284 1 # enable tapping (includes 
 # run xinput list-props [ID] to get ID of natural scroll or other property
 # replace numbers in above command
 
+# NUMLOCK ON LOGIN
+exec_always --no-startup-id numlockx on
+
 ####################
 # various services
 exec --no-startup-id compton --dim-inactive -f #--backend xrender #-f for fading effect, --backend because lag when resizing windows (remove if it misbehaves)
