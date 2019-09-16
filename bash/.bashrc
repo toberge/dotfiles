@@ -214,6 +214,10 @@ alias gp='git push'
 alias gc='git commit'
 alias gcm='git commit -m'
 alias gl='git log --oneline --graph --all --decorate'
+# see https://stackoverflow.com/questions/849308/pull-push-from-multiple-remote-locations/12795747#12795747
+# with or without branch arg?
+alias gpab='for RMT in $(git remote); do git push -v $RMT $1; done;'
+alias gpa='for RMT in $(git remote); do git push $RMT; done;'
 
 eval $(thefuck --alias) # sudo pip install thefuck first
 
