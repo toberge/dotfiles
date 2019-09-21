@@ -483,7 +483,9 @@ exec_always --no-startup-id numlockx on
 ####################
 # various services
 # no need for --inactive-dim when we got opacity differentiation
-exec --no-startup-id compton -f --blur-background --inactive-opacity 0.9 --active-opacity 0.95
+# exec --no-startup-id compton -f --blur-background --inactive-opacity 0.9 --active-opacity 0.95
+exec --no-startup-id compton --inactive-dim --blur-background --inactive-opacity 0.88 --active-opacity 0.92 -f --opacity-rule "100:class_g = 'mpv' && focused" --opacity-rule "100:class_g = 'Firefox' && focused"
+# TODO compton.conf
 exec --no-startup-id redshift-gtk # you got a config file now
 exec_always --no-startup-id dunst #  -lb "$bg" -nb "$bg" -cb "$bg" -lf "$fg" -bf "$fg" -cf "$fg" -nf "$fg"
 
