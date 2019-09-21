@@ -1,5 +1,6 @@
 
 " default arch vim config (nice)
+" TODO: read and incorporate it
 runtime! archlinux.vim
 
 " plug.vim (code from tips page)
@@ -20,7 +21,6 @@ Plug 'wincent/Command-T', {
     \ }
 
 " ------ commands ------
-Plug 'tpope/vim-surround'
 Plug 'tpope/vim-repeat'
 " use gc to comment/uncomment
 Plug 'tpope/vim-commentary'
@@ -30,13 +30,19 @@ Plug 'christoomey/vim-system-copy'
 Plug 'christoomey/vim-sort-motion'
 
 " ------ text objects ------
+" (s)urrounding (object/motion/command)
+Plug 'tpope/vim-surround'
 " (l)ine, (e)ntire buffer
-Plug 'kana/vim-textobj-line'
-Plug 'kana/vim-textobj-entire'
+" Plug 'kana/vim-textobj-line'
+" Plug 'kana/vim-textobj-entire'
+" (they stopped working)
+
+" ------ cosmetics ------
 Plug 'dylanaraps/wal.vim'
 
 call plug#end()
 
+" TODO: modify as you like
 colorscheme wal
 
 let g:airline_powerline_fonts = 1
