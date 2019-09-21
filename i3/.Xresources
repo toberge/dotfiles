@@ -17,7 +17,7 @@ XTerm*selectToClipboard: true
 Xcursor.theme: xcursor-breeze-snow
 Xcursor.size:                     0
 
-URxvt.font:                       xft:Fira Code:size=13
+URxvt.font:                       xft:Fira Code:size=13, xft:Font Awesome 5 Free:style=Regular:size=8, xft:Font Awesome 5 Free:style=Solid:size=8, xft:Font Awesome 5 Brands:style=Regular:size=8, xft:PowerlineSymbols:style=Medium:size=13, xft:Inconsolata:style=Regular:size=13
 
 ! alternative font settings with 'terminus':
 ! URxvt.font:      -xos4-terminus-medium-r-normal--16-160-72-72-c-80-iso10646-1

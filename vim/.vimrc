@@ -33,10 +33,15 @@ Plug 'christoomey/vim-sort-motion'
 " (l)ine, (e)ntire buffer
 Plug 'kana/vim-textobj-line'
 Plug 'kana/vim-textobj-entire'
+Plug 'dylanaraps/wal.vim'
 
 call plug#end()
 
-autocmd BufWrite *.md :! pandoc % -o /tmp/thing.pdf
+colorscheme wal
+
+let g:airline_powerline_fonts = 1
+
+" autocmd BufWrite *.md :! pandoc % -o /tmp/thing.pdf
 
 " NERDTree on ctrl+n
 let NERDTreeShowHidden=1
