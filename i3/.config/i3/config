@@ -59,6 +59,7 @@ bindsym $mod+Return exec urxvt
 
 # kill focused window
 bindsym $mod+Shift+q kill
+bindsym $mod+q kill
 
 ################################
 # change focus
@@ -90,6 +91,10 @@ bindsym $mod+b split h; exec notify-send "splitting horizontally"
 
 # split in vertical orientation
 bindsym $mod+v split v; exec notify-send "splitting vertically"
+
+# toggle split direction (yay)
+bindsym $mod+t split toggle
+bindsym $mod+Shift+t layout toggle split
 
 # enter fullscreen mode for the focused container
 bindsym $mod+f fullscreen toggle
