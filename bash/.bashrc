@@ -177,6 +177,47 @@ fi
 # START OF CUSTOM THINGIES #
 ############################
 
+# pywal things
+(cat ~/.cache/wal/sequences &)
+source ~/.cache/wal/colors-tty.sh
+
+export WALLPAPERS="$HOME/Dropbox/wallpaper assembly"
+
+theme() {
+    IMG=""
+
+    if [ -f "$1" ]
+    then # is a file
+        IMG="$1"
+    else # not a file
+        case $1 in
+            desert)
+                IMG="$WALLPAPERS/stylized landscapes/guerilla desert.jpg"
+                ;;
+            sunset)
+                IMG="$WALLPAPERS/stylized landscapes/golden sunset.jpg"
+                ;;
+            karen)
+                IMG="$WALLPAPERS/kageki/Karen Dark.png"
+                ;;
+            ubunchu)
+                IMG="$WALLPAPERS/random/best 'buntu.png"
+                ;;
+            wind|windswept)
+                IMG="$WALLPAPERS/focuswriter/Arboreal_ballet_by_Bob_Farrell.jpg"
+                ;;
+            *)
+                IMG="$WALLPAPERS/stylized landscapes/golden sunset.jpg"
+                ;;
+        esac
+    fi
+
+    wal -i "$IMG"
+    wal_steam -w
+    i3-msg reload
+    # TODO dmenu/rofi + others
+}
+
 #PATH="$PATH:$HOME/.local/bin/"
 # why did I define PATH in .bashrc?
 # TODO: test if something is broken now
@@ -193,6 +234,10 @@ alias cdc="cd $SKOLE/C"
 alias cdw="cd $SKOLE/web"
 alias cdm="cd $SKOLE/Matematikk\ 2"
 alias cda="cd $SKOLE/algdat"
+
+alias bc="vim $HOME/.bashrc"
+alias i3conf="vim $HOME/.config/i3/config"
+alias polyconf="vim $HOME/.config/polybar/config"
 
 alias q='exit'
 alias ':q'='echo "you aint using vim now"; sleep 2; exit'

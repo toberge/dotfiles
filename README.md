@@ -27,4 +27,3 @@ to install
 
 
 [text to ASCII](http://www.patorjk.com/software/taag/#p=display&f=Slant&t=.dotfiles)  
-[pywal customization](https://github.com/dylanaraps/pywal/wiki/Customization#jetbrains-ides)

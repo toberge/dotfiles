@@ -6,10 +6,11 @@
 
 set $mod Mod4
 
-set $pywal $HOME/Dropbox/wallpaper\ assembly/stylized\ landscapes/golden\ sunset.jpg
+#set $pywal $HOME/Dropbox/wallpaper\ assembly/stylized\ landscapes/golden\ sunset.jpg
 #set $pywal $HOME/Dropbox/wallpaper\ assembly/euphony/kumiko\ parade.jpg
 
-exec_always --no-startup-id wal -i $pywal
+#exec_always --no-startup-id wal -i $pywal
+exec_always --no-startup-id wal -R
 
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} blok below.
@@ -184,6 +185,7 @@ set $ws10 "10"
 # assigning workspaces, use 
 # xprop | grep "CLASS" 
 # to find the class
+# (use the last value)
 
 # media players
 #for_window [class="Spotify"] move to workspace $ws10 # real mischievous player
@@ -198,7 +200,7 @@ assign [class="com.oracle.javafx.scenebuilder.app.SceneBuilderApp"] $ws5 # it bu
 assign [class="jetbrains-idea"] $ws4
 
 # web browser(s)
-assign [class="Navigator"] $ws2
+assign [class="Firefox"] $ws2
 
 # chat apps
 assign [class="discord"] $ws10
@@ -214,13 +216,14 @@ bindsym $mod+F10 exec spotify; exec discord; exec discord-ptb # launch any of th
 
 #########################
 # float make
-for_window [class="Lxappearance"] floating enable border normal
-for_window [title="alsamixer"] floating enable border pixel
+for_window [class="Lxappearance"] floating enable
+for_window [title="alsamixer"] floating enable
 for_window [title="MuseScore: Play Panel"] floating enable
-for_window [class="qt5ct"] floating enable sticky enable border normal
-for_window [class="gnome-calculator"] floating enable border normal
+for_window [class="qt5ct"] floating enable sticky enable
+for_window [class="Gnome-calculator"] floating enable border none
 for_window [class="Pamac-manager"] floating enable border none
 for_window [class="Godot_Engine"] floating enable border normal
+for_window [class="XClock"] floating enable border pixel
 # my own sanity
 for_window [class="MainApp"] floating enable border normal
 for_window [class="\.Main$"] floating enable border normal
@@ -437,13 +440,8 @@ client.background $bg # o rly?
 #}
 
 # LAUNCH THE MENU (uses colors)
-# bindsym $mod+d exec rofi -show run -lines 3 -eh 2 -width 100 -padding 800 -opacity "85" -bw 0 -bc "$bg-color" -bg "$bg-color" -fg "$text-color" -hlbg "$bg-color" -hlfg "#9575cd" -font "System San Francisco Display 18"
-# bindsym $mod+d exec rofi -show run -lines 3 -eh 2 -width 100 -padding 400 -opacity "85" -bw 0 -color-window "$bg-color, $bg-color, $bg-color" -color-normal "$bg-color, $text-color, $bg-color, $bg-color, $text-color" -font "Ubuntu Regular 16"
-#bindsym $mod+d exec dmenu_run
+# TODO switch to rofi
 bindsym $mod+d exec dmenu_run -nb "$fg" -nf "$bg" -sb "$bg" -sf "$fg"
-# switch to dmenu_recency maybe?
-# bindsym $mod+Shift+d j4-dmenu-desktop
-# bindsym $mod+Shift+d exec j4-dmenu-desktop --dmenu="(cat ; (stest -flx $(echo $PATH | tr : ' ') | sort -u)) | dmenu"
 bindsym $mod+Shift+d exec /home/qualitanty/.config/i3/j4dd.sh # put script there but wasn't satisfied so the 1st is used
 # bindsym $mod+d exec /home/qualitanty/.local/bin/roflies $bg-color $text-color
 
@@ -457,13 +455,12 @@ bindsym $mod+Shift+x exec i3lock-fancy -p; exec notify-send "locking yer screen"
 # AUTOSTART SECTION #
 #####################
 
-#####################
-# pywal color brigade
-# exec_always --no-startup-id feh -z --bg-fill /home/qualitanty/Pictures/wallpeeps/selection #-z randomizes
-exec_always --no-startup-id feh --bg-fill $pywal
-
-# bar
+# Polybar
 exec --no-startup-id ~/.config/polybar/launch.sh
+
+# Compositor
+# remember -b to make compton run as bg process
+exec --no-startup-id compton -b --conf ~/.config/compton/compton.conf
 
 #####################
 # system-specific twingles
@@ -482,17 +479,12 @@ exec_always --no-startup-id numlockx on
 
 ####################
 # various services
-# no need for --inactive-dim when we got opacity differentiation
-# exec --no-startup-id compton -f --blur-background --inactive-opacity 0.9 --active-opacity 0.95
-exec --no-startup-id compton --inactive-dim --blur-background --inactive-opacity 0.88 --active-opacity 0.92 -f --opacity-rule "100:class_g = 'mpv' && focused" --opacity-rule "100:class_g = 'Firefox' && focused"
-# TODO compton.conf
 exec --no-startup-id redshift-gtk # you got a config file now
 exec_always --no-startup-id dunst #  -lb "$bg" -nb "$bg" -cb "$bg" -lf "$fg" -bf "$fg" -cf "$fg" -nf "$fg"
 
 exec --no-startup-id dropbox
 exec --no-startup-id albert
 exec --no-startup-id pamac-tray
-#iexec_always --no-startup-id /home/qualitanty/.config/polybar/launch.sh
 
 #exec --no-startup-id xautolock -time 12 -locker blurlock # time in mins
 
