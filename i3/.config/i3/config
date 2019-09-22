@@ -389,7 +389,7 @@ set_from_resource $dimtxt i3wm.color6 #f0f0f0
 set_from_resource $crisp i3wm.color5 #f0f0f0
 set_from_resource $sushi i3wm.color4 #f0f0f0
 set_from_resource $slush i3wm.color3 #f0f0f0
-set_from_resource $bg i3wm.color2 #f0f0f0
+set_from_resource $bg i3wm.color1 #f0f0f0
 set_from_resource $mellow i3wm.color1 #f0f0f0
 set_from_resource $dark i3wm.color0 #f0f0f0
 

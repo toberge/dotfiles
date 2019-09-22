@@ -197,6 +197,12 @@ theme() {
             sunset)
                 IMG="$WALLPAPERS/stylized landscapes/golden sunset.jpg"
                 ;;
+            cyan|cyanide)
+                IMG="$WALLPAPERS/stylized landscapes/cyanide plateau.jpg"
+                ;;
+            ventilation)
+                IMG="$WALLPAPERS/stylized landscapes/ventilation.jpg"
+                ;;
             karen)
                 IMG="$WALLPAPERS/kageki/Karen Dark.png"
                 ;;

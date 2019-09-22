@@ -17,13 +17,20 @@
 ;==========================================================
 
 [colors]
-background = ${xrdb:color1:#222}
+background = ${xrdb:color1}
 background-alt = ${xrdb:color3}
-foreground = ${xrdb:color7:#222}
+foreground = ${xrdb:color7}
 foreground-alt = ${xrdb:color7}
 primary = ${xrdb:color7}
-secondary = ${xrdb:color6}
+secondary = ${xrdb:color4}
 alert = ${xrdb:color0}
+
+;serial colors for underlines
+decal0 = ${xrdb:color7}
+decal1 = ${xrdb:color5}
+decal2 = ${xrdb:color4}
+decal3 = ${xrdb:color3}
+decal4 = ${xrdb:color6}
 
 [bar/sunset]
 ;monitor = ${env:MONITOR:HDMI-1}
@@ -234,7 +241,7 @@ interval = 2
 ;format-prefix = " "
 format-prefix = " "
 format-prefix-foreground = ${colors.foreground-alt}
-;format-underline = #f90000
+format-underline = ${colors.decal2}
 label = %percentage:2%%
 
 [module/memory]
@@ -242,7 +249,7 @@ type = internal/memory
 interval = 2
 format-prefix = " "
 format-prefix-foreground = ${colors.foreground-alt}
-;format-underline = ${colors.secondary}
+format-underline = ${colors.decal1}
 label = %percentage_used%%
 
 [module/wlan]
@@ -295,7 +302,7 @@ time-alt = %H:%M:%S
 
 format-prefix = 
 format-prefix-foreground = ${colors.foreground-alt}
-format-underline = ${colors.secondary}
+format-underline = ${colors.decal4}
 
 label = %date% %time%
 
@@ -303,11 +310,14 @@ label = %date% %time%
 type = internal/pulseaudio
 
 format-volume = <ramp-volume> <label-volume>
+format-volume-underline = ${colors.decal0}
+
 label-volume = %percentage%%
 label-volume-foreground = ${root.foreground}
 
 label-muted =  OFF
 label-muted-foreground = ${colors.secondary}
+label-muted-underline = ${colors.secondary}
 
 ramp-volume-0 = 
 ramp-volume-1 = 
@@ -352,9 +362,9 @@ thermal-zone = 0
 warn-temperature = 60
 
 format = <ramp> <label>
-format-underline = 
+format-underline = ${colors.decal3}
 format-warn = <ramp> <label-warn>
-format-warn-underline = ${colors.secondary}
+format-warn-underline = ${self.format-underline}
 
 label = %temperature-c%
 label-warn = %temperature-c%
