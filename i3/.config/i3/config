@@ -460,9 +460,6 @@ bindsym $mod+Shift+x exec i3lock-fancy -p; exec notify-send "locking yer screen"
 # AUTOSTART SECTION #
 #####################
 
-# Polybar
-exec --no-startup-id ~/.config/polybar/launch.sh
-
 # Compositor
 # remember -b to make compton run as bg process
 exec --no-startup-id compton -b --conf ~/.config/compton/compton.conf
@@ -499,3 +496,7 @@ exec --no-startup-id /usr/bin/xfce-power-manager # for power management
 
 # To know what has changed in the home folder:
 # find ~/ -mmin -5 -type f
+
+# Polybar
+exec --no-startup-id ~/.config/polybar/launch.sh
+# exec --no-startup-id killall polybar; polybar -r sunset

@@ -244,6 +244,7 @@ alias cda="cd $SKOLE/algdat"
 alias bc="vim $HOME/.bashrc"
 alias i3conf="vim $HOME/.config/i3/config"
 alias polyconf="vim $HOME/.config/polybar/config"
+alias polystart="$HOME/.config/polybar/launch.sh"
 
 alias q='exit'
 alias ':q'='echo "you aint using vim now"; sleep 2; exit'

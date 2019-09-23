@@ -8,9 +8,10 @@
 ```
 
 # *totally qualified dotfiles*
-## *Using GNU stow with simple packages*
+## Using GNU stow with simple packages
 
-Naming convention:
+## Naming convention:
+
 ```
 package
 _no-package
@@ -20,6 +21,17 @@ _no-package
 stow <package>
 ```
 to install
+
+## pywal pipeline
+
+`wal -R` in i3conf to reload colors&wallpaper from cache, wal sets wallpaper by itself.
+
+See [pywal's Getting Started page](https://github.com/dylanaraps/pywal/wiki/Getting-Started#applying-the-theme-to-new-terminals) for the two snippets I put in .bashrc to make terminals that do not fetch colors from .Xresources have pywal colors, including TTYs.  
+Using [this script](https://github.com/GideonWolfe/Zathura-Pywal) to make Zathura comply.
+
+When setting new theme (function in .bashrc):  
+`wal -i <image>` obviously  
+`wal_steam` if Steam is installed  
 
 ## *links and credits*
 
