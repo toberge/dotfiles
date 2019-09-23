@@ -32,7 +32,7 @@ decal2 = ${xrdb:color4}
 decal3 = ${xrdb:color3}
 decal4 = ${xrdb:color6}
 
-[bar/sunset]
+[bar/main]
 ;monitor = ${env:MONITOR:HDMI-1}
 width = 100%
 height = 27
@@ -56,13 +56,12 @@ padding-right = 2
 module-margin-left = 1
 module-margin-right = 2
 
-;font-0 = fixed:pixelsize=10;1
+; After ; is y-offset of some sort
 font-0 = Ubuntu:style=Bold:size=13;1
-font-1 = "Font Awesome 5 Free:style=Regular:size=11;0"
-font-2 = "Font Awesome 5 Free:style=Solid:size=11;0"
-font-3 = "Font Awesome 5 Brands:style=Regular:size=11;0"
-font-4 = unifont:fontformat=truetype:size=8:antialias=false;0
-font-5 = siji:pixelsize=10;1
+font-1 = "Font Awesome 5 Free:style=Regular:size=11;1"
+font-2 = "Font Awesome 5 Free:style=Solid:size=11;1"
+font-3 = "Font Awesome 5 Brands:style=Regular:size=11;1"
+font-4 = "Powerline Symbols:style=Medium:size=13;0"
 
 ; add mpd when you've got that thing set up (also prolly no need for alsa)
 modules-left = bspwm i3
@@ -87,6 +86,15 @@ tray-padding = 2
 
 cursor-click = pointer
 cursor-scroll = ns-resize
+
+; template arrow thing
+[module/arrow1]
+; color to color
+type = custom/text
+content = "%{T2} %{T-}"
+content-font = 1
+content-foreground = ${colors.secondary}
+content-background = ${colors.background}
 
 [module/xwindow]
 type = internal/xwindow
@@ -207,7 +215,7 @@ label-song-ellipsis = true
 [module/player-mpris-simple]
 type = custom/script
 label = %output:0:50:...%
-exec = ~/.local/bin/player-mpris-simple.sh
+exec = ~/.config/polybar/scripts/player-mpris-simple.sh
 interval = 3
 click-left = playerctl previous
 click-right = playerctl next
@@ -217,17 +225,17 @@ click-middle = playerctl play-pause
 type = internal/xbacklight
 
 format = <label> <bar>
-label = BL
+label = 
 
 bar-width = 10
 bar-indicator = |
-bar-indicator-foreground = #fff
-bar-indicator-font = 2
-bar-fill = ─
-bar-fill-font = 2
-bar-fill-foreground = #9f78e1
-bar-empty = ─
-bar-empty-font = 2
+bar-indicator-foreground = ${colors.foreground}
+bar-indicator-font = 1
+bar-fill = |
+bar-fill-font = 1
+bar-fill-foreground = ${colors.decal1}
+bar-empty = |
+bar-empty-font = 1
 bar-empty-foreground = ${colors.foreground-alt}
 
 [module/backlight-acpi]
@@ -238,7 +246,6 @@ card = intel_backlight
 [module/cpu]
 type = internal/cpu
 interval = 2
-;format-prefix = " "
 format-prefix = " "
 format-prefix-foreground = ${colors.foreground-alt}
 format-underline = ${colors.decal2}
@@ -330,29 +337,36 @@ adapter = AC
 full-at = 98
 
 format-charging = <animation-charging> <label-charging>
-format-charging-underline = #ffb52a
+format-charging-underline = ${colors.decal4}
+; #ffb52a
 
 format-discharging = <animation-discharging> <label-discharging>
 format-discharging-underline = ${self.format-charging-underline}
 
-format-full-prefix = " "
+format-full-prefix = " "
 format-full-prefix-foreground = ${colors.foreground-alt}
 format-full-underline = ${self.format-charging-underline}
 
-ramp-capacity-0 = 
-ramp-capacity-1 = 
-ramp-capacity-2 = 
+ramp-capacity-0 = 
+ramp-capacity-1 = 
+ramp-capacity-2 = 
+ramp-capacity-3 = 
+;ramp-capacity-4 = 
 ramp-capacity-foreground = ${colors.foreground-alt}
 
-animation-charging-0 = 
-animation-charging-1 = 
-animation-charging-2 = 
+animation-charging-0 = 
+animation-charging-1 = 
+animation-charging-2 = 
+animation-charging-3 = 
+animation-charging-4 = 
 animation-charging-foreground = ${colors.foreground-alt}
 animation-charging-framerate = 750
 
-animation-discharging-0 = 
-animation-discharging-1 = 
-animation-discharging-2 = 
+animation-discharging-0 = 
+animation-discharging-1 = 
+animation-discharging-2 = 
+animation-discharging-3 = 
+animation-discharging-4 = 
 animation-discharging-foreground = ${colors.foreground-alt}
 animation-discharging-framerate = 750
 

@@ -15,8 +15,9 @@ do
     sleep 1
 done
 
-# start bar on all monitors
-name=sunset
+# Start bar on all monitors
+# from https://github.com/gugahoi/dotfiles-linux/blob/master/config/polybar/scripts/launch.sh
+name=main
 if type "xrandr"
 then
   for monitor in $(xrandr --query | grep " connected" | cut -d" " -f1)
