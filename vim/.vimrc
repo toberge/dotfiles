@@ -48,6 +48,7 @@ colorscheme wal
 let g:airline_powerline_fonts = 1
 
 " autocmd BufWrite *.md :! pandoc % -o /tmp/thing.pdf
+command PDF :!pandoc %:t -o /tmp/thing.pdf
 
 " NERDTree on ctrl+n
 let NERDTreeShowHidden=1
