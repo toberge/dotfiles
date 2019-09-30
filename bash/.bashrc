@@ -307,11 +307,13 @@ ple() {
   # the following can be rewritten as case statements, but I'll leave it like this for now
 
   if [ $1 == "yokohama" ] || [ $1 == "alpha" ]; then
+    MODE=1
     MSG='sequester yourself in a quiet country café'
     LIST='https://www.youtube.com/playlist?list=PL157A64E54AB333EE'
   fi
   if [ $1 == "glt" ]; then
-      echo yeah it wrongk
+    echo yeah it wrongk
+    MODE=2
     MSG='apocalypse nuow'
     LIST='https://www.youtube.com/playlist?list=PL0V1RP49t950z5e_IYNCsoXAUobTa7ppu'
   fi
@@ -330,12 +332,6 @@ ple() {
     
   fi
 }
-alias kool='ple kool'
-alias giraffe='ple kageki'
-alias reborn='ple iamreborn'
-alias dab='ple ugoku'
-alias angst='angband -mgcu'
-
 
 gimme() {
     FACE="?" # zis command copies specific "text" to yer clipboard
@@ -439,8 +435,8 @@ jack() {
 ################################
 
 # gotta have something here, right?
-fortune -e science
-echo
+# fortune -e science
+# echo
 
 #neofetch
 #if [ $? == 127 ];then

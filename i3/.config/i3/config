@@ -6,8 +6,11 @@
 
 set $mod Mod4
 
-#set $pywal $HOME/Dropbox/wallpaper\ assembly/stylized\ landscapes/golden\ sunset.jpg
-#set $pywal $HOME/Dropbox/wallpaper\ assembly/euphony/kumiko\ parade.jpg
+set $browse mpv --volume=70 $HOME/.sounds/browse.wav
+set $close mpv $HOME/.sounds/close.wav
+set $accept mpv $HOME/.sounds/accept.wav
+set $toggle mpv $HOME/.sounds/toggle.wav
+set $menu mpv $HOME/.sounds/menu.wav
 
 #exec_always --no-startup-id wal -i $pywal
 exec_always --no-startup-id wal -R
@@ -55,11 +58,11 @@ floating_modifier $mod
 
 # start a terminal
 #bindsym $mod+Return exec gnome-terminal && wal -i $pywal # hacky solution...
-bindsym $mod+Return exec urxvt
+bindsym $mod+Return exec urxvt; exec $accept
 
 # kill focused window
-bindsym $mod+Shift+q kill
-bindsym $mod+q kill
+bindsym $mod+Shift+q kill; exec $close
+bindsym $mod+q kill; exec $close
 
 ################################
 # change focus
@@ -105,7 +108,7 @@ bindsym $mod+w layout tabbed; exec notify-send "tabbed layout"
 bindsym $mod+e layout toggle split; exec notify-send "standard layout"
 
 # toggle tiling / floating
-bindsym $mod+Shift+space floating toggle
+bindsym $mod+Shift+space floating toggle; exec $toggle
 
 # change focus between tiling / floating windows
 bindsym $mod+space focus mode_toggle
@@ -212,6 +215,7 @@ assign [class="discord"] $ws10
 
 # games?
 assign [class="Steam"] $ws8
+assign [class="Wine"] $ws7
 
 # startup shortcuts
 bindsym $mod+F2 exec firefox
@@ -262,11 +266,14 @@ bindsym $mod+Shift+0 move container to workspace $ws10
 ####################
 # switch em up
 workspace_auto_back_and_forth yes
-#bindsym $mod+m workspace back_and_forth
-#bindsym $mod+Shift+m move container to workspace back_and_forth; workspace back_and_forth
+# navigate back 'n forth
+#bindsym $mod+Tab workspace back_and_forth
+bindsym $mod+Shift+Tab move container to workspace back_and_forth; workspace back_and_forth
 #navigate workspaces next / previous
-bindsym Mod1+Ctrl+Right workspace next
-bindsym Mod1+Ctrl+Left workspace prev
+bindsym Mod1+Tab workspace next; exec $browse
+bindsym Mod1+Shift+Tab workspace prev; exec $browse
+bindsym Mod1+Ctrl+Right workspace next; exec $browse
+bindsym Mod1+Ctrl+Left workspace prev; exec $browse
 
 # credits https://gist.github.com/magujs/f8060343b9aedc7e6514
 set $mode-ws-move Move workspace to other monitor
@@ -415,7 +422,7 @@ set_from_resource $dark i3wm.color0 #f0f0f0
 # 6 can be dim text
 # 7 is text candidate
 
-# class                 border  backgr. text indicator child_border
+# class                 border  backgr. text indicator chil"d_border
 client.focused          $bg     $bg     $fg  $bg       $bg
 client.focused_inactive $bg     $bg     $fg  $bg       $bg
 client.unfocused        $bg     $bg     $fg  $bg       $bg
@@ -423,32 +430,12 @@ client.urgent           $bg     $bg     $fg  $bg       $bg
 client.placeholder      $bg     $bg     $fg  $bg       $bg
 client.background $bg # o rly?
 
-# bar
-#bar {
-#    position top
-#
-#    status_command i3blocks -c ~/.config/i3/i3blocks.conf
-#
-#    colors {
-#
-#        background $mellow
-#        statusline $fg
-#        separator $fg #757575
-#
-#        #                  border        background        text
-#        focused_workspace  $fg           $mellow           $fg
-#        active_workspace   $dimtxt	 $mellow	   $dimtxt # not on this monitor
-#        inactive_workspace $dimtxt       $slush            $dimtxt
-#        urgent_workspace   $fg           $sushi            $fg     # also applies to mode indicators (and status coloring sometimes?)
-#        # you can add one for binding_mode if you want it separate from urgent_workspace
-#    }
-#}
-
-# LAUNCH THE MENU (uses colors)
-# TODO switch to rofi
-bindsym $mod+d exec dmenu_run -nb "$fg" -nf "$bg" -sb "$bg" -sf "$fg"
-bindsym $mod+Shift+d exec /home/qualitanty/.config/i3/j4dd.sh # put script there but wasn't satisfied so the 1st is used
-# bindsym $mod+d exec /home/qualitanty/.local/bin/roflies $bg-color $text-color
+# LAUNCH THE MENU
+# dmenu no more
+bindsym $mod+d exec rofi -show run & $menu
+bindsym $mod+Shift+d exec rofi -show drun -show-icons & $menu
+bindsym $mod+Shift+a exec "rofi -combi-modi window,drun -show combi & $menu"
+bindsym $mod+Tab exec rofi -show window -show-icons & $menu
 
 
 # lock
@@ -460,9 +447,15 @@ bindsym $mod+Shift+x exec i3lock-fancy -p; exec notify-send "locking yer screen"
 # AUTOSTART SECTION #
 #####################
 
+exec --no-startup-id mpv $HOME/.sounds/startup.wav &
+
 # Compositor
 # remember -b to make compton run as bg process
 exec --no-startup-id compton -b --conf ~/.config/compton/compton.conf
+
+# Polybar
+exec --no-startup-id ~/.config/polybar/launch.sh
+# exec --no-startup-id killall polybar; polybar -r sunset
 
 #####################
 # system-specific twingles
@@ -485,7 +478,6 @@ exec --no-startup-id redshift-gtk # you got a config file now
 exec_always --no-startup-id dunst #  -lb "$bg" -nb "$bg" -cb "$bg" -lf "$fg" -bf "$fg" -cf "$fg" -nf "$fg"
 
 exec --no-startup-id dropbox
-exec --no-startup-id albert
 exec --no-startup-id pamac-tray
 
 #exec --no-startup-id xautolock -time 12 -locker blurlock # time in mins
@@ -497,6 +489,3 @@ exec --no-startup-id /usr/bin/xfce-power-manager # for power management
 # To know what has changed in the home folder:
 # find ~/ -mmin -5 -type f
 
-# Polybar
-exec --no-startup-id ~/.config/polybar/launch.sh
-# exec --no-startup-id killall polybar; polybar -r sunset

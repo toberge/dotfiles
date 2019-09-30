@@ -1,10 +1,7 @@
 #!/usr/bin/env bash
 
-if test `echo $HOSTNAME | grep computer`
-then # specific issue on laptop only
-    echo "laptop bad, must wait"
-    sleep 1
-fi
+# Polybar somehow needs a timeout
+sleep 1
 
 # Terminate already running bar instances
 killall -q polybar
