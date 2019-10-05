@@ -33,7 +33,7 @@ decal3 = ${xrdb:color3}
 decal4 = ${xrdb:color6}
 
 [bar/main]
-;monitor = ${env:MONITOR:HDMI-1}
+monitor = ${env:MONITOR}
 width = 100%
 height = 27
 ;offset-x = 1%
@@ -186,7 +186,7 @@ label-unfocused-padding = 2
 
 ; visible = Active workspace on unfocused monitor
 label-visible = ${self.label-focused}
-label-visible-background = ${self.label-focused-background}
+label-visible-background = ${colors.secondary}
 label-visible-underline = ${self.label-focused-underline}
 label-visible-padding = ${self.label-focused-padding}
 
