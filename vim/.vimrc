@@ -67,6 +67,7 @@ Plug 'ycm-core/YouCompleteMe', { 'do': './install.py' }
 Plug 'wincent/Command-T', {
     \   'do': 'cd ruby/command-t/ext/command-t && ruby extconf.rb && make'
     \ }
+Plug 'dense-analysis/ale'
 
 " ------ commands ------
 Plug 'tpope/vim-repeat'
@@ -105,6 +106,12 @@ map <silent> <C-n> :NERDTreeToggle<CR>
 " close NERDTree after a file is opened
 let g:NERDTreeQuitOnOpen=1
 
+" ------ ALE ------
+
+let b:ale_linters = ['standard']
+let g:ale_javascript_standard_executable = 'semistandard'
+
+" ------ arrow keys are banned ------
 
 " don't use arrowkeys
 noremap <Up> <NOP>
@@ -118,7 +125,8 @@ inoremap <Down>  <NOP>
 inoremap <Left>  <NOP>
 inoremap <Right> <NOP>
 
-" from vim wiki http://vim.wikia.com/wiki/Example_vimrc
+" ------ from vim wiki ------
+" http://vim.wikia.com/wiki/Example_vimrc
 
 " Attempt to determine the type of a file based on its name and possibly its
 " contents. Use this to allow intelligent auto-indenting for each filetype,
