@@ -114,7 +114,7 @@ bindsym $mod+Shift+space floating toggle; exec $toggle
 bindsym $mod+space focus mode_toggle
 
 # focus the parent container
-bindsym $mod+a focus parent
+#bindsym $mod+a focus parent
 
 # focus the child container
 #bindsym $mod+d focus child
@@ -432,9 +432,9 @@ client.background $bg # o rly?
 
 # LAUNCH THE MENU
 # dmenu no more
-bindsym $mod+d exec rofi -show run & $menu
-bindsym $mod+Shift+d exec rofi -show drun -show-icons & $menu
-bindsym $mod+Shift+a exec "rofi -combi-modi window,drun -show combi & $menu"
+bindsym $mod+Shift+d exec rofi -show run & $menu
+bindsym $mod+d exec rofi -show drun -show-icons & $menu
+bindsym $mod+a exec "rofi -combi-modi window,drun -show combi -show-icons & $menu"
 bindsym $mod+Tab exec rofi -show window -show-icons & $menu
 
 

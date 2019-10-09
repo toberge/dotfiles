@@ -219,14 +219,11 @@ theme() {
     fi
 
     wal -i "$IMG"
-    wal_steam -w
+    test -f /usr/bin/wal_steam && wal_steam -w
     i3-msg reload
-    # TODO dmenu/rofi + others
+    # TODO dunst + others
 }
 
-#PATH="$PATH:$HOME/.local/bin/"
-# why did I define PATH in .bashrc?
-# TODO: test if something is broken now
 SKOLE="$HOME/Dropbox/skoleting/ITHINGDA/"
 
 alias ..='cd ..'
@@ -250,6 +247,7 @@ alias q='exit'
 alias ':q'='echo "you aint using vim now"; sleep 2; exit'
 alias vi='vim'
 alias v='vim'
+alias r='ranger'
 
 alias ll='ls -lh'
 alias la='ls -lha'
