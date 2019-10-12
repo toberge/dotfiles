@@ -66,7 +66,7 @@ font-4 = "Powerline Symbols:style=Medium:size=13;0"
 ; add mpd when you've got that thing set up (also prolly no need for alsa)
 modules-left = bspwm i3
 modules-center = xwindow
-modules-right = player-mpris-simple xbacklight pulseaudio memory cpu wlan eth battery temperature date
+modules-right = xbacklight pulseaudio memory cpu wlan eth battery temperature date
 
 tray-position = right
 tray-padding = 2
@@ -261,11 +261,12 @@ label = %percentage_used%%
 
 [module/wlan]
 type = internal/network
-interface = wlp61s0
+interface = wlp3s0
 interval = 3.0
 
 format-connected = <ramp-signal> <label-connected>
-format-connected-underline = #9f78e1
+;format-connected-underline = #9f78e1
+format-connected-underline = ${colors.decal1}
 label-connected = %essid%
 
 format-disconnected =
@@ -283,10 +284,12 @@ ramp-signal-foreground = ${colors.foreground-alt}
 
 [module/eth]
 type = internal/network
+; TODO find eth using 'ip link show' on desktop
 interface = enp0s25
 interval = 3.0
 
-format-connected-underline = #55aa55
+;format-connected-underline = #55aa55
+format-connected-underline = ${colors.decal1}
 format-connected-prefix = " "
 format-connected-prefix-foreground = ${colors.foreground-alt}
 label-connected = %local_ip%

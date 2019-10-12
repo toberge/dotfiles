@@ -2,15 +2,20 @@
 # i3 config file (v4)
 # Modified by *me* into a ~terrifying monster~
 #
-# Please see https://i3wm.org/docs/userguide.html for a complete reference!
+# Documentation at https://i3wm.org/docs/userguide.html
 
 set $mod Mod4
 
-set $browse mpv --volume=70 $HOME/.sounds/browse.wav
-set $close mpv $HOME/.sounds/close.wav
-set $accept mpv $HOME/.sounds/accept.wav
-set $toggle mpv $HOME/.sounds/toggle.wav
-set $menu mpv $HOME/.sounds/menu.wav
+# Look, there's even an optional sound theme
+# Dunno where I'll put the actual files
+
+set $browse canberra-gtk-play -f $HOME/.sounds/browse.wav
+set $close canberra-gtk-play -f $HOME/.sounds/close.wav
+set $open canberra-gtk-play -f $HOME/.sounds/open.wav
+set $toggle canberra-gtk-play -f $HOME/.sounds/toggle.wav
+set $menu canberra-gtk-play -f $HOME/.sounds/menu.wav
+set $apply canberra-gtk-play -f $HOME/.sounds/apply.wav
+set $shutter canberra-gtk-play -f $HOME/.sounds/shutter.wav
 
 #exec_always --no-startup-id wal -i $pywal
 exec_always --no-startup-id wal -R
@@ -30,9 +35,9 @@ default_floating_border normal
 # disabling borders and window titles
 hide_edge_borders title # or both, you'll see
 
-bindsym $mod+u border none
-bindsym $mod+y border pixel
-bindsym $mod+n border normal
+bindsym $mod+u border none, exec $toggle
+bindsym $mod+y border pixel, exec $toggle
+bindsym $mod+n border normal, exec $toggle
 
 bindsym $mod+Shift+s sticky toggle
 
@@ -58,11 +63,11 @@ floating_modifier $mod
 
 # start a terminal
 #bindsym $mod+Return exec gnome-terminal && wal -i $pywal # hacky solution...
-bindsym $mod+Return exec urxvt; exec $accept
+bindsym $mod+Return exec urxvt, exec $open
 
 # kill focused window
-bindsym $mod+Shift+q kill; exec $close
-bindsym $mod+q kill; exec $close
+bindsym $mod+Shift+q kill, exec $close
+bindsym $mod+q kill, exec $close
 
 ################################
 # change focus
@@ -78,40 +83,48 @@ bindsym $mod+Up focus up
 bindsym $mod+Right focus right
 
 # move focused window
-bindsym $mod+Shift+h move left
-bindsym $mod+Shift+j move down
-bindsym $mod+Shift+k move up
-bindsym $mod+Shift+l move right
+bindsym $mod+Shift+h move left, exec $toggle
+bindsym $mod+Shift+j move down, exec $toggle
+bindsym $mod+Shift+k move up, exec $toggle
+bindsym $mod+Shift+l move right, exec $toggle
 
 # alternatively, you can use the cursor keys:
-bindsym $mod+Shift+Left move left
-bindsym $mod+Shift+Down move down
-bindsym $mod+Shift+Up move up
-bindsym $mod+Shift+Right move right
+bindsym $mod+Shift+Left move left, exec $toggle
+bindsym $mod+Shift+Down move down, exec $toggle
+bindsym $mod+Shift+Up move up, exec $toggle
+bindsym $mod+Shift+Right move right, exec $toggle
 
 # split in horizontal orientation
-bindsym $mod+b split h; exec notify-send "splitting horizontally"
+bindsym $mod+b split h; exec notify-send "splitting horizontally", exec $toggle
 
 # split in vertical orientation
-bindsym $mod+v split v; exec notify-send "splitting vertically"
+bindsym $mod+v split v; exec notify-send "splitting vertically", exec $toggle
 
 # toggle split direction (yay)
-bindsym $mod+t split toggle
-bindsym $mod+Shift+t layout toggle split
+bindsym $mod+t split toggle, exec $toggle
+bindsym $mod+Shift+t layout toggle split, exec $toggle
 
 # enter fullscreen mode for the focused container
-bindsym $mod+f fullscreen toggle
+bindsym $mod+f fullscreen toggle, exec $toggle
 
 # change container layout (stacked, tabbed, toggle split)
-bindsym $mod+s layout stacking; exec notify-send "stacking layout"
-bindsym $mod+w layout tabbed; exec notify-send "tabbed layout"
-bindsym $mod+e layout toggle split; exec notify-send "standard layout"
+set $layout_mode (s)tacked, (t)abbed layout, (n)ormal i3
+mode "$layout_mode" {
+    bindsym s layout stacking; mode "default", exec $apply
+    bindsym t layout tabbed; mode "default", exec $apply
+    bindsym n layout toggle split; mode "default", exec $apply
+
+    bindsym Return mode "default", exec $close
+    bindsym Escape mode "default", exec $close
+    bindsym $mod+s mode "default", exec $close
+}
+bindsym $mod+s mode "$layout_mode", exec $shutter
 
 # toggle tiling / floating
-bindsym $mod+Shift+space floating toggle; exec $toggle
+bindsym $mod+Shift+space floating toggle, exec $toggle
 
 # change focus between tiling / floating windows
-bindsym $mod+space focus mode_toggle
+bindsym $mod+space focus mode_toggle, exec $toggle
 
 # focus the parent container
 #bindsym $mod+a focus parent
@@ -120,25 +133,25 @@ bindsym $mod+space focus mode_toggle
 #bindsym $mod+d focus child
 
 # move the currently focused window to the scratchpad
-bindsym $mod+Shift+minus move scratchpad; exec notify-send "moved to skratchpad"
+bindsym $mod+Shift+minus move scratchpad; exec notify-send "moved to skratchpad", exec $apply
 
 # Show the next scratchpad window or hide the focused scratchpad window.
 # If there are multiple scratchpad windows, this command cycles through them.
-bindsym $mod+minus scratchpad show
+bindsym $mod+minus scratchpad show, exec $apply
 
   ###########################################
  ## HEY HERE ARE KEYBINDS U WANT EM RIGHT ##
 ###########################################
 
 # key-bindings: run xmodmap -pke to get info about keys 
-bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume 0 +5% #increase sound volume
-bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume 0 -5% #decrease sound volume
+bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume 0 +5%, exec $open #increase sound volume
+bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume 0 -5%, exec $open #decrease sound volume
 bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute 0 toggle # mute sound
 # SET SINK ID TO 0 not 2 like default idk. 
 
 # brightness maybe
-bindsym XF86MonBrightnessUp exec xbacklight -inc 10
-bindsym XF86MonBrightnessDown exec xbacklight -dec 10
+bindsym XF86MonBrightnessUp exec xbacklight -inc 10, exec $open
+bindsym XF86MonBrightnessDown exec xbacklight -dec 10, exec $open
 
 # Media player controls
 bindsym XF86AudioPlay exec playerctl play-pause # do the toggle
@@ -152,11 +165,11 @@ bindsym XF86AudioPrev exec playerctl previous
 # copy-paste from this thread:
 # https://www.reddit.com/r/i3wm/comments/8yx7ju/i3_screenshot_application/
 # Desktop screenshot
-bindsym --release Print exec "scrot ~/Pictures/screens/$(date --iso-8601='seconds').png -m -e 'xclip -selection c -t image/png < $f'"; exec notify-send "scrot-ed entire screen"
+bindsym --release Print exec "scrot ~/Pictures/screens/$(date --iso-8601='seconds').png -m -e 'xclip -selection c -t image/png < $f'"; exec notify-send "scrot-ed entire screen", exec $apply
 # Choose window
-bindsym --release Mod1+Sys_Req exec notify-send "select window"; exec "import -window `xwininfo | awk '/.*Window id:.*/ {print $4}'` ~/Pictures/screens/$(date --iso-8601='seconds').png"
+bindsym --release Mod1+Sys_Req exec notify-send "select window"; exec "import -window `xwininfo | awk '/.*Window id:.*/ {print $4}'` ~/Pictures/screens/$(date --iso-8601='seconds').png", exec $apply
 # Selection screenshot
-bindsym --release Shift+Print exec notify-send "select area", exec "scrot ~/Pictures/screens/$(date --iso-8601='seconds').png -s -e 'xclip -selection c -t image/png < $f'"
+bindsym --release Shift+Print exec notify-send "select area"; exec "scrot ~/Pictures/screens/$(date --iso-8601='seconds').png -s -e 'xclip -selection c -t image/png < $f'", exec $apply
 
 
   #######################
@@ -208,7 +221,7 @@ assign [class="com.oracle.javafx.scenebuilder.app.SceneBuilderApp"] $ws5 # it bu
 assign [class="jetbrains-idea"] $ws4
 
 # web browser(s)
-assign [class="Firefox"] $ws2
+assign [class="firefox"] $ws2
 
 # chat apps
 assign [class="discord"] $ws10
@@ -218,10 +231,10 @@ assign [class="Steam"] $ws8
 assign [class="Wine"] $ws7
 
 # startup shortcuts
-bindsym $mod+F2 exec firefox
-bindsym $mod+F4 exec intellij-idea-ultimate-edition
-bindsym $mod+F8 exec steam
-bindsym $mod+F10 exec spotify; exec discord; exec discord-ptb # launch any of those two
+bindsym $mod+F2 exec $open; exec firefox
+bindsym $mod+F4 exec $open; exec intellij-idea-ultimate-edition
+bindsym $mod+F8 exec $open; exec steam
+bindsym $mod+F10 exec $open; exec spotify, exec discord, exec discord-ptb # launch any of those two
 
 #########################
 # float make
@@ -240,28 +253,28 @@ for_window [class="\.Main$"] floating enable border normal
 
 ########################
 # switch to workspace
-bindsym $mod+1 workspace $ws1
-bindsym $mod+2 workspace $ws2
-bindsym $mod+3 workspace $ws3
-bindsym $mod+4 workspace $ws4
-bindsym $mod+5 workspace $ws5
-bindsym $mod+6 workspace $ws6
-bindsym $mod+7 workspace $ws7
-bindsym $mod+8 workspace $ws8
-bindsym $mod+9 workspace $ws9
-bindsym $mod+0 workspace $ws10
+bindsym $mod+1 workspace $ws1, exec $browse
+bindsym $mod+2 workspace $ws2, exec $browse
+bindsym $mod+3 workspace $ws3, exec $browse
+bindsym $mod+4 workspace $ws4, exec $browse
+bindsym $mod+5 workspace $ws5, exec $browse
+bindsym $mod+6 workspace $ws6, exec $browse
+bindsym $mod+7 workspace $ws7, exec $browse
+bindsym $mod+8 workspace $ws8, exec $browse
+bindsym $mod+9 workspace $ws9, exec $browse
+bindsym $mod+0 workspace $ws10, exec $browse
 
 # move focused container to workspace
-bindsym $mod+Shift+1 move container to workspace $ws1
-bindsym $mod+Shift+2 move container to workspace $ws2
-bindsym $mod+Shift+3 move container to workspace $ws3
-bindsym $mod+Shift+4 move container to workspace $ws4
-bindsym $mod+Shift+5 move container to workspace $ws5
-bindsym $mod+Shift+6 move container to workspace $ws6
-bindsym $mod+Shift+7 move container to workspace $ws7
-bindsym $mod+Shift+8 move container to workspace $ws8
-bindsym $mod+Shift+9 move container to workspace $ws9
-bindsym $mod+Shift+0 move container to workspace $ws10
+bindsym $mod+Shift+1 move container to workspace $ws1, exec $apply
+bindsym $mod+Shift+2 move container to workspace $ws2, exec $apply
+bindsym $mod+Shift+3 move container to workspace $ws3, exec $apply
+bindsym $mod+Shift+4 move container to workspace $ws4, exec $apply
+bindsym $mod+Shift+5 move container to workspace $ws5, exec $apply
+bindsym $mod+Shift+6 move container to workspace $ws6, exec $apply
+bindsym $mod+Shift+7 move container to workspace $ws7, exec $apply
+bindsym $mod+Shift+8 move container to workspace $ws8, exec $apply
+bindsym $mod+Shift+9 move container to workspace $ws9, exec $apply
+bindsym $mod+Shift+0 move container to workspace $ws10, exec $apply
 
 ####################
 # switch em up
@@ -270,29 +283,31 @@ workspace_auto_back_and_forth yes
 #bindsym $mod+Tab workspace back_and_forth
 bindsym $mod+Shift+Tab move container to workspace back_and_forth; workspace back_and_forth
 #navigate workspaces next / previous
-bindsym Mod1+Tab workspace next; exec $browse
-bindsym Mod1+Shift+Tab workspace prev; exec $browse
-bindsym Mod1+Ctrl+Right workspace next; exec $browse
-bindsym Mod1+Ctrl+Left workspace prev; exec $browse
+bindsym Mod1+Tab workspace next, exec $browse
+bindsym Mod1+Shift+Tab workspace prev, exec $browse
+bindsym Mod1+Ctrl+Right workspace next, exec $browse
+bindsym Mod1+Ctrl+Left workspace prev, exec $browse
 
 # credits https://gist.github.com/magujs/f8060343b9aedc7e6514
 set $mode-ws-move Move workspace to other monitor
 
 mode "$mode-ws-move" {
-    bindsym Up move workspace to output up
-    bindsym Down move workspace to output down
-    bindsym Left move workspace to output left
-    bindsym Right move workspace to output right
+    bindsym Up move workspace to output up, exec $toggle
+    bindsym Down move workspace to output down, exec $toggle
+    bindsym Left move workspace to output left, exec $toggle
+    bindsym Right move workspace to output right, exec $toggle
 
-    bindsym k move workspace to output up
-    bindsym j move workspace to output down
-    bindsym h move workspace to output left
-    bindsym l move workspace to output right
+    bindsym k move workspace to output up, exec $toggle
+    bindsym j move workspace to output down, exec $toggle
+    bindsym h move workspace to output left, exec $toggle
+    bindsym l move workspace to output right, exec $toggle
 
-    bindsym Escape mode "default"
+    bindsym Return mode "default", exec $apply
+    bindsym Escape mode "default", exec $apply
+    bindsym $mod+m mode "default", exec $apply
 }
 
-bindsym $mod+m mode "$mode-ws-move"
+bindsym $mod+m mode "$mode-ws-move", exec $shutter
 
 ################################
 # reload the configuration file
@@ -323,12 +338,12 @@ mode "resize" {
     bindsym Right resize grow width 10 px or 10 ppt
 
     # back to normal: Enter or Escape or $mod+r
-    bindsym Return mode "default"
-    bindsym Escape mode "default"
-    bindsym $mod+r mode "default"
+    bindsym Return mode "default", exec $apply
+    bindsym Escape mode "default", exec $apply
+    bindsym $mod+r mode "default", exec $apply
 }
 
-bindsym $mod+r mode "resize"
+bindsym $mod+r mode "resize", exec $shutter
 
 ################################
 # Press $mod+Shift+g to enter the gap mode. Choose o or i for modifying outer/inner gaps. Press one of + / - (in-/decrement for current workspace) or 0 (remove gaps for current workspace). If you also press Shift with these keys, the change will be global for all workspaces.
@@ -370,7 +385,7 @@ mode "$mode_gaps_outer" {
 
 ###############################################
 # Set shut down, restart and locking features
-bindsym $mod+Ctrl+x mode "$mode_system"
+bindsym $mod+Ctrl+x mode "$mode_system", exec $shutter
 set $mode_system (l)ock, (e)xit, switch_(u)ser, (s)uspend, (h)ibernate, (r)eboot, (Shift+s)hutdown
 mode "$mode_system" {
     bindsym l exec --no-startup-id i3exit lock, mode "default"
@@ -382,8 +397,8 @@ mode "$mode_system" {
     bindsym Shift+s exec --no-startup-id i3exit shutdown, mode "default"
 
     # exit system mode: "Enter" or "Escape"
-    bindsym Return mode "default"
-    bindsym Escape mode "default"
+    bindsym Return mode "default", exec $close
+    bindsym Escape mode "default", exec $close
 }
 
 
@@ -440,7 +455,7 @@ bindsym $mod+Tab exec rofi -show window -show-icons & $menu
 
 # lock
 # bindsym $mod+Shift+x exec i3lock -uf --color=421820 # 475263
-bindsym $mod+Shift+x exec i3lock-fancy -p; exec notify-send "locking yer screen"
+bindsym $mod+Shift+x exec i3lock-fancy -p, exec notify-send "locking yer screen", exec $shutter
 #bindsym $mod+Shift+x exec i3lock -f --indicator --color=$dark --verifcolor=$fga #--wrongcolor=$slush
 
 #####################
