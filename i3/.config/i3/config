@@ -455,7 +455,7 @@ bindsym $mod+Tab exec rofi -show window -show-icons & $menu
 
 # lock
 # bindsym $mod+Shift+x exec i3lock -uf --color=421820 # 475263
-bindsym $mod+Shift+x exec i3lock-fancy -p, exec notify-send "locking yer screen", exec $shutter
+bindsym $mod+Shift+x exec mantablockscreen, exec notify-send "locking yer screen", exec $shutter
 #bindsym $mod+Shift+x exec i3lock -f --indicator --color=$dark --verifcolor=$fga #--wrongcolor=$slush
 
 #####################
@@ -466,7 +466,7 @@ exec --no-startup-id mpv $HOME/.sounds/startup.wav &
 
 # Compositor
 # remember -b to make compton run as bg process
-exec --no-startup-id compton -b --conf ~/.config/compton/compton.conf
+exec --no-startup-id compton -b --dbus --conf ~/.config/compton/compton.conf
 
 # Polybar
 exec --no-startup-id ~/.config/polybar/launch.sh

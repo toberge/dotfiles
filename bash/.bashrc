@@ -178,8 +178,13 @@ fi
 ############################
 
 # pywal things
-(cat ~/.cache/wal/sequences &)
-source ~/.cache/wal/colors-tty.sh
+if [ $DESKTOP_SESSION == "i3" ]
+then # on DE where we shall set them colors
+    (cat ~/.cache/wal/sequences &)
+elif [ -z $DESKTOP_SESSION ]
+then # on a TTY, do the pywal
+    source ~/.cache/wal/colors-tty.sh
+fi
 
 export WALLPAPERS="$HOME/Dropbox/wallpaper assembly"
 
@@ -220,6 +225,7 @@ theme() {
 
     wal -i "$IMG"
     test -f /usr/bin/wal_steam && wal_steam -w
+    test -f /usr/local/bin/mantablockscreen && mantablockscreen -i "$IMG"
     i3-msg reload
     # TODO dunst + others
 }
