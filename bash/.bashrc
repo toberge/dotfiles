@@ -178,7 +178,7 @@ fi
 ############################
 
 # pywal things
-if [ $DESKTOP_SESSION == "i3" ]
+if [[ "$DESKTOP_SESSION" = "i3" ]]
 then # on DE where we shall set them colors
     (cat ~/.cache/wal/sequences &)
 elif [ -z $DESKTOP_SESSION ]
