@@ -33,7 +33,7 @@ default_border pixel
 default_floating_border normal
 
 # disabling borders and window titles
-hide_edge_borders title # or both, you'll see
+hide_edge_borders smart
 
 bindsym $mod+u border none, exec $toggle
 bindsym $mod+y border pixel, exec $toggle
@@ -455,7 +455,7 @@ bindsym $mod+Tab exec rofi -show window -show-icons & $menu
 
 # lock
 # bindsym $mod+Shift+x exec i3lock -uf --color=421820 # 475263
-bindsym $mod+Shift+x exec mantablockscreen, exec notify-send "locking yer screen", exec $shutter
+bindsym $mod+Shift+x exec betterlockscreen -l blur -t "$(fortune lock || echo Something went wrong)", exec notify-send "locking yer screen", exec $shutter
 #bindsym $mod+Shift+x exec i3lock -f --indicator --color=$dark --verifcolor=$fga #--wrongcolor=$slush
 
 #####################

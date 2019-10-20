@@ -225,7 +225,7 @@ theme() {
 
     wal -i "$IMG"
     test -f /usr/bin/wal_steam && wal_steam -w
-    test -f /usr/local/bin/mantablockscreen && mantablockscreen -i "$IMG"
+    test -f /usr/local/bin/betterlockscreen && betterlockscreen -u "$IMG"
     i3-msg reload
     # TODO dunst + others
 }
