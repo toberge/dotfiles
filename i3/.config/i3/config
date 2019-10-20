@@ -455,7 +455,7 @@ bindsym $mod+Tab exec rofi -show window -show-icons & $menu
 
 # lock
 # bindsym $mod+Shift+x exec i3lock -uf --color=421820 # 475263
-bindsym $mod+Shift+x exec betterlockscreen -l blur -t "$(fortune lock || echo Something went wrong)", exec notify-send "locking yer screen", exec $shutter
+bindsym $mod+Shift+x exec betterlockscreen -l -t "$(fortune lock || echo Something went wrong)", exec $shutter
 #bindsym $mod+Shift+x exec i3lock -f --indicator --color=$dark --verifcolor=$fga #--wrongcolor=$slush
 
 #####################
