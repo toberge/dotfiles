@@ -3,7 +3,8 @@
 
 [global]
     # width, horizontal margin (- from left), vertical margin (+ from above)
-    geometry = "480-32+32"
+    # bar + margin = 27 + 8 = 35, just margin = 8
+    geometry = "480-8+35"
 
     # Show multiple notifications in the same box
     separator_height = 4
@@ -23,7 +24,7 @@
     idle_threshold = 120
 
     # Font and typography settings
-    font = Roboto 12
+    font = Ubuntu Regular 13
     alignment = center
     word_wrap = yes
 

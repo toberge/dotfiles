@@ -22,7 +22,7 @@ exec_always --no-startup-id wal -R
 
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} blok below.
-font pango: Ubuntu Regular 11 
+font pango: Ubuntu Regular 11
 
 ################################
 # configure window borders (default + shortcuts)
@@ -451,7 +451,6 @@ bindsym $mod+Shift+d exec rofi -show run & $menu
 bindsym $mod+d exec rofi -show drun -show-icons & $menu
 bindsym $mod+a exec "rofi -combi-modi window,drun -show combi -show-icons & $menu"
 bindsym $mod+Tab exec rofi -show window -show-icons & $menu
-
 
 # lock
 # bindsym $mod+Shift+x exec i3lock -uf --color=421820 # 475263
