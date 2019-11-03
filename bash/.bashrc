@@ -145,10 +145,6 @@ ex ()
   fi
 }
 
-# better yaourt colors
-export YAOURT_COLORS="nb=1:pkg=1:ver=1;32:lver=1;45:installed=1;42:grp=1;34:od=1;41;5:votes=1;44:dsc=0:other=1;35"
-
-
 ############################
 # IMPORTED FROM LINUX MINT #
 ############################
@@ -211,6 +207,9 @@ theme() {
             karen)
                 IMG="$WALLPAPERS/kageki/Karen Dark.png"
                 ;;
+            alpha|yokohama)
+                IMG="$WALLPAPERS/cafe/gelender.jpg"
+                ;;
             ubunchu)
                 IMG="$WALLPAPERS/random/best 'buntu.png"
                 ;;
@@ -224,10 +223,11 @@ theme() {
     fi
 
     wal -i "$IMG"
-    test -f /usr/bin/wal_steam && wal_steam -w
-    test -f /usr/bin/betterlockscreen && betterlockscreen -u "$IMG"
+    killall dunst
+    dunst &
+    # test -f /usr/bin/wal_steam && wal_steam -w
+    betterlockscreen -u "$IMG"
     i3-msg reload
-    # TODO dunst + others
 }
 
 SKOLE="$HOME/Dropbox/skoleting/ITHINGDA/"
@@ -243,6 +243,7 @@ alias cdc="cd $SKOLE/C"
 alias cdw="cd $SKOLE/web"
 alias cdm="cd $SKOLE/Matematikk\ 2"
 alias cda="cd $SKOLE/algdat"
+alias cdf="cd $SKOLE/fysikk"
 
 alias bc="vim $HOME/.bashrc"
 alias i3conf="vim $HOME/.config/i3/config"
@@ -272,8 +273,8 @@ alias gcm='git commit -m'
 alias gl='git log --oneline --graph --all --decorate'
 # see https://stackoverflow.com/questions/849308/pull-push-from-multiple-remote-locations/12795747#12795747
 # with or without branch arg?
-alias gpab='for RMT in $(git remote); do git push -v $RMT $1; done;'
-alias gpa='for RMT in $(git remote); do git push $RMT; done;'
+alias gpab='for RMT in $(git remote); do echo "-- $RMT --" && git push -v $RMT $1; done;'
+alias gpa='for RMT in $(git remote); do echo "-- $RMT --" && git push $RMT; done;'
 
 eval $(thefuck --alias) # sudo pip install thefuck first
 
@@ -355,6 +356,12 @@ gimme() {
             ;;
         g|gib)
             : '༼ つ ◕_◕ ༽つ'
+            ;;
+        ok|checkmark)
+            : '✔'
+            ;;
+        *)
+            : 'you big doofus'
             ;;
     esac
     FACE="$_"

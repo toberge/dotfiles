@@ -1,0 +1,58 @@
+# Based on New Start by Donovan Glover
+# Won't bother rewriting all comments or something
+
+[global]
+    # width, horizontal margin (- from left), vertical margin (+ from above)
+    geometry = "480-32+32"
+
+    # Show multiple notifications in the same box
+    separator_height = 4
+    separator_color = "{foreground}"
+
+    # Add vertical padding to the inside of the notification
+    padding = 16
+
+    # Add horizontal padding for when the text gets long enough
+    horizontal_padding = 16
+
+    # The frame color and width of the notification
+    frame_color = "{color1}"
+    frame_width = 0
+
+    # How long a user needs to be idle for sticky notifications
+    idle_threshold = 120
+
+    # Font and typography settings
+    font = Roboto 12
+    alignment = center
+    word_wrap = yes
+
+    # Format for how notifications will be displayed
+    # Usage: `notify-send 'Title' 'Summary'`
+    format = "<b>%s</b>\n%b"
+
+    # Allow some HTML tags like <i> and <u> in notifications
+    markup = full
+
+[shortcuts]
+    close = ctrl+space
+    close_all = ctrl+shift+space
+    history = ctrl+backslash
+    context = ctrl+shift+period
+
+# Coloring notifications based on urgency
+[urgency_low]
+    background = "{color1}"
+    foreground = "{foreground}"
+
+[urgency_normal]
+    background = "{color1}"
+    foreground = "{foreground}"
+
+[urgency_critical]
+    background = "{background}"
+    foreground = "{foreground}"
+    timeout = 0
+
+# don't remove this line, it's for vim you doofus
+# vim:ft=cfg
