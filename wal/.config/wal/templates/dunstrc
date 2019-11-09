@@ -35,6 +35,10 @@
     # Allow some HTML tags like <i> and <u> in notifications
     markup = full
 
+[fullscreen_delay_everything]
+    # delay and hide notifs in fullscreen
+    fullscreen = pushback
+
 [shortcuts]
     close = ctrl+space
     close_all = ctrl+shift+space
