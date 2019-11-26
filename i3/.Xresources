@@ -1,26 +1,26 @@
-Xft.dpi:       96
-Xft.antialias: true
-Xft.hinting:   true
-Xft.rgba:      rgb
-Xft.autohint:  false
-Xft.hintstyle: hintslight
-Xft.lcdfilter: lcddefault
+! TODO this stuff should be removed, it should be set elsewhere...
+!Xft.dpi:       96
+!Xft.antialias: true
+!Xft.hinting:   true
+!Xft.rgba:      rgb
+!Xft.autohint:  false
+!Xft.hintstyle: hintslight
+!Xft.lcdfilter: lcddefault
 
-XTerm*faceName:          Fixed
-XTerm*faceSize:          11
-XTerm*reverseVideo:      on
-XTerm*selectToClipboard: true
+!XTerm*faceName:          Fixed
+!XTerm*faceSize:          11
+!XTerm*reverseVideo:      on
+!XTerm*selectToClipboard: true
 
-*fading:                          10
+! *fading:                          10
 
 ! WHOOPS... DO make sure to change this if you wanna have consistent theme...
-Xcursor.theme: xcursor-breeze-snow
+Xcursor.theme:                    xcursor-breeze-snow
 Xcursor.size:                     0
 
 !=== urxvt section ===!
 URxvt.font:                       xft:Fira Code:size=13, xft:PowerlineSymbols:style=Medium:size=13, xft:Font Awesome 5 Free:style=Regular:size=8, xft:Font Awesome 5 Free:style=Solid:size=8, xft:Font Awesome 5 Brands:style=Regular:size=8
 
-URxvt.depth:                      32
 URxvt*scrollBar:                  false
 URxvt*mouseWheelScrollPage:       false
 URxvt*cursorBlink:                true
@@ -30,7 +30,7 @@ URxvt*saveLines:                  5000
 URxvt.iso14755:                   false
 URxvt.keysym.Shift-Control-V:     eval:paste_clipboard
 URxvt.keysym.Shift-Control-C:     eval:selection_to_clipboard
-!Xterm escape codes, word by word movement
+! Xterm escape codes, word by word movement
 URxvt.keysym.Control-Left:        \033[1;5D
 URxvt.keysym.Shift-Control-Left:  \033[1;6D
 URxvt.keysym.Control-Right:       \033[1;5C
@@ -39,6 +39,11 @@ URxvt.keysym.Control-Up:          \033[1;5A
 URxvt.keysym.Shift-Control-Up:    \033[1;6A
 URxvt.keysym.Control-Down:        \033[1;5B
 URxvt.keysym.Shift-Control-Down:  \033[1;6B
+
+URxvt*perl-ext-common:            default,resize-font
+
+! font size ctrl +/-, reset =
+! necessitates installing urxvt-resize-font extenstion
 
 URxvt*letterSpace:                  -1
 URxvt*url-launcher:               firefox
