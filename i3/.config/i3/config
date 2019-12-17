@@ -500,6 +500,7 @@ exec_always --no-startup-id dunst # colors adjusted thru pywal template
 
 exec --no-startup-id dropbox
 exec --no-startup-id pamac-tray # update notifier
+exec --no-startup-id nm-applet # install network-manager-applet
 
 # TODO investigate how to prevent xautolock from locking while playing video
 #exec --no-startup-id xautolock -time 12 -locker blurlock # time in mins
