@@ -210,6 +210,9 @@ theme() {
             alpha|yokohama)
                 IMG="$WALLPAPERS/cafe/gelender.jpg"
                 ;;
+            corrin)
+                IMG="$WALLPAPERS/random/corrin.png"
+                ;;
             ubunchu)
                 IMG="$WALLPAPERS/random/best 'buntu.png"
                 ;;

@@ -171,6 +171,18 @@ bindsym --release Mod1+Sys_Req exec notify-send "select window"; exec "import -w
 # Selection screenshot
 bindsym --release Shift+Print exec notify-send "select area"; exec "scrot ~/Pictures/screens/$(date --iso-8601='seconds').png -s -e 'xclip -selection c -t image/png < $f'", exec $apply
 
+# workspace-based startup shortcuts
+bindsym $mod+F1 exec $open; exec thunderbird
+bindsym $mod+F2 exec $open; exec firefox
+bindsym $mod+F4 exec $open; exec intellij-idea-ultimate-edition
+bindsym $mod+F8 exec $open; exec steam
+bindsym $mod+F10 exec $open; exec spotify, exec discord, exec discord-ptb # launch any of those two
+# letter-based
+bindsym $mod+c exec $open; exec gnome-calculator
+bindsym $mod+e exec $open; exec urxvt -e "ranger"
+# for dat fancy new keyboard
+bindsym XF86Calculator exec $open; exec gnome-calculator
+bindsym XF86Mail exec $open; exec thunderbird
 
   #######################
  ## WORKSPACE SECTION ##
@@ -228,13 +240,6 @@ assign [class="discord"] $ws10
 
 # games?
 assign [class="Steam"] $ws8
-assign [class="Wine"] $ws7
-
-# startup shortcuts
-bindsym $mod+F2 exec $open; exec firefox
-bindsym $mod+F4 exec $open; exec intellij-idea-ultimate-edition
-bindsym $mod+F8 exec $open; exec steam
-bindsym $mod+F10 exec $open; exec spotify, exec discord, exec discord-ptb # launch any of those two
 
 #########################
 # float make
@@ -289,7 +294,7 @@ bindsym Mod1+Ctrl+Right workspace next, exec $browse
 bindsym Mod1+Ctrl+Left workspace prev, exec $browse
 
 # credits https://gist.github.com/magujs/f8060343b9aedc7e6514
-set $mode-ws-move Move workspace to other monitor
+set $mode-ws-move Move workspace to other monitor or set layout
 
 mode "$mode-ws-move" {
     bindsym Up move workspace to output up, exec $toggle
@@ -301,6 +306,9 @@ mode "$mode-ws-move" {
     bindsym j move workspace to output down, exec $toggle
     bindsym h move workspace to output left, exec $toggle
     bindsym l move workspace to output right, exec $toggle
+
+    bindsym a exec ~/.screenlayout/alternative.sh && notify-send "Alternative screen layout set", exec $toggle
+    bindsym d exec ~/.screenlayout/default.sh && notify-send "Default screen layout set", exec $toggle
 
     bindsym Return mode "default", exec $apply
     bindsym Escape mode "default", exec $apply
@@ -420,8 +428,6 @@ set_from_resource $bg i3wm.color1 #f0f0f0
 set_from_resource $mellow i3wm.color1 #f0f0f0
 set_from_resource $dark i3wm.color0 #f0f0f0
 
-# TODO rename damn fg to txt and bg to cheery
-
 # dem colors:
 # SET OF DANK
 # 0 is dark background (I bet)
@@ -437,7 +443,7 @@ set_from_resource $dark i3wm.color0 #f0f0f0
 # 6 can be dim text
 # 7 is text candidate
 
-# class                 border  backgr. text indicator chil"d_border
+# class                 border  backgr. text indicator child_border
 client.focused          $bg     $bg     $fg  $bg       $bg
 client.focused_inactive $bg     $bg     $fg  $bg       $bg
 client.unfocused        $bg     $bg     $fg  $bg       $bg
@@ -475,7 +481,8 @@ exec --no-startup-id ~/.config/polybar/launch.sh
 # system-specific twingles
 exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 & eval $(gnome-keyring-daemon -s --components=pkcs11,secrets,ssh,gpg) & # auth error
 
-exec_alwas --no-startup-id xrandr --output HDMI1 --mode 1920x1080 --pos 0x0 --rotate normal --output LVDS1 --primary --mode 1920x1080 --pos 1920x0 --rotate normal --output VIRTUAL1 --off --output DP1 --off --output VGA1 --off # put the .sh files in ~/.screenlayout in one of the /bin folders for easy access 
+# create layout script with arandr or by hand, put there
+exec --no-startup-id ~/.screenlayout/default.sh
 
 exec_always --no-startup-id xinput set-prop 14 292 1 # natural scrolling (on this laptop)
 exec_always --no-startup-id xinput set-prop 14 284 1 # enable tapping (includes middle-click)
@@ -489,16 +496,17 @@ exec_always --no-startup-id numlockx on
 ####################
 # various services
 exec --no-startup-id redshift-gtk # you got a config file now
-exec_always --no-startup-id dunst #  -lb "$bg" -nb "$bg" -cb "$bg" -lf "$fg" -bf "$fg" -cf "$fg" -nf "$fg"
+exec_always --no-startup-id dunst # colors adjusted thru pywal template
 
 exec --no-startup-id dropbox
-exec --no-startup-id pamac-tray
+exec --no-startup-id pamac-tray # update notifier
 
+# TODO investigate how to prevent xautolock from locking while playing video
 #exec --no-startup-id xautolock -time 12 -locker blurlock # time in mins
 
 # whenever you kill the gnome here...
 exec --no-startup-id /usr/bin/xfce-power-manager # for power management
-#exec --no-startup-id libinput-gestures-setup start
+#exec --no-startup-id libinput-gestures-setup start # possible thing 4 touchpad gestures
 
 # To know what has changed in the home folder:
 # find ~/ -mmin -5 -type f
