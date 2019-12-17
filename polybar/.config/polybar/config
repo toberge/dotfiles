@@ -30,6 +30,8 @@ include-file = ~/.config/polybar/colors
 include-file = ~/.config/polybar/modules
 include-file = ~/.config/polybar/decoration
 
+;=================== main the bar, yes ====================
+
 [bar/main]
 monitor = ${env:MONITOR}
 width = 100%
@@ -63,10 +65,12 @@ font-2 = "Font Awesome 5 Free:style=Solid:size=11;1"
 font-3 = "Font Awesome 5 Brands:style=Regular:size=11;1"
 font-4 = "Powerline Symbols:style=Medium:size=18;4"
 
+;================ module order is down here =================
+
 ; add mpd when you've got that thing set up (also prolly no need for alsa)
-modules-left = bspwm i3
+modules-left = bspwm i3 _ _ ---> memory cpu temperature -->
 modules-center = <-- xwindow -->
-modules-right = <-- xbacklight pulseaudio battery date <---
+modules-right = <-- pulseaudio xbacklight battery date <---
 
 tray-position = right
 tray-padding = 2

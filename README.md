@@ -10,6 +10,8 @@
 # *totally qualified dotfiles*
 ## Using GNU stow with simple packages
 
+![showcase](_showcase/sunset.png)
+
 ## Naming convention:
 
 ```

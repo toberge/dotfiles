@@ -26,4 +26,8 @@ inherit = module/-->
 content-foreground = ${colors.background}
 content-background = ${colors.background-alt}
 
+[module/_]
+type = custom/text
+content = " "
+
 ; vim:ft=dosini
