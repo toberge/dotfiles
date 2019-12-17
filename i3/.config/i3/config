@@ -471,7 +471,7 @@ exec --no-startup-id mpv $HOME/.sounds/startup.wav &
 
 # Compositor
 # remember -b to make compton run as bg process
-exec --no-startup-id compton -b --dbus --conf ~/.config/compton/compton.conf
+exec --no-startup-id picom -b --dbus --conf ~/.config/picom/picom.conf
 
 # Polybar
 exec --no-startup-id ~/.config/polybar/launch.sh
