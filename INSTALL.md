@@ -22,7 +22,7 @@ Arch/AUR package names for now.
 
 ## i3
 + i3-gaps (check if it's part of main i3wm now)  
-  --> should bring dmenu and such
++ i3exit
 + ~~compton~~ picom
 + rofi
 + dunst
