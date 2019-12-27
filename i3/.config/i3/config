@@ -17,6 +17,8 @@ set $menu canberra-gtk-play -f $HOME/.sounds/menu.wav
 set $apply canberra-gtk-play -f $HOME/.sounds/apply.wav
 set $shutter canberra-gtk-play -f $HOME/.sounds/shutter.wav
 
+set $volumestep 5
+
 #exec_always --no-startup-id wal -i $pywal
 exec_always --no-startup-id wal -R
 
@@ -28,7 +30,8 @@ font pango: Ubuntu Regular 11
 # configure window borders (default + shortcuts)
 
 #hide_edge_borders none
-default_border pixel 
+# default_border pixel 
+default_border none
 # change to pixel x everywhere if specific
 default_floating_border normal
 
@@ -144,9 +147,12 @@ bindsym $mod+minus scratchpad show, exec $apply
 ###########################################
 
 # key-bindings: run xmodmap -pke to get info about keys 
-bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume 0 +5%, exec $open #increase sound volume
-bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume 0 -5%, exec $open #decrease sound volume
-bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute 0 toggle # mute sound
+# bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume 0 +5%, exec $open #increase sound volume
+# bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume 0 -5%, exec $open #decrease sound volume
+# bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute 0 toggle # mute sound
+bindsym XF86AudioRaiseVolume exec --no-startup-id volume -nl -i $volumestep, exec $open #increase sound volume
+bindsym XF86AudioLowerVolume exec --no-startup-id volume -nl -d $volumestep, exec $open #decrease sound volume
+bindsym XF86AudioMute exec --no-startup-id volume -mnl, exec $open # mute sound
 # SET SINK ID TO 0 not 2 like default idk. 
 
 # brightness maybe
@@ -176,7 +182,7 @@ bindsym $mod+F1 exec $open; exec thunderbird
 bindsym $mod+F2 exec $open; exec firefox
 bindsym $mod+F4 exec $open; exec intellij-idea-ultimate-edition
 bindsym $mod+F8 exec $open; exec steam
-bindsym $mod+F10 exec $open; exec spotify, exec discord, exec discord-ptb # launch any of those two
+bindsym $mod+F10 exec $open; exec discord, exec discord-ptb # launch any of those two
 # letter-based
 bindsym $mod+c exec $open; exec gnome-calculator
 bindsym $mod+e exec $open; exec urxvt -e "ranger"

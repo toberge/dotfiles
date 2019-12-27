@@ -1,4 +1,6 @@
 # thank you, Kramer
 *.sec*
+# Setup-specific tweaks...
+polybar/.config/polybar/colors
 # temporarily
 setup.sh

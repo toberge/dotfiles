@@ -11,7 +11,6 @@ Arch/AUR package names for now.
 + tlp (on laptop)
 + redshift
 
-
 ## Terminal illness
 + ranger
 + tree
@@ -35,6 +34,8 @@ Arch/AUR package names for now.
 + arandr
 + numlockx
 + xorg-xinput
++ xorg-xclip
++ scrot
 + manjaro/arch: pamac-tray
 + network-manager-applet
 
@@ -54,9 +55,14 @@ Arch/AUR package names for now.
 + npm
 + IntelliJ, VSCode or whatever else you use (maybe aur)
 
+## Tools
++ pandoc (converting things to pdf)
+
 ## Normal stuff
 + dropbox
 + keepassxc
++ zathura
++ mpv
 
 ## Not strictly necessary
 + fortune-mod
@@ -67,6 +73,12 @@ Arch/AUR package names for now.
 + neofetch
 + cava (aur)
 + glava
+
+## Some repos to clone
++ [i3wm volume notification](https://github.com/hastinbe/i3-volume)
+    + put in `.local/bin/`
++ [clean Firefox theme](https://github.com/coekuss/quietfox)
+    + put in your `.mozilla/firefox/<profile>/chrome/`
 
 ### Firewall
 if on i3 or other barebones system, make sure ufw or something else is installed and up&running

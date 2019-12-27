@@ -35,6 +35,10 @@
     # Allow some HTML tags like <i> and <u> in notifications
     markup = full
 
+    # Set icon position (mostly for volume indicator)
+    icon_position = left
+    icon_path = /usr/share/icons/gnome/32x32/status/:/usr/share/icons/gnome/32x32/devices/
+
 [fullscreen_delay_everything]
     # delay and hide notifs in fullscreen
     fullscreen = pushback
@@ -47,7 +51,7 @@
 
 # Coloring notifications based on urgency
 [urgency_low]
-    background = "{color1}"
+    background = "{color4}"
     foreground = "{foreground}"
 
 [urgency_normal]
@@ -58,6 +62,12 @@
     background = "{background}"
     foreground = "{foreground}"
     timeout = 0
+
+[volume]
+    summary = "Volume*"
+    # cannot override alignment...
+    background = "{color4}"
+    fullscreen = show
 
 # don't remove this line, it's for vim you doofus
 # vim:ft=cfg
