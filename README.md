@@ -20,9 +20,11 @@ _no-package
 ```
 ...just do
 ```bash
-stow <package>
+stow --no-folding <package>
 ```
 to install
+
+--no-folding prevents stow from symlinking an entire folder to a folder in the package, which I found to be a problem with the .vim folder when reinstalling.
 
 ## pywal pipeline
 

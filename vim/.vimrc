@@ -97,6 +97,7 @@ colorscheme wal
 let g:airline_powerline_fonts = 1
 
 " ------ misc ------
+" musc {{{
 
 " autocmd BufWrite *.md :! pandoc % -o /tmp/thing.pdf
 command PDF :!pandoc %:t -o /tmp/thing.pdf
@@ -108,6 +109,11 @@ map <silent> <C-n> :NERDTreeToggle<CR>
 " close NERDTree after a file is opened
 let g:NERDTreeQuitOnOpen=1
 
+" lets you do 3x{ and 3x} in comments to enclose folds
+" zo opens, za closes *all* under cursor, zc closes, and so on
+set foldmethod=marker
+
+" }}}
 " ------ ALE ------
 
 " lint
