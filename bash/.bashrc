@@ -7,7 +7,47 @@
 # Some things pulled straight from Manjaro's default bashrc,
 # most other things (typically less advanced -_-) written by me.
 
-# also: plz fix indenting sometime, this is kinda annoying
+# PS1 extras
+ps1_git_branch() {
+    git branch 2>/dev/null | grep '^*' | colrm 1 2
+}
+
+ps1_git_stat() {
+    local stat=$(git status 2> /dev/null)
+    # very good code, 100% qualified, much wow
+
+    echo $stat | grep "nothing to commit" &> /dev/null && echo $stat | grep "up to date" &> /dev/null && echo -ne '\033[01;35m '
+    echo $stat | grep "is ahead of" &> /dev/null && echo -ne '\033[01;35m '
+    echo $stat | grep "conflict" &> /dev/null && echo -ne '\033[01;31m ' #
+    echo $stat | grep "have diverged" &> /dev/null && echo -ne '\033[01;31m '
+
+    echo $stat | grep "to be committed" &> /dev/null && echo -ne '\033[01;35m●'
+    echo $stat | grep "not staged" &> /dev/null && echo -ne '\033[01;35m'
+
+    echo -n ' '
+    test $(git stash list 2> /dev/null | wc -l) -ne 0 && echo -ne '\033[01;35m'
+    # dunno if I'll indicate untracked files in any way
+}
+
+ps1_exit_code() {
+    # needs to be run *FIRST*
+    local EXIT="$?"
+    test $EXIT -ne 0 && echo -ne " \033[01;31m$EXIT"
+}
+
+# actual definition of prompt
+generate_custom_ps1() {
+    if [ -z $DESKTOP_SESSION ]
+    then # on a TTY, avoid fontawesome and fancy unicode
+        PS1="┌───\$(ps1_exit_code) \[\033[01;32m\]\w\[\033[01;37m\] \[\033[01;34m\]\$(ps1_git_branch)\[\033[00m\]\n└─\[\033[01;32m\]\[\033[00m\] "
+    else # normal terminal, gimme dat fanciness
+        PS1="┌───\$(ps1_exit_code) \[\033[01;32m\]\w\[\033[01;37m\] \[\033[01;34m\]\$(ps1_git_branch) \$(ps1_git_stat)\[\033[00m\]\n┕━\[\033[01;32m\]\[\033[00m\] "
+    fi
+}
+
+##########################
+# MANJARO (+ my own PS1) #
+##########################
 
 [[ $- != *i* ]] && return
 
@@ -82,7 +122,7 @@ if ${use_color} ; then
 	else
 		#PS1='\[\033[01;32m\][\u@\h\[\033[01;37m\] \W\[\033[01;32m\]]\$\[\033[00m\] '
                 # MY OWN PROMPT NOW...
-		PS1='┌─── \[\033[01;32m\]\w\[\033[01;37m\] \n┕━\[\033[01;32m\]\[\033[00m\] '
+                generate_custom_ps1
 	fi
 
 	alias ls='ls --color=auto'
