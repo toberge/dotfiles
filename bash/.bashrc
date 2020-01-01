@@ -16,7 +16,7 @@ ps1_git_stat() {
     local stat=$(git status 2> /dev/null)
     # very good code, 100% qualified, much wow
 
-    echo $stat | grep "nothing to commit" &> /dev/null && echo $stat | grep "up to date" &> /dev/null && echo -ne '\033[01;35m '
+    echo $stat | grep "up to date" &> /dev/null && echo -ne '\033[01;35m '
     echo $stat | grep "is ahead of" &> /dev/null && echo -ne '\033[01;35m '
     echo $stat | grep "conflict" &> /dev/null && echo -ne '\033[01;31m ' #
     echo $stat | grep "have diverged" &> /dev/null && echo -ne '\033[01;31m '
