@@ -266,6 +266,10 @@ battery = BAT0
 adapter = AC
 full-at = 98
 
+time-format = %H:%M
+label-discharging = %percentage%% (%time%)
+; only showing time when discharging - not needed at other times.
+
 format-charging = <ramp-capacity> <label-charging>
 format-charging-background = ${colors.background-alt}
 ; only label can have padding here...
