@@ -12,20 +12,24 @@ ps1_git_branch() {
     git branch 2>/dev/null | grep '^*' | colrm 1 2
 }
 
+# very good code, 100% qualified, much wow
 ps1_git_stat() {
     local stat=$(git status 2> /dev/null)
-    # very good code, 100% qualified, much wow
+    # extra space for fontawesome glyphs if term is not urxvt
+    # (variable-width terms may let those take two chars)
+    # gnome-terminal goes wonky with these symbols anyway
+    local SPACE=$(ps -p$PPID | grep -E "urxvt|xterm" &> /dev/null || echo -n ' ')
 
-    echo $stat | grep "up to date" &> /dev/null && echo -ne '\033[01;35m '
-    echo $stat | grep "is ahead of" &> /dev/null && echo -ne '\033[01;35m '
-    echo $stat | grep "conflict" &> /dev/null && echo -ne '\033[01;31m ' #
-    echo $stat | grep "have diverged" &> /dev/null && echo -ne '\033[01;31m '
+    echo $stat | grep "up to date" &> /dev/null && echo -ne "\033[01;35m $SPACE"
+    echo $stat | grep "is ahead of" &> /dev/null && echo -ne "\033[01;35m $SPACE"
+    echo $stat | grep "conflict" &> /dev/null && echo -ne "\033[01;31m $SPACE" #
+    echo $stat | grep "have diverged" &> /dev/null && echo -ne "\033[01;31m $SPACE"
 
-    echo $stat | grep "to be committed" &> /dev/null && echo -ne '\033[01;35m●'
-    echo $stat | grep "not staged" &> /dev/null && echo -ne '\033[01;35m'
+    echo $stat | grep "to be committed" &> /dev/null && echo -ne "\033[01;35m●$SPACE"
+    echo $stat | grep "not staged" &> /dev/null && echo -ne "\033[01;35m$SPACE"
 
     echo -n ' '
-    test $(git stash list 2> /dev/null | wc -l) -ne 0 && echo -ne '\033[01;35m'
+    test $(git stash list 2> /dev/null | wc -l) -ne 0 && echo -ne "\033[01;35m$SPACE"
     # dunno if I'll indicate untracked files in any way
 }
 
@@ -34,6 +38,11 @@ ps1_exit_code() {
     local EXIT="$?"
     test $EXIT -ne 0 && echo -ne " \033[01;31m$EXIT"
 }
+
+# trim \w to only show X dirs:
+PROMPT_DIRTRIM=6
+
+# also, do this:
 
 # actual definition of prompt
 generate_custom_ps1() {
