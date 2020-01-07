@@ -359,6 +359,11 @@ ple() {
       echo "wakarimas"
       echo "vewy sowy but it's gone"
       ;;
+    lofi)
+      MODE=2
+      MSG="chilling out..."
+      LIST="https://www.youtube.com/watch?v=hHW1oY26kxQ"
+      ;;
     *)
       echo "Usage: ple [filetype/list]"
       ;;
@@ -384,7 +389,6 @@ ple() {
   elif [ $MODE == 2 ]; then
     echo $MSG
     mpv $LIST --no-video
-    echo $THEEND
   elif [ $MODE == "pureple" ]
   then
     echo "we ple some $1 files"
@@ -392,6 +396,8 @@ ple() {
     
   fi
 }
+
+# remember the need for spaces here. it's space-sensitive.
 
 gimme() {
     FACE="?" # zis command copies specific "text" to yer clipboard
@@ -431,26 +437,10 @@ gimme() {
     fi
 }
 
-# remember the need for spaces here. it's space-sensitive.
-# check out the shuffle thingy
 
 # specific renaming purpose
 renyou() {
   find -type f -name '*.m4a' | rename -v -v 's/\-...........\.m4a/\.m4a/'
-}
-
-what() {
-if [ $1 = "am" ]; then
-	echo "oh my god"
-	if [ $2 = "I" ]; then
-		echo "this seems"
-		if [ $3 = "doing" ]; then
-			echo "hopeless"
-		elif [ 2 = 2 ]; then
-			echo "to be going somewhere"
-		fi
-	fi
-fi
 }
 
 anonymize() {
@@ -460,6 +450,10 @@ anonymize() {
 ###################
 # CONFIG THINGIES #
 ###################
+
+wacom() {
+    xsetwacom set "Wacom Bamboo 16FG 6x8 Pen stylus" MapToOutput 1920x1080+1920+0
+}
 
 gogh() {
   bash -c  "$(wget -qO- https://git.io/vQgMr)"
