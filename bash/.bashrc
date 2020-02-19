@@ -310,6 +310,8 @@ alias ':q'='echo "you aint using vim now"; sleep 2; exit'
 alias vi='vim'
 alias v='vim'
 alias r='ranger'
+# matlab is bloat
+alias matlabrdp='xfreerdp +clipboard /size:1920x1080 +fonts +decorations /d:win.ntnu.no  /u:toberge /v:calcfarm.ntnu.no /app:"C:\Program Files\MATLAB\R2019a\bin\matlab.exe"'
 
 alias ll='ls -lh'
 alias la='ls -lha'
@@ -331,13 +333,7 @@ alias gl='git log --oneline --graph --all --decorate'
 alias gpab='for RMT in $(git remote); do echo "-- $RMT --" && git push -v $RMT $1; done;'
 alias gpa='for RMT in $(git remote); do echo "-- $RMT --" && git push $RMT; done;'
 
-eval $(thefuck --alias) # sudo pip install thefuck first
-
-# potato() {
-#  feh -x ~/Pictures/folded/potato.jpg
-# }
-alias potato='feh -x ~/Pictures/folded/potato.jpg'
-# w3m -o ext_image_viewer=0 ~/Pictures/folded/potato.jpg
+eval $(thefuck --alias) # pip install --user thefuck first
 
 ############################
 # MEDIA PLAYBACK AND STUFF #

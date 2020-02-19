@@ -55,7 +55,7 @@ gaps outer 0
 
 smart_gaps on
 smart_borders no_gaps
-#focus_follows_mouse no # point of contention...
+focus_follows_mouse no # point of contention...
 
 # Smart borders (draw borders around container only if it is not the only container on this workspace) 
 # on|no_gaps (on=always activate and no_gaps=only activate if the gap size to the edge of the screen is 0)
@@ -260,6 +260,8 @@ for_window [class="XClock"] floating enable border pixel
 # my own sanity
 for_window [class="MainApp"] floating enable border normal
 for_window [class="\.Main$"] floating enable border normal
+# remote matlab...
+for_window [class="RAIL"] floating enable border none
 
 
 ########################
@@ -490,8 +492,8 @@ exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 &
 # create layout script with arandr or by hand, put there
 exec --no-startup-id ~/.screenlayout/default.sh
 
-exec_always --no-startup-id xinput set-prop 14 324 1 # natural scrolling (on this laptop)
-exec_always --no-startup-id xinput set-prop 14 316 1 # enable tapping (includes middle-click)
+exec_always --no-startup-id xinput set-prop 14 327 1 # natural scrolling (on this laptop)
+exec_always --no-startup-id xinput set-prop 14 319 1 # enable tapping (includes middle-click)
 # run xinput list to get device ID
 # run xinput list-props [ID] to get ID of natural scroll or other property
 # replace numbers in above command

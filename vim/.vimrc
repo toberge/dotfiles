@@ -69,6 +69,9 @@ Plug 'wincent/Command-T', {
     \ }
 Plug 'dense-analysis/ale'
 
+" Markdown
+Plug 'plasticboy/vim-markdown'
+
 " ------ commands ------
 Plug 'tpope/vim-repeat'
 " use gc to comment/uncomment
@@ -90,6 +93,10 @@ Plug 'tpope/vim-surround'
 Plug 'dylanaraps/wal.vim'
 
 call plug#end()
+
+" Markdown plugin specifics
+" set conceallevel=2 " if you wanna see ugly previews of formulas
+let g:vim_markdown_math = 1
 
 " TODO: modify as you like
 colorscheme wal

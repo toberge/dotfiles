@@ -1,0 +1,76 @@
+###,##############,###
+###,  ESSENTIALS  ,###
+###,##############,###
+PAC,stow,automatically symlinking files
+PAC,tlp,power-saving thingy
+PAC,yay,"an AUR helper (yeah, I know)"
+PAC,ufw,too lazy to set up anything else
+PAC,playerctl,you wanna pause&skip your songs right?
+###,##################,###
+###,TERMINAL ILLNESSES,###
+###,##################,###
+PAC,rxvt-unicode,terminal emulator
+PAC,urxvt-perls,URxvt Perl things
+AUR,urxv-resize-font-git,font resize in URxvt
+PAC,ranger,terminal file manager
+PAC,tree,handy visualization of folder structure
+PAC,bash-completion,command completion for BASH
+###,#####################,###
+###,WINDOW MANAGER STUFFS,###
+###,#####################,###
+PAC,i3-gaps,i3 window manager
+PAC,i3exit,scripts for safely shutting down and so on
+PAC,picom,compositor for X
+PAC,rofi,cute little menu thing
+PAC,dunst,for displaying notifications
+PAC,polybar,a nice & configurable bar
+PAC,feh,for displaying images and setting wallpaper
+PAC,python-pywal,for generating and handling color schemes
+AUR,betterlockscreen,as lockscreen
+PAC,xfce-power-manager,for handling screen dim & stuff
+PAC,lxappearance,for switching GTK and icon themes
+PAC,arandr,for changing monitor layout
+PAC,numlockx,for setting numlock ON at login
+PAC,xorg-xinput,for changing touchpad scroll dir ++
+PAC,xorg-xclip,managing clipboard
+PAC,scrot,for taking screenshots
+PAC,pamac-tray,for notifying about updates
+PAC,network-manager-applet,for network settings (nm-applet)
+###,#############,###
+###,    FONTS    ,###
+###,#############,###
+PAC,otf-fira-code,"Fira Code, a nice monospace font with litigatures"
+PAC,otf-ubuntu-font-family,"the Ubuntu font, I just like it"
+PAC,otf-font-awesome,"Font Awesome, for text-based icons"
+AUR,msfonts,MS webfonts that are normally missing
+###,#############,###
+###,    TOOLS    ,###
+###,#############,###
+PAC,pandoc,for converting stuff to PDF
+###,#############,###
+###,NORMAL STUFFS,###
+###,#############,###
+PAC,mpv,video player
+PAC,zathura,PDF viewer
+AUR,dropbox,file sync thing
+PAC,keepassxc,mah passw0rdz
+###,#############,###
+###, PROGRAMMING ,###
+###,#############,###
+PAC,nodejs,Node JS y'know
+PAC,npm,package manager for Node
+AUR,intellij-idea-ultimate,IntelliJ
+AUR,intellij-idea-ultimate-jre,custom JRE for IntelliJ
+###,#############,###
+###,    FLUFF    ,###
+###,#############,###
+PAC,fortune-mod,heh
+PAC,vim-airline,making vim look better
+PAC,sl,for shits & giggles
+PAC,xorg-xclock,for slamming time in my face
+PAC,tty-clock,for literally no purpose whatsoever
+PAC,cmatrix,to pretend I'm a hackz0r
+PAC,neofetch,for showing off
+PAC,glava,for fancy desktop music visualization
+AUR,cava,for music visualization in terminals
+
