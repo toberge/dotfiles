@@ -239,7 +239,7 @@ assign [class="com.oracle.javafx.scenebuilder.app.SceneBuilderApp"] $ws5 # it bu
 assign [class="jetbrains-idea"] $ws4
 
 # web browser(s)
-assign [class="firefox"] $ws2
+#assign [class="firefox"] $ws2
 
 # chat apps
 assign [class="discord"] $ws10
@@ -481,16 +481,16 @@ exec --no-startup-id mpv $HOME/.sounds/startup.wav &
 # remember -b to make compton run as bg process
 exec --no-startup-id picom -b --dbus --config ~/.config/picom/picom.conf
 
+# stop that tearing
+# create layout script with arandr or by hand, put there
+exec --no-startup-id ~/.local/bin/toggletearing.sh; ~/.screenlayout/default.sh
+
 # Polybar
 exec --no-startup-id ~/.config/polybar/launch.sh
 # exec --no-startup-id killall polybar; polybar -r sunset
 
-#####################
 # system-specific twingles
 exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 & eval $(gnome-keyring-daemon -s --components=pkcs11,secrets,ssh,gpg) & # auth error
-
-# create layout script with arandr or by hand, put there
-exec --no-startup-id ~/.screenlayout/default.sh
 
 # Dynamic touchpad settings script
 exec_always --no-startup-id ~/.local/bin/touchpad.sh

@@ -1,11 +1,10 @@
-! TODO this stuff should be removed, it should be set elsewhere...
-!Xft.dpi:       96
-!Xft.antialias: true
-!Xft.hinting:   true
-!Xft.rgba:      rgb
-!Xft.autohint:  false
-!Xft.hintstyle: hintslight
-!Xft.lcdfilter: lcddefault
+Xft.autohint: 0
+Xft.antialias: 1
+Xft.hinting: true
+Xft.hintstyle: hintslight
+Xft.dpi: 91
+Xft.rgba: rgb
+Xft.lcdfilter: lcddefault
 
 !XTerm*faceName:          Fixed
 !XTerm*faceSize:          11
