@@ -1,0 +1,58 @@
+#!/usr/bin/env bash
+
+path="$HOME/Pictures/wallpapers"
+
+if [ -z "$1" ]
+then # no image specified, let user choose
+    # -i for case-insensitive search
+    category=$(ls $path | rofi -dmenu -i -p "Wallpaper category")
+    [ -z "$category" ] && exit 1
+    wallpaper=$(ls $path/$category | rofi -dmenu -i -p "Wallpaper")
+    [ -z "$wallpaper" ] && exit 1
+    imagepath="$path/$category/$wallpaper"
+elif [ -f "$1" ]
+then # arg is a file
+    imagepath="$1"
+else # not a file
+    case $1 in # check aliases
+        alpha|yokohama)
+            imagepath="$path/anime/gelender.jpg"
+            ;;
+        celeste)
+            imagepath="$path/games/celeste.png"
+            ;;
+        cyan|cyanide)
+            imagepath="$path/minimal/cyanide plateau.jpg"
+            ;;
+        karen)
+            imagepath="$path/anime/Karen Dark.png"
+            ;;
+        street)
+            imagepath="$path/urban/street.jpg"
+            ;;
+        sunset)
+            imagepath="$path/sunsets/golden sunset.jpg"
+            ;;
+        ubuntu)
+            imagepath="$path/minimal/best 'buntu.png"
+            ;;
+        *)
+            echo "No such file or theme alias"
+            exit 1
+            ;;
+    esac
+    
+fi
+
+# Change wallpaper and colors through pywal
+wal -i "$imagepath"
+# Restart dunst
+killall dunst
+dunst &
+# Uncomment when steam themes work again
+# test -f /usr/bin/wal_steam && wal_steam -w
+# Set lock screen image
+betterlockscreen -u "$imagepath"
+i3-msg reload
+
+# vim:ft=sh

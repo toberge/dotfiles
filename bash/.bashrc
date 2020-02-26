@@ -234,57 +234,6 @@ then # on a TTY, do the pywal
     source ~/.cache/wal/colors-tty.sh
 fi
 
-export WALLPAPERS="$HOME/Dropbox/wallpaper assembly"
-
-theme() {
-    IMG=""
-
-    if [ -f "$1" ]
-    then # is a file
-        IMG="$1"
-    else # not a file
-        case $1 in
-            desert)
-                IMG="$WALLPAPERS/stylized landscapes/guerilla desert.jpg"
-                ;;
-            sunset)
-                IMG="$WALLPAPERS/stylized landscapes/golden sunset.jpg"
-                ;;
-            cyan|cyanide)
-                IMG="$WALLPAPERS/stylized landscapes/cyanide plateau.jpg"
-                ;;
-            ventilation)
-                IMG="$WALLPAPERS/stylized landscapes/ventilation.jpg"
-                ;;
-            karen)
-                IMG="$WALLPAPERS/kageki/Karen Dark.png"
-                ;;
-            alpha|yokohama)
-                IMG="$WALLPAPERS/cafe/gelender.jpg"
-                ;;
-            corrin)
-                IMG="$WALLPAPERS/random/corrin.png"
-                ;;
-            ubunchu)
-                IMG="$WALLPAPERS/random/best 'buntu.png"
-                ;;
-            wind|windswept)
-                IMG="$WALLPAPERS/focuswriter/Arboreal_ballet_by_Bob_Farrell.jpg"
-                ;;
-            *)
-                IMG="$WALLPAPERS/stylized landscapes/golden sunset.jpg"
-                ;;
-        esac
-    fi
-
-    wal -i "$IMG"
-    killall dunst
-    dunst &
-    # test -f /usr/bin/wal_steam && wal_steam -w
-    betterlockscreen -u "$IMG"
-    i3-msg reload
-}
-
 SKOLE="$HOME/Dropbox/skoleting/ITHINGDA/"
 
 alias ..='cd ..'
