@@ -13,6 +13,23 @@
 ;
 ;==========================================================
 
+; See https://github.com/kantord/i3-gnome-pomodoro
+[module/pomodoro]
+type = custom/script
+click-left = i3-gnome-pomodoro toggle
+click-middle = gnome-pomodoro
+click-right = i3-gnome-pomodoro start-stop
+; Strip away "Pomodoro " prefix
+; exec = echo "$(i3-gnome-pomodoro status --always | cut -d 'o' -f 5)"
+; also output --:-- if status is empty...
+exec = echo "$(if [[ -z $(i3-gnome-pomodoro status) ]]; then echo ' --:--'; else i3-gnome-pomodoro status --always | cut -d 'o' -f 5; fi)"
+interval = 1
+
+format = <label>
+format-background = ${colors.background-alt}
+format-padding-left = 1
+label-padding-right = 2
+
 [module/xwindow]
 type = internal/xwindow
 label = %title:0:60:...%
