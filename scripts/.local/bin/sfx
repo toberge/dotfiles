@@ -1,0 +1,10 @@
+#! /usr/bin/env bash
+
+SOUND="$HOME/.sounds/$1.wav"
+if [[ -f "$SOUND" ]]
+then
+    canberra-gtk-play -f "$SOUND"
+else
+    exit 1
+fi
+

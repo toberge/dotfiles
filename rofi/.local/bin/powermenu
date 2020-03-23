@@ -1,0 +1,22 @@
+#! /usr/bin/env sh
+
+choice=$(echo -e "lock\nlogout\nsuspend\nhibernate\nshutdown" | rofi -dmenu)
+case $choice in
+    shutdown)
+        systemctl shutdown
+        ;;
+    hibernate)
+        systemctl hibernate
+        ;;
+    suspend)
+        systemctl suspend
+        ;;
+    logout)
+        # TODO differentiate by WM
+        bspc quit
+        ;;
+    *)
+        exit 1
+        ;;
+esac
+

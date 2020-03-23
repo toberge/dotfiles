@@ -1,0 +1,63 @@
+#! /bin/sh
+
+sxhkd &
+
+#
+# bspwm config
+#
+
+bspc monitor -d 1 2 3 4 5 6 7 8 9 10
+
+bspc config border_width         2
+bspc config window_gap          12
+
+bspc config split_ratio          0.52
+bspc config borderless_monocle   true
+bspc config gapless_monocle      true
+bspc config single_monocle       true
+
+#
+# window rules
+#
+
+# 4 - IDEs
+bspc rule -a jetbrains-idea desktop='^4'
+
+# 5 - creativity
+bspc rule -a Gimp desktop='^5' state=floating follow=on
+bspc rule -a "com.oracle.javafx.scenebuilder.app.SceneBuilderApp" desktop='^5'
+
+# 8 - games (Steam)
+bspc rule -a Steam desktop='^8'
+
+# 10 - media and chat
+bspc rule -a discord desktop='^10'
+
+#bspc rule -a Firefox desktop='^2'
+bspc rule -a mplayer2 state=floating
+#bspc rule -a Kupfer.py focus=on
+bspc rule -a Screenkey manage=off
+
+# floaters
+bspc rule -a Lxappearance state=floating
+bspc rule -a qt5ct state=floating
+bspc rule -a alsamixer state=floating
+bspc rule -a "MuseScore: Play Panel" state=floating
+bspc rule -a Gnome-calculator state=floating
+bspc rule -a Godot_Engine state=floating
+bspc rule -a XClock state=floating
+# javafx apps
+bspc rule -a MainApp state=floating
+bspc rule -a "\.Main$" state=floating
+# remote desktop thing
+bspc rule -a RAIL state=floating
+
+#
+# start stuff
+#
+
+# ahem, why do I need this?
+pulseaudio-ctl mute
+
+$HOME/.local/bin/autostart.sh
+
