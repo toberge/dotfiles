@@ -40,7 +40,7 @@ ps1_exit_code() {
 }
 
 # trim \w to only show X dirs:
-PROMPT_DIRTRIM=6
+PROMPT_DIRTRIM=3
 
 # also, do this:
 
@@ -395,6 +395,16 @@ anonymize() {
 ###################
 # CONFIG THINGIES #
 ###################
+
+# external ip: probably curl ifconfig.me
+localip() {
+    ip addr show | grep 'inet .* global' | awk '{print $2}' | cut -d '/' -f 1
+}
+
+# Setting default web browser and so on
+unscrew_defaults() {
+    xdg-settings set default-web-browser firefox.desktop
+}
 
 wacom() {
     xsetwacom set "Wacom Bamboo 16FG 6x8 Pen stylus" MapToOutput 1920x1080+1920+0
