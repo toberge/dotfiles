@@ -282,7 +282,7 @@ alias gl='git log --oneline --graph --all --decorate'
 alias gpab='for RMT in $(git remote); do echo "-- $RMT --" && git push -v $RMT $1; done;'
 alias gpa='for RMT in $(git remote); do echo "-- $RMT --" && git push $RMT; done;'
 
-eval $(thefuck --alias) # pip install --user thefuck first
+eval "$(thefuck --alias)" # pip install --user thefuck first
 
 ############################
 # MEDIA PLAYBACK AND STUFF #
@@ -465,3 +465,4 @@ jack() {
 	#echo
 	#screenfetch
 #fi
+
