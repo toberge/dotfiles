@@ -40,7 +40,7 @@ PAC,network-manager-applet,for network settings (nm-applet)
 ###,    FONTS    ,###
 ###,#############,###
 PAC,otf-fira-code,"Fira Code, a nice monospace font with litigatures"
-PAC,otf-ubuntu-font-family,"the Ubuntu font, I just like it"
+PAC,otf-ubuntu-font-family,"the Ubuntu font (I just like it)"
 PAC,otf-font-awesome,"Font Awesome, for text-based icons"
 AUR,msfonts,MS webfonts that are normally missing
 ###,#############,###
