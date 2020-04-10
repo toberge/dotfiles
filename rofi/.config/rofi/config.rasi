@@ -1,4 +1,6 @@
 configuration {
-    theme: "~/.cache/wal/colors-rofi-dark.rasi";
+    /* let launcher be default */
+    theme: "themes/launcher.rasi";
+    modi: [window, drun, run, ssh, combi];
 }
 

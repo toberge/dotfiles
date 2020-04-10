@@ -1,0 +1,58 @@
+configuration {
+  show-icons: false;
+  /*icon-theme: "Flat-Remix-Blue-Dark";*/
+  location: 0;
+  yoffset: 0;
+  xoffset: 0;
+  /* columns: 4; */
+  fake-transparency: false;
+  hide-scrollbar: false;
+  bw: 0;
+  fullscreen: false;
+  sidebar-mode: false;
+}
+
+@import "~/.cache/wal/colors.rasi"
+
+* {
+  /* set default font & colors */
+  /* font: "Ubuntu Regular 18"; */
+  background-color: @background;
+  text-color: @foreground;
+}
+
+window {
+  height: 15%;
+  width: 36%;
+  location: center;
+  transparency: "real";
+  /* for actual transparency! */
+  background-color: #00000000;
+}
+
+mainbox {
+  children: [ listview ];
+  padding: 2%;
+  border-color: @border;
+  border: 4 0;
+  border-radius: 10;
+}
+
+listview {
+  layout: horizontal;
+  spacing: 16;
+}
+
+
+element {
+  border-radius: 10;
+  padding: 12;
+  font: "Font Awesome 5 Free 64";
+}
+
+element selected {
+  background-color: @accent;
+}
+
+
+/* vim:ft=css

@@ -18,6 +18,12 @@ super + d
 super + Escape
 	pkill -USR1 -x sxhkd
 
+# take screenshot
+Print
+        scrot ~/Pictures/screens/$(date --iso-8601='seconds').png -m -e 'xclip -selection c -t image/png < $f' & \
+        sfx apply & \
+        notify-send "scrot-ed entire screen" 
+
 #
 # misc apps
 #

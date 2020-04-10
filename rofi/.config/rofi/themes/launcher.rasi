@@ -1,0 +1,91 @@
+/*
+ * Really basic rofi launcher theme
+ * rounded corners and stuff
+ *
+ * Inspired by adi1090x's rofi themes
+ */
+
+configuration {
+  drun-display-format: "{icon} {name}";
+  display-drun: "Launch";
+  display-run: "Run";
+  display-ssh: "SSH into";
+  show-icons: true;
+  /*icon-theme: "Flat-Remix-Blue-Dark";*/
+  location: 0;
+  yoffset: 0;
+  xoffset: 0;
+  /* columns: 4; */
+  fake-transparency: false;
+  hide-scrollbar: false;
+  bw: 0;
+  fullscreen: false;
+  terminal: "urxvt";
+  sidebar-mode: false;
+}
+
+@import "~/.cache/wal/colors.rasi"
+
+* {
+  /* set default font & colors */
+  font: "Ubuntu Regular 14";
+  background-color: @background;
+  text-color: @foreground;
+}
+
+window {
+  height: 36%;
+  width: 50%;
+  location: center;
+  transparency: "real";
+  /* for actual transparency! */
+  background-color: #00000000;
+}
+
+mainbox {
+  children: [ inputbar, listview ];
+  padding: 3% 3% 0 3%;
+  border-color: @border;
+  border: 4 0;
+  border-radius: 10;
+}
+
+listview {
+  columns: 3;
+  /* padding: 32 8 8 8; */
+  padding: 8;
+  spacing: 16;
+}
+
+element {
+  border-radius: 6;
+  padding: 16 16 16 32;
+  border: 2 0;
+  border-color: @border;
+}
+
+element selected {
+  background-color: @accent;
+  border: 0;
+}
+
+/* input field */
+inputbar {
+  children: [prompt, textbox-prompt-colon, entry];
+  padding: 8;
+  border-color: @border;
+  border-radius: 6;
+  border: 2 0;
+}
+
+textbox-prompt-colon {
+  expand: false;
+  str: ": ";
+}
+
+/* input text */
+prompt, entry {
+  /* currently no styling */
+}
+
+/* vim:ft=css

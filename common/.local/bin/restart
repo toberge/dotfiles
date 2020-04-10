@@ -1,0 +1,14 @@
+#!/usr/bin/env bash
+
+case $1 in
+    picom)
+        pkill picom
+        sleep 1
+        picom -b --dbus --config ~/.config/picom/picom.conf
+        ;;
+    *)
+        echo "ok idk what u want so plz stop"
+        exit 1
+        ;;
+esac
+

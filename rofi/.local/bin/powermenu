@@ -1,19 +1,25 @@
-#! /usr/bin/env sh
+#!/usr/bin/env sh
 
-choice=$(echo -e "lock\nlogout\nsuspend\nhibernate\nshutdown" | rofi -dmenu)
+# Set font to Font Awesome 5 Free if this is gibberish
+choice=$(echo -e "\n\n\n\n" | \
+    rofi -dmenu -theme ~/.config/rofi/themes/powermenu.rasi)
 case $choice in
-    shutdown)
-        systemctl shutdown
+    )
+        # TODO create a script for this
+        betterlockscreen -l -t "$(fortune lock || echo Something went wrong)" & sfx shutter
         ;;
-    hibernate)
+    )
+        systemctl poweroff & sfx shutdown
+        ;;
+    )
         systemctl hibernate
         ;;
-    suspend)
+    )
         systemctl suspend
         ;;
-    logout)
+    )
         # TODO differentiate by WM
-        bspc quit
+        bspc quit & sfx shutter
         ;;
     *)
         exit 1
