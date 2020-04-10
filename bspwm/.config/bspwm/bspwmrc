@@ -1,6 +1,11 @@
 #! /bin/sh
 
+# keybind daemon
 sxhkd &
+# bspwm does not set cursor correctly
+# move this to autostart.sh if you use other WMs
+xsetroot -cursor_name left_ptr &
+
 
 #
 # bspwm config
