@@ -13,6 +13,9 @@ picom -b --dbus --config ~/.config/picom/picom.conf
 # numlock, I need you!
 numlockx on
 
+# just in case wm/de does not set cursor correctly
+xsetroot -cursor_name left_ptr &
+
 if [[ "$HOSTNAME" == "qualified-desktop" ]]
 then # desktop
     . ~/.local/bin/toggletearing.sh

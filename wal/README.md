@@ -15,6 +15,7 @@
 │   └── wal
 │       └── templates
 │           ├── dunstrc
+│           ├── userContent.css
 │           └── zathurarc
 └── README.md
 ```
