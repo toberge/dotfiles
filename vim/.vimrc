@@ -71,7 +71,7 @@ Plug 'dense-analysis/ale'
 
 " Markdown
 Plug 'plasticboy/vim-markdown'
-Plug 'JamshedVesuna/vim-markdown-preview'
+" Plug 'JamshedVesuna/vim-markdown-preview'
 
 " ------ commands ------
 Plug 'tpope/vim-repeat'
@@ -105,7 +105,7 @@ call plug#end()
 " set conceallevel=2 " if you wanna see ugly previews of formulas
 let g:vim_markdown_math = 1
 
-let vim_markdown_preview_toggle=2
+" let vim_markdown_preview_toggle=2
 
 " TODO: modify as you like
 colorscheme wal
