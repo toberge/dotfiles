@@ -8,13 +8,16 @@
 ╚═╝      ╚═════╝ ╚══════╝╚═╝   ╚═════╝ ╚═╝  ╚═╝╚═╝  ╚═╝
 
 .
-├── .config
-│   └── polybar
-│       ├── config
-│       └── launch.sh
-└── .local
-    └── bin
-        └── player-mpris-simple.sh
+└── .config
+    └── polybar
+        ├── colors
+        ├── color-template
+        ├── config
+        ├── decoration
+        ├── launch.sh
+        ├── modules
+        └── scripts
+            └── player-mpris-simple.sh
 ```
 
 Polybar config, mostly just a tweaked version of the default config right now.  

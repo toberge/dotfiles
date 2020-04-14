@@ -8,12 +8,9 @@
 ╚═╝╚═════╝  ╚══╝╚══╝ ╚═╝     ╚═╝
                                 
 .
-├── .config
-│   ├── picom
-│   │   └── picom.conf
-│   └── i3
-│       └── config
-└── .Xresources
+└── .config
+    └── i3
+        └── config
 ```
 
 **i3wm**, the tiling window manager I happen to use.  

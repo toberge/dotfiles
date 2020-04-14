@@ -11,13 +11,20 @@
                                                 ▀         
 
 .
-├── .config
-│   └── wal
-│       └── templates
-│           ├── dunstrc
-│           ├── userContent.css
-│           └── zathurarc
-└── README.md
+└── .config
+    ├── spicetify
+    │   └── Themes
+    │       └── Lovelace
+    │           ├── color.ini
+    │           └── user.css
+    └── wal
+        ├── colorschemes
+        │   ├── dark
+        │   └── light
+        └── templates
+            ├── dunstrc
+            ├── userContent.css
+            └── zathurarc
 ```
 
 See README in top folder until I decide to move the info down here  
