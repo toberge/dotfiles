@@ -1,6 +1,6 @@
 configuration {
     /* let launcher be default */
     theme: "themes/launcher.rasi";
-    modi: [window, drun, run, ssh, combi];
+    modi: [window, drun, run, emoji, ssh, combi];
 }
 

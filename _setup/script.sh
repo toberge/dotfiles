@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+set -eu # fail early
+
 echo Welcome to this SETUP SCRIPT THINGY
 echo First, let\'s check for updates...
 sudo pacman -Syu

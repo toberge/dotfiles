@@ -1,0 +1,3 @@
+#!/usr/bin/env bash
+betterlockscreen -l -t "$(fortune lock || echo Something went wrong)"
+

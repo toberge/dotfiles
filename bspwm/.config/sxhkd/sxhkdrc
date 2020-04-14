@@ -14,15 +14,31 @@ super + Return
 super + d
 	rofi -show drun -show-icons & sfx menu 
 
+# emoji cancer, using rofi-emoji
+super + period
+        rofi -show emoji & sfx menu
+
 # make sxhkd reload its configuration files:
 super + Escape
 	pkill -USR1 -x sxhkd
 
-# take screenshot
+# capture using Flameshot - set format to %FT%H:%M:%S
+super + Print
+        flameshot gui
+
+# from https://www.reddit.com/r/i3wm/comments/8yx7ju/i3_screenshot_application/
+# take screenshot of entire desktop
 Print
-        scrot ~/Pictures/screens/$(date --iso-8601='seconds').png -m -e 'xclip -selection c -t image/png < $f' & \
-        sfx apply & \
-        notify-send "scrot-ed entire screen" 
+        scrot ~/Pictures/screens/$(date  +'%FT%H:%M:%S').png \
+            -m -e 'xclip -selection c -t image/png < $f' & \
+        sfx apply & notify-send "scrot-ed entire screen" 
+
+# pick a window
+ctrl + Print
+        notify-send "select window"; \
+        import -window `xwininfo | awk '/.*Window id:.*/ {print $4}'` \
+            ~/Pictures/screens/$(date +'%FT%H:%M:%S').png; sfx apply
+
 
 #
 # misc apps

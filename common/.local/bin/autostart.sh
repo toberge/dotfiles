@@ -1,4 +1,4 @@
-#! /usr/bin/env bash
+#!/usr/bin/env bash
 
 # CALICOMP startup tune
 mpv $HOME/.sounds/startup.wav &

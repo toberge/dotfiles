@@ -5,21 +5,31 @@ choice=$(echo -e "\n\n\n\n" | \
     rofi -dmenu -theme ~/.config/rofi/themes/powermenu.rasi)
 case $choice in
     )
-        # TODO create a script for this
-        betterlockscreen -l -t "$(fortune lock || echo Something went wrong)" & sfx shutter
+        lockmeup
         ;;
     )
-        systemctl poweroff & sfx shutdown
+        systemctl poweroff
         ;;
     )
+        lockmeup
         systemctl hibernate
         ;;
     )
+        lockmeup
         systemctl suspend
         ;;
     )
-        # TODO differentiate by WM
-        bspc quit & sfx shutter
+        case $DESKTOP_SESSION in
+            bspwm)
+                bspc quit & sfx shutter
+                ;;
+            i3)
+                i3-msg exit
+                ;;
+            *)
+                # systemctl ext?
+                ;;
+        esac
         ;;
     *)
         exit 1

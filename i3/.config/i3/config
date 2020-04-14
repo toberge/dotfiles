@@ -466,6 +466,7 @@ bindsym $mod+Shift+d exec rofi -show run & $menu
 bindsym $mod+d exec rofi -show drun -show-icons & $menu
 bindsym $mod+a exec "rofi -combi-modi window,drun -show combi -show-icons & $menu"
 bindsym $mod+Tab exec rofi -show window -show-icons & $menu
+bindsym $mod+period exec rofi -show emoji & sfx menu
 
 # lock
 # bindsym $mod+Shift+x exec i3lock -uf --color=421820 # 475263
