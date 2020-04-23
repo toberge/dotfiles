@@ -15,6 +15,7 @@
 [colors]
 background = ${xrdb:color1}
 background-alt = ${xrdb:color3}
+underline = ${xrdb:color7}
 foreground = ${xrdb:color7}
 foreground-alt = ${xrdb:color7}
 primary = ${xrdb:color7}

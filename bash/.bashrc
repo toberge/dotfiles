@@ -255,6 +255,7 @@ alias polyconf="vim $HOME/.config/polybar/config"
 alias polystart="$HOME/.config/polybar/launch.sh"
 
 alias q='exit'
+alias f='fuck'
 alias ':q'='echo "you aint using vim now"; sleep 2; exit'
 alias vi='vim'
 alias v='vim'

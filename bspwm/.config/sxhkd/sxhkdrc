@@ -23,12 +23,12 @@ super + Escape
 	pkill -USR1 -x sxhkd
 
 # capture using Flameshot - set format to %FT%H:%M:%S
-super + Print
+Print
         flameshot gui
 
 # from https://www.reddit.com/r/i3wm/comments/8yx7ju/i3_screenshot_application/
 # take screenshot of entire desktop
-Print
+shift + Print
         scrot ~/Pictures/screens/$(date  +'%FT%H:%M:%S').png \
             -m -e 'xclip -selection c -t image/png < $f' & \
         sfx apply & notify-send "scrot-ed entire screen" 
@@ -74,14 +74,14 @@ XF86MonBrightness{Up,Down}
 
 # volume
 XF86Audio{Raise,Lower}Volume
-    volume -nl {-i 5,-d 5} & sfx open
+    i3-volume -nl {-i 5,-d 5} & sfx open
 
 XF86AudioMute
-    volume -mnl & sfx open
+    i3-volume -mnl & sfx open
 
 # media player
-XF86Audio{Play,Next,Prev}
-    playerctl {play-pause,next,previous}
+XF86Audio{Play,Next,Prev,MicMute}
+    playerctl {play-pause,next,previous,play-pause}
 
 #
 # bspwm hotkeys
