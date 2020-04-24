@@ -7,5 +7,8 @@ export QT_AUTO_SCREEN_SCALE_FACTOR=0
 export EDITOR=/usr/bin/vim
 export PATH="$PATH:$HOME/.local/bin"
 
-xset -b
+xset -b # bell begone
+
+# fixing Java GUIs not working on BSPWM
+export _JAVA_AWT_WM_NONREPARENTING=1
 

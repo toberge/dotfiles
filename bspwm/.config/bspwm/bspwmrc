@@ -61,6 +61,7 @@ bspc rule -a Lxappearance state=floating
 bspc rule -a qt5ct state=floating
 bspc rule -a alsamixer state=floating
 bspc rule -a "MuseScore: Play Panel" state=floating
+bspc rule -a "Pamac-manager" state=floating
 bspc rule -a Gnome-calculator state=floating
 bspc rule -a Godot_Engine state=floating
 bspc rule -a XClock state=floating
