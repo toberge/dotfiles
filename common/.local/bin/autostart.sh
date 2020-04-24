@@ -16,12 +16,18 @@ numlockx on
 # just in case wm/de does not set cursor correctly
 xsetroot -cursor_name left_ptr &
 
+# xautolock but good (could add --not-when-audio)
+xidlehook --not-when-fullscreen --timer 600 lockmeup '' &
+
+# remind me to take breaks!
+i3-gnome-pomodoro start
+
 if [[ "$HOSTNAME" == "qualified-desktop" ]]
 then # desktop
-    . ~/.local/bin/toggletearing.sh
-    . ~/.screenlayout/default.sh
+    ~/.local/bin/toggletearing.sh
+    ~/.screenlayout/default.sh
 else # laptop
-    . ~/.local/bin/touchpad.sh
+    ~/.local/bin/touchpad.sh
     /usr/bin/xfce-power-manager
 fi
 

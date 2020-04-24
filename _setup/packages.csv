@@ -8,6 +8,7 @@ PAC,ufw,too lazy to set up anything else
 PAC,playerctl,you wanna pause&skip your songs right?
 PAC,xorg-xbacklight,well yes
 PAC,redshift,to save your eyes from death
+AUR,xidlehook,a not-annoying xautolock
 ###,##################,###
 ###,TERMINAL ILLNESSES,###
 ###,##################,###
@@ -67,6 +68,7 @@ PAC,keepassxc,mah passw0rdz
 AUR,spotify,music streaming
 AUR,spicetify-cli,theming spotify
 PAC,discord,chatter
+PAC,gnome-calculator,I need a friendly calculator
 ###,#############,###
 ###, PROGRAMMING ,###
 ###,#############,###
