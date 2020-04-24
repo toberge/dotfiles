@@ -3,6 +3,7 @@
 # Set font to Font Awesome 5 Free if this is gibberish
 choice=$(echo -e "\n\n\n\n" | \
     rofi -dmenu -theme ~/.config/rofi/themes/powermenu.rasi)
+
 case $choice in
     )
         lockmeup
@@ -11,12 +12,13 @@ case $choice in
         systemctl poweroff
         ;;
     )
-        lockmeup
-        systemctl hibernate
+        lockmeup &
+        sleed .4 && systemctl hibernate
         ;;
     )
-        lockmeup
-        systemctl suspend
+        # workaround for weird behaviour on thinkpad
+        lockmeup &
+        sleep .4 && systemctl suspend
         ;;
     )
         case $DESKTOP_SESSION in
@@ -28,6 +30,7 @@ case $choice in
                 ;;
             *)
                 # systemctl ext?
+                notify-send "NOT IMPLEMENTED"
                 ;;
         esac
         ;;
