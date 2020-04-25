@@ -1,0 +1,71 @@
+#!/usr/bin/env bash
+
+RAUD="\e[33m"
+BLAU="\e[32m"
+RESET="\e[0m"
+BOLD="\e[1m"
+
+prunt() {
+    printf "   $BLAU$BOLD%4s$RESET $RAUD│$RESET %s\n" "$1" "$($2 | tr -d '\n')"
+}
+
+colors() {
+    echo -n "  "
+    for i in {1..7}
+    do
+        echo -ne "\e[4${i}m  "
+    done
+    echo -e "$RESET"
+
+}
+
+os() {
+    uname -o
+}
+
+wm() {
+    echo $DESKTOP_SESSION
+}
+
+shell() {
+    echo ${SHELL##*/}
+}
+
+redacted() {
+    echo [REDACTED]
+}
+
+editor() {
+    echo ${EDITOR##*/}
+}
+
+packs() {
+    pacman -Q | wc -l
+}
+
+model() {
+    cat /sys/devices/virtual/dmi/id/product_name 
+}
+
+echo
+case $1 in
+    cheese)
+        prunt "os" "echo GNU Hurd"
+        prunt "sys" redacted
+        prunt "pac" "echo -1"
+        prunt "wm" "echo epic hacker wm"
+        prunt "ed" "echo the standard text editor"
+        ;;
+    *)
+        prunt "os" os
+        prunt "sys" model
+        prunt "pac" packs
+        prunt "wm" wm
+        prunt "sh" shell
+        prunt "ed" editor
+        ;;
+esac
+echo
+colors
+echo
+
