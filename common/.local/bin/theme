@@ -10,6 +10,12 @@ then # no image specified, let user choose
     wallpaper=$(ls $path/$category | rofi -dmenu -i -p "Wallpaper")
     [ -z "$wallpaper" ] && exit 1
     imagepath="$path/$category/$wallpaper"
+    colorscheme=$(echo auto $(ls .config/wal/colorschemes/dark/ | cut -d'.' -f1) | tr ' ' '\n' \
+        | rofi -dmenu -i -p "Colorscheme")
+    [[ "$colorscheme" == "auto" ]] && {
+        backend=$(echo wal $(wal --backend | head -n 5 | tail -n 4 | tr -d ' -') | tr ' ' '\n' \
+            | rofi -dmenu -i -p "Backend")
+    }
 elif [ -f "$1" ]
 then # arg is a file
     imagepath="$1"
@@ -41,18 +47,33 @@ else # not a file
             exit 1
             ;;
     esac
-    
 fi
 
 # Change wallpaper and colors through pywal
-wal -i "$imagepath"
+if [[ "${colorscheme}" == "auto" ]]
+then # use backend
+    wal --backend "${backend}" -i "${imagepath}"
+else
+    wal --theme "${colorscheme}" -i "${imagepath}"
+fi
+
 # Restart dunst
 killall dunst
 dunst &
+
 # Uncomment when steam themes work again
 # test -f /usr/bin/wal_steam && wal_steam -w
+
 # Set lock screen image
 betterlockscreen -u "$imagepath"
-i3-msg reload
 
-# vim:ft=sh
+# Reload wm
+case $DESKTOP_SESSION in
+    bspwm)
+        bspc wm -r
+        ;;
+    i3)
+        i3-msg reload
+        ;;
+esac
+

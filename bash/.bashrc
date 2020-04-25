@@ -249,8 +249,9 @@ alias cdm="cd $SKOLE/Matematikk\ 2"
 alias cda="cd $SKOLE/algdat"
 alias cdf="cd $SKOLE/fysikk"
 
-alias bc="vim $HOME/.bashrc"
 alias i3conf="vim $HOME/.config/i3/config"
+alias bspconf="vim $HOME/.config/bspwm/bspwmrc"
+alias keyconf="vim $HOME/.config/sxhkd/sxhkdrc"
 alias polyconf="vim $HOME/.config/polybar/config"
 alias polystart="$HOME/.config/polybar/launch.sh"
 
@@ -262,6 +263,7 @@ alias v='vim'
 alias r='ranger'
 # matlab is bloat
 alias matlabrdp='xfreerdp +clipboard /size:1920x1080 +fonts +decorations /d:win.ntnu.no  /u:toberge /v:calcfarm.ntnu.no /app:"C:\Program Files\MATLAB\R2019a\bin\matlab.exe"'
+alias tb='nc termbin.com 9999'
 
 alias ll='ls -lh'
 alias la='ls -lha'

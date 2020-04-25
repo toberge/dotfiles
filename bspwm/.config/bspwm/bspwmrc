@@ -79,7 +79,9 @@ bspc rule -a Zathura state=tiled
 #
 
 # ahem, why do I need this?
-pulseaudio-ctl mute
+# pulseaudio-ctl mute
+# ok here's a better one
+pactl set-sink-mute 0 0
 
 # it somehow did not work out being above
 # putting it all the way down here
