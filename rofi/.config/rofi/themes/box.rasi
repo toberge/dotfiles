@@ -1,0 +1,46 @@
+/*
+ * Minimal rofi theme
+ * Modern rectangular box
+ * Around 50 LOC
+ */
+
+@import "~/.cache/wal/colors.rasi"
+
+* {
+  font: "Ubuntu Regular 14";
+  background-color: @background;
+  text-color: @foreground;
+}
+
+window {
+  /* approx 8x3em rows */
+  height: 23.74em;
+  width: 50%;
+  location: center;
+  transparency: "real";
+  /* for actual transparency! */
+  background-color: #00000000;
+}
+
+mainbox {
+  children: [ inputbar, listview ];
+}
+
+element, inputbar {
+  padding: 1em;
+}
+
+element selected {
+  background-color: @accent;
+}
+
+inputbar {
+  children: [prompt, textbox-prompt-colon, entry];
+}
+
+textbox-prompt-colon {
+  expand: false;
+  str: ": ";
+}
+
+/* vim:ft=css

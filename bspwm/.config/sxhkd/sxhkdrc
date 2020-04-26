@@ -12,15 +12,22 @@ super + Return
 
 # program launcher
 super + d
-	rofi -show drun -show-icons & sfx menu 
+	rofi -show drun -show-icons & sfx menu
 
-# emoji cancer, using rofi-emoji
+# command launcher (press any key to exit)
+super + r
+        rofi -dmenu -theme ~/.config/rofi/themes/cmd.rasi \
+            | awk '\{ print"\""$0"; read -n1\"" \}' \
+            | xargs --no-run-if-empty urxvt -e bash -c \
+            & sfx menu
+
+# emoji keyboard, using rofi-emoji
 super + period
         rofi -show emoji & sfx menu
 
 # make sxhkd reload its configuration files:
 super + Escape
-	pkill -USR1 -x sxhkd
+	pkill -USR1 -x sxhkd & sfx apply
 
 # capture using Flameshot - set format to %FT%H:%M:%S
 Print
@@ -45,8 +52,8 @@ ctrl + Print
 #
 
 # ranger
-super + {_,shift + }r
-        urxvt -e "ranger"
+super + {_,shift + }e
+        urxvt -e "ranger" & sfx open
 
 # calculator
 XF86Calculator

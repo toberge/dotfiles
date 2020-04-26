@@ -1,0 +1,41 @@
+/*
+ * Theme for command prompt
+ */
+
+@import "~/.cache/wal/colors.rasi"
+
+* {
+  font: "Fira Code 16";
+  background-color: @background;
+  text-color: @foreground;
+}
+
+window {
+  height: 3em;
+  width: 50%;
+  location: center;
+  transparency: "real";
+  /* for actual transparency! */
+  background-color: #00000000;
+}
+
+mainbox {
+  children: [ inputbar ];
+  border: 0.1em;
+  border-color: @border;
+}
+
+inputbar {
+  padding: 1em;
+}
+
+inputbar {
+  children: [textbox-prompt-colon, entry];
+}
+
+textbox-prompt-colon {
+  expand: false;
+  str: "> ";
+}
+
+/* vim:ft=css
