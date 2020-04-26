@@ -21,8 +21,10 @@ screenchange-reload = true
 ;pseudo-transparency = false
 
 [global/wm]
-margin-top = 5
-margin-bottom = 5
+; AHA! 'twas the margins here
+; the culprits of an ugly gap
+margin-top = 0
+margin-bottom = 0
 
 ;==================== importing files =====================
 

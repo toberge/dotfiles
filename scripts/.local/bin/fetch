@@ -44,7 +44,7 @@ packs() {
 }
 
 model() {
-    cat /sys/devices/virtual/dmi/id/product_name 
+    cat /sys/devices/virtual/dmi/id/product_version
 }
 
 echo
