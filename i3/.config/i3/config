@@ -405,13 +405,14 @@ mode "$mode_gaps_outer" {
 bindsym $mod+Ctrl+x mode "$mode_system", exec $shutter
 set $mode_system (l)ock, (e)xit, switch_(u)ser, (s)uspend, (h)ibernate, (r)eboot, (Shift+s)hutdown
 mode "$mode_system" {
-    bindsym l exec --no-startup-id i3exit lock, mode "default"
-    bindsym s exec --no-startup-id i3exit suspend, mode "default"
-    bindsym u exec --no-startup-id i3exit switch_user, mode "default"
-    bindsym e exec --no-startup-id i3exit logout, mode "default"
-    bindsym h exec --no-startup-id i3exit hibernate, mode "default"
-    bindsym r exec --no-startup-id i3exit reboot, mode "default"
-    bindsym Shift+s exec --no-startup-id i3exit shutdown, mode "default"
+    bindsym l exec --no-startup-id lockmeup, mode "default"
+    bindsym s exec --no-startup-id lockmeup & sleep .4 && systemctl hibernate, mode "default"
+    # i3exit uses dm-tool switch-to-greeter but that's LightDM?
+    bindsym u exec --no-startup-id i3-msg exit, mode "default"
+    bindsym e exec --no-startup-id i3-msg exit, mode "default"
+    bindsym h exec --no-startup-id lockmeup & sleep .4 && systemctl hibernate, mode "default"
+    bindsym r exec --no-startup-id systemctl reboot, mode "default"
+    bindsym Shift+s exec --no-startup-id systemctl poweroff, mode "default"
 
     # exit system mode: "Enter" or "Escape"
     bindsym Return mode "default", exec $close
@@ -470,7 +471,7 @@ bindsym $mod+period exec rofi -show emoji & sfx menu
 
 # lock
 # bindsym $mod+Shift+x exec i3lock -uf --color=421820 # 475263
-bindsym $mod+Shift+x exec betterlockscreen -l -t "$(fortune lock || echo Something went wrong)", exec $shutter
+bindsym $mod+Shift+x exec lockmeup, exec $shutter
 #bindsym $mod+Shift+x exec i3lock -f --indicator --color=$dark --verifcolor=$fga #--wrongcolor=$slush
 
 #####################

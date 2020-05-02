@@ -69,7 +69,7 @@ XF86Calculator
 
 # lock the screen
 super + shift + x
-        betterlockscreen -l -t "$(fortune lock || echo Something went wrong)" & sfx shutter
+        lockmeup & sfx shutter
 
 # power menu
 super + ctrl + x

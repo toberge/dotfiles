@@ -65,7 +65,9 @@ dunst &
 # test -f /usr/bin/wal_steam && wal_steam -w
 
 # Set lock screen image
-betterlockscreen -u "$imagepath"
+# betterlockscreen -u "$imagepath"
+# [[ -f "$HOME/.cache/lockpaper" ]] && rm "$HOME/.cache/lockpaper"
+# ln -s "$imagepath" "$HOME/.cache/lockpaper"
 
 # Reload wm
 case $DESKTOP_SESSION in

@@ -1,2 +1,10 @@
 # random fortune cookies
-(plus a simple baking script)
+
+Current cookie files:
++ **lock** - cozy messages on lockscreen
++ **wrong** - messages shown if wrong password
+
+Run
+`sudo ./mkfortune <file>`
+to bake a cookie
+

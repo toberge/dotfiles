@@ -8,6 +8,7 @@ PAC,ufw,too lazy to set up anything else
 PAC,playerctl,you wanna pause&skip your songs right?
 PAC,xorg-xbacklight,well yes
 PAC,redshift,to save your eyes from death
+#AUR,sct,as a redshift alternative?
 AUR,xidlehook,a not-annoying xautolock
 ###,##################,###
 ###,TERMINAL ILLNESSES,###
@@ -22,7 +23,7 @@ PAC,bash-completion,command completion for BASH
 ###,WINDOW MANAGER STUFFS,###
 ###,#####################,###
 PAC,i3-gaps,i3 window manager
-PAC,i3exit,scripts for safely shutting down (REMOVE)
+PAC,i3lock-color,nice screen locker
 PAC,bspwm,another window manager
 PAC,sxhkd,hotkey daemon
 PAC,picom,compositor for X

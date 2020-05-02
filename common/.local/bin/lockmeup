@@ -1,3 +1,31 @@
 #!/usr/bin/env bash
-betterlockscreen -l -t "$(fortune lock || echo Something went wrong)"
 
+# get those colors
+source $HOME/.cache/wal/colors.sh
+
+# Using i3lock-color for extra fanciness
+# and custom fortunes for random text
+# TODO check if screen is mostly dark or light
+#      and base greeter color on that...
+i3lock \
+    -f --clock \
+    --radius 136 \
+    --ring-width 9 \
+    --indicator \
+    --blur=9 \
+    --color="${color0#\#}" \
+    --greetertext="$(fortune lock || echo This screen is locked, I think)" \
+    --veriftext="Lemme see..." \
+    --wrongtext="$(fortune wrong || echo NOPE)" \
+    --noinputtext="<no input>" \
+    --datestr="%A %e. %B %Y" \
+    --{greeter,wrong,verif}-font="Ubuntu" \
+    --greetercolor="${color7#\#}ff" \
+    --{wrong,verif,time,date}color="${color7#\#}ff" \
+    --inside{,ver}color="${color0#\#}aa" \
+    --insidewrongcolor="${color1#\#}aa" \
+    --ring{,ver,wrong}color="${color6#\#}aa" \
+    --separatorcolor="${color0#\#}aa" \
+    --line-uses-ring \
+    --keyhlcolor="${color2#\#}ff" \
+    --bshlcolor="${color1#\#}ff" \

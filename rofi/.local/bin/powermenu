@@ -13,7 +13,7 @@ case $choice in
         ;;
     )
         lockmeup &
-        sleed .4 && systemctl hibernate
+        sleep .4 && systemctl hibernate
         ;;
     )
         # workaround for weird behaviour on thinkpad
