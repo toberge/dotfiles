@@ -23,6 +23,10 @@ os() {
     uname -o
 }
 
+distro() {
+    lsb_release -ds | tr -d '"' # add -rc
+}
+
 wm() {
     echo $DESKTOP_SESSION
 }
@@ -57,12 +61,12 @@ case $1 in
         prunt "ed" "echo the standard text editor"
         ;;
     *)
-        prunt "os" os
+        prunt "os" distro
         prunt "sys" model
         prunt "pac" packs
         prunt "wm" wm
         prunt "sh" shell
-        prunt "ed" editor
+        #prunt "ed" editor
         ;;
 esac
 echo

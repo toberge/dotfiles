@@ -70,8 +70,12 @@ Plug 'wincent/Command-T', {
 Plug 'dense-analysis/ale'
 
 " Markdown
-Plug 'plasticboy/vim-markdown'
+"Plug 'plasticboy/vim-markdown'
 " Plug 'JamshedVesuna/vim-markdown-preview'
+Plug 'vim-pandoc/vim-pandoc'
+Plug 'vim-pandoc/vim-pandoc-syntax'
+" damn spellcheck...
+let g:pandoc#modules#disabled = ["spell"]
 
 " ------ commands ------
 Plug 'tpope/vim-repeat'
@@ -103,9 +107,16 @@ call plug#end()
 
 " Markdown plugin specifics
 " set conceallevel=2 " if you wanna see ugly previews of formulas
-let g:vim_markdown_math = 1
+" let g:vim_markdown_math = 1
 
 " let vim_markdown_preview_toggle=2
+
+" vim-pandoc YCM
+if !exists('g:ycm_semantic_triggers')
+    let g:ycm_semantic_triggers = {}
+endif
+let g:ycm_semantic_triggers.pandoc = ['@']
+let g:ycm_filetype_blacklist = {}
 
 " TODO: modify as you like
 colorscheme wal

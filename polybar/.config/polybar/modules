@@ -22,7 +22,7 @@ click-right = i3-gnome-pomodoro start-stop
 ; Strip away "Pomodoro " prefix
 ; exec = echo "$(i3-gnome-pomodoro status --always | cut -d 'o' -f 5)"
 ; also output --:-- if status is empty...
-exec = echo "$(if [[ -z $(i3-gnome-pomodoro status) ]]; then echo ' --:--'; else i3-gnome-pomodoro status --always | cut -d 'o' -f 5; fi)"
+exec = echo " $([[ -z $(i3-gnome-pomodoro status) ]] && echo '--:--' || i3-gnome-pomodoro status --always | awk '{ print $NF }')"
 interval = 1
 
 format = <label>
@@ -135,9 +135,7 @@ label-occupied-padding = 2
 ; dimmed = IDK BUT OH WELL
 ; i don't think it is Active workspace on unfocused monitor
 label-dimmed = ${self.label-focused}
-label-dimmed-background = ${colors.secondary}
-label-dimmed-underline = ${self.label-focused-underline}
-label-dimmed-padding = ${self.label-focused-padding}
+label-dimmed-padding = ${self.label-occupied-padding}
 
 ; urgent = Workspace with urgency hint set
 label-urgent = ${self.label-focused}

@@ -77,7 +77,7 @@ super + ctrl + x
 
 # brightness
 XF86MonBrightness{Up,Down}
-        xbacklight -{inc,dec} 10 & sfx open
+        xbacklight -{inc,dec} 5 & sfx open
 
 # volume
 XF86Audio{Raise,Lower}Volume

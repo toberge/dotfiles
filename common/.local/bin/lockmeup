@@ -20,7 +20,7 @@ i3lock \
     --noinputtext="<no input>" \
     --datestr="%A %e. %B %Y" \
     --{greeter,wrong,verif}-font="Ubuntu" \
-    --greetercolor="${color7#\#}ff" \
+    --greetercolor="${color8#\#}ff" \
     --{wrong,verif,time,date}color="${color7#\#}ff" \
     --inside{,ver}color="${color0#\#}aa" \
     --insidewrongcolor="${color1#\#}aa" \
