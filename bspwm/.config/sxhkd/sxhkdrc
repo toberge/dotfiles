@@ -94,9 +94,11 @@ XF86Audio{Play,Next,Prev,MicMute}
 # bspwm hotkeys
 #
 
-# quit/restart bspwm
-super + alt + {q,r}
-	bspc {quit,wm -r}
+# ONLY restart bspwm
+# super + alt + {q,r}
+	# bspc {quit,wm -r}
+super + alt + r
+	bspc wm -r
 
 # close and kill
 super + {_,shift + }q
@@ -137,8 +139,15 @@ super + ctrl + {m,x,y,z}
 #
 
 # focus the node in the given direction
-super + {_,shift + }{h,j,k,l}
-	bspc node -{f,s} {west,south,north,east}
+super + {h,j,k,l}
+	bspc node -f {west,south,north,east}
+
+# swap or move node in given direction
+# (allows moving node to empty workspace)
+super + shift + {h,j,k,l}
+    direction={west,south,north,east}; \
+       bspc node -s $direction.local --follow \
+    || bspc node -m $direction --follow
 
 # focus the node for the given path jump
 super + {p,b,comma,period}
