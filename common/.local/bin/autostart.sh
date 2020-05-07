@@ -29,6 +29,7 @@ then # desktop
 else # laptop
     ~/.local/bin/touchpad.sh
     /usr/bin/xfce-power-manager
+    ~/.local/bin/battery-warning.sh
 fi
 
 # prevent gnome from nagging at admin access stuff
