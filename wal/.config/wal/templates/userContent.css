@@ -1,7 +1,11 @@
 @-moz-document domain(toberge.github.io) {{
   :root {{
-    --color-fg: {color7} !important;
-    --color-bg: {color1} !important;
+    --foreground: {color15} !important;
+    --background: {color0} !important;
+    --inset: {color8} !important;
+    --accent: {color12} !important;
+    --extra1: {color13} !important;
+    --extra2: {color10} !important;
   }}
 }}
 

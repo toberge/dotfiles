@@ -26,12 +26,13 @@ mainbox {
   children: [ inputbar, listview ];
 }
 
-element, inputbar {
+element, inputbar, textbox {
   padding: 1em;
 }
 
 element selected {
   background-color: @accent;
+  color: @accent-fg;
 }
 
 inputbar {

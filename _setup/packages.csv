@@ -31,6 +31,7 @@ PAC,rofi,cute little menu thing
 PAC,dunst,for displaying notifications
 PAC,polybar,a nice & configurable bar
 PAC,feh,for displaying images and setting wallpaper
+PAC,sxiv,it's better than feh...
 PAC,python-pywal,for generating and handling color schemes
 AUR,betterlockscreen,as lockscreen
 PAC,xfce4-power-manager,for handling screen dim & stuff

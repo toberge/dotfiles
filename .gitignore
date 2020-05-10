@@ -1,6 +1,8 @@
 # thank you, Kramer
 *.sec*
 # Setup-specific tweaks...
-polybar/.config/polybar/colors
+# polybar/.config/polybar/colors
 # temporarily
 setup.sh
+# emacs
+\#*\#

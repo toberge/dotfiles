@@ -1,0 +1,19 @@
+#!/usr/bin/env bash
+
+colorize() {
+    for shape in "$@"
+    do
+        echo -n " "
+        for i in {1..7}
+        do
+            echo -ne "  \e[3${i}m${shape}\e[0m"
+        done
+        echo
+    done
+}
+
+echo
+#colorize "abc" "def" "ghi"
+colorize "██▖" "██▌" "▝▀▘"
+echo
+

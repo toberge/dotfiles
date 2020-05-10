@@ -385,6 +385,9 @@ gimme() {
     fi
 }
 
+nichijou() {
+    sxiv -b "$HOME/Pictures/nichijou/$(date +'%m/%d').jpg"
+}
 
 # specific renaming purpose
 renyou() {

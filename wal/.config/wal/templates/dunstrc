@@ -8,7 +8,7 @@
 
     # Show multiple notifications in the same box
     separator_height = 4
-    separator_color = "{foreground}"
+    separator_color = "{color7}"
 
     # Add vertical padding to the inside of the notification
     padding = 16
@@ -17,7 +17,7 @@
     horizontal_padding = 16
 
     # The frame color and width of the notification
-    frame_color = "{color1}"
+    frame_color = "{color8}"
     frame_width = 0
 
     # How long a user needs to be idle for sticky notifications
@@ -51,22 +51,21 @@
 
 # Coloring notifications based on urgency
 [urgency_low]
-    background = "{color4}"
-    foreground = "{foreground}"
+    background = "{color8}"
+    foreground = "{color15}"
 
 [urgency_normal]
-    background = "{color1}"
-    foreground = "{foreground}"
+    background = "{color0}"
+    foreground = "{color15}"
 
 [urgency_critical]
-    background = "{background}"
-    foreground = "{foreground}"
+    background = "{color9}"
+    foreground = "{color0}"
     timeout = 0
 
 [volume]
     summary = "Volume*"
     # cannot override alignment...
-    background = "{color4}"
     fullscreen = show
 
 # don't remove this line, it's for vim you doofus

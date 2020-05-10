@@ -5,6 +5,7 @@ mpv $HOME/.sounds/startup.wav &
 
 # pywal + wallpaper
 wal -R
+$HOME/.fehbg &
 
 # bar and compositor
 ~/.config/polybar/launch.sh
@@ -22,11 +23,12 @@ xidlehook --not-when-fullscreen --timer 600 lockmeup '' &
 # remind me to take breaks!
 i3-gnome-pomodoro start
 
-if [[ "$HOSTNAME" == "qualified-desktop" ]]
+if [[ "$HOSTNAME" == "fuglekassa" ]]
 then # desktop
     ~/.local/bin/toggletearing.sh
     ~/.screenlayout/default.sh
-else # laptop
+elif [[ -d /sys/class/power_supply/BAT* ]]
+then # laptop
     ~/.local/bin/touchpad.sh
     /usr/bin/xfce-power-manager
     ~/.local/bin/battery-warning.sh

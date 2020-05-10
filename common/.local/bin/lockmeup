@@ -8,7 +8,7 @@ source $HOME/.cache/wal/colors.sh
 # TODO check if screen is mostly dark or light
 #      and base greeter color on that...
 i3lock \
-    -f --clock \
+    -l --clock \
     --radius 136 \
     --ring-width 9 \
     --indicator \
@@ -20,12 +20,12 @@ i3lock \
     --noinputtext="<no input>" \
     --datestr="%A %e. %B %Y" \
     --{greeter,wrong,verif}-font="Ubuntu" \
-    --greetercolor="${color8#\#}ff" \
-    --{wrong,verif,time,date}color="${color7#\#}ff" \
-    --inside{,ver}color="${color0#\#}aa" \
-    --insidewrongcolor="${color1#\#}aa" \
-    --ring{,ver,wrong}color="${color6#\#}aa" \
-    --separatorcolor="${color0#\#}aa" \
+    --greetercolor="${color7#\#}ff" \
+    --{wrong,verif,time,date}color="${color15#\#}ff" \
+    --inside{,ver}color="${color0#\#}ff" \
+    --insidewrongcolor="${color9#\#}ff" \
+    --ring{,ver,wrong}color="${color8#\#}ff" \
+    --separatorcolor="${color0#\#}ff" \
     --line-uses-ring \
-    --keyhlcolor="${color2#\#}ff" \
-    --bshlcolor="${color1#\#}ff" \
+    --keyhlcolor="${color14#\#}ff" \
+    --bshlcolor="${color9#\#}ff" \

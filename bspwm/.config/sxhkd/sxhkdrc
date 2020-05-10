@@ -13,6 +13,8 @@ super + Return
 # program launcher
 super + d
 	rofi -show drun -show-icons & sfx menu
+super + shift + d
+	rofi -show run & sfx menu
 
 # command launcher (press any key to exit)
 super + r
@@ -81,10 +83,10 @@ XF86MonBrightness{Up,Down}
 
 # volume
 XF86Audio{Raise,Lower}Volume
-    i3-volume -nl {-i 5,-d 5} & sfx open
+    volume -nl {-i 5,-d 5} & sfx open
 
 XF86AudioMute
-    i3-volume -mnl & sfx open
+    volume -mnl & sfx open
 
 # media player
 XF86Audio{Play,Next,Prev,MicMute}

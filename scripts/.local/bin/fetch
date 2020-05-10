@@ -6,7 +6,9 @@ RESET="\e[0m"
 BOLD="\e[1m"
 
 prunt() {
-    printf "   $BLAU$BOLD%4s$RESET $RAUD│$RESET %s\n" "$1" "$($2 | tr -d '\n')"
+    output=$($2 | tr -d '\n')
+    [[ -z "$output" ]] && return
+    printf "   $BLAU$BOLD%4s$RESET $RAUD│$RESET %s\n" "$1" "$output"
 }
 
 colors() {
@@ -48,8 +50,14 @@ packs() {
 }
 
 model() {
-    cat /sys/devices/virtual/dmi/id/product_version
+    cat /sys/devices/virtual/dmi/id/{board_name,product_version,product_name} \
+        | awk '{ print length"\t"$0 }' | sort -n | cut -f2- | tail -n 1
 }
+
+song() {
+    playerctl metadata title 2> /dev/null
+}
+
 
 echo
 case $1 in
@@ -60,16 +68,24 @@ case $1 in
         prunt "wm" "echo epic hacker wm"
         prunt "ed" "echo the standard text editor"
         ;;
+    all)
+        prunt "os" os
+        prunt "dist" distro
+        prunt "sys" model
+        prunt "pac" packs
+        prunt "wm" wm
+        prunt "sh" shell
+        prunt "ed" editor
+        prunt "  ♪♪" song
+        ;;
     *)
         prunt "os" distro
         prunt "sys" model
         prunt "pac" packs
         prunt "wm" wm
         prunt "sh" shell
-        #prunt "ed" editor
         ;;
 esac
 echo
 colors
 echo
-

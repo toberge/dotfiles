@@ -1,6 +1,7 @@
 * {{
-  accent:      {color2};
   background:  {color0};
-  foreground:  {color7};
+  foreground:  {color15};
+  accent:      {color12}; /* bg of selected */
+  accent-fg:   {color0}; /* fg of selected */
   border:      {color8};
 }}

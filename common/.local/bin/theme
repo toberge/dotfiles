@@ -10,7 +10,7 @@ then # no image specified, let user choose
     wallpaper=$(ls $path/$category | rofi -dmenu -i -p "Wallpaper")
     [ -z "$wallpaper" ] && exit 1
     imagepath="$path/$category/$wallpaper"
-    colorscheme=$(echo auto $(ls .config/wal/colorschemes/dark/ | cut -d'.' -f1) | tr ' ' '\n' \
+    colorscheme=$(echo auto $(ls $HOME/.config/wal/colorschemes/dark/ /usr/lib/python3.8/site-packages/pywal/colorschemes/dark/ | grep -vE "(:|^$)" | cut -d'.' -f1) | tr ' ' '\n' \
         | rofi -dmenu -i -p "Colorscheme")
     [[ "$colorscheme" == "auto" ]] && {
         backend=$(echo wal $(wal --backend | head -n 5 | tail -n 4 | tr -d ' -') | tr ' ' '\n' \
@@ -54,7 +54,9 @@ if [[ "${colorscheme}" == "auto" ]]
 then # use backend
     wal --backend "${backend}" -i "${imagepath}"
 else
-    wal --theme "${colorscheme}" -i "${imagepath}"
+    # TODO set wallpaper thru other means
+    wal -i "${imagepath}"
+    wal --theme "${colorscheme}"
 fi
 
 # Restart dunst
