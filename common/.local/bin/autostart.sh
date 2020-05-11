@@ -1,7 +1,8 @@
 #!/usr/bin/env bash
 
 # CALICOMP startup tune
-mpv $HOME/.sounds/startup.wav &
+# mpv $HOME/.sounds/startup.wav &
+sfx startup &
 
 # pywal + wallpaper
 wal -R
@@ -27,10 +28,10 @@ if [[ "$HOSTNAME" == "fuglekassa" ]]
 then # desktop
     ~/.local/bin/toggletearing.sh
     ~/.screenlayout/default.sh
-elif [[ -d /sys/class/power_supply/BAT* ]]
+elif [ -d /sys/class/power_supply/BAT* ]
 then # laptop
     ~/.local/bin/touchpad.sh
-    /usr/bin/xfce-power-manager
+    xfce4-power-manager
     ~/.local/bin/battery-warning.sh
 fi
 
