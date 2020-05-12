@@ -3,12 +3,18 @@
 # get those colors
 source $HOME/.cache/wal/colors.sh
 
+extraopts=""
+# only add -l option if supported
+# (it locks TTYs and is kinda neat)
+i3lock --help |& grep "\-l" &> /dev/null
+[[ $? -eq 0 ]] && extraopts="-l"
+
 # Using i3lock-color for extra fanciness
 # and custom fortunes for random text
 # TODO check if screen is mostly dark or light
 #      and base greeter color on that...
 i3lock \
-    -l --clock \
+    ${extraopts} --clock \
     --radius 136 \
     --ring-width 9 \
     --indicator \
