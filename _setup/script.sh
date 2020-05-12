@@ -26,7 +26,7 @@ do
             echo ${args[@]}
             ;;
     esac
-done < packages.csv
+done < _setup/packages.csv
 
 echo
 echo Installing repo packages
@@ -44,4 +44,3 @@ ls -F .. | grep -E '^[^_].+/$' | sed 's/\///g'
 # maybe some autostowing here?
 
 echo "That's it, you're good to go"
-
