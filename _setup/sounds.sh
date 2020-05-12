@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/usr/bin/env sh
 
 test -f _sounds/open.wav || exit 1
 
@@ -8,13 +8,14 @@ mkdir "$HOME/.sounds"
 mkdir -p "$THEMEFOLDER/source"
 
 # copy sounds for i3wm sounds & source for freedesktop sound theme
-cp _sounds/*.wav ~/.sounds
+cp _sounds/*.wav "$HOME/.sounds"
 cp _sounds/*.wav "$THEMEFOLDER/source"
-cp _sounds/index.theme $THEMEFOLDER
+cp _sounds/index.theme "$THEMEFOLDER"
 
-cd $THEMEFOLDER
+cd "$THEMEFOLDER"
 
-function symlink() {
+# symlink <sound name> <freedesktop action>
+symlink() {
     ln -sf "$THEMEFOLDER/$2.wav" "source/$1.wav"
 }
 

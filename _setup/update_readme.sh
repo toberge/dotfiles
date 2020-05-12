@@ -12,11 +12,14 @@ do
         end=$(cat -n README.md | grep '```' | tail -n 1 | awk '{print $1}')
         lines=$(cat README.md | wc -l)
 
-        # Store last part of README
+        # Store first and last part of README
+        head -n $(( $start - 1 )) README.md > /tmp/beginning
         tail -n $(( $lines - $end + 1 )) README.md > /tmp/ending
         # Rebuild README
-        head -n $(( $start - 1 )) README.md | tee README.md
-        tree -a --noreport -I 'README.md' . >> README.md
+        rm README.md
+        cat /tmp/beginning > README.md
+        # Ignore README and Emacs temp files when building tree
+        tree -a --noreport -I 'README.md|#*#' . >> README.md
         cat /tmp/ending >> README.md
     } || echo 'no readme here'
     popd

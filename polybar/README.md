@@ -11,7 +11,6 @@
 └── .config
     └── polybar
         ├── colors
-        ├── color-template
         ├── config
         ├── decoration
         ├── launch.sh

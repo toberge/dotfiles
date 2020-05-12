@@ -18,9 +18,6 @@
     │           ├── color.ini
     │           └── user.css
     └── wal
-        ├── colorschemes
-        │   ├── dark
-        │   └── light
         └── templates
             ├── dunstrc
             ├── userContent.css
