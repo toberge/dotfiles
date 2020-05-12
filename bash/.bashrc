@@ -234,56 +234,7 @@ then # on a TTY, do the pywal
     source ~/.cache/wal/colors-tty.sh
 fi
 
-SKOLE="$HOME/Dropbox/skoleting/ITHINGDA/"
-
-alias ..='cd ..'
-alias ...='cd ../..'
-alias ....='cd ../../..'
-
-alias dot='cd ~/.dotfiles'
-alias cdj="cd $SKOLE/java"
-alias cds="cd $SKOLE/statistikk"
-alias cdc="cd $SKOLE/C"
-alias cdw="cd $SKOLE/web"
-alias cdm="cd $SKOLE/Matematikk\ 2"
-alias cda="cd $SKOLE/algdat"
-alias cdf="cd $SKOLE/fysikk"
-
-alias i3conf="vim $HOME/.config/i3/config"
-alias bspconf="vim $HOME/.config/bspwm/bspwmrc"
-alias keyconf="vim $HOME/.config/sxhkd/sxhkdrc"
-alias polyconf="vim $HOME/.config/polybar/config"
-alias polystart="$HOME/.config/polybar/launch.sh"
-
-alias q='exit'
-alias f='fuck'
-alias ':q'='echo "you aint using vim now"; sleep 2; exit'
-alias vi='vim'
-alias v='vim'
-alias r='ranger'
-# matlab is bloat
-alias matlabrdp='xfreerdp +clipboard /size:1920x1080 +fonts +decorations /d:win.ntnu.no  /u:toberge /v:calcfarm.ntnu.no /app:"C:\Program Files\MATLAB\R2019a\bin\matlab.exe"'
-alias tb='nc termbin.com 9999'
-
-alias ll='ls -lh'
-alias la='ls -lha'
-
-alias g='git status' # to prevent GhostScript conflict
-alias ga='git add'
-alias gaa='git add -A'
-alias gd='git diff'
-alias gdm='git diff origin/master'
-alias gf='git fetch'
-alias gr='git rebase'
-alias gm='git merge'
-alias gp='git push'
-alias gc='git commit'
-alias gcm='git commit -m'
-alias gl='git log --oneline --graph --all --decorate'
-# see https://stackoverflow.com/questions/849308/pull-push-from-multiple-remote-locations/12795747#12795747
-# with or without branch arg?
-alias gpab='for RMT in $(git remote); do echo "-- $RMT --" && git push -v $RMT $1; done;'
-alias gpa='for RMT in $(git remote); do echo "-- $RMT --" && git push $RMT; done;'
+source $HOME/.bash_aliases
 
 eval "$(thefuck --alias)" # pip install --user thefuck first
 
