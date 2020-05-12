@@ -4,13 +4,27 @@
 # mpv $HOME/.sounds/startup.wav &
 sfx startup &
 
-# pywal + wallpaper
+# monitor layout and device specifics
+case "$HOSTNAME" in
+    fuglekassa) # desktop
+        ~/.local/bin/toggletearing.sh
+        ~/.screenlayout/default.sh
+        ;;
+    thinkpad)
+        [[ "$(xrandr --query | grep " connected" | wc -l)" -eq 2 ]] \
+            && xrandr --output eDP1 --below HDMI2
+        ;;
+    *)
+        ;;
+esac
+
+# colors + wallpaper
 wal -R
-$HOME/.fehbg &
+~/.fehbg &
 
 # bar and compositor
-~/.config/polybar/launch.sh
 picom -b --dbus --config ~/.config/picom/picom.conf
+~/.config/polybar/launch.sh
 
 # numlock, I need you!
 numlockx on
@@ -24,19 +38,16 @@ xidlehook --not-when-fullscreen --timer 600 lockmeup '' &
 # remind me to take breaks!
 i3-gnome-pomodoro start
 
-if [[ "$HOSTNAME" == "fuglekassa" ]]
-then # desktop
-    ~/.local/bin/toggletearing.sh
-    ~/.screenlayout/default.sh
-elif [ -d /sys/class/power_supply/BAT* ]
-then # laptop
+# for all laptops, do battery and touchpad stuff
+[ -d /sys/class/power_supply/BAT* ] && {
     ~/.local/bin/touchpad.sh
     xfce4-power-manager
-    ~/.local/bin/battery-warning.sh
-fi
+    ~/.local/bin/battery-warning.sh &
+}
 
 # prevent gnome from nagging at admin access stuff
-/usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 & eval $(gnome-keyring-daemon -s --components=pkcs11,secrets,ssh,gpg) &
+/usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 & \
+    eval $(gnome-keyring-daemon -s --components=pkcs11,secrets,ssh,gpg) &
 
 # systray apps, screen filter and notifications
 for app in redshift-gtk dunst dropbox pamac-tray nm-applet
