@@ -19,6 +19,8 @@ AUR,urxvt-resize-font-git,font resize in URxvt
 PAC,ranger,terminal file manager
 PAC,tree,handy visualization of folder structure
 PAC,bash-completion,command completion for BASH
+PAC,tmux,terminal multiplexer disease
+AUR,tmuxline-git,airline for tmux
 ###,#####################,###
 ###,WINDOW MANAGER STUFFS,###
 ###,#####################,###

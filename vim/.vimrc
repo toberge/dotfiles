@@ -51,6 +51,10 @@ endif
 
 " ------ my things kinda ------
 
+" testing (tmux problem)
+" set term=screen-256color
+set term=rxvt-unicode-256color
+
 " plug.vim (code from tips page)
 if empty(glob('~/.vim/autoload/plug.vim'))
     silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
@@ -121,7 +125,10 @@ let g:ycm_filetype_blacklist = {}
 " TODO: modify as you like
 colorscheme wal
 
+" ------ airline ------
 let g:airline_powerline_fonts = 1
+let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#tabline#show_close_button = 0
 
 " ------ NERDTree ------
 
