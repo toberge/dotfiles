@@ -23,14 +23,12 @@ mainbox {
   children: [ inputbar ];
   border: 4;
   border-color: @border;
-}
-
-inputbar {
-  padding: 1em;
+  border-radius: 1em;
 }
 
 inputbar {
   children: [textbox-prompt-colon, entry];
+  padding: 1em;
 }
 
 textbox-prompt-colon {

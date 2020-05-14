@@ -9,10 +9,13 @@ extraopts=""
 i3lock --help |& grep "\-l" &> /dev/null
 [[ $? -eq 0 ]] && extraopts="-l"
 
+sfx shutter & # play a sound
+
 # Using i3lock-color for extra fanciness
 # and custom fortunes for random text
 # TODO check if screen is mostly dark or light
 #      and base greeter color on that...
+#      (or slam a black box behind it)
 i3lock \
     ${extraopts} --clock \
     --radius 136 \

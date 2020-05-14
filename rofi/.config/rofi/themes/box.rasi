@@ -24,6 +24,7 @@ window {
 
 mainbox {
   children: [ inputbar, listview ];
+  border-radius: 1em;
 }
 
 element, inputbar, textbox {

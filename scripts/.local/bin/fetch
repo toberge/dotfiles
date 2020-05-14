@@ -70,7 +70,7 @@ case $1 in
         ;;
     all)
         prunt "os" os
-        prunt "dist" distro
+        prunt "dis" distro
         prunt "sys" model
         prunt "pac" packs
         prunt "wm" wm
@@ -79,7 +79,7 @@ case $1 in
         prunt "  ♪♪" song
         ;;
     *)
-        prunt "os" distro
+        prunt "dis" distro
         prunt "sys" model
         prunt "pac" packs
         prunt "wm" wm

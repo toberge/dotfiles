@@ -55,6 +55,8 @@ When setting new theme (function in .bashrc):
 
 Using spicetify to theme Spotify based on pywal colors, theme is [Lovelace](https://github.com/morpheusthewhite/spicetify-themes/tree/master/Lovelace) by [adriankarlen](https://github.com/adriankarlen)
 
+[firefox theming](https://github.com/Frewacom/Pywalfox)
+
 ## links and credits
 
 *Based on [F-dotfiles](https://github.com/Kraymer/F-dotfiles)*
