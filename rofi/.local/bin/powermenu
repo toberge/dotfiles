@@ -1,4 +1,4 @@
-#!/usr/bin/env sh
+#!/usr/bin/env bash
 
 # up=$(uptime | cut -d' ' -f5)
 # prompt="Up ${up%,}"
@@ -6,6 +6,7 @@ up=$(uptime -p)
 prompt=" ${HOSTNAME}: ${up#up } of /つ ◕_◕\つ"
 
 # Set font to Font Awesome 5 Free if this is gibberish
+# hibernation: ,
 choice=$(echo -e "\n\n\n\n" | \
     rofi -dmenu -theme ~/.config/rofi/themes/powermenu.rasi \
     -selected-row 0 -p "$prompt")

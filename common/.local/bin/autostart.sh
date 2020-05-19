@@ -11,7 +11,7 @@ case "$HOSTNAME" in
         ~/.screenlayout/default.sh
         ;;
     thinkpad)
-        [[ "$(xrandr --query | grep " connected" | wc -l)" -eq 2 ]] \
+        [[ "$(xrandr --query | grep -c " connected")" -eq 2 ]] \
             && xrandr --output HDMI2 --auto --above eDP1
         ;;
     *)
@@ -47,12 +47,12 @@ i3-gnome-pomodoro start
 
 # prevent gnome from nagging at admin access stuff
 /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 & \
-    eval $(gnome-keyring-daemon -s --components=pkcs11,secrets,ssh,gpg) &
+    eval "$(gnome-keyring-daemon -s --components=pkcs11,secrets,ssh,gpg)" &
 
 # systray apps, screen filter and notifications
 for app in redshift-gtk dunst dropbox pamac-tray nm-applet
 do
-    if ! ps -e | grep $app > /dev/null
+    if ! pgrep $app > /dev/null
     then # app not launched
         nohup $app &
     fi

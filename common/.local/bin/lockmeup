@@ -1,13 +1,12 @@
 #!/usr/bin/env bash
 
 # get those colors
-source $HOME/.cache/wal/colors.sh
+source "$HOME/.cache/wal/colors.sh"
 
 extraopts=""
 # only add -l option if supported
 # (it locks TTYs and is kinda neat)
-i3lock --help |& grep "\-l" &> /dev/null
-[[ $? -eq 0 ]] && extraopts="-l"
+i3lock --help |& grep "\-l" &> /dev/null && extraopts="-l"
 
 sfx shutter & # play a sound
 

@@ -18,7 +18,6 @@ colors() {
         echo -ne "\e[4${i}m  "
     done
     echo -e "$RESET"
-
 }
 
 os() {
@@ -30,19 +29,19 @@ distro() {
 }
 
 wm() {
-    echo $DESKTOP_SESSION
+    echo "$DESKTOP_SESSION"
 }
 
 shell() {
-    echo ${SHELL##*/}
+    echo "${SHELL##*/}"
 }
 
 redacted() {
-    echo [REDACTED]
+    echo '[REDACTED]'
 }
 
 editor() {
-    echo ${EDITOR##*/}
+    echo "${EDITOR##*/}"
 }
 
 packs() {
