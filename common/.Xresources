@@ -2,7 +2,6 @@ Xft.autohint: 0
 Xft.antialias: 1
 Xft.hinting: true
 Xft.hintstyle: hintslight
-Xft.dpi: 91
 Xft.rgba: rgb
 Xft.lcdfilter: lcddefault
 
@@ -13,8 +12,16 @@ Xft.lcdfilter: lcddefault
 
 ! *fading:                          10
 
-! WHOOPS... DO make sure to change this if you wanna have consistent theme...
-Xcursor.theme:                    xcursor-breeze-snow
+#ifdef SRVR_fuglekassa
+    Xcursor.theme:                xcursor-breeze-snow
+    Xft.dpi: 91
+#else
+! idk tho
+! could also do a #include for specifics
+    Xcursor.theme:                xcursor-breeze
+    Xft.dpi: 96
+#endif
+
 Xcursor.size:                     0
 
 !=== urxvt section ===!
@@ -49,4 +56,3 @@ URxvt*perl-ext-common:            default,resize-font
 
 URxvt*letterSpace:                  -1
 URxvt*url-launcher:               firefox
-

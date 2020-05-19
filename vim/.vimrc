@@ -55,6 +55,8 @@ endif
 " set term=screen-256color
 set term=rxvt-unicode-256color
 
+" Plugins {{{
+
 " plug.vim (code from tips page)
 if empty(glob('~/.vim/autoload/plug.vim'))
     silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
@@ -107,7 +109,10 @@ let g:livepreview_previewer = 'zathura'
 " only necessary for specific files...
 " let g:livepreview_engine = 'pdflatex ' " . ' -shell-escape -interaction nonstopmode'
 
+Plug 'psliwka/vim-smoothie'
+
 call plug#end()
+" }}}
 
 " Markdown plugin specifics
 " set conceallevel=2 " if you wanna see ugly previews of formulas
@@ -130,7 +135,7 @@ let g:airline_powerline_fonts = 1
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#show_close_button = 0
 
-" ------ NERDTree ------
+" ------ NERDTree ------{{{
 
 " NERDTree on ctrl+n
 let NERDTreeShowHidden=1
@@ -142,6 +147,7 @@ let g:NERDTreeQuitOnOpen=1
 
 " hide certain obnoxious folders
 let NERDTreeIgnore = ['^node_modules$', '^__pycache__$']
+" }}}
 
 
 " ------ misc ------
@@ -155,7 +161,7 @@ command PDF :!pandoc %:t -o /tmp/thing.pdf
 set foldmethod=marker
 
 " }}}
-" ------ ALE ------
+" ------ ALE ------{{{
 
 " lint
 let g:ale_linters_explicit = 1
@@ -168,8 +174,9 @@ let g:ale_fixers = {
 \   'javascript': ['prettier'],
 \   'css': ['prettier'],
 \}
+" }}}
 
-" ------ arrow keys are banned ------
+" ------ arrow keys are banned ------{{{
 
 " don't use arrowkeys
 noremap <Up> <NOP>
@@ -183,7 +190,9 @@ inoremap <Down>  <NOP>
 inoremap <Left>  <NOP>
 inoremap <Right> <NOP>
 
-" ------ from vim wiki ------
+" }}}
+
+" ------ from vim wiki ------{{{
 " http://vim.wikia.com/wiki/Example_vimrc
 
 " Attempt to determine the type of a file based on its name and possibly its
@@ -261,3 +270,4 @@ set expandtab
 " ALSo maybe this for xtra convenience
 set smarttab " tab to next intent
 
+" }}}

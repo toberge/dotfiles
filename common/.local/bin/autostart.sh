@@ -12,7 +12,7 @@ case "$HOSTNAME" in
         ;;
     thinkpad)
         [[ "$(xrandr --query | grep " connected" | wc -l)" -eq 2 ]] \
-            && xrandr --output eDP1 --below HDMI2
+            && xrandr --output HDMI2 --auto --above eDP1
         ;;
     *)
         ;;

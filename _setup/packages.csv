@@ -58,6 +58,8 @@ PAC,noto-fonts-emoji,emoji
 ###,    TOOLS    ,###
 ###,#############,###
 PAC,pandoc,for converting stuff to PDF
+PAC,texlive-core,for basic latex
+PAC,texlive-latexextra,for the cancel package and more
 PAC,pdftk,for concating PDFs and more
 PAC,flameshot,screenshot GUI
 ###,#############,###
