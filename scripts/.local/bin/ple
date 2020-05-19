@@ -1,0 +1,35 @@
+#!/bin/sh
+
+# Play a specific list or all files in the current folder.
+# List format:
+# keyword;list;count
+
+set -eu
+
+[ -z "$1" ] && {
+    echo "Playing music..."
+    mpv --loop-playlist=inf --shuffle --no-video *.{m4a,mp3,ogg,flac,wav}
+    exit
+}
+
+LIST_FILE=$HOME/.playlists
+[ -f "$LIST_FILE" ] || { echo "No playlist file"; exit 1; }
+
+IFS=';'
+while read -ra line
+do
+    keyword=${line[0]}
+    count=${line[2]}
+    [ "$1" == "$keyword" ] && {
+        command -v figlet &>/dev/null && {
+            figlet "$keyword"
+        } || echo "Playing some $keyword for ya""$keyword"
+        echo "This list has been played $count times before."
+        sed -ri "s/^(${keyword};[^;]+)(;.+)$/\1;$((count+1))/" "$LIST_FILE"
+        mpv --loop-playlist=inf --shuffle --no-video "${line[1]}"
+        exit
+    }
+done < $LIST_FILE
+
+echo "No such playlist found, goodbye"
+exit 1

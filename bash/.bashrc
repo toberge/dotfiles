@@ -239,62 +239,8 @@ source $HOME/.bash_aliases
 eval "$(thefuck --alias)" # pip install --user thefuck first
 
 ############################
-# MEDIA PLAYBACK AND STUFF #
+# there was stuff here tho #
 ############################
-
-muse() {
-  echo "we go look for mewsic"
-  cd /media/Sharelings/Music/
-}
-
-ple() {
-  MODE=9 # indicating not-ple
-
-  case $1 in
-    m4a|mp3|ogg|flac)
-      MODE="pureple"
-      ;;
-    kageki|kage)
-      echo "wakarimas"
-      echo "vewy sowy but it's gone"
-      ;;
-    lofi)
-      MODE=2
-      MSG="chilling out..."
-      LIST="https://www.youtube.com/watch?v=hHW1oY26kxQ"
-      ;;
-    *)
-      echo "Usage: ple [filetype/list]"
-      ;;
-  esac
-
-  # the following can be rewritten as case statements, but I'll leave it like this for now
-
-  if [ $1 == "yokohama" ] || [ $1 == "alpha" ]; then
-    MODE=1
-    MSG='sequester yourself in a quiet country café'
-    LIST='https://www.youtube.com/playlist?list=PL157A64E54AB333EE'
-  fi
-  if [ $1 == "glt" ]; then
-    echo yeah it wrongk
-    MODE=2
-    MSG='apocalypse nuow'
-    LIST='https://www.youtube.com/playlist?list=PL0V1RP49t950z5e_IYNCsoXAUobTa7ppu'
-  fi
-
-  if [ $MODE == 1 ]; then
-    echo $MSG
-    mpv $LIST --no-video --loop-playlist=inf --shuffle --load-unsafe-playlists
-  elif [ $MODE == 2 ]; then
-    echo $MSG
-    mpv $LIST --no-video
-  elif [ $MODE == "pureple" ]
-  then
-    echo "we ple some $1 files"
-    mpv --no-video --loop-playlist=inf --shuffle *.$1
-    
-  fi
-}
 
 # remember the need for spaces here. it's space-sensitive.
 
