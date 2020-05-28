@@ -28,6 +28,7 @@ alias polystart="$HOME/.config/polybar/launch.sh"
 #######################
 
 alias q='exit'
+alias c='clear'
 alias f='fuck'
 alias ':q'='echo "you aint using vim now"; sfx alert & sleep 1; exit'
 alias vi='vim'

@@ -46,7 +46,7 @@ PROMPT_DIRTRIM=3
 
 # actual definition of prompt
 generate_custom_ps1() {
-    if [ -z $DESKTOP_SESSION ]
+    if [ -z "$DESKTOP_SESSION" ]
     then # on a TTY, avoid fontawesome and fancy unicode
         PS1="┌───\$(ps1_exit_code) \[\033[01;32m\]\w\[\033[01;37m\] \[\033[01;34m\]\$(ps1_git_branch)\[\033[00m\]\n└─\[\033[01;32m\]\[\033[00m\] "
     else # normal terminal, gimme dat fanciness
@@ -226,12 +226,11 @@ fi
 ############################
 
 # pywal things
-if [[ "$DESKTOP_SESSION" = "i3" ]]
-then # on DE where we shall set them colors
-    (cat ~/.cache/wal/sequences &)
-elif [ -z $DESKTOP_SESSION ]
+if [ -z "$DESKTOP_SESSION" ]
 then # on a TTY, do the pywal
     source ~/.cache/wal/colors-tty.sh
+else # on DE where we shall set them colors
+    (cat ~/.cache/wal/sequences &)
 fi
 
 source $HOME/.bash_aliases

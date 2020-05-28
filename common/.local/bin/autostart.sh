@@ -1,7 +1,6 @@
 #!/usr/bin/env bash
 
 # CALICOMP startup tune
-# mpv $HOME/.sounds/startup.wav &
 sfx startup &
 
 # monitor layout and device specifics
@@ -28,6 +27,8 @@ picom -b --dbus --config ~/.config/picom/picom.conf
 
 # numlock, I need you!
 numlockx on
+# Caps Lock go bye bye
+xmodmap ~/.xmodmap
 
 # just in case wm/de does not set cursor correctly
 xsetroot -cursor_name left_ptr &

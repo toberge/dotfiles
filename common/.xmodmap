@@ -1,0 +1,7 @@
+! clear modifiers
+clear Lock
+clear Control
+! caps lock go bye bye
+remove Lock = Caps_Lock
+keysym Caps_Lock = Control_L
+add Control = Control_L Control_R

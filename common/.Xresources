@@ -13,14 +13,15 @@ Xft.lcdfilter: lcddefault
 ! *fading:                          10
 
 #ifdef SRVR_fuglekassa
-    Xcursor.theme:                xcursor-breeze-snow
     Xft.dpi: 91
 #else
 ! idk tho
 ! could also do a #include for specifics
-    Xcursor.theme:                xcursor-breeze
+! yeah... this did not even work...
     Xft.dpi: 96
 #endif
+
+Xcursor.theme:                    xcursor-breeze-snow
 
 Xcursor.size:                     0
 
