@@ -41,6 +41,7 @@ Plug 'tpope/vim-surround'
 " Plug 'kana/vim-textobj-line'
 " Plug 'kana/vim-textobj-entire'
 " (they stopped working)
+Plug 'jiangmiao/auto-pairs'
 
 " ------ file finding ------
 Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
@@ -66,6 +67,7 @@ Plug 'dense-analysis/ale'
 " ------ cosmetics ------
 Plug 'psliwka/vim-smoothie' " smud scrolling
 Plug 'dylanaraps/wal.vim'
+Plug 'lilydjwg/colorizer'
 
 " ------ LaTeX ------
 Plug 'xuhdev/vim-latex-live-preview', { 'for': 'tex' }
@@ -237,6 +239,18 @@ let g:ycm_filetype_blacklist = {}
 let g:airline_powerline_fonts = 1
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#show_close_button = 0
+
+" }}}
+
+" ------ tmuxline ------{{{
+
+" statusline content
+let g:tmuxline_preset = {
+      \'a'    : '#S',
+      \'win'  : '#I #W',
+      \'cwin' : '#I #W',
+      \'y'    : '#F',
+      \'z'    : '#H' }
 
 " }}}
 
