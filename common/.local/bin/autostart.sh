@@ -29,6 +29,8 @@ picom -b --dbus --config ~/.config/picom/picom.conf
 numlockx on
 # Caps Lock go bye bye
 xmodmap ~/.xmodmap
+# and become Escape
+xcape
 
 # just in case wm/de does not set cursor correctly
 xsetroot -cursor_name left_ptr &

@@ -1,0 +1,21 @@
+#
+# Alacritty config
+# Mostly defaults
+#
+
+window:
+  # add padding...
+  padding:
+    x: 24
+    y: 24
+  # & make it adjust itself
+  dynamic_padding: true
+
+font:
+  normal:
+    family: FiraMono Nerd Font
+    style: Medium
+  size: 13
+  glyph_offset: # fixing Powerline glyphs too high
+    x: 0
+    y: -1

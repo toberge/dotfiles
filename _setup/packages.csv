@@ -10,6 +10,7 @@ PAC,xorg-xbacklight,well yes
 PAC,redshift,to save your eyes from death
 #AUR,sct,as a redshift alternative?
 AUR,xidlehook,a not-annoying xautolock
+PAC,xcape,making caps lock an escape key too
 ###,##################,###
 ###,TERMINAL ILLNESSES,###
 ###,##################,###
@@ -49,6 +50,7 @@ PAC,network-manager-applet,for network settings (nm-applet)
 ###,    FONTS    ,###
 ###,#############,###
 PAC,otf-fira-code,"Fira Code, a nice monospace font with litigatures"
+AUR,nerd-fonts-fira-mono,"Fira Mono for litigature absence"
 PAC,ttf-ubuntu-font-family,"the Ubuntu font (I just like it)"
 PAC,otf-font-awesome,"Font Awesome, for text-based icons"
 PAC,powerline-fonts,Powerline fonts yes

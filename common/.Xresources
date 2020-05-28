@@ -26,7 +26,8 @@ Xcursor.theme:                    xcursor-breeze-snow
 Xcursor.size:                     0
 
 !=== urxvt section ===!
-URxvt.font:                       xft:Fira Code:size=13, xft:PowerlineSymbols:style=Medium:size=13, xft:Font Awesome 5 Free:style=Regular:size=8, xft:Font Awesome 5 Free:style=Solid:size=8, xft:Font Awesome 5 Brands:style=Regular:size=8
+!URxvt.font:                       xft:Fira Code:size=13, xft:PowerlineSymbols:style=Medium:size=13, xft:Font Awesome 5 Free:style=Regular:size=8, xft:Font Awesome 5 Free:style=Solid:size=8, xft:Font Awesome 5 Brands:style=Regular:size=8
+URxvt.font:                       xft:FiraMono Nerd Font:style=Medium:size=13
 
 ! Padding:
 URxvt.internalBorder:             24

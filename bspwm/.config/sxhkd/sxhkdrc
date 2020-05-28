@@ -8,7 +8,7 @@
 
 # terminal emulator
 super + Return
-	 urxvt & sfx open
+	 alacritty & sfx open
 
 # program launcher
 super + d
@@ -135,6 +135,8 @@ super + t
 # set the node flags
 super + ctrl + {m,x,y,z}
 	bspc node -g {marked,locked,sticky,private}
+super + shift + s
+        bspc node -g sticky
 
 #
 # focus/swap
