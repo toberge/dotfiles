@@ -1,7 +1,8 @@
+! caps lock go bye bye
 ! clear modifiers
 clear Lock
 clear Control
-! caps lock go bye bye
-remove Lock = Caps_Lock
-keysym Caps_Lock = Control_L
-add Control = Control_L Control_R
+! set caps lock to ctrl 
+add Control = Caps_Lock Control_L Control_R
+! and shift+caps to caps lock
+keycode 66 = Control_L Caps_Lock NoSymbol NoSymbol

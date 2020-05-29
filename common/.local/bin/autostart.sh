@@ -32,6 +32,9 @@ xmodmap ~/.xmodmap
 # and become Escape
 xcape
 
+# increase speed of spamming
+xset r rate 300 45
+
 # just in case wm/de does not set cursor correctly
 xsetroot -cursor_name left_ptr &
 
