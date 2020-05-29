@@ -1,5 +1,9 @@
 #!/usr/bin/env bash
+#
+# just display theme colors
+# TODO: move functions outta here or sth
 
+# single shapes
 colorize() {
     for shape in "$@"
     do
@@ -12,8 +16,23 @@ colorize() {
     done
 }
 
+# separate with |
+colorize_parts() {
+    for shape in "$@"
+    do
+        echo -n " "
+        for i in {0..7}
+        do
+            echo -ne "  \e[3${i}m${shape%|*}"
+            echo -ne "\e[9${i}m${shape#*|}\e[0m"
+        done
+        echo
+    done
+}
+
 echo
 #colorize "abc" "def" "ghi"
-colorize "██▖" "██▌" "▝▀▘"
+#colorize "██▖" "██▌" "▝▀▘"
+colorize_parts "██|▖" "██|▌" "|▝▀▘"
 echo
 

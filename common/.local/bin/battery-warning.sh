@@ -1,6 +1,13 @@
 #!/usr/bin/env bash
+#
+# Simple, stupid battery warning script
+
+# Die if already started
+pgrep -a bash | grep battery &> /dev/null \
+    && { echo "Already started"; exit 1; }
+
 while :
-do # check battery level every X seconds
+do # Check battery level every X seconds
     read lvl < /sys/class/power_supply/BAT0/capacity
     [[ $lvl -le 5 ]] && {
         notify-send --urgency=critical \

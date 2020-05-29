@@ -6,6 +6,11 @@ case $1 in
         sleep 1
         picom -b --dbus --config ~/.config/picom/picom.conf
         ;;
+    dunst)
+        pkill dunst
+        sleep .01
+        dunst &
+        ;;
     *)
         echo "ok idk what u want so plz stop"
         exit 1

@@ -4,7 +4,8 @@
 [global]
     # width, horizontal margin (- from left), vertical margin (+ from above)
     # bar + margin = 27 + 8 = 35, just margin = 8
-    geometry = "480-8+35"
+    # now trying 27 + 10 = 37
+    geometry = "480-10+37"
 
     # Show multiple notifications in the same box
     separator_height = 4
@@ -23,6 +24,9 @@
     # How long a user needs to be idle for sticky notifications
     idle_threshold = 120
 
+    # Make notifications pop up on active monitor
+    follow = keyboard
+
     # Font and typography settings
     font = Ubuntu Regular 13
     alignment = center
@@ -37,7 +41,6 @@
 
     # Set icon position (mostly for volume indicator)
     icon_position = left
-    icon_path = /usr/share/icons/gnome/32x32/status/:/usr/share/icons/gnome/32x32/devices/
 
 [fullscreen_delay_everything]
     # delay and hide notifs in fullscreen
@@ -63,9 +66,9 @@
     foreground = "{color0}"
     timeout = 0
 
+# Application specifics
 [volume]
     summary = "Volume*"
-    # cannot override alignment...
     fullscreen = show
 
 # don't remove this line, it's for vim you doofus

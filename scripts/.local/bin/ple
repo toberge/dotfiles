@@ -6,7 +6,7 @@
 
 set -eu
 
-[ -z "$1" ] && {
+[ -z "${1:-}" ] && {
     echo "Playing music..."
     mpv --loop-playlist=inf --shuffle --no-video *.{m4a,mp3,ogg,flac,wav}
     exit

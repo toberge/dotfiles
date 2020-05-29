@@ -1,0 +1,36 @@
+#!/usr/bin/env bash
+#
+# Scans a given number of pages
+# or continually prompts for continuation.
+
+set -e
+
+SCANNER=$(scanimage --list-devices | tail -n 1 | cut -d' ' -f2 | tr -d \'\`)
+
+scan_page() {
+    scanimage --device-name "$SCANNER" \
+        --progress --format=jpeg >"$1.jpg"
+}
+
+prompt() {
+    echo
+    echo -n "$1 [Y/n] "
+    read -r input
+    [[ "$input" != n* ]] || return 1
+}
+
+if [[ -z "$1" || "$1" -le 0 ]]
+then
+    i=1
+    while :
+    do
+        scan_page $((i++))
+        prompt "Continue?" || break
+    done
+else
+    for i in $(seq 01 "$1")
+    do
+        prompt "Ready?" || break
+        scan_page $i
+    done
+fi

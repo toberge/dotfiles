@@ -282,8 +282,11 @@ gimme() {
 }
 
 nichijou() {
-    sxiv -b "$HOME/Pictures/nichijou/$(date +'%m/%d').jpg"
+    [[ -z $1 ]] && [[ -z $2 ]] \
+        && sxiv -b "$HOME/Pictures/nichijou/$(date +'%m/%d').jpg" \
+        || sxiv -b "$HOME/Pictures/nichijou/$1/$2.jpg"
 }
+
 
 # specific renaming purpose
 renyou() {
