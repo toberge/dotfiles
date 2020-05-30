@@ -3,7 +3,7 @@
         # # # # # # # # #
 
 #
-# wm independent hotkeys
+# wm independent hotkeys {{{
 #
 
 # terminal emulator
@@ -17,7 +17,8 @@ super + shift + d
 	rofi -show run & sfx menu
 
 # command launcher (press any key to exit)
-super + r
+# (not really useful)
+super + ctrl + d
         rofi -dmenu -theme ~/.config/rofi/themes/cmd.rasi \
             | awk '\{ print"\""$0"; read -n1\"" \}' \
             | xargs --no-run-if-empty urxvt -e bash -c \
@@ -48,9 +49,10 @@ ctrl + Print
         import -window `xwininfo | awk '/.*Window id:.*/ {print $4}'` \
             ~/Pictures/screens/$(date +'%FT%H:%M:%S').png; sfx apply
 
+# }}}
 
 #
-# misc apps
+# misc apps {{{
 #
 
 # ranger
@@ -65,8 +67,10 @@ XF86Calculator
 {super + F1,XF86Mail}
         thunderbird & sfx open
 
+# }}}
+
 #
-# system control
+# system control {{{
 #
 
 # lock the screen
@@ -83,22 +87,22 @@ XF86MonBrightness{Up,Down}
 
 # volume
 XF86Audio{Raise,Lower}Volume
-    volume -nl {-i 5,-d 5} & sfx open
+        volume -nl {-i 5,-d 5} & sfx open
 
 XF86AudioMute
-    volume -mnl & sfx open
+        volume -mnl & sfx open
 
 # media player
 XF86Audio{Play,Next,Prev,MicMute}
-    playerctl {play-pause,next,previous,play-pause}
+        playerctl {play-pause,next,previous,play-pause}
+
+# }}}
 
 #
-# bspwm hotkeys
+# bspwm hotkeys {{{
 #
 
-# ONLY restart bspwm
-# super + alt + {q,r}
-	# bspc {quit,wm -r}
+# restart bspwm
 super + alt + r
 	bspc wm -r
 
@@ -114,12 +118,14 @@ super + m
 super + y
 	bspc node newest.marked.local -n newest.!automatic.local
 
-# swap the current node and the biggest node
+# swap the current node and the biggest node (but why?)
 super + g
 	bspc node -s biggest
 
+# }}}
+
 #
-# state/flags
+# state/flags {{{
 #
 
 # set the window state
@@ -138,8 +144,10 @@ super + ctrl + {m,x,y,z}
 super + shift + s
         bspc node -g sticky
 
+# }}}
+
 #
-# focus/swap
+# focus/swap {{{
 #
 
 # focus the node in the given direction
@@ -153,23 +161,30 @@ super + shift + {h,j,k,l}
        bspc node -s $direction.local --follow \
     || bspc node -m $direction --follow
 
+# rotate layout
+super + {_,shift +} r
+        bspc node @/ -R {90,270}
+
+# flip layout
+super + {_,shift +} w
+        bspc node @/ -F {vertical,horizontal}
+
 # focus the node for the given path jump
-super + {p,b,comma,period}
-	bspc node -f @{parent,brother,first,second}
+# (bloody useless)
+# super + {p,b,comma,period}
+#       bspc node -f @{parent,brother,first,second}
 
 # focus the next/previous node in the current desktop
-super + {_,shift + }c
+alt + {_,shift + } + Tab
 	bspc node -f {next,prev}.local
 
 # focus the next/previous desktop in the current monitor
-#super + bracket{left,right} bracket my ar$
 ctrl + alt + {Left,Right}
-	bspc desktop -f {prev,next}.local
+	bspc desktop -f {prev,next}.occupied.local
 
-# focus the last node/desktop
-# super + {grave,Tab}
-{alt,super} + Tab
-	bspc {node,desktop} -f last & sfx browse
+# focus the last desktop
+super + Tab
+	bspc desktop -f last & sfx browse
 
 # focus the older or newer node in the focus history
 super + {o,i}
@@ -187,8 +202,10 @@ super + {1-9,0}
 super + shift + {1-9,0}
 	bspc node -d '^{1-9,10}' & sfx browse
 
+# }}}
+
 #
-# preselect
+# preselect {{{
 #
 
 # preselect the direction
@@ -207,8 +224,10 @@ super + ctrl + space
 super + ctrl + shift + space
 	bspc query -N -d | xargs -I id -n 1 bspc node id -p cancel
 
+# }}}
+
 #
-# move/resize
+# move/resize {{{
 #
 
 # expand a window by moving one of its side outward
@@ -223,3 +242,4 @@ super + alt + shift + {h,j,k,l}
 super + {Left,Down,Up,Right}
 	bspc node -v {-20 0,0 20,0 -20,20 0}
 
+# }}}

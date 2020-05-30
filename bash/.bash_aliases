@@ -16,6 +16,7 @@ alias cdw="cd $SKOLE/web"
 alias cdm="cd $SKOLE/Matematikk\ 2"
 alias cda="cd $SKOLE/algdat"
 alias cdf="cd $SKOLE/fysikk"
+alias cdd="cd $HOME/.dotfiles"
 
 alias i3conf="vim $HOME/.config/i3/config"
 alias bspconf="vim $HOME/.config/bspwm/bspwmrc"
