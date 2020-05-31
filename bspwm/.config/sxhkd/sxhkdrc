@@ -163,14 +163,6 @@ super + shift + {h,j,k,l}
        bspc node -s $direction.local --follow \
     || bspc node -m $direction --follow
 
-# rotate layout
-super + {_,shift +} r
-        bspc node @/ -R {90,270}
-
-# flip layout
-super + {_,shift +} w
-        bspc node @/ -F {vertical,horizontal}
-
 # focus the node for the given path jump
 # (bloody useless)
 # super + {p,b,comma,period}
@@ -203,6 +195,18 @@ super + {1-9,0}
 # send node to the given desktop
 super + shift + {1-9,0}
 	bspc node -d '^{1-9,10}' & sfx browse
+
+# }}}
+
+# Layout {{{
+
+# rotate parent or desktop layout
+super + {_,shift +} r
+        bspc node @{parent,/} -R 90
+
+# flip layout of entire desktop vert/hor
+super + {_,shift +} w
+        bspc node @/ -F {vertical,horizontal}
 
 # }}}
 

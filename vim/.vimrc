@@ -53,6 +53,7 @@ Plug 'wincent/Command-T', {
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 nnoremap <C-p> :GFiles<CR>
+let $FZF_DEFAULT_OPTS = '--color=16'
 
 " ------ code completion ------
 Plug 'ycm-core/YouCompleteMe', { 'do': './install.py' }

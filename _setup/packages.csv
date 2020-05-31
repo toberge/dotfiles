@@ -46,6 +46,7 @@ PAC,xclip,managing clipboard
 PAC,scrot,for taking scree-appindicatornshots
 PAC,pamac-tray-appindicator,for notifying about updates
 PAC,network-manager-applet,for network settings (nm-applet)
+AUR,gtk3-nocsd-git,get rid of those useless buttons
 ###,#############,###
 ###,    FONTS    ,###
 ###,#############,###
@@ -56,6 +57,10 @@ PAC,otf-font-awesome,"Font Awesome, for text-based icons"
 PAC,powerline-fonts,Powerline fonts yes
 AUR,ttf-ms-fonts,MS webfonts that are normally missing
 PAC,noto-fonts-emoji,emoji
+###,#############,###
+###, NETWORKING  ,###
+###,#############,###
+PAC,gnu-netcat,an obvious tool
 ###,#############,###
 ###,    TOOLS    ,###
 ###,#############,###
