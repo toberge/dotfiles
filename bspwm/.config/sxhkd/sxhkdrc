@@ -141,8 +141,10 @@ super + t
 # set the node flags
 super + ctrl + {m,x,y,z}
 	bspc node -g {marked,locked,sticky,private}
+
+# set sticky
 super + shift + s
-        bspc node -g sticky
+        bspc node -g sticky & sfx toggle
 
 # }}}
 

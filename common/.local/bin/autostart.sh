@@ -36,7 +36,7 @@ xcape
 xset r rate 300 45
 
 # just in case wm/de does not set cursor correctly
-xsetroot -cursor_name left_ptr &
+xsetroot -cursor_name left_ptr
 
 # xautolock but good (could add --not-when-audio)
 xidlehook --not-when-fullscreen --timer 600 lockmeup '' &

@@ -184,6 +184,14 @@ set backspace=indent,eol,start " backspace removes indent ++
 " leader is space!
 let mapleader = " "
 
+" keep fingers on jklø
+" møving left/roight ain't that useful
+
+" make use of ø
+map ø ;
+map Ø ,
+" (since ; is in that spot on US layouts...)
+
 " arrow keys are banned {{{
 
 " don't use arrowkeys
