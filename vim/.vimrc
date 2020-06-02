@@ -52,8 +52,6 @@ Plug 'wincent/Command-T', {
 " ok there's some builtin for this but whaaat eeeeever
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
-nnoremap <C-p> :GFiles<CR>
-let $FZF_DEFAULT_OPTS = '--color=16'
 
 " ------ code completion ------
 Plug 'ycm-core/YouCompleteMe', { 'do': './install.py' }
@@ -277,6 +275,22 @@ let g:NERDTreeQuitOnOpen=1
 let NERDTreeIgnore = ['^node_modules$', '^__pycache__$']
 
 " }}}
+
+" ------ fzf ------{{{
+
+" use term colors!
+let $FZF_DEFAULT_OPTS = '--color=16'
+
+" Set bindings based on git/not-git
+silent !git rev-parse --is-inside-work-tree &>/dev/null
+if v:shell_error
+    nnoremap <C-p> :Files<CR>
+else
+    nnoremap <C-p> :GFiles<CR>
+endif
+
+
+"  }}}
 
 " ------ ALE ------{{{
 

@@ -3,8 +3,11 @@
 # Simple, stupid battery warning script
 
 # Die if already started
-pgrep -a bash | grep battery &> /dev/null \
-    && { echo "Already started"; exit 1; }
+if test pgrep -f battery-warning &> /dev/null
+then
+    echo "Already started"
+    exit 1
+fi
 
 while :
 do # Check battery level every X seconds

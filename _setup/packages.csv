@@ -18,6 +18,7 @@ PAC,rxvt-unicode,terminal emulator
 PAC,urxvt-perls,URxvt Perl things
 AUR,urxvt-resize-font-git,font resize in URxvt
 PAC,ranger,terminal file manager
+PIP,ueberzug,for img previews in ranger
 PAC,tree,handy visualization of folder structure
 PAC,bash-completion,command completion for BASH
 PAC,tmux,terminal multiplexer disease
@@ -47,6 +48,7 @@ PAC,scrot,for taking scree-appindicatornshots
 PAC,pamac-tray-appindicator,for notifying about updates
 PAC,network-manager-applet,for network settings (nm-applet)
 AUR,gtk3-nocsd-git,get rid of those useless buttons
+PAC,zenity,minimalist dialogs
 ###,#############,###
 ###,    FONTS    ,###
 ###,#############,###

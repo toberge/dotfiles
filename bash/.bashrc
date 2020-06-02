@@ -48,9 +48,13 @@ PROMPT_DIRTRIM=3
 generate_custom_ps1() {
     if [ -z "$DESKTOP_SESSION" ]
     then # on a TTY, avoid fontawesome and fancy unicode
-        PS1="┌───\$(ps1_exit_code) \[\033[01;32m\]\w\[\033[01;37m\] \[\033[01;34m\]\$(ps1_git_branch)\[\033[00m\]\n└─\[\033[01;32m\]\[\033[00m\] "
+        PS1="\
+┌───\$(ps1_exit_code) \[\033[01;32m\]\w\[\033[01;37m\] \[\033[01;34m\]\$(ps1_git_branch)\[\033[00m\]\n\
+└─\[\033[01;32m\]\[\033[00m\] "
     else # normal terminal, gimme dat fanciness
-        PS1="┌───\$(ps1_exit_code) \[\033[01;32m\]\w\[\033[01;37m\] \[\033[01;34m\]\$(ps1_git_branch) \$(ps1_git_stat)\[\033[00m\]\n┕━\[\033[01;32m\]\[\033[00m\] "
+        PS1="\
+┌───\$(ps1_exit_code) \[\033[01;32m\]\w\[\033[01;37m\] \[\033[01;34m\]\$(ps1_git_branch) \$(ps1_git_stat)\[\033[00m\]\n\
+┕━\[\033[01;32m\]\[\033[00m\] "
     fi
 }
 
@@ -91,7 +95,7 @@ colors() {
 
 # Change the window title of X terminals
 case ${TERM} in
-	xterm*|rxvt*|Eterm*|aterm|kterm|gnome*|interix|konsole*)
+	xterm*|rxvt*|Eterm*|aterm|kterm|gnome*|interix|konsole*|alacritty*)
 		PROMPT_COMMAND='echo -ne "\033]0;${USER}@${HOSTNAME%%.*}:${PWD/#$HOME/\~}\007"'
 		;;
 	screen*)
