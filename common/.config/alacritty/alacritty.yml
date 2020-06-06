@@ -15,6 +15,9 @@ font:
   normal:
     family: FiraMono Nerd Font
     style: Medium
+  italic:
+    family: Ubuntu Mono
+    style: Bold Italic
   size: 13
   glyph_offset: # fixing Powerline glyphs too high
     x: 0

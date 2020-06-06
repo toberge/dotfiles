@@ -2,9 +2,9 @@
 
 ; template arrow thing
 [module/<--]
-; color to color
+; color to color
 type = custom/text
-content = "%{T2} %{T-}"
+content = "%{T2} %{T-}"
 content-font = 5
 content-foreground = ${colors.background-alt}
 content-background = ${colors.background}
@@ -14,9 +14,10 @@ inherit = module/<--
 content-foreground = ${colors.background}
 content-background = ${colors.background-alt}
 
+# 
 [module/-->]
 type = custom/text
-content = "%{T2} %{T-}"
+content = "%{T2} %{T-}"
 content-font = 5
 content-foreground = ${colors.background-alt}
 content-background = ${colors.background}

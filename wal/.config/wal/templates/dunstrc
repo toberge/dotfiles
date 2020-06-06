@@ -4,8 +4,8 @@
 [global]
     # width, horizontal margin (- from left), vertical margin (+ from above)
     # bar + margin = 27 + 8 = 35, just margin = 8
-    # now trying 27 + 10 = 37
-    geometry = "480-10+37"
+    # now trying 28 + 10 = 38
+    geometry = "480-10+38"
 
     # Show multiple notifications in the same box
     separator_height = 4
