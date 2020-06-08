@@ -32,9 +32,9 @@ include-file = ~/.config/polybar/colors
 include-file = ~/.config/polybar/modules
 include-file = ~/.config/polybar/decoration
 
-;=================== main the bar, yes ====================
+;=================== superclass for all bars ====================
 
-[bar/main]
+[bar/anybar]
 monitor = ${env:MONITOR}
 width = 100%
 height = 28
@@ -69,9 +69,8 @@ font-4 = "FiraMono Nerd Font:style=Medium:size=15;3"
 
 ;================ module order is down here =================
 
-; add mpd when you've got that thing set up (also prolly no need for alsa)
 modules-left = bspwm i3 _ _ ---> memory cpu temperature -->
-modules-center = <-- xwindow -->
+modules-center = calendar
 modules-right = <-- pulseaudio pomodoro xbacklight battery date <---
 
 tray-position = right
@@ -92,5 +91,26 @@ wm-restack = bspwm
 
 cursor-click = pointer
 cursor-scroll = ns-resize
+
+;=================== main bar - calendar and tray ====================
+
+[bar/main]
+inherit = bar/anybar
+
+modules-center = calendar
+
+tray-position = right
+tray-padding = 2
+;tray-background = #0063ff
+
+;=================== secondary bar - something else ====================
+
+[bar/secondary]
+inherit = bar/anybar
+
+modules-center = <-- xwindow -->
+modules-right = <-- pulseaudio pomodoro xbacklight battery date <--- _ _
+
+tray-position = none
 
 ; vim:ft=dosini

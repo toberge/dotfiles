@@ -1,0 +1,179 @@
+#!/usr/bin/env python
+"""
+Adapted from
+https://developers.google.com/calendar/quickstart/python
+and based heavily on
+https://github.com/gillescastel/university-setup
+
+Polybar module with tail=true -> run python -u
+- otherwise no output appears
+"""
+
+import sched
+import time
+
+import subprocess
+import sys
+
+import pickle
+import os.path
+
+import datetime
+from dateutil.parser import parse
+import pytz
+
+from googleapiclient.discovery import build
+from google_auth_oauthlib.flow import InstalledAppFlow
+from google.auth.transport.requests import Request
+
+# If modifying these scopes, delete the file token.pickle.
+SCOPES = ['https://www.googleapis.com/auth/calendar.readonly']
+
+def get_xres_colors():
+    """Query xrdb and get parts of color scheme for formatting"""
+    output = subprocess.check_output("xrdb -query | grep -E '\\.color[0-7]:' | cut -f2", shell=True)
+    return str(output, 'UTF-8').split('\n')[:-1]
+
+COLORS = []
+
+def autenticate():
+    """Auth example from Google"""
+    creds = None
+    # The file token.pickle stores the user's access and refresh tokens, and is
+    # created automatically when the authorization flow completes for the first
+    # time.
+    if os.path.exists('.secrets/token.pickle'):
+        with open('.secrets/token.pickle', 'rb') as token:
+            creds = pickle.load(token)
+    # If there are no (valid) credentials available, let the user log in.
+    if not creds or not creds.valid:
+        if creds and creds.expired and creds.refresh_token:
+            creds.refresh(Request())
+        else:
+            flow = InstalledAppFlow.from_client_secrets_file(
+                '~/.secrets/credentials.json', SCOPES)
+            creds = flow.run_local_server(port=0)
+        # Save the credentials for the next run
+        with open('.secrets/token.pickle', 'wb') as token:
+            pickle.dump(creds, token)
+
+    return build('calendar', 'v3', credentials=creds)
+
+def get_events(service, now, later):
+    """Get events for what remains of the day"""
+    events_result = service.events().list(
+        calendarId='primary',
+        timeMin=now.isoformat(),
+        timeMax=later.isoformat(),
+        singleEvents=True,
+        orderBy='startTime'
+    ).execute()
+    events = events_result.get('items', [])
+    return [
+        {
+            'summary': event['summary'],
+            'location': event.get('location', None),
+            'start': parse(event['start']['dateTime']),
+            'end': parse(event['end']['dateTime'])
+        }
+        for event in events
+    ]
+
+def colorize(index, text):
+    """Apply color[index] to text"""
+    if POLYBAR:
+        return f'%{{F{COLORS[index]}}}{text}%{{F-}}'
+    else:
+        return f'\033[3{index}m{text}\033[0m'
+
+def trunc(text):
+    if len(text) > 13:
+        return f'{text[:10]}...'
+    else:
+        return text
+
+def format_time(start, end):
+    """Format time from start 'till end"""
+    if start < end:
+        delta = end - start
+        hours = delta.seconds // 3600
+        minutes = delta.seconds // 60
+        # seconds = delta.seconds % 60
+        if minutes == 0:
+        #     return f'{seconds} sekunder'
+            return colorize(1, 'litt')
+        if hours == 0:
+            return colorize(3, f'{minutes} minutt{"er" if minutes > 1 else ""}')
+        return colorize(3, f'{hours} time{"r" if hours > 1 else ""}')
+        # return f'{delta.seconds // 60}:{delta.seconds % 60:02d}'
+    else:
+        return 'now'
+
+def format_brief(event, now):
+    """Format current event"""
+    return f'{colorize(4,trunc(event["summary"]))} slutter om {format_time(now, event["end"])}'
+
+def format_full(event, now):
+    """Format upcoming event"""
+    return f'{format_time(now, event["start"])}: {colorize(4,trunc(event["summary"]))} i {trunc(event.get("location", ""))}'
+
+def format_events(events: [], now: datetime.datetime):
+    """Format current and upcoming event, if any"""
+    ongoing = next((e for e in events if e['start'] < now < e['end']), None)
+    res = ''
+    if ongoing:
+        res += f'{format_brief(ongoing, now)}, '
+        next_up = next((e for e in events if e['start'] >= ongoing['end']), None)
+    else:
+        next_up = next((e for e in events if now <= e['start']), None)
+
+    if next_up:
+        res += f'neste om {format_full(next_up, now)}'
+    elif not ongoing:
+        res += 'Du er ferdig'
+    else:
+        res += 'så er du ferdig'
+    return res
+
+
+def main():
+    """Shows basic usage of the Google Calendar API.
+    Prints the start and name of the next 1 events on the user's calendar.
+    """
+
+    service = autenticate()
+
+    TIMEZONE = pytz.timezone('Europe/Berlin')
+    now = datetime.datetime.now(tz=TIMEZONE)
+    later = now.replace(hour=23, minute=59)
+
+    events = get_events(service, now, later)
+
+    if not events:
+        print('No upcoming events found.')
+        sys.exit()
+
+    scheduler = sched.scheduler(time.time, time.sleep)
+
+    def report():
+        now = datetime.datetime.now(tz=TIMEZONE)
+        print(format_events(events, now))
+        if now < later:
+            scheduler.enter(60, 1, report)
+
+    scheduler.enter(0, 1, report)
+    try:
+        scheduler.run()
+    except KeyboardInterrupt:
+        sys.exit(1)
+
+if __name__ == '__main__':
+    if len(sys.argv) > 1 and sys.argv[1] == '--polybar':
+        POLYBAR = True
+        COLORS = get_xres_colors()
+    else:
+        POLYBAR = False
+
+    main()
+
+# vim:ft=python
