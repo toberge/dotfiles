@@ -69,7 +69,7 @@ font-4 = "FiraMono Nerd Font:style=Medium:size=15;3"
 
 ;================ module order is down here =================
 
-modules-left = bspwm i3 _ _ ---> memory cpu temperature -->
+modules-left = bspwm i3 ---> memory cpu temperature -->
 modules-center = calendar
 modules-right = <-- pulseaudio pomodoro xbacklight battery date <---
 

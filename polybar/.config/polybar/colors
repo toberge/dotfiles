@@ -18,8 +18,8 @@ background-alt = ${xrdb:color8}
 foreground = ${xrdb:color15}
 foreground-alt = ${xrdb:color7}
 underline = ${xrdb:color15}
-primary = ${xrdb:foreground}
-secondary = ${xrdb:color4}
+primary = ${xrdb:color4}
+secondary = ${xrdb:color3}
 alert = ${xrdb:color1}
 
 ;serial colors for underlines (to be removed since underlines are gone)

@@ -125,33 +125,41 @@ label-urgent-padding = 2
 
 [module/bspwm]
 type = internal/bspwm
-inherit = module/i3
 
-enable-scroll = false
+enable-scroll = true
+
+format = <label-state>
+format-padding = 0
+format-font = 5
 
 ; focused = Active workspace on focused monitor
-label-focused = %icon%
-label-focused-background = ${colors.background-alt}
-label-focused-underline= ${colors.underline}
-label-focused-padding = 4
+label-focused =  
+label-focused-foreground = ${colors.primary}
+label-focused-padding = 1
+
+; dimmed-focused = Active workspace on unfocused monitor
+label-dimmed-focused =  
+label-dimmed-focused-foreground = ${colors.secondary}
+label-dimmed-focused-padding = ${self.label-focused-padding}
 
 ; occupied = Inactive workspace on any monitor
-label-occupied = ${self.label-focused}
+label-occupied =  
 label-occupied-foreground = ${colors.foreground-alt}
-label-occupied-padding = 2
+label-occupied-padding = ${self.label-focused-padding}
 
 ; dimmed = IDK BUT OH WELL
-; i don't think it is Active workspace on unfocused monitor
-label-dimmed = ${self.label-focused}
-label-dimmed-padding = ${self.label-occupied-padding}
+label-dimmed = cansyouseethis?
+label-dimmed-padding = ${self.label-focused-padding}
 
 ; urgent = Workspace with urgency hint set
-label-urgent = ${self.label-focused}
-label-urgent-background = ${colors.alert}
-label-urgent-padding = 2
+label-urgent =  
+label-urgent-foreground = ${colors.alert}
+label-urgent-padding = ${self.label-focused-padding}
 
 ; TIL bspwm has an empty state for workspaces
-label-empty = 
+label-empty = 
+label-empty-foreground = ${colors.foreground-alt}
+label-empty-padding = ${self.label-focused-padding}
 
 [module/mpd]
 type = internal/mpd
