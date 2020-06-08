@@ -25,6 +25,12 @@ alias polyconf="vim $HOME/.config/polybar/config"
 alias polystart="$HOME/.config/polybar/launch.sh"
 
 #######################
+#   CMD ADJUSTMENTS   #
+#######################
+
+alias bat='bat --theme=ansi-dark'
+
+#######################
 #  CMD ABBREVIATIONS  #
 #######################
 

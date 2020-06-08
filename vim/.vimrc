@@ -37,11 +37,10 @@ Plug 'christoomey/vim-sort-motion'
 " ------ text objects ------
 " (s)urrounding (object/motion/command)
 Plug 'tpope/vim-surround'
-" (l)ine, (e)ntire buffer
-" Plug 'kana/vim-textobj-line'
-" Plug 'kana/vim-textobj-entire'
-" (they stopped working)
-Plug 'jiangmiao/auto-pairs'
+" consider kana/vim-textobj-custom?
+
+" ------ smart stuff ------
+Plug 'kana/vim-smartinput'
 
 " ------ file finding ------
 Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }

@@ -53,8 +53,8 @@ generate_custom_ps1() {
 └─\[\033[01;32m\]\[\033[00m\] "
     else # normal terminal, gimme dat fanciness
         PS1="\
-┌───\$(ps1_exit_code) \[\033[01;32m\]\w\[\033[01;37m\] \[\033[01;34m\]\$(ps1_git_branch) \$(ps1_git_stat)\[\033[00m\]\n\
-┕━\[\033[01;32m\]\[\033[00m\] "
+┌────\$(ps1_exit_code) \[\033[01;32m\]\w\[\033[01;37m\] \[\033[01;34m\]\$(ps1_git_branch) \$(ps1_git_stat)\[\033[00m\]\n\
+┕━\[\033[01;34m\]  \[\033[00m\] "
     fi
 }
 
