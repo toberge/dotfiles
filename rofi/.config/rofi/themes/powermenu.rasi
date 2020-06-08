@@ -14,7 +14,7 @@ configuration {
 
 window {
   height: 14em;
-  width: 35.75em;
+  width: 35.92em; /* prev 35.75em */
   location: center;
   transparency: "real";
   /* for actual transparency! */
@@ -25,8 +25,8 @@ mainbox {
   children: [ inputbar, listview ];
   padding: 1.5em;
   spacing: 2em;
-  /* border-color: @border; */
-  /* border: 4 0; */
+  border-color: @accent;
+  border: 2px;
   border-radius: 1em;
 }
 
