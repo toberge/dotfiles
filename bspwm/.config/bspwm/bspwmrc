@@ -1,4 +1,4 @@
-#! /bin/sh
+#!/bin/env bash
 
 # keybind daemon
 sxhkd &
@@ -7,7 +7,7 @@ sxhkd &
 $HOME/.local/bin/autostart.sh &
 
 #
-# bspwm config
+# monitor config
 #
 
 monitors=($(xrandr --query | grep " connected" | cut -d" " -f1))
@@ -15,12 +15,23 @@ monitors=($(xrandr --query | grep " connected" | cut -d" " -f1))
 # Handle multiple monitors TODO improve...
 if [[ $(echo ${monitors[@]} | wc -w) -eq 2 ]]
 then # split wses in half, prefer external
-    bspc monitor ${monitors[1]} -d 1 2 3 4 5
-    bspc monitor ${monitors[0]} -d 6 7 8 9 10
+    case $HOSTNAME in
+        fuglekassa)
+            bspc monitor ${monitors[0]} -d 1 2 3 4 5
+            bspc monitor ${monitors[1]} -d 6 7 8 9 10
+            ;;
+        *)
+            bspc monitor ${monitors[1]} -d 1 2 3 4 5
+            bspc monitor ${monitors[0]} -d 6 7 8 9 10
+            ;;
+    esac
 else # single-monitor layout
     bspc monitor -d 1 2 3 4 5 6 7 8 9 10
 fi
 
+#
+# border & style
+#
 
 bspc config border_width         3
 bspc config window_gap          18
@@ -94,11 +105,4 @@ bspc rule -a Emacs state=tiled
 # pulseaudio-ctl mute
 # ok here's a better one
 pactl set-sink-mute 0 0
-
-# it somehow did not work out being above
-# putting it all the way down here
-# I don't want that ugly gap...
-bspc config top_padding 27
-# only a problem after bootup
-# -> might be caused by something I launch
 
