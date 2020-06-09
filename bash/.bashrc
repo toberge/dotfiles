@@ -14,29 +14,43 @@ ps1_git_branch() {
 
 # very good code, 100% qualified, much wow
 ps1_git_stat() {
+    git rev-parse --is-inside-work-tree &>/dev/null || return
     local stat=$(git status 2> /dev/null)
-    # extra space for fontawesome glyphs if term is not urxvt
-    # (variable-width terms may let those take two chars)
-    # gnome-terminal goes wonky with these symbols anyway
-    local SPACE=$(ps -p$PPID | grep -E "urxvt|xterm" &> /dev/null || echo -n ' ')
 
-    echo $stat | grep "up to date" &> /dev/null && echo -ne "\033[01;35m $SPACE"
-    echo $stat | grep "is ahead of" &> /dev/null && echo -ne "\033[01;35m $SPACE"
-    echo $stat | grep "conflict" &> /dev/null && echo -ne "\033[01;31m $SPACE" #
-    echo $stat | grep "have diverged" &> /dev/null && echo -ne "\033[01;31m $SPACE"
+    # Exclusive states
+    case $stat in
+        *"up to date"*)
+            : "\033[01;35m  "
+            ;;
+        *"is ahead of"*)
+            : "\033[01;35m  "
+            ;;
+        *conflict*)
+            : "\033[01;31m  "
+            ;;
+        *"have diverged"*)
+            : "\033[01;31m  "
+            ;;
+        *)
+            : ""
+            ;;
+    esac
+    echo -ne "$_"
 
-    echo $stat | grep "to be committed" &> /dev/null && echo -ne "\033[01;35m●$SPACE"
-    echo $stat | grep "not staged" &> /dev/null && echo -ne "\033[01;35m$SPACE"
+    # File status
+    [[ "$stat" = *"to be committed"* ]] && echo -ne "\033[01;35m● "
+    [[ "$stat" = *"not staged"* ]] && echo -ne "\033[01;35m "
 
-    echo -n ' '
-    test $(git stash list 2> /dev/null | wc -l) -ne 0 && echo -ne "\033[01;35m$SPACE"
+    # Stash, with preceding space
+    [[ "$stat" = *"to be committed"* ]] || [[ "$stat" = *"not staged"* ]] && echo -n ' '
+    test $(git stash list 2> /dev/null | wc -l) -ne 0 && echo -ne "\033[01;35m "
     # dunno if I'll indicate untracked files in any way
 }
 
 ps1_exit_code() {
     # needs to be run *FIRST*
-    local EXIT="$?"
-    test $EXIT -ne 0 && echo -ne " \033[01;31m$EXIT"
+    local exit="$?"
+    test $exit -ne 0 && echo -ne " \033[01;31m$exit"
 }
 
 # trim \w to only show X dirs:
