@@ -51,7 +51,7 @@ def autenticate():
             creds.refresh(Request())
         else:
             flow = InstalledAppFlow.from_client_secrets_file(
-                '~/.secrets/credentials.json', SCOPES)
+                '.secrets/credentials.json', SCOPES)
             creds = flow.run_local_server(port=0)
         # Save the credentials for the next run
         with open('.secrets/token.pickle', 'wb') as token:
@@ -130,7 +130,7 @@ def format_events(events: [], now: datetime.datetime):
     if next_up:
         res += f'neste om {format_full(next_up, now)}'
     elif not ongoing:
-        res += 'Du er ferdig'
+        res += 'Du er ferdig for dagen!'
     else:
         res += 'så er du ferdig'
     return res
@@ -150,7 +150,7 @@ def main():
     events = get_events(service, now, later)
 
     if not events:
-        print('No upcoming events found.')
+        print('Du er ferdig for dagen!')
         sys.exit()
 
     scheduler = sched.scheduler(time.time, time.sleep)

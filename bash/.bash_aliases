@@ -31,6 +31,12 @@ alias polystart="$HOME/.config/polybar/launch.sh"
 alias bat='bat --theme=ansi-dark'
 
 #######################
+#        TYPOS        #
+#######################
+
+alias bpsc='bspc'
+
+#######################
 #  CMD ABBREVIATIONS  #
 #######################
 

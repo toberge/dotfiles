@@ -49,6 +49,10 @@ PAC,pamac-tray-appindicator,for notifying about updates
 PAC,network-manager-applet,for network settings (nm-applet)
 AUR,gtk3-nocsd-git,get rid of those useless buttons
 PAC,zenity,minimalist dialogs
+PIP,google-api-python-client,for calendar script
+PIP,google-auth-httplib2,for calendar script
+PIP,google-auth-oauthlib,for calendar script
+PAC,python-dateutil,for calendar script
 ###,#############,###
 ###,    FONTS    ,###
 ###,#############,###

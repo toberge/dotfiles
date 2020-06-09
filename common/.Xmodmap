@@ -5,4 +5,6 @@ clear Control
 ! set caps lock to ctrl 
 add Control = Caps_Lock Control_L Control_R
 ! and shift+caps to caps lock
-keycode 66 = Control_L Caps_Lock NoSymbol NoSymbol
+! keycode 66 = Control_L Caps_Lock NoSymbol NoSymbol
+! (never mind, it's best kept unset...)
+keycode 66 = Control_L NoSymbol NoSymbol NoSymbol
