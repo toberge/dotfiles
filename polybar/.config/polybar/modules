@@ -34,14 +34,15 @@ label-padding-right = 2
 ; credz to Gilles Castel
 type = custom/script
 tail = true
+interval = 3600
 exec = python -u ~/.local/bin/upcoming-events --polybar
 format =  <label>
-; label = %output:0:60:...%
+label = %output:0:160:...%
 
 [module/xwindow]
 type = internal/xwindow
 label = %title:0:60:...%
-label-background = ${colors.background-alt}
+; label-background = ${colors.background-alt}
 label-padding-left = 2
 label-padding-right = 2
 

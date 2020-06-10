@@ -18,6 +18,8 @@ import sys
 import pickle
 import os.path
 
+import http.client
+
 import datetime
 from dateutil.parser import parse
 import pytz
@@ -83,14 +85,12 @@ def colorize(index, text):
     """Apply color[index] to text"""
     if POLYBAR:
         return f'%{{F{COLORS[index]}}}{text}%{{F-}}'
-    else:
-        return f'\033[3{index}m{text}\033[0m'
+    return f'\033[3{index}m{text}\033[0m'
 
 def trunc(text):
     if len(text) > 13:
         return f'{text[:10]}...'
-    else:
-        return text
+    return text
 
 def format_time(start, end):
     """Format time from start 'till end"""
@@ -98,16 +98,18 @@ def format_time(start, end):
         delta = end - start
         hours = delta.seconds // 3600
         minutes = delta.seconds // 60
-        # seconds = delta.seconds % 60
         if minutes == 0:
-        #     return f'{seconds} sekunder'
             return colorize(1, 'litt')
         if hours == 0:
-            return colorize(3, f'{minutes} minutt{"er" if minutes > 1 else ""}')
-        return colorize(3, f'{hours} time{"r" if hours > 1 else ""}')
-        # return f'{delta.seconds // 60}:{delta.seconds % 60:02d}'
-    else:
-        return 'now'
+            # return colorize(3, f'{minutes} minutt{"er" if minutes > 1 else ""}')
+            return colorize(3, f'{minutes} min')
+        if hours == 1 and minutes == 0:
+            return colorize(3, 'én time')
+        return colorize(
+            3, f'{hours} time{"r" if hours > 1 else ""} {minutes % 60} min'
+        )
+
+    return 'now' # shouldn't happen
 
 def format_brief(event, now):
     """Format current event"""
@@ -167,6 +169,17 @@ def main():
     except KeyboardInterrupt:
         sys.exit(1)
 
+def wait_for_internet():
+    while True:
+        conn = http.client.HTTPConnection('google.com', timeout=2)
+        try:
+            conn.request('HEAD', '/')
+            conn.close()
+            return True
+        except:
+            conn.close()
+            continue
+
 if __name__ == '__main__':
     if len(sys.argv) > 1 and sys.argv[1] == '--polybar':
         POLYBAR = True
@@ -174,6 +187,8 @@ if __name__ == '__main__':
     else:
         POLYBAR = False
 
+    print('Mens vi venter på Godot')
+    wait_for_internet()
     main()
 
 # vim:ft=python
