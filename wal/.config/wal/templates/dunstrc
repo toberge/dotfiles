@@ -12,10 +12,10 @@
     separator_color = "{color7}"
 
     # Add vertical padding to the inside of the notification
-    padding = 16
+    padding = 12
 
     # Add horizontal padding for when the text gets long enough
-    horizontal_padding = 16
+    horizontal_padding = 12
 
     # The frame color and width of the notification
     frame_color = "{color8}"
@@ -26,6 +26,9 @@
 
     # Make notifications pop up on active monitor
     follow = keyboard
+
+    # Set rofi as context menu
+    dmenu = rofi -dmenu
 
     # Font and typography settings
     font = Ubuntu Regular 13
@@ -39,8 +42,9 @@
     # Allow some HTML tags like <i> and <u> in notifications
     markup = full
 
-    # Set icon position (mostly for volume indicator)
+    # Set icon position and max size (spotify thumbs)
     icon_position = left
+    max_icon_size = 200
 
 [fullscreen_delay_everything]
     # delay and hide notifs in fullscreen
