@@ -11,6 +11,8 @@ PAC,redshift,to save your eyes from death
 #AUR,sct,as a redshift alternative?
 AUR,xidlehook,a not-annoying xautolock
 PAC,xcape,making caps lock an escape key too
+PAC,nvim,finally ditching vim
+PIP,pynvim,for some nvim plugins
 ###,##################,###
 ###,TERMINAL ILLNESSES,###
 ###,##################,###
@@ -23,6 +25,9 @@ PAC,tree,handy visualization of folder structure
 PAC,bash-completion,command completion for BASH
 PAC,tmux,terminal multiplexer disease
 AUR,tmuxline-git,airline for tmux
+PAC,ripgrep,speedy grep replacement
+PAC,bat,cat with highlighting
+PAC,fd,faster find with regex
 ###,#####################,###
 ###,WINDOW MANAGER STUFFS,###
 ###,#####################,###

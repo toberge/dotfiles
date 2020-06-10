@@ -17,13 +17,27 @@
 " ------ Plugins ------{{{
 
 " plug.vim (code from tips page)
-if empty(glob('~/.vim/autoload/plug.vim'))
-    silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
-        \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-    autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
+"
+if has('nvim')
+    if empty('~/.local/share/nvim/site/autoload/plug.vim')
+        silent !sh -c 'curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs \
+       https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
+        autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
+    endif
+else
+    if empty(glob('~/.vim/autoload/plug.vim'))
+        silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
+            \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+        autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
+    endif
 endif
 
-call plug#begin('~/.vim/plugged')
+
+if has('nvim')
+    call plug#begin(stdpath('data') . '/plugged')
+else
+    call plug#begin('~/.vim/plugged')
+endif
 
 " ------ commands ------
 Plug 'tpope/vim-repeat'
@@ -41,23 +55,21 @@ Plug 'tpope/vim-surround'
 
 " ------ smart stuff ------
 Plug 'kana/vim-smartinput'
+Plug 'SirVer/ultisnips'
+
+let g:UltiSnipsExpandTrigger="<c-tab>"
+let g:UltiSnipsJumpForwardTrigger="<c-b>"
+let g:UltiSnipsJumpBackwardTrigger="<c-z>"
+
 
 " ------ file finding ------
 Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
-" <Leader>T to use, <Leader> is \ by default (warum weiß ich nicht)
-Plug 'wincent/Command-T', {
-    \   'do': 'cd ruby/command-t/ext/command-t && ruby extconf.rb && make'
-    \ }
-" ok there's some builtin for this but whaaat eeeeever
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 
 " ------ code completion ------
-Plug 'ycm-core/YouCompleteMe', { 'do': './install.py' }
-" Plug 'neoclide/coc.nvim', { 'branch': 'release' }
-" goto def/refs
-" nmap <leader>gd <Plug>(coc-definition)
-" nmap <leader>gr <Plug>(coc-references)
+" Plug 'ycm-core/YouCompleteMe', { 'do': './install.py' }
+Plug 'neoclide/coc.nvim', { 'branch': 'release' }
 
 " ------ linting ------
 Plug 'dense-analysis/ale'
@@ -66,6 +78,7 @@ Plug 'dense-analysis/ale'
 Plug 'psliwka/vim-smoothie' " smud scrolling
 Plug 'dylanaraps/wal.vim'
 Plug 'lilydjwg/colorizer'
+Plug 'mhinz/vim-startify' " start page
 
 " ------ LaTeX ------
 Plug 'xuhdev/vim-latex-live-preview', { 'for': 'tex' }
@@ -125,7 +138,9 @@ colorscheme wal
 
 " fixing tmux issue
 " set term=screen-256color
-set term=rxvt-unicode-256color
+if !has('nvim')
+    set term=rxvt-unicode-256color
+endif
 
 " position visuals
 set number
@@ -216,6 +231,131 @@ command PDF :!pandoc %:t -o /tmp/thing.pdf
 " }}} cmd
 
 " ------ Plugin settings ------
+
+" ------ Counquer[or] of Completion (sic) ------{{{
+
+" Recommended defaults that idk about
+" see https://github.com/neoclide/coc.nvim#example-vim-configuration
+set hidden
+set shortmess+=c
+" set nowritebackup and nobackup if things get messed up (tsserver?)
+
+" Reduce delay
+set updatetime=300
+
+" signcolumn - the one next to line numbers by default
+if has("patch-8.1.1564")
+  " Recently vim can merge signcolumn and number column into one
+  set signcolumn=number
+else
+  set signcolumn=yes
+endif
+
+" ------ keybinds ------{{{
+
+" use tab like normal folks
+inoremap <silent><expr> <TAB>
+      \ pumvisible() ? "\<C-n>" :
+      \ <SID>check_back_space() ? "\<TAB>" :
+      \ coc#refresh()
+inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
+
+function! s:check_back_space() abort
+  let col = col('.') - 1
+  return !col || getline('.')[col - 1]  =~# '\s'
+endfunction
+
+" Use <c-space> to trigger completion.
+inoremap <silent><expr> <c-space> coc#refresh()
+
+" Use <cr> to confirm completion, `<C-g>u` means break undo chain at current
+" position. Coc only does snippet and additional edit on confirm.
+" <cr> could be remapped by other vim plugin, try `:verbose imap <CR>`.
+if exists('*complete_info')
+  inoremap <expr> <cr> complete_info()["selected"] != "-1" ? "\<C-y>" : "\<C-g>u\<CR>"
+else
+  inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
+endif
+
+" Use `[g` and `]g` to navigate diagnostics
+nmap <silent> [g <Plug>(coc-diagnostic-prev)
+nmap <silent> ]g <Plug>(coc-diagnostic-next)
+
+" GoTo code navigation.
+nmap <silent> <leader>gd <Plug>(coc-definition)
+nmap <silent> <leader>gy <Plug>(coc-type-definition)
+nmap <silent> <leader>gi <Plug>(coc-implementation)
+nmap <silent> <leader>gr <Plug>(coc-references)
+
+" Use K to show documentation in preview window.
+nnoremap <silent> K :call <SID>show_documentation()<CR>
+
+function! s:show_documentation()
+  if (index(['vim','help'], &filetype) >= 0)
+    execute 'h '.expand('<cword>')
+  else
+    call CocAction('doHover')
+  endif
+endfunction
+
+" Highlight the symbol and its references when holding the cursor.
+autocmd CursorHold * silent call CocActionAsync('highlight')
+
+" Symbol renaming.
+nmap <leader>rn <Plug>(coc-rename)
+
+" Formatting selected code.
+xmap <leader>f  <Plug>(coc-format-selected)
+nmap <leader>f  <Plug>(coc-format-selected)
+
+augroup mygroup
+  autocmd!
+  " Setup formatexpr specified filetype(s).
+  autocmd FileType typescript,json setl formatexpr=CocAction('formatSelected')
+  " Update signature help on jump placeholder.
+  autocmd User CocJumpPlaceholder call CocActionAsync('showSignatureHelp')
+augroup end
+
+" Applying codeAction to the selected region.
+" Example: `<leader>aap` for current paragraph
+xmap <leader>a  <Plug>(coc-codeaction-selected)
+nmap <leader>a  <Plug>(coc-codeaction-selected)
+
+" Remap keys for applying codeAction to the current buffer.
+nmap <leader>ac  <Plug>(coc-codeaction)
+" Apply AutoFix to problem on the current line.
+nmap <leader>qf  <Plug>(coc-fix-current)
+
+" Map function and class text objects
+" NOTE: Requires 'textDocument.documentSymbol' support from the language server.
+xmap if <Plug>(coc-funcobj-i)
+omap if <Plug>(coc-funcobj-i)
+xmap af <Plug>(coc-funcobj-a)
+omap af <Plug>(coc-funcobj-a)
+xmap ic <Plug>(coc-classobj-i)
+omap ic <Plug>(coc-classobj-i)
+xmap ac <Plug>(coc-classobj-a)
+omap ac <Plug>(coc-classobj-a)
+
+" Use CTRL-S for selections ranges.
+" Requires 'textDocument/selectionRange' support of LS, ex: coc-tsserver
+" nmap <silent> <C-s> <Plug>(coc-range-select)
+" xmap <silent> <C-s> <Plug>(coc-range-select)
+
+" Add `:Format` command to format current buffer.
+command! -nargs=0 Format :call CocAction('format')
+
+" Add `:Fold` command to fold current buffer.
+command! -nargs=? Fold :call     CocAction('fold', <f-args>)
+
+" Add `:OR` command for organize imports of the current buffer.
+command! -nargs=0 OR   :call     CocAction('runCommand', 'editor.action.organizeImport')
+
+" (see that section of the readme for more...)
+
+"  }}}
+
+"  }}}
 
 " ------ Pandoc, Latex, Markdown ------{{{
 

@@ -4,7 +4,7 @@ export QT_QPA_PLATFORMTHEME="qt5ct"
 # possibly also this:
 export QT_AUTO_SCREEN_SCALE_FACTOR=0
 
-export EDITOR=/usr/bin/vim
+export EDITOR=/usr/bin/nvim
 export PATH="$PATH:$HOME/.local/bin"
 
 # force fzf colors

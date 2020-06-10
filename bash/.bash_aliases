@@ -23,6 +23,8 @@ alias bspconf="vim $HOME/.config/bspwm/bspwmrc"
 alias keyconf="vim $HOME/.config/sxhkd/sxhkdrc"
 alias polyconf="vim $HOME/.config/polybar/config"
 alias polystart="$HOME/.config/polybar/launch.sh"
+alias caps="xmodmap $HOME/.Xmodmap"
+alias vv="vim $HOME/.config/nvim/init.vim"
 
 #######################
 #   CMD ADJUSTMENTS   #
@@ -44,8 +46,9 @@ alias q='exit'
 alias c='clear'
 alias f='fuck'
 alias ':q'='echo "you aint using vim now"; sfx alert & sleep 1; exit'
-alias vi='vim'
-alias v='vim'
+alias vim='nvim'
+alias vi='nvim'
+alias v='nvim'
 alias r='ranger'
 alias tb='nc termbin.com 9999'
 
