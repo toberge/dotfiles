@@ -16,11 +16,15 @@ case $choice in
         lockmeup
         ;;
     )
+        limit=$(loginctl list-sessions | grep gdm >/dev/null && echo -n 5 || echo -n 4)
         count=$(loginctl list-sessions | wc -l) # of lines in session output
-        [[ "$count" -gt 4 ]] && { # normally 4 if no TTYs
+        if [[ "$count" -gt "$limit" ]]
+        then # normally 4 if no TTYs, special case with GDM
             urxvt -name "floater" -geometry "34x$((count+2))" -e bash \
                 -c "loginctl list-sessions; echo -n 'There are active TTYs! '; read"
-        } || systemctl poweroff
+        else
+            systemctl poweroff
+        fi
         ;;
     )
         lockmeup &

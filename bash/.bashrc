@@ -324,6 +324,10 @@ localip() {
     ip addr show | grep 'inet .* global' | awk '{print $2}' | cut -d '/' -f 1
 }
 
+whatsmyip() {
+    curl https://ipecho.net/plain; echo
+}
+
 # Setting default web browser and so on
 unscrew_defaults() {
     xdg-settings set default-web-browser firefox.desktop

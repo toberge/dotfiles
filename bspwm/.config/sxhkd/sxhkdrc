@@ -2,22 +2,21 @@
 # # # # # B S P W M R C # # # # #
         # # # # # # # # #
 
-#
-# wm independent hotkeys {{{
-#
+# WM independent hotkeys {{{
 
 # terminal emulator
 super + Return
 	 alacritty & sfx open
 
-# program launcher
+# program launcher with icons
 super + d
 	rofi -show drun -show-icons & sfx menu
+
+# program launcher
 super + shift + d
 	rofi -show run & sfx menu
 
 # command launcher (press any key to exit)
-# (not really useful)
 super + ctrl + d
         rofi -dmenu -theme ~/.config/rofi/themes/cmd.rasi \
             | awk '\{ print"\""$0"; read -n1\"" \}' \
@@ -34,26 +33,24 @@ super + Escape
 
 # capture using Flameshot - set format to %FT%H:%M:%S
 Print
-        flameshot gui
+        flameshot gui & sfx shutter
 
 # from https://www.reddit.com/r/i3wm/comments/8yx7ju/i3_screenshot_application/
 # take screenshot of entire desktop
 shift + Print
         scrot ~/Pictures/screens/$(date  +'%FT%H:%M:%S').png \
             -m -e 'xclip -selection c -t image/png < $f' & \
-        sfx apply & notify-send "scrot-ed entire screen" 
+        sfx shutter & notify-send "scrot-ed entire screen" 
 
 # pick a window
 ctrl + Print
         notify-send "select window"; \
         import -window `xwininfo | awk '/.*Window id:.*/ {print $4}'` \
-            ~/Pictures/screens/$(date +'%FT%H:%M:%S').png; sfx apply
+            ~/Pictures/screens/$(date +'%FT%H:%M:%S').png; sfx shutter
 
 # }}}
 
-#
-# misc apps {{{
-#
+# Launch apps {{{
 
 # ranger
 super + {_,shift + }e
@@ -67,11 +64,34 @@ XF86Calculator
 {super + F1,XF86Mail}
         thunderbird & sfx open
 
+# glava (music visualizer) in given position
+super + space; g; {h,j,k,l}
+        echo -e "radial\ngraph\ncircle\nbars\nwave" \
+            | rofi -dmenu -p "glava module" \
+            | xargs glava \
+            --request="setgeometry {0 0, 0 1080, 0 0, 1920 0} 1920 1080" \
+            --force-mod \
+            & sfx open
+
+# common apps
+super + space; {w, t, f}
+        {firefox, thunderbird, thunar || nautilus} & sfx open
+
+# tools
+super + space; {c, l}
+        {gnome-calculator, lxappearance} & sfx open
+
+# dev tools
+super + space; {i, u}
+        {gtk-launch jetbrains-idea, code-oss} & sfx open
+
+# media & games
+super + space; {m, s, d}
+        {spotify, steam, discord} & sfx open
+
 # }}}
 
-#
-# system control {{{
-#
+# System control {{{
 
 # lock the screen
 super + shift + x
@@ -94,13 +114,11 @@ XF86AudioMute
 
 # media player
 XF86Audio{Play,Next,Prev,MicMute}
-        playerctl {play-pause,next,previous,play-pause}
+        playerctl --ignore-player=chromium {play-pause,next,previous,play-pause}
 
 # }}}
 
-#
-# bspwm hotkeys {{{
-#
+# BSPWM hotkeys {{{
 
 # restart bspwm
 super + alt + r
@@ -124,9 +142,7 @@ super + g
 
 # }}}
 
-#
-# state/flags {{{
-#
+# State/flags {{{
 
 # set the window state
 # - thanks baskerville, see issue #310
@@ -148,9 +164,7 @@ super + shift + s
 
 # }}}
 
-#
-# focus/swap {{{
-#
+# Focus/swap {{{
 
 # focus the node in the given direction
 super + {h,j,k,l}
@@ -198,7 +212,7 @@ super + {1-9,0}
 
 # send node to the given desktop
 super + shift + {1-9,0}
-	bspc node -d '^{1-9,10}' & sfx browse
+	bspc node -d '^{1-9,10}' & sfx apply
 
 # }}}
 
@@ -206,17 +220,15 @@ super + shift + {1-9,0}
 
 # rotate parent or desktop layout
 super + {_,shift +} r
-        bspc node @{parent,/} -R 90
+        bspc node @{parent,/} --rotate 90 --equalize
 
 # flip layout of entire desktop vert/hor
 super + {_,shift +} w
-        bspc node @/ -F {vertical,horizontal}
+        bspc node @/ --flip {vertical,horizontal} --equalize
 
 # }}}
 
-#
-# preselect {{{
-#
+# Preselect {{{
 
 # preselect the direction
 super + ctrl + {h,j,k,l}
@@ -236,9 +248,7 @@ super + ctrl + shift + space
 
 # }}}
 
-#
-# move/resize {{{
-#
+# Move and resize {{{
 
 # expand a window by moving one of its side outward
 super + alt + {h,j,k,l}
