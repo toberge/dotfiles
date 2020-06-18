@@ -10,7 +10,7 @@
 # *totally qualified dotfiles*
 ## Using GNU stow with simple packages
 
-![showcase](_showcase/lake.png)
+![showcase](_showcase/2020-05-30_butterfly.png)
 
 ## Naming convention:
 
@@ -30,9 +30,9 @@ to install
 
 |    type of deet | deet of deet        |
 | --------------: | :------------------ |
-|     Color theme | pywal/colorthief    |
-|  Window manager | bspwm/i3wm          |
-|        Terminal | URXvt               |
+|     Color theme | base16-ashes maybe  |
+|  Window manager | bspwm               |
+|        Terminal | alacritty/URXvt     |
 |     Text editor | vim/vscode          |
 |        Launcher | rofi                |
 |             Bar | polybar             |
@@ -65,4 +65,14 @@ Using spicetify to theme Spotify based on pywal colors, theme is [Lovelace](http
 
 ## old showcases
 
-![first showcase](_showcase/sunset.png)
+Way too dim colors:  
+![second showcase](_showcase/2020-04-25_lake.png)
+
+Pywalled garden and the time of 0 padding:  
+![first showcase](_showcase/2019-12-19_sunset.png)
+
+Almost default polybar:  
+![other wallpaper](_showcase/2019-10-18_polystart.png)
+
+Nothing but i3blocks:  
+![age of i3blocks](_showcase/2019-05-17_i3blocks.png)
