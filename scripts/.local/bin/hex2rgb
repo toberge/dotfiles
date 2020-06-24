@@ -1,0 +1,14 @@
+#!/usr/bin/env python3
+# convert to float,float,float (default)
+# or int,int,int RGB format
+import sys
+
+hexx = sys.argv[1].replace('#', '')
+rgb = [int(hexx[0:2], 16), int(hexx[2:4], 16), int(hexx[4:6], 16)]
+
+if len(sys.argv) == 3 and sys.argv[2] == 'int':
+    rgb = [str(i) for i in rgb]
+else:
+    rgb = [str(round(i/255, 5)) for i in rgb]
+
+print(','.join(rgb))

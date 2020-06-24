@@ -1,0 +1,99 @@
+#!/usr/bin/env python3
+"""
+Displays pollen forecast for specified allergenes and locations
+using data from pollenkontroll.no
+
+Thanks to https://gist.github.com/Cavemanz/b38e31969d15ed0a9ce1d560f8755997
+for revealing the api's URL
+"""
+
+import sys
+import os.path
+import json
+import requests
+
+CONFIG_PATH = os.path.expanduser('~/.config/pollen/pollen.json')
+API_BASE_URL = 'https://pollenkontroll.no/api/pollen-count'
+LEVEL_STRINGS = [
+    'Ingen',
+    'Beskjeden',
+    'Moderat',
+    'Moderat',
+    'Besværlig',
+    'Kraftig'
+]
+LEVEL_COLORS = [
+    2,
+    2,
+    3,
+    3,
+    3,
+    1
+]
+
+def die(message):
+    """Print error and exit"""
+    print(message, file=sys.stderr)
+    sys.exit(1)
+
+def load_config(filename: str) -> (str, [str]):
+    """Load config from file, return (location, allergenes)"""
+    data = {}
+    with open(filename, 'r') as file:
+        data = json.load(file)
+    return data['location'], data['allergenes']
+
+def perform_request(location, allergenes):
+    """Filter information from API request"""
+    req = requests.get(f'{API_BASE_URL}?country=no')
+    if req.status_code != 200:
+        die('Request failed')
+    data = req.json()
+    report = {}
+    for region in data['cities']:
+        if region['name'] == location:
+            day = region['days'][0]['allergens']
+            report[location] = [
+                allergene for allergene in day if allergene['type'] in allergenes
+            ]
+            break
+    else:
+        die(f'No location matching {location} found')
+    return report
+
+def format_report(report: {}):
+    """Format filtered data"""
+    strings = []
+    max_level = 0
+    for location, allergenes in report.items():
+        strings.extend([f'\033[1m{location}\033[0m, i dag', ''])
+        for allergene in allergenes:
+            level = allergene['level_number']
+            if level > max_level:
+                max_level = level
+            description = LEVEL_STRINGS[level]
+            name = allergene['type']
+            strings.append(
+                f'\t{name}:\t\033[1;3{LEVEL_COLORS[level]}m {description}\033[0m'
+            )
+    strings.append('')
+    if max_level > 4:
+        strings.append('You will have a \033[1mbad\033[0m time')
+    elif max_level > 1:
+        strings.append('Du kommer til å snufse litt.')
+    else:
+        strings.append('Dette skal gå helt fint.')
+    return '\n'.join(strings)
+
+
+def main():
+    """Blah blah main method"""
+    try:
+        location, allergenes = load_config(CONFIG_PATH)
+        report = perform_request(location, allergenes)
+        print(format_report(report))
+    except KeyError:
+        die('Unable to parse JSON')
+
+if __name__ == '__main__':
+    main()

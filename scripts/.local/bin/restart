@@ -3,13 +3,21 @@
 case $1 in
     picom)
         pkill picom
-        sleep 1
+        sleep .01
         picom -b --dbus --config ~/.config/picom/picom.conf
         ;;
     dunst)
         pkill dunst
         sleep .01
         dunst &
+        ;;
+    sxhkd)
+        pkill sxhkd
+        sleep .01
+        sxhkd &
+        ;;
+    spectrwm)
+        pkill -HUP spectrwm
         ;;
     *)
         echo "ok idk what u want so plz stop"

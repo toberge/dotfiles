@@ -1,0 +1,8 @@
+#!/bin/sh
+XSECURELOCK_PASSWORD_PROMPT=cursor \
+XSECURELOCK_FONT='FiraMono Nerd Font:style=Medium:size=13' \
+XSECURELOCK_AUTH_BACKGROUND_COLOR='#2c2c2c' \
+XSECURELOCK_SHOW_DATETIME=1 \
+XSECURELOCK_SAVER=saver_mpv \
+XSECURELOCK_LIST_VIDEOS_COMMAND="find $HOME/Videos/saver/ -type f -name '*.mkv'" \
+xsecurelock

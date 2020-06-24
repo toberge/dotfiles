@@ -8,8 +8,6 @@ extraopts=""
 # (it locks TTYs and is kinda neat)
 i3lock --help |& grep "\-l" &> /dev/null && extraopts="-l"
 
-sfx shutter & # play a sound
-
 # Using i3lock-color for extra fanciness
 # and custom fortunes for random text
 # TODO check if screen is mostly dark or light

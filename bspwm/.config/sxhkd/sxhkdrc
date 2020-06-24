@@ -10,11 +10,15 @@ super + Return
 
 # program launcher with icons
 super + d
-	rofi -show drun -show-icons & sfx menu
+	sfx menu & rofi -show drun -show-icons && sfx open
 
 # program launcher
 super + shift + d
-	rofi -show run & sfx menu
+	sfx menu & rofi -show run && sfx open
+
+# window switcher
+super + Tab
+        rofi -show window -show-icons & sfx menu
 
 # command launcher (press any key to exit)
 super + ctrl + d
@@ -35,18 +39,13 @@ super + Escape
 Print
         flameshot gui & sfx shutter
 
-# from https://www.reddit.com/r/i3wm/comments/8yx7ju/i3_screenshot_application/
 # take screenshot of entire desktop
 shift + Print
-        scrot ~/Pictures/screens/$(date  +'%FT%H:%M:%S').png \
-            -m -e 'xclip -selection c -t image/png < $f' & \
-        sfx shutter & notify-send "scrot-ed entire screen" 
+        screenshot full && sfx shutter
 
-# pick a window
+# pick a window or region using maim
 ctrl + Print
-        notify-send "select window"; \
-        import -window `xwininfo | awk '/.*Window id:.*/ {print $4}'` \
-            ~/Pictures/screens/$(date +'%FT%H:%M:%S').png; sfx shutter
+        screenshot region && sfx shutter
 
 # }}}
 
@@ -103,7 +102,7 @@ super + ctrl + x
 
 # brightness
 XF86MonBrightness{Up,Down}
-        xbacklight -{inc,dec} 5 & sfx open
+        backlight --notify {up,down} 5 & sfx open
 
 # volume
 XF86Audio{Raise,Lower}Volume
@@ -195,8 +194,8 @@ ctrl + alt + shift + {Left,Right,h,l}
 	bspc desktop -s {prev,next,prev,next} --follow
 
 # focus the last desktop
-super + Tab
-	bspc desktop -f last & sfx browse
+#super + Tab
+	#bspc desktop -f last & sfx browse
 
 # focus the older or newer node in the focus history
 super + {o,i}

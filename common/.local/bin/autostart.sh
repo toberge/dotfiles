@@ -6,7 +6,7 @@ sfx startup &
 # monitor layout and device specifics
 case "$HOSTNAME" in
     fuglekassa) # desktop
-        # ~/.local/bin/toggletearing.sh
+        ~/.local/bin/toggletearing.sh
         [[ "$(xrandr --query | grep -c " connected")" -eq 2 ]] \
             && xrandr --output HDMI-0 --auto --right-of DVI-D-0
         ;;
@@ -24,7 +24,8 @@ wal -R
 
 # bar and compositor
 picom -b --dbus --config ~/.config/picom/picom.conf
-~/.config/polybar/launch.sh
+[[ ! "$DESKTOP_SESSION" =~ ^(spectr|ct)wm$ ]] \
+    && ~/.config/polybar/launch.sh &
 
 # numlock, I need you!
 numlockx on

@@ -1,0 +1,36 @@
+#!/bin/sh
+#
+# Take screenshot of window, region or entire screen
+#
+# scrot scripts gathered from
+# https://www.reddit.com/r/i3wm/comments/8yx7ju/i3_screenshot_application/
+
+get_colors() {
+    . $HOME/.cache/wal/colors.sh
+}
+
+case $1 in
+    full)
+        path=~/Pictures/screens/"$(date  +'%FT%H:%M:%S')".png 
+        if bspc query -N -n focused.fullscreen
+        then # focused window is fullscreen, shoot that one only
+            scrot --focused "$path" \
+                --exec 'xclip -selection c -t image/png < $f' \
+                && notify-send "scrot-ed fullscreen window" 
+        else # shoot all monitors
+            scrot --multidisp "$path" \
+                --exec 'xclip -selection c -t image/png < $f' \
+                && notify-send "scrot-ed entire screen" 
+        fi
+        ;;
+    region|window) # region OR window with maim!
+        get_colors
+        maim --select --highlight --color=$(hex2rgb "$color4"),0.5 \
+            --bordersize=2 \
+            | xclip -selection clipboard -t image/png
+        ;;
+    *)
+        echo "I'm sorry Dave, I'm afraid I can't do that"
+        exit 1
+        ;;
+esac
