@@ -16,7 +16,7 @@ alias cdw="cd $SKOLE/web"
 alias cdm="cd $SKOLE/Matematikk\ 2"
 alias cda="cd $SKOLE/algdat"
 alias cdf="cd $SKOLE/fysikk"
-alias cdd="cd $HOME/.dotfiles"
+alias cdd="cd $HOME/.dotfiles" # oh, a duplicate
 
 alias i3conf="vim $HOME/.config/i3/config"
 alias bspconf="vim $HOME/.config/bspwm/bspwmrc"
@@ -30,7 +30,13 @@ alias vv="vim $HOME/.config/nvim/init.vim"
 #   CMD ADJUSTMENTS   #
 #######################
 
-alias bat='bat --theme=ansi-dark'
+# typical stuff (from manjaro):
+alias cp='cp -i'        # confirm before overwriting something
+alias df='df -h'        # human-readable sizes
+alias free='free -m'    # show sizes in MB
+alias more=less         # less is more - wait, that's the wrong way
+
+alias bat='bat --theme=ansi-dark'   # use term colors...
 
 #######################
 #        TYPOS        #
@@ -42,15 +48,16 @@ alias bpsc='bspc'
 #  CMD ABBREVIATIONS  #
 #######################
 
-alias q='exit'
+alias q='exit'          # who wants to write exit all the time
 alias c='clear'
-alias f='fuck'
+alias f='fuck'          # less swearing in my history
 alias ':q'='echo "you aint using vim now"; sfx alert & sleep 1; exit'
 alias vim='nvim'
 alias vi='nvim'
 alias v='nvim'
 alias r='ranger'
 alias tb='nc termbin.com 9999'
+alias mkp='mkdir -p'    # mk whole path
 
 alias ll='ls -lh'
 alias la='ls -lha'
@@ -67,6 +74,8 @@ alias yq='yay -Q'
 alias yf='yay -Ss'
 alias yu='yay -Syu'
 alias yi='yay -S'
+
+alias serve='python -m http.server'
 
 #######################
 #    GIT SHORTCUTS    #
@@ -85,7 +94,5 @@ alias gc='git commit'
 alias gcm='git commit -m'
 alias gl='git log --oneline --graph --all --decorate'
 # see https://stackoverflow.com/questions/849308/pull-push-from-multiple-remote-locations/12795747#12795747
-# with or without branch arg?
-alias gpab='for RMT in $(git remote); do echo "-- $RMT --" && git push -v $RMT $1; done;'
 alias gpa='for RMT in $(git remote); do echo "-- $RMT --" && git push $RMT; done;'
 

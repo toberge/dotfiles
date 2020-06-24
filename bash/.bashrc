@@ -7,6 +7,42 @@
 # Some things pulled straight from Manjaro's default bashrc,
 # most other things (typically less advanced -_-) written by me.
 
+# Abort if not interactive
+[[ $- != *i* ]] && return
+
+############
+# SETTINGS #
+############
+
+# Don't put duplicate lines or lines starting with space in the history.
+HISTCONTROL=ignoreboth
+
+# Trim \w to only show X dirs:
+PROMPT_DIRTRIM=3
+
+# Check window size after each command
+shopt -s checkwinsize
+
+# This *should* be set by default
+shopt -s expand_aliases
+
+# Enable history appending instead of overwriting.
+shopt -s histappend
+
+##############
+# COMPLETION #
+##############
+
+# Tab completion of commands and options
+[ -r /usr/share/bash-completion/bash_completion ] && . /usr/share/bash-completion/bash_completion
+
+complete -cf sudo # complete commands written after sudo!
+complete -c  man  # also complete man lookups!
+
+##########
+# PROMPT #
+##########
+
 # PS1 extras
 ps1_git_branch() {
     git branch 2>/dev/null | grep '^*' | colrm 1 2
@@ -53,11 +89,6 @@ ps1_exit_code() {
     test $exit -ne 0 && echo -ne " \033[01;31m$exit"
 }
 
-# trim \w to only show X dirs:
-PROMPT_DIRTRIM=3
-
-# also, do this:
-
 # actual definition of prompt
 generate_custom_ps1() {
     if [ -z "$DESKTOP_SESSION" ]
@@ -75,37 +106,6 @@ generate_custom_ps1() {
 ##########################
 # MANJARO (+ my own PS1) #
 ##########################
-
-[[ $- != *i* ]] && return
-
-colors() {
-	local fgc bgc vals seq0
-
-	printf "Color escapes are %s\n" '\e[${value};...;${value}m'
-	printf "Values 30..37 are \e[33mforeground colors\e[m\n"
-	printf "Values 40..47 are \e[43mbackground colors\e[m\n"
-	printf "Value  1 gives a  \e[1mbold-faced look\e[m\n\n"
-
-	# foreground colors
-	for fgc in {30..37}; do
-		# background colors
-		for bgc in {40..47}; do
-			fgc=${fgc#37} # white
-			bgc=${bgc#40} # black
-
-			vals="${fgc:+$fgc;}${bgc}"
-			vals=${vals%%;}
-
-			seq0="${vals:+\e[${vals}m}"
-			printf "  %-9s" "${seq0:-(default)}"
-			printf " ${seq0}TEXT\e[m"
-			printf " \e[${vals:+${vals+$vals;}}1mBOLD\e[m"
-		done
-		echo; echo
-	done
-}
-
-[ -r /usr/share/bash-completion/bash_completion ] && . /usr/share/bash-completion/bash_completion
 
 # Change the window title of X terminals
 case ${TERM} in
@@ -144,10 +144,8 @@ if ${use_color} ; then
 	fi
 
 	if [[ ${EUID} == 0 ]] ; then
-		#PS1='\[\033[01;31m\][\h\[\033[01;36m\] \W\[\033[01;31m\]]\$\[\033[00m\] '
 		PS1='┌─── \[\033[01;36m\] \w\[\033[01;31m\]\n┕━ '
 	else
-		#PS1='\[\033[01;32m\][\u@\h\[\033[01;37m\] \W\[\033[01;32m\]]\$\[\033[00m\] '
                 # MY OWN PROMPT NOW...
                 generate_custom_ps1
 	fi
@@ -167,28 +165,7 @@ fi
 
 unset use_color safe_term match_lhs sh
 
-alias cp="cp -i"                          # confirm before overwriting something
-alias df='df -h'                          # human-readable sizes
-alias free='free -m'                      # show sizes in MB
-alias np='nano -w PKGBUILD'
-alias more=less
-
 xhost +local:root > /dev/null 2>&1
-
-complete -cf sudo
-
-# Bash won't get SIGWINCH if another process is in the foreground.
-# Enable checkwinsize so that bash will check the terminal size when
-# it regains control.  #65623
-# http://cnswww.cns.cwru.edu/~chet/bash/FAQ (E11)
-shopt -s checkwinsize
-
-shopt -s expand_aliases
-
-# export QT_SELECT=4
-
-# Enable history appending instead of overwriting.  #139609
-shopt -s histappend
 
 #
 # # ex - archive extractor
@@ -200,7 +177,7 @@ ex ()
       *.tar.bz2)   tar xjf $1   ;;
       *.tar.gz)    tar xzf $1   ;;
       *.bz2)       bunzip2 $1   ;;
-      *.rar)       unrar x $1     ;;
+      *.rar)       unrar x $1   ;;
       *.gz)        gunzip $1    ;;
       *.tar)       tar xf $1    ;;
       *.tbz2)      tar xjf $1   ;;
@@ -214,30 +191,6 @@ ex ()
     echo "'$1' is not a valid file"
   fi
 }
-
-############################
-# IMPORTED FROM LINUX MINT #
-############################
-
-# don't put duplicate lines or lines starting with space in the history.
-# See bash(1) for more options
-HISTCONTROL=ignoreboth
-
-### there could be more but much is done in Manjaro already, it's just this *particular* thing that's gonna annoy me
-
-#####
-# IMPORTED FROM UBUNTU MAYBE
-
-# enable programmable completion features (you don't need to enable
-# this, if it's already enabled in /etc/bash.bashrc and /etc/profile
-# sources /etc/bash.bashrc).
-if ! shopt -oq posix; then
-  if [ -f /usr/share/bash-completion/bash_completion ]; then
-    . /usr/share/bash-completion/bash_completion
-  elif [ -f /etc/bash_completion ]; then
-    . /etc/bash_completion
-  fi
-fi
 
 ############################
 # START OF CUSTOM THINGIES #
@@ -255,9 +208,9 @@ source $HOME/.bash_aliases
 
 eval "$(thefuck --alias)" # pip install --user thefuck first
 
-############################
-# there was stuff here tho #
-############################
+####################
+# VARIOUS COMMANDS #
+####################
 
 # remember the need for spaces here. it's space-sensitive.
 
@@ -305,18 +258,12 @@ nichijou() {
         || sxiv -b "$HOME/Pictures/nichijou/$1/$2.jpg"
 }
 
-
-# specific renaming purpose
-renyou() {
-  find -type f -name '*.m4a' | rename -v -v 's/\-...........\.m4a/\.m4a/'
-}
-
 anonymize() {
     PS1='[\[\033[01;31m\]\W\[\033[00m\]] '
 }
 
 ###################
-# CONFIG THINGIES #
+# CONFIG COMMANDS #
 ###################
 
 # external ip: probably curl ifconfig.me
@@ -325,7 +272,7 @@ localip() {
 }
 
 whatsmyip() {
-    curl https://ipecho.net/plain; echo
+    curl icanhazip.com
 }
 
 # Setting default web browser and so on
@@ -335,11 +282,6 @@ unscrew_defaults() {
 
 wacom() {
     xsetwacom set "Wacom Bamboo 16FG 6x8 Pen stylus" MapToOutput 1920x1080+1920+0
-}
-
-gogh() {
-  bash -c  "$(wget -qO- https://git.io/vQgMr)"
-  echo "you got some new colors maybe"
 }
 
 # forcing redshift using default value
@@ -375,21 +317,3 @@ jarun() {
 jack() {
   javac $1.java && java $1
 }
-
-################################
-# FANCY SHIT ON WELCOME SCREEN #
-################################
-
-# gotta have something here, right?
-# fortune -e science
-# echo
-
-#neofetch
-#if [ $? == 127 ];then
-	#echo 'no neofetch you moron'
-	#apt list neofetch
-	#pacman -Q neofetch
-	#echo
-	#screenfetch
-#fi
-
