@@ -1,10 +1,16 @@
 #!/usr/bin/env sh
 
 # symlink wal templates
-mkdir -p  "${HOME}/.config/dunst"
-mkdir -p  "${HOME}/.config/zathura"
-ln -sf "${HOME}/.cache/wal/dunstrc" "${HOME}/.config/dunst/dunstrc"
-ln -sf "${HOME}/.cache/wal/zathurarc" "${HOME}/.config/zathura/zathurarc"
+for template in dunstrc zathurarc alacritty.yml
+do
+    folder=${template%%.*}
+    folder=${folder%%rc}
+    mkdir -p  "${HOME}/.config/${folder}"
+    ln -sf "${HOME}/.cache/wal/${template}" \
+        "${HOME}/.config/${folder}/${template}"
+done
+
+exit 2
 
 # symlink all glava templates
 mkdir -p  "${HOME}/.config/glava"
