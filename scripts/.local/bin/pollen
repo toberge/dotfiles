@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Displays pollen forecast for specified allergenes and locations
+Displays pollen forecast for specified allergens and locations
 using data from pollenkontroll.no
 
 Thanks to https://gist.github.com/Cavemanz/b38e31969d15ed0a9ce1d560f8755997
@@ -37,13 +37,13 @@ def die(message):
     sys.exit(1)
 
 def load_config(filename: str) -> (str, [str]):
-    """Load config from file, return (location, allergenes)"""
+    """Load config from file, return (location, allergens)"""
     data = {}
     with open(filename, 'r') as file:
         data = json.load(file)
-    return data['location'], data['allergenes']
+    return data['location'], data['allergens']
 
-def perform_request(location, allergenes):
+def perform_request(location, allergens):
     """Filter information from API request"""
     req = requests.get(f'{API_BASE_URL}?country=no')
     if req.status_code != 200:
@@ -54,7 +54,7 @@ def perform_request(location, allergenes):
         if region['name'] == location:
             day = region['days'][0]['allergens']
             report[location] = [
-                allergene for allergene in day if allergene['type'] in allergenes
+                allergene for allergene in day if allergene['type'] in allergens
             ]
             break
     else:
@@ -65,9 +65,9 @@ def format_report(report: {}):
     """Format filtered data"""
     strings = []
     max_level = 0
-    for location, allergenes in report.items():
+    for location, allergens in report.items():
         strings.extend([f'\033[1m{location}\033[0m, i dag', ''])
-        for allergene in allergenes:
+        for allergene in allergens:
             level = allergene['level_number']
             if level > max_level:
                 max_level = level
@@ -89,8 +89,8 @@ def format_report(report: {}):
 def main():
     """Blah blah main method"""
     try:
-        location, allergenes = load_config(CONFIG_PATH)
-        report = perform_request(location, allergenes)
+        location, allergens = load_config(CONFIG_PATH)
+        report = perform_request(location, allergens)
         print(format_report(report))
     except KeyError:
         die('Unable to parse JSON')

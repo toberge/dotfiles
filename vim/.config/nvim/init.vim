@@ -19,9 +19,9 @@
 " plug.vim (code from tips page)
 "
 if has('nvim')
-    if empty('~/.local/share/nvim/site/autoload/plug.vim')
-        silent !sh -c 'curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs \
-       https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
+    if empty(glob('~/.local/share/nvim/site/autoload/plug.vim'))
+        silent !curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs
+	    \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
         autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
     endif
 else
@@ -67,6 +67,8 @@ Plug 'justinmk/vim-sneak'
 let g:UltiSnipsExpandTrigger="<c-tab>"
 let g:UltiSnipsJumpForwardTrigger="<c-b>"
 let g:UltiSnipsJumpBackwardTrigger="<c-z>"
+
+Plug 'editorconfig/editorconfig-vim'
 
 
 " ------ file finding ------

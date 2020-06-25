@@ -10,8 +10,6 @@ do
         "${HOME}/.config/${folder}/${template}"
 done
 
-exit 2
-
 # symlink all glava templates
 mkdir -p  "${HOME}/.config/glava"
 for template in $(ls ${HOME}/.cache/wal/*.glsl)
