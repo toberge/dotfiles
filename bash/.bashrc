@@ -262,6 +262,14 @@ anonymize() {
     PS1='[\[\033[01;31m\]\W\[\033[00m\]] '
 }
 
+# see https://stackoverflow.com/questions/849308/pull-push-from-multiple-remote-locations/12795747#12795747
+gpa() {
+    for RMT in $(git remote)
+    do
+        echo "-- $RMT --" && git push "$RMT"
+    done
+}
+
 ###################
 # CONFIG COMMANDS #
 ###################

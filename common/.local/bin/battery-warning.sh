@@ -9,15 +9,19 @@ then
     exit 1
 fi
 
+interval=${1:-60}
+critical_level=${2:-5}
+
 while :
 do # Check battery level every X seconds
-    read lvl < /sys/class/power_supply/BAT0/capacity
-    [[ $lvl -le 5 ]] && {
+    read -r lvl < /sys/class/power_supply/BAT0/capacity
+    read -r stat < /sys/class/power_supply/BAT0/status
+    [[ $lvl -le $critical_level ]] && [[ "$stat" == "Discharging" ]] && {
         notify-send --urgency=critical \
             --icon=battery \
             "BATTERY LOW" \
             "[${lvl}%] Plug in your charger"
         sfx alert
     }
-    sleep 60
+    sleep "$interval"
 done

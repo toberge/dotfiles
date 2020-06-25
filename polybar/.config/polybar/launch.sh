@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 # Polybar somehow needs a timeout
-sleep .1
+sleep .01
 
 # Terminate already running bar instances
 killall -q polybar

@@ -93,6 +93,8 @@ AUR,spotify,music streaming
 AUR,spicetify-cli,theming spotify
 PAC,discord,chatter
 PAC,gnome-calculator,I need a friendly calculator
+PAC,thunar,a decent file manager
+PAC,tumbler,thumbnails in thunar
 ###,#############,###
 ###, PROGRAMMING ,###
 ###,#############,###

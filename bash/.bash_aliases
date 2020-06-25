@@ -9,6 +9,7 @@ alias ...='cd ../..'
 alias ....='cd ../../..'
 
 alias dot='cd ~/.dotfiles'
+alias bin='cd ~/.dotfiles/scripts/.local/bin/'
 alias cdj="cd $SKOLE/java"
 alias cds="cd $SKOLE/statistikk"
 alias cdc="cd $SKOLE/C"
@@ -93,6 +94,3 @@ alias gp='git push'
 alias gc='git commit'
 alias gcm='git commit -m'
 alias gl='git log --oneline --graph --all --decorate'
-# see https://stackoverflow.com/questions/849308/pull-push-from-multiple-remote-locations/12795747#12795747
-alias gpa='for RMT in $(git remote); do echo "-- $RMT --" && git push $RMT; done;'
-
