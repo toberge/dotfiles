@@ -51,11 +51,18 @@ Plug 'christoomey/vim-sort-motion'
 " ------ text objects ------
 " (s)urrounding (object/motion/command)
 Plug 'tpope/vim-surround'
-" consider kana/vim-textobj-custom?
+" consider Plug 'kana/vim-textobj-custom'
+Plug 'michaeljsmith/vim-indent-object'
+" (i)ndentation
+" - ai for line above, aI for above+below
+" - ii for just indent
 
 " ------ smart stuff ------
 Plug 'kana/vim-smartinput'
+Plug 'alvan/vim-closetag'
 Plug 'SirVer/ultisnips'
+Plug 'justinmk/vim-sneak'
+" mapped to s and S, less absurd than easymotion
 
 let g:UltiSnipsExpandTrigger="<c-tab>"
 let g:UltiSnipsJumpForwardTrigger="<c-b>"
@@ -77,11 +84,16 @@ Plug 'dense-analysis/ale'
 " ------ cosmetics ------
 Plug 'psliwka/vim-smoothie' " smud scrolling
 Plug 'dylanaraps/wal.vim'
+"Plug 'chriskempson/base16-vim'
 Plug 'lilydjwg/colorizer'
 Plug 'mhinz/vim-startify' " start page
 
+" ------ langs ------
+Plug 'dag/vim-fish'
+
 " ------ LaTeX ------
 Plug 'xuhdev/vim-latex-live-preview', { 'for': 'tex' }
+" vimtex?
 
 " ------ Markdown ------
 Plug 'vim-pandoc/vim-pandoc'
@@ -135,6 +147,7 @@ endif
 
 syntax on
 colorscheme wal
+" colorscheme base16-ashes
 
 " fixing tmux issue
 " set term=screen-256color
@@ -151,6 +164,9 @@ set relativenumber
 set showcmd " show what ye're typin'
 set ruler " cursor pos - airline does this though
 set laststatus=2 " always status line
+
+" terminal title
+set title
 
 " }}}
 
