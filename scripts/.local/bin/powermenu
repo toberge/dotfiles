@@ -1,32 +1,39 @@
 #!/usr/bin/env bash
+#
+# Simple powermenu that aborts reboot/poweroff
+# if a virtual console is open
 
-# up=$(uptime | cut -d' ' -f5)
-# prompt="Up ${up%,}"
 up=$(uptime -p)
 prompt=" ${HOSTNAME}: ${up#up } of /つ ◕_◕\つ"
 
 # Set font to Font Awesome 5 Free if this is gibberish
-# hibernation: ,
-choice=$(echo -e "\n\n\n\n" | \
+# (or use a nerd font) hibernation icons: ,
+choice=$(echo -e "\n\n\n\n" | \
     rofi -dmenu -theme ~/.config/rofi/themes/powermenu.rasi \
     -selected-row 0 -p "$prompt")
+
+if_no_tty() {
+    if w | grep sh >/dev/null
+    then # triggers if a tty has a shell process
+        count=$(loginctl list-sessions | wc -l)
+        urxvt -name "floater" -geometry "34x$((count+2))" -e bash \
+            -c "loginctl list-sessions; echo -n 'There are active TTYs! '; read"
+    else # no ttys doing anything, do as requested
+        $@
+    fi
+}
 
 case $choice in
     )
         lockmeup
         ;;
     )
-        output=$(loginctl list-sessions)
-        count=$(echo "$output" | wc -l)
-        if echo "$output" | grep tty >/dev/null
-        then
-            urxvt -name "floater" -geometry "34x$((count+2))" -e bash \
-                -c "loginctl list-sessions; echo -n 'There are active TTYs! '; read"
-        else
-            systemctl poweroff
-        fi
+        if_no_tty systemctl poweroff
         ;;
-    )
+    )
+        if_no_tty systemctl reboot
+        ;;
+    ) # haha no hibernation here
         lockmeup &
         sleep .4 && systemctl hibernate
         ;;
@@ -43,6 +50,9 @@ case $choice in
             i3)
                 i3-msg exit
                 ;;
+            openbox)
+                openbox --exit
+                ;;
             *)
                 # systemctl ext?
                 notify-send "NOT IMPLEMENTED"
@@ -53,4 +63,3 @@ case $choice in
         exit 1
         ;;
 esac
-
