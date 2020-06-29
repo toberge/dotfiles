@@ -102,7 +102,7 @@ super + ctrl + x
 
 # brightness
 XF86MonBrightness{Up,Down}
-        backlight --notify {up,down} 5 & sfx open
+        backlight --notify {up,down} 5
 
 # volume
 XF86Audio{Raise,Lower}Volume
@@ -135,17 +135,13 @@ super + m
 super + y
 	bspc node newest.marked.local -n newest.!automatic.local
 
-# swap the current node and the biggest node (but why?)
-super + g
-	bspc node -s biggest
-
 # }}}
 
 # State/flags {{{
 
 # set the window state
 # - thanks baskerville, see issue #310
-super + {p,s,shift + space,f}
+super + {shift + t,s,shift + space,f}
     state={pseudo_tiled,floating,floating,fullscreen}; \
     bspc query -N "focused.$\{state\}" && state=tiled; \
     bspc node -t "$state" & sfx toggle
@@ -154,8 +150,8 @@ super + t
         bspc node -t tiled & sfx toggle
 
 # set the node flags
-super + ctrl + {m,x,y,z}
-	bspc node -g {marked,locked,sticky,private}
+super + n; {m,l,s,p}
+	bspc node -g {marked,locked,sticky,private} & sfx toggle
 
 # set sticky
 super + shift + s
@@ -176,10 +172,15 @@ super + shift + {h,j,k,l}
        bspc node -s $direction.local --follow \
     || bspc node -m $direction --follow
 
+# like promotion/demotion in master-stack WMs
+# (last.local or smallest.local? who knows?)
+# swap with biggest or swap which is biggest
+super + g
+	bspc node -s biggest.local || bspc node -s last.local
+
 # focus the node for the given path jump
-# (bloody useless)
-# super + {p,b,comma,period}
-#       bspc node -f @{parent,brother,first,second}
+super + {p, b, shift + p, alt + shift + p}
+        bspc node -f @{parent,brother,first,second}
 
 # focus the next/previous node in the current desktop
 alt + {_,shift + } + Tab
@@ -224,6 +225,17 @@ super + {_,shift +} r
 # flip layout of entire desktop vert/hor
 super + {_,shift +} w
         bspc node @/ --flip {vertical,horizontal} --equalize
+
+# }}}
+
+# Receptacles {{{
+# (not working atm)
+
+# super + plus
+#         bspc node -i
+
+# super + minus
+#         bspc node -k '.leaf.!window' & sfx close
 
 # }}}
 
