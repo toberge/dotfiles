@@ -11,6 +11,7 @@ case "$HOSTNAME" in
             && xrandr --output HDMI-0 --auto --right-of DVI-D-0
         ;;
     thinkpad)
+        ~/.local/bin/trackpoint.sh
         [[ "$(xrandr --query | grep -c " connected")" -eq 2 ]] \
             && xrandr --output HDMI2 --auto --above eDP1
         ;;
@@ -41,7 +42,7 @@ xset r rate 360 42
 xsetroot -cursor_name left_ptr
 
 # xautolock but good (could add --not-when-audio)
-xidlehook --not-when-fullscreen --timer 600 lockmeup '' &
+xidlehook --not-when-fullscreen --not-when-audio --timer 600 lockmeup '' &
 
 # remind me to take breaks!
 i3-gnome-pomodoro start
