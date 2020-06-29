@@ -63,6 +63,9 @@ alias mkp='mkdir -p'    # mk whole path
 alias ll='ls -lh'
 alias la='ls -lha'
 
+alias sc='systemctl'
+alias scs='systemctl status'
+
 alias p='pacman'
 alias pq='pacman -Q'
 alias pf='pacman -Ss'
