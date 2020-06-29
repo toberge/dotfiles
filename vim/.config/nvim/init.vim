@@ -58,8 +58,17 @@ Plug 'michaeljsmith/vim-indent-object'
 " - ii for just indent
 
 " ------ smart stuff ------
-Plug 'kana/vim-smartinput'
+" Annoying auto-pairing - TODO replace..
+" remember (<M-e> to expand to end of line
+Plug 'jiangmiao/auto-pairs'
+" Auto-close things only on <CR>
+" both are buggy
+" Plug 'rstacruz/vim-closer'
+" Plug 'tpope/vim-endwise'
 Plug 'alvan/vim-closetag'
+" cwd to project root!
+Plug 'airblade/vim-rooter'
+" TODO: configure this madness
 Plug 'SirVer/ultisnips'
 Plug 'justinmk/vim-sneak'
 " mapped to s and S, less absurd than easymotion
@@ -85,6 +94,7 @@ Plug 'dense-analysis/ale'
 
 " ------ cosmetics ------
 Plug 'psliwka/vim-smoothie' " smud scrolling
+Plug 'machakann/vim-highlightedyank'
 Plug 'dylanaraps/wal.vim'
 "Plug 'chriskempson/base16-vim'
 Plug 'lilydjwg/colorizer'
@@ -92,6 +102,9 @@ Plug 'mhinz/vim-startify' " start page
 
 " ------ langs ------
 Plug 'dag/vim-fish'
+Plug 'cespare/vim-toml'
+Plug 'rust-lang/rust.vim'
+let g:rustfmt_autosave = 1
 
 " ------ LaTeX ------
 Plug 'xuhdev/vim-latex-live-preview', { 'for': 'tex' }
@@ -179,6 +192,11 @@ set title
 set foldmethod=marker
 
 set wildmenu " better command completion?
+set wildmode=longest:full,full " longest match first, then full menu
+
+" save undo history...
+set undodir=~/.vimdid
+set undofile
 
 " better-than-default search
 set ignorecase
@@ -223,6 +241,14 @@ map ø ;
 map Ø ,
 " (since ; is in that spot on US layouts...)
 
+" Go to last open buffer (back-and-forth)
+" - since <c-^> is literally impossible to press
+"   on Scandinavian keyboards
+map <Leader><Leader> <c-^>
+
+" Quick write (shift+: then releasing shift and pressing w<CR> is HARD)
+map <Leader>w :w<CR>
+
 " arrow keys are banned {{{
 
 " don't use arrowkeys
@@ -240,13 +266,6 @@ inoremap <Right> <NOP>
 " }}}
 
 " }}} keybinds
-
-" ------ Commands ------{{{
-
-" autocmd BufWrite *.md :! pandoc % -o /tmp/thing.pdf
-command PDF :!pandoc %:t -o /tmp/thing.pdf
-
-" }}} cmd
 
 " ------ Plugin settings ------
 
@@ -396,6 +415,24 @@ endif
 let g:ycm_semantic_triggers.pandoc = ['@']
 let g:ycm_filetype_blacklist = {}
 
+" TODO: handle this in after/ftplugin or with a toggle command?
+" autocmd BufWritePost *.md :!pandoc % -o /tmp/thing.pdf
+command PDF :!pandoc %:t -o /tmp/thing.pdf
+command TogglePDF autocmd BufWritePost *.md :!pandoc % -o /tmp/thing.pdf
+
+" }}}
+
+" ------ autopairs ------{{{
+
+au FileType markdown,latex let b:AutoPairs = AutoPairsDefine({
+\   '$' : '$', 
+\   '$$' : '$$'
+\}, [])
+
+" examples in README
+au FileType html let b:AutoPairs = AutoPairsDefine({'<!--' : '-->'}, [])
+au FileType rust let b:AutoPairs = AutoPairsDefine({'\w\zs<': '>'})
+
 " }}}
 
 " ------ airline ------{{{
@@ -411,12 +448,17 @@ let g:airline_left_alt_sep = ''
 
 " tabline ON
 let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#tabline#formatter = 'unique_tail_improved'
+let airline#extensions#tabline#show_buffers = 1 " ambivalent towards this
 let g:airline#extensions#tabline#show_close_button = 0
+
 
 " }}}
 
 " ------ tmuxline ------{{{
 
+" TODO do I really wanna use tmuxline?
+" why not go for something simpler-looking?
 " statusline content
 let g:tmuxline_preset = {
       \'a'    : '#S',
@@ -455,21 +497,25 @@ else
     nnoremap <C-p> :GFiles<CR>
 endif
 
+nnoremap <Leader>fb :Buffers<CR>
+nnoremap <Leader>ff :Files<CR>
+nnoremap <Leader>fc :Commands<CR>
+" Remember that :Rg exists (ripgrep)
+nnoremap <Leader>r :Rg 
 
 "  }}}
 
 " ------ ALE ------{{{
 
+" Airline integration
+let g:airline#extensions#ale#enabled = 1
+
 " lint
-let g:ale_linters_explicit = 1
-let b:ale_linters = ['standard']
-let g:ale_javascript_standard_executable = 'semistandard'
+let g:ale_linters_explicit = 0
 
 " fix
-" let g:ale_fix_on_save = 1
-let g:ale_fixers = {
-\   'javascript': ['prettier'],
-\   'css': ['prettier'],
-\}
+let g:ale_fix_on_save = 1
+
+" see ftplugin files for linter/fixer rules
 
 " }}}
