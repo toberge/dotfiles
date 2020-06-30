@@ -57,6 +57,7 @@ alias v='nvim'
 alias r='ranger'
 alias tb='nc termbin.com 9999'
 alias mkp='mkdir -p'    # mk whole path
+alias s='setsid -f'     # avoid having to bg and disown
 
 alias ll='ls -lh'
 alias la='ls -lha'

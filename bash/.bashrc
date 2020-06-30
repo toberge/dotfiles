@@ -39,6 +39,24 @@ shopt -s histappend
 complete -cf sudo # complete commands written after sudo!
 complete -c  man  # also complete man lookups!
 
+############
+# SOURCING #
+############
+
+# pywal things
+if [ -z "$DESKTOP_SESSION" ]
+then # on a TTY, do the pywal
+    source ~/.cache/wal/colors-tty.sh
+else # on DE where we shall set them colors
+    (cat ~/.cache/wal/sequences &)
+fi
+
+source $HOME/.bash_aliases
+# specific completion
+complete -cf s
+
+eval "$(thefuck --alias)" # pip install --user thefuck first
+
 ##########
 # PROMPT #
 ##########
@@ -191,22 +209,6 @@ ex ()
     echo "'$1' is not a valid file"
   fi
 }
-
-############################
-# START OF CUSTOM THINGIES #
-############################
-
-# pywal things
-if [ -z "$DESKTOP_SESSION" ]
-then # on a TTY, do the pywal
-    source ~/.cache/wal/colors-tty.sh
-else # on DE where we shall set them colors
-    (cat ~/.cache/wal/sequences &)
-fi
-
-source $HOME/.bash_aliases
-
-eval "$(thefuck --alias)" # pip install --user thefuck first
 
 ####################
 # VARIOUS COMMANDS #

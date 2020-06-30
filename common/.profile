@@ -12,6 +12,9 @@ export FZF_DEFAULT_OPTS='--color=16'
 
 xset -b # bell begone
 
+# fix sxhkd using fish
+export SXHKD_SHELL='/usr/bin/sh'
+
 # fixing Java GUIs not working on BSPWM
 export _JAVA_AWT_WM_NONREPARENTING=1
 
