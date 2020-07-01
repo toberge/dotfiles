@@ -65,6 +65,8 @@ Plug 'jiangmiao/auto-pairs'
 " both are buggy
 " Plug 'rstacruz/vim-closer'
 " Plug 'tpope/vim-endwise'
+" Align with ga<motion><around what>
+Plug 'junegunn/vim-easy-align'
 Plug 'alvan/vim-closetag'
 " cwd to project root!
 Plug 'airblade/vim-rooter'
@@ -99,12 +101,14 @@ Plug 'dylanaraps/wal.vim'
 "Plug 'chriskempson/base16-vim'
 Plug 'lilydjwg/colorizer'
 Plug 'mhinz/vim-startify' " start page
+Plug 'Yggdroot/indentLine'
 
 " ------ langs ------
-Plug 'dag/vim-fish'
-Plug 'cespare/vim-toml'
+" Plug 'dag/vim-fish'
+" Plug 'cespare/vim-toml'
 Plug 'rust-lang/rust.vim'
 let g:rustfmt_autosave = 1
+Plug 'sheerun/vim-polyglot'
 
 " ------ LaTeX ------
 Plug 'xuhdev/vim-latex-live-preview', { 'for': 'tex' }
@@ -174,6 +178,13 @@ endif
 set number
 set relativenumber
 " set cursorline (gotta customize colorscheme first)
+
+" whitespace - which wal.vim does not highlight...
+" TODO: the NoText highlight does not work?
+hi Whitespace ctermfg=DarkGray
+hi NoText ctermfg=DarkGray
+set list " not space:·
+set listchars=tab:⇥\ -,eol:¬,trail:·,extends:→,precedes:←
 
 " status line
 set showcmd " show what ye're typin'
@@ -268,6 +279,16 @@ inoremap <Right> <NOP>
 " }}} keybinds
 
 " ------ Plugin settings ------
+
+" ------ Various bindings ------{{{
+
+" Start interactive EasyAlign in visual mode (e.g. vipga)
+xmap ga <Plug>(EasyAlign)
+
+" Start interactive EasyAlign for a motion/text object (e.g. gaip)
+nmap ga <Plug>(EasyAlign)
+
+"  }}}
 
 " ------ Counquer[or] of Completion (sic) ------{{{
 
@@ -419,6 +440,7 @@ let g:ycm_filetype_blacklist = {}
 " autocmd BufWritePost *.md :!pandoc % -o /tmp/thing.pdf
 command PDF :!pandoc %:t -o /tmp/thing.pdf
 command TogglePDF autocmd BufWritePost *.md :!pandoc % -o /tmp/thing.pdf
+command OpenPDF :!zathura /tmp/thing.pdf
 
 " }}}
 
