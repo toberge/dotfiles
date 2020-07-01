@@ -37,8 +37,6 @@ alias df='df -h'        # human-readable sizes
 alias free='free -m'    # show sizes in MB
 alias more=less         # less is more - wait, that's the wrong way
 
-alias bat='bat --theme=ansi-dark'   # use term colors...
-
 #######################
 #        TYPOS        #
 #######################
