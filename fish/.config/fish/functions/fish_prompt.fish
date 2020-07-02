@@ -2,6 +2,12 @@
 # - a tiny remix of the "Informative VCS" theme
 function fish_prompt --description 'Write out the prompt'
     set -l last_pipestatus $pipestatus
+    set -l is_tty
+    if [ $TERM = 'linux' ]
+        set is_tty "1"
+    else
+        set is_tty "0"
+    end
 
     if not set -q __fish_git_prompt_show_informative_status
         set -g __fish_git_prompt_show_informative_status 1
@@ -25,8 +31,7 @@ function fish_prompt --description 'Write out the prompt'
         set -g __fish_git_prompt_char_upstream_prefix ""
     end
     if not set -q __fish_git_prompt_char_stagedstate
-        set -g __fish_git_prompt_char_stagedstate "● "
-        # set -g __fish_git_prompt_char_stagedstate "•"
+        set -g __fish_git_prompt_char_stagedstate "● " # or •
     end
     if not set -q __fish_git_prompt_char_dirtystate
         set -g __fish_git_prompt_char_dirtystate "✚ "
@@ -35,10 +40,10 @@ function fish_prompt --description 'Write out the prompt'
         set -g __fish_git_prompt_char_untrackedfiles "…"
     end
     if not set -q __fish_git_prompt_char_invalidstate
-        set -g __fish_git_prompt_char_invalidstate "✖ "
+        set -g __fish_git_prompt_char_invalidstate " " # or 
     end
     if not set -q __fish_git_prompt_char_cleanstate
-        set -g __fish_git_prompt_char_cleanstate "✔ "
+        set -g __fish_git_prompt_char_cleanstate " "
     end
     if not set -q __fish_git_prompt_color_dirtystate
         set -g __fish_git_prompt_color_dirtystate blue
@@ -89,8 +94,12 @@ function fish_prompt --description 'Write out the prompt'
 
     # End of prompt
     echo
-    echo -n "┕━ "
-    set_color blue
-    echo -n "$suffix "
-    set_color normal
+    if [ "$is_tty" -eq 1 ]
+        echo -n "└─ "
+    else
+        echo -n "┕━ "
+        set_color blue
+        echo -n "$suffix "
+        set_color normal
+    end
 end

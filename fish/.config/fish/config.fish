@@ -1,10 +1,11 @@
 # Fish - the fiendishly invocative shell
 
 # Options {{{
-# (nothing here atm)
+set fish_greeting
 # }}}
 
 # Sourcing {{{
 source ~/.config/fish/theme.fish
 source ~/.bash_aliases
+[ "$TERM" = linux ] && bash ~/.cache/wal/colors-tty.sh
 # }}}
