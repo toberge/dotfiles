@@ -36,10 +36,10 @@ include-file = ~/.config/polybar/decoration
 
 [bar/anybar]
 monitor = ${env:MONITOR}
-width = 100%
+width = 1884
 height = 28
-;offset-x = 1%
-;offset-y = 1%
+offset-x = 18
+offset-y = 18
 radius = 0.0
 fixed-center = true
 
@@ -56,11 +56,11 @@ border-color = #00000000
 padding-left = 0
 padding-right = 0
 
-;module-margin-left = 1
-;module-margin-right = 2
+module-margin-left = 0
+module-margin-right = 0
 
-; After ; is y-offset of some sort
-; last font is scaled to fit arrows
+; After ; is y-offset
+; Nerd font is scaled to fit arrows
 font-0 = "Ubuntu:style=Bold:size=13;2"
 font-1 = "Font Awesome 5 Free:style=Regular:size=11;2"
 font-2 = "Font Awesome 5 Free:style=Solid:size=11;2"
@@ -69,9 +69,9 @@ font-4 = "FiraMono Nerd Font:style=Medium:size=15;3"
 
 ;================ module order is down here =================
 
-modules-left = bspwm i3 ---> memory cpu temperature -->
+modules-left = bspwm i3 _ ) __ xwindow __ )
 modules-center = calendar
-modules-right = <-- pulseaudio pomodoro xbacklight battery date <---
+modules-right = ( __ pulseaudio __ pomodoro __ battery __ date __ (
 
 tray-position = right
 tray-padding = 2
@@ -91,6 +91,16 @@ wm-restack = bspwm
 
 cursor-click = pointer
 cursor-scroll = ns-resize
+
+[bar/modular]
+inherit = bar/anybar
+tray-position = none
+modules-center =
+modules-left =
+modules-right =
+radius = 10.0
+offset-x = 4
+offset-y = 4
 
 ;=================== main bar - calendar and tray ====================
 
@@ -112,5 +122,11 @@ modules-center = xwindow
 modules-right = <-- pulseaudio pomodoro xbacklight battery date <--- _ _
 
 tray-position = none
+
+[bar/workspaces]
+inherit = bar/modular
+
+width=20%
+modules-left = bspwm i3wm
 
 ; vim:ft=dosini

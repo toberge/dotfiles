@@ -31,4 +31,16 @@ content-background = ${colors.background-alt}
 type = custom/text
 content = " "
 
+[module/__]
+type = custom/text
+content = "  "
+
+[module/)]
+type = custom/text
+content = ""
+
+[module/(]
+type = custom/text
+content = ""
+
 ; vim:ft=dosini

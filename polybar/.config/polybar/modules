@@ -24,11 +24,7 @@ click-right = i3-gnome-pomodoro start-stop
 ; also output --:-- if status is empty...
 exec = echo " $([[ -z $(i3-gnome-pomodoro status) ]] && echo '--:--' || i3-gnome-pomodoro status --always | awk '{ print $NF }')"
 interval = 1
-
 format = <label>
-format-background = ${colors.background-alt}
-format-padding-left = 1
-label-padding-right = 2
 
 [module/calendar]
 ; credz to Gilles Castel
@@ -41,10 +37,8 @@ label = %output:0:160:...%
 
 [module/xwindow]
 type = internal/xwindow
-label = %title:0:60:...%
-; label-background = ${colors.background-alt}
-label-padding-left = 2
-label-padding-right = 2
+label = %title:0:35:...%
+label-foreground = ${colors.foreground}
 
 [module/xkeyboard]
 type = internal/xkeyboard
@@ -148,10 +142,6 @@ label-occupied = 
 label-occupied-foreground = ${colors.foreground-alt}
 label-occupied-padding = ${self.label-focused-padding}
 
-; dimmed = IDK BUT OH WELL
-label-dimmed = cansyouseethis?
-label-dimmed-padding = ${self.label-focused-padding}
-
 ; urgent = Workspace with urgency hint set
 label-urgent =  
 label-urgent-foreground = ${colors.alert}
@@ -163,6 +153,7 @@ label-empty-foreground = ${colors.foreground-alt}
 label-empty-padding = ${self.label-focused-padding}
 
 [module/mpd]
+; if I ever start using ncmcpp
 type = internal/mpd
 format-online = <label-song>  <icon-prev> <icon-stop> <toggle> <icon-next>
 
@@ -174,15 +165,6 @@ icon-next = 
 
 label-song-maxlen = 25
 label-song-ellipsis = true
-
-[module/player-mpris-simple]
-type = custom/script
-label = %output:0:50:...%
-exec = ~/.config/polybar/scripts/player-mpris-simple.sh
-interval = 3
-click-left = playerctl previous
-click-right = playerctl next
-click-middle = playerctl play-pause
 
 [module/xbacklight]
 type = internal/xbacklight
@@ -271,36 +253,23 @@ time-alt = %H:%M:%S
 
 format-prefix = 
 format-prefix-foreground = ${colors.foreground}
-format-prefix-background = ${self.label-background}
-format-prefix-padding-left = 1
-; format-underline = ${colors.decal4}
 
 label = %date% %time%
-label-padding-right = 2
-label-background = ${colors.background-alt}
 
 [module/pulseaudio]
 type = internal/pulseaudio
 
 format-volume = <ramp-volume> <label-volume>
-;format-volume-underline = ${colors.decal0}
-format-volume-background = ${colors.background-alt}
 
 label-volume = %percentage%%
 label-volume-foreground = ${root.foreground}
-label-volume-padding-right = 2
 
 label-muted =  OFF
-;label-muted-foreground = ${colors.secondary}
-label-muted-background = ${self.format-volume-background}
-label-muted-padding-right = 2
-label-muted-padding-left = 2
-;label-muted-underline = ${colors.secondary}
+label-muted-foreground = ${colors.foreground-alt}
 
 ramp-volume-0 = 
 ramp-volume-1 = 
 ramp-volume-2 = 
-ramp-volume-padding-left = 2
 
 [module/battery]
 type = internal/battery
@@ -309,29 +278,23 @@ adapter = AC
 full-at = 98
 
 time-format = %H:%M
-label-discharging = %percentage%% (%time%)
+; label-discharging = %percentage%% (%time%)
+label-discharging = %time%
 ; only showing time when discharging - not needed at other times.
 
 format-charging = <ramp-capacity> <label-charging>
-format-charging-background = ${colors.background-alt}
-; only label can have padding here...
-label-charging-padding-right = 2
+label-charging-foreground = ${colors.foreground}
 format-discharging = <ramp-capacity> <label-discharging>
-format-discharging-background = ${self.format-charging-background}
-label-discharging-padding-right = ${self.label-charging-padding-right}
+label-discharging-foreground = ${self.label-charging-foreground}
 format-full = <ramp-capacity> <label-full>
-format-full-background = ${self.format-charging-background}
-label-full-padding-right = ${self.label-charging-padding-right}
-; format-full-prefix = " "
-; is necessary
+label-full-foreground = ${self.label-charging-foreground}
 
 ramp-capacity-0 = 
 ramp-capacity-1 = 
 ramp-capacity-2 = 
 ramp-capacity-3 = 
 ramp-capacity-4 = 
-ramp-capacity-padding-left = 1
-ramp-capacity-foreground = ${colors.foreground}
+ramp-capacity-foreground = ${self.label-charging-foreground}
 
 [module/temperature]
 type = internal/temperature
@@ -339,49 +302,15 @@ thermal-zone = 0
 warn-temperature = 60
 
 format = <ramp> <label>
-format-background = ${colors.background-alt}
 format-warn = <ramp> <label-warn>
-format-warn-background = ${self.format-background}
 
 label = %temperature-c%
-label-padding-right = 2
 label-warn = %temperature-c%
 ;label-warn-foreground = ${colors.secondary}
-label-warn-padding-right = ${self.label-padding-right}
 
 ramp-0 = 
 ramp-1 = 
 ramp-2 = 
 ramp-foreground = ${colors.foreground}
-ramp-padding-left = 1
-
-[module/powermenu]
-type = custom/menu
-
-expand-right = true
-
-format-spacing = 1
-
-label-open = 
-label-open-foreground = ${colors.secondary}
-label-close =  cancel
-label-close-foreground = ${colors.secondary}
-label-separator = |
-label-separator-foreground = ${colors.foreground}
-
-menu-0-0 = reboot
-menu-0-0-exec = menu-open-1
-menu-0-1 = power off
-menu-0-1-exec = menu-open-2
-
-menu-1-0 = cancel
-menu-1-0-exec = menu-open-0
-menu-1-1 = reboot
-menu-1-1-exec = sudo reboot
-
-menu-2-0 = power off
-menu-2-0-exec = sudo poweroff
-menu-2-1 = cancel
-menu-2-1-exec = menu-open-0
 
 ; vim:ft=dosini

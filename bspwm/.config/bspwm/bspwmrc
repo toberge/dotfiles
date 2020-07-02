@@ -44,8 +44,8 @@ bspc config top_padding         28 # just enough space for my bar!
 
 # layout settings
 bspc config split_ratio          0.52
-bspc config borderless_monocle   true
-bspc config gapless_monocle      true
+bspc config borderless_monocle   false
+bspc config gapless_monocle      false
 bspc config single_monocle       true
 
 # focus settings
