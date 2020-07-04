@@ -17,7 +17,7 @@
 " ------ Plugins ------{{{
 
 " plug.vim (code from tips page)
-"
+
 if has('nvim')
     if empty(glob('~/.local/share/nvim/site/autoload/plug.vim'))
         silent !curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs
@@ -98,7 +98,7 @@ Plug 'dense-analysis/ale'
 Plug 'psliwka/vim-smoothie' " smud scrolling
 Plug 'machakann/vim-highlightedyank'
 Plug 'dylanaraps/wal.vim'
-"Plug 'chriskempson/base16-vim'
+Plug 'chriskempson/base16-vim'
 Plug 'lilydjwg/colorizer'
 Plug 'mhinz/vim-startify' " start page
 Plug 'Yggdroot/indentLine'
@@ -106,9 +106,14 @@ Plug 'Yggdroot/indentLine'
 " ------ langs ------
 " Plug 'dag/vim-fish'
 " Plug 'cespare/vim-toml'
+" Plug 'Vimjas/vim-python-pep8-indent'
+" Plug 'vim-python/python-syntax'
+" let g:python_highlight_all = 1
 Plug 'rust-lang/rust.vim'
 let g:rustfmt_autosave = 1
+let g:polyglot_disabled = ['rust']
 Plug 'sheerun/vim-polyglot'
+
 
 " ------ LaTeX ------
 Plug 'xuhdev/vim-latex-live-preview', { 'for': 'tex' }
@@ -165,11 +170,15 @@ endif
 " ------ Visual settings ------{{{
 
 syntax on
-colorscheme wal
-" colorscheme base16-ashes
+
+" Load preferred (base16) colorscheme or use term colors
+if filereadable(expand('~/.config/nvim/theme.vim'))
+    source `=expand('~/.config/nvim/theme.vim')`
+else
+    colorscheme wal
+endif
 
 " fixing tmux issue
-" set term=screen-256color
 if !has('nvim')
     set term=rxvt-unicode-256color
 endif
@@ -179,12 +188,15 @@ set number
 set relativenumber
 " set cursorline (gotta customize colorscheme first)
 
-" whitespace - which wal.vim does not highlight...
+" show whitespace - which wal.vim does not highlight...
 " TODO: the NoText highlight does not work?
 hi Whitespace ctermfg=DarkGray
 hi NoText ctermfg=DarkGray
-set list " not space:·
-set listchars=tab:⇥\ -,eol:¬,trail:·,extends:→,precedes:←
+set list
+" tab was ⇥  and I do not set space:·
+" now tab should mimic the indentLine plugin
+" ...removing trail:· too
+set listchars=tab:¦\ ,eol:¬,extends:→,precedes:←
 
 " status line
 set showcmd " show what ye're typin'
@@ -482,12 +494,12 @@ let g:airline#extensions#tabline#show_close_button = 0
 " TODO do I really wanna use tmuxline?
 " why not go for something simpler-looking?
 " statusline content
-let g:tmuxline_preset = {
-      \'a'    : '#S',
-      \'win'  : '#I #W',
-      \'cwin' : '#I #W',
-      \'y'    : '#F',
-      \'z'    : '#H' }
+" let g:tmuxline_preset = {
+"       \'a'    : '#S',
+"       \'win'  : '#I #W',
+"       \'cwin' : '#I #W',
+"       \'y'    : '#F',
+"       \'z'    : '#H' }
 
 " }}}
 
