@@ -89,7 +89,7 @@ def colorize(index, text):
 
 def trunc(text):
     if len(text) > 13:
-        return f'{text[:10]}...'
+        return f'{text[:10]}…'
     return text
 
 def format_time(start, end):
@@ -117,7 +117,9 @@ def format_brief(event, now):
 
 def format_full(event, now):
     """Format upcoming event"""
-    return f'{format_time(now, event["start"])}: {colorize(4,trunc(event["summary"]))} i {trunc(event.get("location", ""))}'
+    if event['location'] is None:
+        return f'{format_time(now, event["start"])}: {colorize(4,trunc(event["summary"]))}'
+    return f'{format_time(now, event["start"])}: {colorize(4,trunc(event["summary"]))} i {trunc(event["location"])}'
 
 def format_events(events: [], now: datetime.datetime):
     """Format current and upcoming event, if any"""
@@ -139,9 +141,7 @@ def format_events(events: [], now: datetime.datetime):
 
 
 def main():
-    """Shows basic usage of the Google Calendar API.
-    Prints the start and name of the next 1 events on the user's calendar.
-    """
+    """Prints name, time until and location of the current and next event in the user's calendar."""
 
     service = autenticate()
 
