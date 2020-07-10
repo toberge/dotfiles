@@ -31,6 +31,10 @@ super + ctrl + d
 super + period
         rofi -show emoji & sfx menu
 
+# kaomoji keyboard, using splatmoji
+super + shift + period
+        splatmoji --disable-emoji-db copy & sfx menu
+
 # make sxhkd reload its configuration files:
 super + Escape
 	pkill -USR1 -x sxhkd & sfx apply
@@ -75,6 +79,10 @@ super + space; g; {h,j,k,l}
 # common apps
 super + space; {w, t, f}
         {firefox, thunderbird, thunar || nautilus} & sfx open
+
+# other common apps
+super + space; {p, z}
+        {zathura, zathura} & sfx open
 
 # tools
 super + space; {c, l}
