@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/usr/bin/env bash
 
 # Play a specific list or all files in the current folder.
 # List format:
@@ -6,15 +6,26 @@
 
 set -eu
 
+mpv="mpv --loop-playlist=inf --shuffle --no-video" 
+
+# With no args, play all music files in current folder
 [ -z "${1:-}" ] && {
     echo "Playing music..."
-    mpv --loop-playlist=inf --shuffle --no-video *.{m4a,mp3,ogg,flac,wav}
+    $mpv ./*.{m4a,mp3,ogg,flac,wav}
+    exit
+}
+
+# If arg is a directory, ignore playlists and play from the dir(s)
+[ -d "$1" ] && {
+    echo "Playing music in $1..."
+    $mpv "$@"
     exit
 }
 
 LIST_FILE=$HOME/.playlists
 [ -f "$LIST_FILE" ] || { echo "No playlist file"; exit 1; }
 
+# Otherwise, search through the playlist file
 IFS=';'
 while read -ra line
 do
@@ -26,7 +37,7 @@ do
         } || echo "Playing some $keyword for ya""$keyword"
         echo "This list has been played $count times before."
         sed -ri "s/^(${keyword};[^;]+)(;.+)$/\1;$((count+1))/" "$LIST_FILE"
-        mpv --loop-playlist=inf --shuffle --no-video "${line[1]}"
+        $mpv "${line[1]}"
         exit
     }
 done < $LIST_FILE
