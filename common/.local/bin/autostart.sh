@@ -33,7 +33,7 @@ numlockx on
 # Caps Lock go bye bye
 xmodmap ~/.Xmodmap
 # and become Escape
-xcape
+pgrep xcape || xcape
 
 # increase speed of spamming
 xset r rate 360 42
@@ -42,7 +42,7 @@ xset r rate 360 42
 xsetroot -cursor_name left_ptr
 
 # xautolock but good (could add --not-when-audio)
-xidlehook --not-when-fullscreen --not-when-audio --timer 600 lockmeup '' &
+pgrep xidlehook || xidlehook --not-when-fullscreen --not-when-audio --timer 600 lockmeup '' &
 
 # remind me to take breaks!
 i3-gnome-pomodoro start
