@@ -5,7 +5,7 @@
     # width, horizontal margin (- from left), vertical margin (+ from above)
     # bar + margin = 27 + 8 = 35, just margin = 8
     # now trying 28 + 10 = 38 -> now 28 + 10 + 4 from bar offset
-    geometry = "480-16+46"
+    geometry = "480-12+56"
 
     # Show multiple notifications in the same box
     separator_height = 4
@@ -18,8 +18,8 @@
     horizontal_padding = 12
 
     # The frame color and width of the notification
-    frame_color = "{color8}"
-    frame_width = 0
+    frame_color = "{color4}"
+    frame_width = 3
 
     # How long a user needs to be idle for sticky notifications
     idle_threshold = 120

@@ -6,7 +6,7 @@
 
 # terminal emulator
 super + Return
-	 alacritty & sfx open
+	alacritty & sfx open
 
 # program launcher with icons
 super + d
@@ -57,7 +57,7 @@ ctrl + Print
 
 # ranger
 super + {_,shift + }e
-        urxvt -e "ranger" & sfx open
+        alacritty -e "ranger" & sfx open
 
 # calculator
 XF86Calculator
