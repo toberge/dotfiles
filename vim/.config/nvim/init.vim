@@ -267,10 +267,13 @@ map Ø ,
 " Go to last open buffer (back-and-forth)
 " - since <c-^> is literally impossible to press
 "   on Scandinavian keyboards
-map <Leader><Leader> <c-^>
+nmap <Leader><Leader> <c-^>
 
 " Quick write (shift+: then releasing shift and pressing w<CR> is HARD)
-map <Leader>w :w<CR>
+nmap <Leader>w :w<CR>
+
+" Quickly turn off search highlighting
+nmap <Leader>h :noh<CR>
 
 " arrow keys are banned {{{
 
