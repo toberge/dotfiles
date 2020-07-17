@@ -3,15 +3,21 @@
 # CALICOMP startup tune
 sfx startup &
 
+picom="picom -b --dbus --config ~/.config/picom/picom.conf"
+
 # monitor layout and device specifics
 case "$HOSTNAME" in
     fuglekassa) # desktop
-        ~/.local/bin/toggletearing.sh
+        # only set this option if it is off
+        nvidia-settings -tq CurrentMetaMode | grep -q ForceFullCompositionPipeline=On \
+            || nvidia-settings --assign CurrentMetaMode="nvidia-auto-select +0+0 { ForceFullCompositionPipeline = On }"
         [[ "$(xrandr --query | grep -c " connected")" -eq 2 ]] \
             && xrandr --output HDMI-0 --auto --right-of DVI-D-0
+        { sleep 8 && xmodmap ~/.Xmodmap; } & # caps lock bug
+        picom="$picom --xrender-sync-fence" # --backend xrender if necessary
         ;;
-    thinkpad)
-        ~/.local/bin/trackpoint.sh
+    thinkpad) # laptop
+        ~/.local/bin/trackpoint.sh &
         [[ "$(xrandr --query | grep -c " connected")" -eq 2 ]] \
             && xrandr --output HDMI2 --auto --above eDP1
         ;;
@@ -24,7 +30,7 @@ wal -R
 ~/.fehbg &
 
 # bar and compositor
-picom -b --dbus --config ~/.config/picom/picom.conf
+$picom
 [[ ! "$DESKTOP_SESSION" =~ ^(spectr|ct)wm$ ]] \
     && ~/.config/polybar/launch.sh &
 
@@ -48,8 +54,9 @@ pgrep xidlehook || xidlehook --not-when-fullscreen --not-when-audio --timer 600 
 i3-gnome-pomodoro start
 
 # for all laptops, do battery and touchpad stuff
-[ -d /sys/class/power_supply/BAT* ] && {
-    ~/.local/bin/touchpad.sh
+# (alternative: check if /sys/class/dmi/id/chassis_type is 9 or 10)
+[[  -d /sys/module/battery ]] && {
+    ~/.local/bin/touchpad.sh &
     xfce4-power-manager
     ~/.local/bin/battery-warning.sh &
 }
