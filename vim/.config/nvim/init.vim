@@ -97,7 +97,11 @@ Plug 'dense-analysis/ale'
 " ------ cosmetics ------
 Plug 'psliwka/vim-smoothie' " smud scrolling
 Plug 'machakann/vim-highlightedyank'
-Plug 'dylanaraps/wal.vim'
+if filereadable(expand('~/git/wal.vim/colors/wal.vim'))
+    Plug '~/git/wal.vim' " Use custom wal.vim tweaks
+else " Use dylan's version :(
+    Plug 'dylanaraps/wal.vim'
+endif
 Plug 'chriskempson/base16-vim'
 Plug 'lilydjwg/colorizer'
 Plug 'mhinz/vim-startify' " start page
@@ -267,13 +271,17 @@ map Ø ,
 " Go to last open buffer (back-and-forth)
 " - since <c-^> is literally impossible to press
 "   on Scandinavian keyboards
-nmap <Leader><Leader> <c-^>
+nnoremap <Leader><Leader> <c-^>
 
 " Quick write (shift+: then releasing shift and pressing w<CR> is HARD)
-nmap <Leader>w :w<CR>
+nnoremap <Leader>w :w<CR>
 
 " Quickly turn off search highlighting
-nmap <Leader>h :noh<CR>
+nnoremap <Leader>h :noh<CR>
+
+" Open/close folds about as fast as in orgmode
+nnoremap <TAB> za
+nnoremap <S-TAB> zA
 
 " arrow keys are banned {{{
 
