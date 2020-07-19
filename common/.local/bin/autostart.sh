@@ -3,7 +3,7 @@
 # CALICOMP startup tune
 sfx startup &
 
-picom="picom -b --dbus --config ~/.config/picom/picom.conf"
+picom="picom --daemon --dbus"
 
 # monitor layout and device specifics
 case "$HOSTNAME" in
@@ -30,7 +30,7 @@ wal -R
 ~/.fehbg &
 
 # bar and compositor
-$picom
+$picom --config ~/.config/picom/picom.conf
 [[ ! "$DESKTOP_SESSION" =~ ^(spectr|ct)wm$ ]] \
     && ~/.config/polybar/launch.sh &
 
