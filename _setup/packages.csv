@@ -42,7 +42,6 @@ PAC,polybar,a nice & configurable bar
 PAC,feh,for displaying images and setting wallpaper
 PAC,sxiv,it's better than feh...
 PAC,python-pywal,for generating and handling color schemes
-AUR,betterlockscreen,as lockscreen
 PAC,xfce4-power-manager,for handling screen dim & stuff
 PAC,lxappearance,for switching GTK and icon themes
 PAC,arandr,for changing monitor layout
@@ -58,6 +57,7 @@ PIP,google-api-python-client,for calendar script
 PIP,google-auth-httplib2,for calendar script
 PIP,google-auth-oauthlib,for calendar script
 PAC,python-dateutil,for calendar script
+GIT,pidswallow,window swallowing in BSPWM
 ###,#############,###
 ###,    FONTS    ,###
 ###,#############,###
@@ -101,6 +101,7 @@ PAC,tumbler,thumbnails in thunar
 PAC,nodejs,Node JS y'know
 PAC,npm,package manager for Node
 PAC,ruby,ahem it's a dependency for some things
+NPM,how-2,search stackoverflow for answers
 #AUR,intellij-idea-ultimate-edition,IntelliJ
 #AUR,intellij-idea-ultimate-edition-jre,custom JRE for IntelliJ
 ###,#############,###

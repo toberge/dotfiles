@@ -17,4 +17,3 @@ export SXHKD_SHELL='/usr/bin/sh'
 
 # fixing Java GUIs not working on BSPWM
 export _JAVA_AWT_WM_NONREPARENTING=1
-

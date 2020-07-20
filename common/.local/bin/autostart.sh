@@ -13,7 +13,6 @@ case "$HOSTNAME" in
             || nvidia-settings --assign CurrentMetaMode="nvidia-auto-select +0+0 { ForceFullCompositionPipeline = On }"
         [[ "$(xrandr --query | grep -c " connected")" -eq 2 ]] \
             && xrandr --output HDMI-0 --auto --right-of DVI-D-0
-        { sleep 8 && xmodmap ~/.Xmodmap; } & # caps lock bug
         picom="$picom --xrender-sync-fence" # --backend xrender if necessary
         ;;
     thinkpad) # laptop

@@ -110,14 +110,11 @@ bspc rule -a Emacs state=tiled
 
 #
 # start stuff
-# (borked stuff)
+# (bspwm specifics)
 #
 
-# ahem, why do I need this?
-# pulseaudio-ctl mute
-# ok here's a better one
-pactl set-sink-mute 0 0
+# bspwm starts with audio muted for some reason (on desktop only)
+[[ "$HOSTNAME" == "fuglekassa" ]] && pactl set-sink-mute 0 0
 
-# let's try putting it here
-xmodmap ~/.Xmodmap
-
+# swaaaaallow (clone repo manually, symlink to .local/bin)
+command -v pidswallow && pidswallow --loop &
