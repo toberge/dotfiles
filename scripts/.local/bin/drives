@@ -1,0 +1,19 @@
+#!/bin/bash
+#
+# sorta system-specific disk space listing
+
+set -euo pipefail
+
+printf "\n  \033[33m┌───────────┬──────────────┐\033[0m\n"
+for drive in / ~ /mnt/* "/run/media/$USER"/*
+do
+    [[ ! -d "$drive" ]] && continue
+    printf "  \033[33m│\033[0m \033[32;1m "
+    df "$drive" --output=target | sed -n 2p \
+        | sed -E 's|^(/[^/]+)+/|/|' | xargs printf "%-8.6s"
+    printf "\033[33m│\033[0m "
+    df "$drive" --human-readable --output=used,size \
+        | sed -n "2p" | sed "s|\w  | of |" | tr -d '\n'
+    printf " \033[33m│\033[0m\n"
+done
+printf "  \033[33m└───────────┴──────────────┘\033[0m\n\n"
