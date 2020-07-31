@@ -170,15 +170,22 @@ def main():
         sys.exit(1)
 
 def wait_for_internet():
-    while True:
-        conn = http.client.HTTPConnection('google.com', timeout=2)
+    """Polls for internet connection every second
+    - continuous polling led to significant CPU usage while offline.
+    """
+    for _ in range(300):
+        conn = http.client.HTTPConnection('google.com', timeout=4)
         try:
             conn.request('HEAD', '/')
             conn.close()
             return True
         except:
             conn.close()
+            time.sleep(1)
             continue
+    else:
+        print('Ingen tilkobling')
+        sys.exit(1)
 
 if __name__ == '__main__':
     if len(sys.argv) > 1 and sys.argv[1] == '--polybar':
