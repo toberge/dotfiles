@@ -47,6 +47,9 @@ Plug 'tpope/vim-commentary'
 Plug 'christoomey/vim-system-copy'
 " use gs to sort
 Plug 'christoomey/vim-sort-motion'
+" use alt-hjkl in insert/normal/visual mode
+" to move line/selection in a direction
+Plug 'matze/vim-move'
 
 " ------ text objects ------
 " (s)urrounding (object/motion/command)
@@ -72,15 +75,21 @@ Plug 'alvan/vim-closetag'
 Plug 'airblade/vim-rooter'
 " TODO: configure this madness
 Plug 'SirVer/ultisnips'
+Plug 'honza/vim-snippets'
 Plug 'justinmk/vim-sneak'
 " mapped to s and S, less absurd than easymotion
 
-let g:UltiSnipsExpandTrigger="<c-tab>"
-let g:UltiSnipsJumpForwardTrigger="<c-b>"
-let g:UltiSnipsJumpBackwardTrigger="<c-z>"
+" in this way it does not conflict with CoC
+" (coc's snippets function messes with ultisnip code)
+let g:UltiSnipsExpandTrigger="<c-j>"
+let g:UltiSnipsJumpForwardTrigger="<c-j>"
+let g:UltiSnipsJumpBackwardTrigger="<c-k>"
 
+" Let vim be affected by .editorconfig files
 Plug 'editorconfig/editorconfig-vim'
 
+" Better, more reliable folding
+Plug 'konfekt/fastfold'
 
 " ------ file finding ------
 Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
@@ -88,7 +97,6 @@ Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 
 " ------ code completion ------
-" Plug 'ycm-core/YouCompleteMe', { 'do': './install.py' }
 Plug 'neoclide/coc.nvim', { 'branch': 'release' }
 
 " ------ linting ------
@@ -103,9 +111,15 @@ else " Use dylan's version :(
     Plug 'dylanaraps/wal.vim'
 endif
 Plug 'chriskempson/base16-vim'
-Plug 'lilydjwg/colorizer'
+Plug 'lilydjwg/colorizer' " hex colors
+let g:startify_files_number = 8 " not loadeeeeed
 Plug 'mhinz/vim-startify' " start page
 Plug 'Yggdroot/indentLine'
+Plug 'ryanoasis/vim-devicons'
+
+" ------ distraction-free writing ------
+Plug 'junegunn/goyo.vim'
+Plug 'junegunn/limelight.vim'
 
 " ------ langs ------
 " Plug 'dag/vim-fish'
@@ -115,12 +129,14 @@ Plug 'Yggdroot/indentLine'
 " let g:python_highlight_all = 1
 Plug 'rust-lang/rust.vim'
 let g:rustfmt_autosave = 1
-let g:polyglot_disabled = ['rust']
+let g:polyglot_disabled = ['rust', 'markdown', 'pandoc', 'latex']
 Plug 'sheerun/vim-polyglot'
+Plug 'alx741/vim-hindent' " only a supplement to polyglot's default
 
 
 " ------ LaTeX ------
 Plug 'xuhdev/vim-latex-live-preview', { 'for': 'tex' }
+Plug 'lervag/vimtex'
 " vimtex?
 
 " ------ Markdown ------
@@ -175,6 +191,9 @@ endif
 
 syntax on
 
+" NB: this is overridden by indentLine
+set concealcursor=
+
 " Load preferred (base16) colorscheme or use term colors
 if filereadable(expand('~/.config/nvim/theme.vim'))
     source `=expand('~/.config/nvim/theme.vim')`
@@ -190,7 +209,14 @@ endif
 " position visuals
 set number
 set relativenumber
-" set cursorline (gotta customize colorscheme first)
+set cursorline " (with custom colorscheme it looks ok)
+
+" autoswitch relativenumber
+augroup numbertoggle
+    autocmd!
+    autocmd BufEnter,FocusGained,InsertLeave * set number relativenumber
+    autocmd BufLeave,FocusLost,InsertEnter * set norelativenumber 
+augroup END
 
 " show whitespace - which wal.vim does not highlight...
 " TODO: the NoText highlight does not work?
@@ -268,6 +294,10 @@ map ø ;
 map Ø ,
 " (since ; is in that spot on US layouts...)
 
+" Insert blanks
+nmap <CR> o<Esc>k
+nmap <S-Enter> O<Esc>j
+
 " Go to last open buffer (back-and-forth)
 " - since <c-^> is literally impossible to press
 "   on Scandinavian keyboards
@@ -315,6 +345,20 @@ nmap ga <Plug>(EasyAlign)
 
 " ------ Counquer[or] of Completion (sic) ------{{{
 
+" Preferred extensions (can be overridden)
+" C/C++ and Haskell setups are configured in coc-config.json
+let g:coc_global_extensions = [
+    \ 'coc-snippets',
+    \ 'coc-sh',
+    \ 'coc-python',
+    \ 'coc-rust-analyzer',
+    \ 'coc-tsserver',
+    \ 'coc-html',
+    \ 'coc-css',
+    \ 'coc-json',
+    \ 'coc-vimtex',
+    \ ]
+
 " Recommended defaults that idk about
 " see https://github.com/neoclide/coc.nvim#example-vim-configuration
 set hidden
@@ -345,6 +389,9 @@ function! s:check_back_space() abort
   let col = col('.') - 1
   return !col || getline('.')[col - 1]  =~# '\s'
 endfunction
+
+" use it for snippets too?
+let g:coc_snippet_next = '<tab>'
 
 " Use <c-space> to trigger completion.
 inoremap <silent><expr> <c-space> coc#refresh()
@@ -425,6 +472,8 @@ omap ac <Plug>(coc-classobj-a)
 
 " Add `:Format` command to format current buffer.
 command! -nargs=0 Format :call CocAction('format')
+" Bind it!
+nnoremap <Leader>F :call CocAction('format')<CR>
 
 " Add `:Fold` command to fold current buffer.
 command! -nargs=? Fold :call     CocAction('fold', <f-args>)
@@ -435,6 +484,45 @@ command! -nargs=0 OR   :call     CocAction('runCommand', 'editor.action.organize
 " (see that section of the readme for more...)
 
 "  }}}
+
+"  }}}
+
+" ------ Startify ------{{{
+
+let g:mood_ascii = [
+    \ '     ___  ________  ___________  ',
+    \ '     |  \/  |  _  ||  _  |  _  \ ',
+    \ '     | .  . | | | || | | | | | | ',
+    \ '     | |\/| | | | || | | | | | | ',
+    \ '     | |  | \ \_/ /\ \_/ / |/ /  ',
+    \ '     \_|  |_/\___/  \___/|___/   ',
+    \ ]
+
+" Pretty sure none of startify's mappings are covered by this
+" ...and i cannot use æøå since that messes with indent
+let g:startify_custom_indices = ['f', 'd', 'g', 'h', 'a', 'l', 'w', 'o',
+                              \  'o', 'p', 'u', 'r', 'c', 'n', 'x', 'm',
+                              \  'D', 'A', 'F', 'T', 'E', 'L', 'K']
+
+
+let g:startify_custom_header = startify#pad(g:mood_ascii)
+" let g:startify_custom_header = startify#pad(split(system('fortune startify | figlet -f doom'), '\n'))
+
+let g:startify_custom_footer = startify#pad(split(system('fortune quotes'), '\n'))
+
+augroup startifyfixes
+    autocmd!
+    autocmd User Startified setlocal cursorline
+    autocmd User StartifyReady :IndentLinesDisable
+    autocmd User StartifyBufferOpened :IndentLinesEnable
+augroup END
+
+let g:startify_lists = [
+    \ { 'header': ['   🟉🟊🟉 Recent 🟉🟊🟉'],                    'type': 'files' },
+    \ { 'header': ['   🟉🟊🟉 Recent in '. getcwd() . ' 🟉🟊🟉'], 'type': 'dir' },
+    \ { 'header': ['   🟉🟊🟉 Sessions 🟉🟊🟉'],                  'type': 'sessions' },
+    \ ]
+
 
 "  }}}
 
@@ -451,13 +539,7 @@ let g:livepreview_previewer = 'zathura'
 
 " damn spellcheck...
 let g:pandoc#modules#disabled = ["spell"]
-
-" vim-pandoc YCM
-if !exists('g:ycm_semantic_triggers')
-    let g:ycm_semantic_triggers = {}
-endif
-let g:ycm_semantic_triggers.pandoc = ['@']
-let g:ycm_filetype_blacklist = {}
+let g:pandoc#folding#fastfolds = 1
 
 " TODO: handle this in after/ftplugin or with a toggle command?
 " autocmd BufWritePost *.md :!pandoc % -o /tmp/thing.pdf
@@ -475,10 +557,42 @@ au FileType markdown,latex let b:AutoPairs = AutoPairsDefine({
 \}, [])
 
 " examples in README
+au FileType vim let b:AutoPairs = AutoPairsDefine({'\^"': ''}, ['"']) " This does not fix everything though!
 au FileType html let b:AutoPairs = AutoPairsDefine({'<!--' : '-->'}, [])
 au FileType rust let b:AutoPairs = AutoPairsDefine({'\w\zs<': '>'})
 
 " }}}
+
+" ------ goyo ------{{{
+
+nnoremap <Leader>gg :Goyo<CR>
+
+let g:pandoc#folding#fdc = 0
+
+function! s:goyo_enter()
+    Limelight
+    set nocursorline " (limelight is enough)
+    " Disable linenumber toggle group
+    " (for entire session, actually)
+    autocmd! numbertoggle
+    set nonumber norelativenumber
+    " see https://github.com/junegunn/goyo.vim/issues/198
+    set eventignore=FocusGained
+    let g:pandoc#folding#fdc = 0
+endfunction
+
+function! s:goyo_leave()
+    Limelight!
+    set cursorline
+    set number relativenumber
+    set eventignore=
+    let g:pandoc#folding#fdc = 1
+endfunction
+
+autocmd! User GoyoEnter nested call <SID>goyo_enter()
+autocmd! User GoyoLeave nested call <SID>goyo_leave()
+
+"  }}}
 
 " ------ airline ------{{{
 
@@ -494,9 +608,11 @@ let g:airline_left_alt_sep = ''
 " tabline ON
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#formatter = 'unique_tail_improved'
-let airline#extensions#tabline#show_buffers = 1 " ambivalent towards this
 let g:airline#extensions#tabline#show_close_button = 0
 
+" But only show bufferline when necessary!
+let airline#extensions#tabline#show_buffers = 1
+let g:airline#extensions#tabline#buffer_min_count = 2
 
 " }}}
 
@@ -533,6 +649,7 @@ let NERDTreeIgnore = ['^node_modules$', '^__pycache__$']
 
 " use term colors!
 let $FZF_DEFAULT_OPTS = '--color=16'
+let $FZF_DEFAULT_COMMAND = 'fd --type f --hidden --follow -E node_modules -E .git -E out -E target'
 
 " Set bindings based on git/not-git
 silent !git rev-parse --is-inside-work-tree &>/dev/null
