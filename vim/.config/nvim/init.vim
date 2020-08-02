@@ -129,7 +129,8 @@ Plug 'junegunn/limelight.vim'
 " let g:python_highlight_all = 1
 Plug 'rust-lang/rust.vim'
 let g:rustfmt_autosave = 1
-let g:polyglot_disabled = ['rust', 'markdown', 'pandoc', 'latex']
+let g:polyglot_disabled = ['rust', 'markdown', 'pandoc', 'tex',
+                        \  'plaintex', 'tex', 'plaintex', 'latex']
 Plug 'sheerun/vim-polyglot'
 Plug 'alx741/vim-hindent' " only a supplement to polyglot's default
 
@@ -294,6 +295,9 @@ map ø ;
 map Ø ,
 " (since ; is in that spot on US layouts...)
 
+" Fix a pesky inconsistency (C is c$, D is d$)
+nmap Y y$
+
 " Insert blanks
 nmap <CR> o<Esc>k
 nmap <S-Enter> O<Esc>j
@@ -312,6 +316,14 @@ nnoremap <Leader>h :noh<CR>
 " Open/close folds about as fast as in orgmode
 nnoremap <TAB> za
 nnoremap <S-TAB> zA
+
+" Handle annoying typos
+nnoremap :Q :q
+nnoremap :Q! :q!
+nnoremap :wQ :wq
+nnoremap :Wq :wq
+nnoremap :WQ :wq
+nnoremap :W :w
 
 " arrow keys are banned {{{
 
