@@ -53,3 +53,7 @@ colors:
     magenta: '{color13}'
     cyan:    '{color14}'
     white:   '{color15}'
+
+  indexed_colors:
+    # this becomes foreground color in airline
+    - {{  index: 232, color: '{background}' }} 
