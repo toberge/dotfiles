@@ -30,11 +30,15 @@ alias vv="vim $HOME/.config/nvim/init.vim"
 #   CMD ADJUSTMENTS   #
 #######################
 
-# typical stuff (from manjaro):
+# typical stuff:
 alias cp='cp -i'        # confirm before overwriting something
 alias df='df -h'        # human-readable sizes
+alias du='du -h'        # human-readable sizes
 alias free='free -m'    # show sizes in MB
 alias more=less         # less is more - wait, that's the wrong way
+
+# color=auto does not work
+alias diff='diff --color=always'
 
 #######################
 #        TYPOS        #
@@ -49,7 +53,7 @@ alias bpsc='bspc'
 alias q='exit'          # who wants to write exit all the time
 alias c='clear'
 alias f='fuck'          # less swearing in my history
-alias ':q'='echo "you aint using vim now"; sfx alert & sleep 1; exit'
+alias ':q'='echo "you aint using vim now"; sfx alert; wait; exit'
 alias vim='nvim'
 alias vi='nvim'
 alias v='nvim'
