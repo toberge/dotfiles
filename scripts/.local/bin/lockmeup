@@ -20,7 +20,8 @@ i3lock \
     --indicator \
     --blur=9 \
     --color="${color0#\#}" \
-    --greetertext="$(fortune lock || echo This screen is locked, I think)" \
+    --greetertext="$(fortune 80% quotes 20% locked \
+                     || echo This screen is locked, I think)" \
     --veriftext="Lemme see..." \
     --wrongtext="$(fortune wrong || echo NOPE)" \
     --noinputtext="<no input>" \
