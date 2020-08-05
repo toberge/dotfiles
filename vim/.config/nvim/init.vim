@@ -39,7 +39,7 @@ else
     call plug#begin('~/.vim/plugged')
 endif
 
-" ------ commands ------
+" ------ Commands ------
 Plug 'tpope/vim-repeat'
 " use gc to comment/uncomment
 Plug 'tpope/vim-commentary'
@@ -51,7 +51,7 @@ Plug 'christoomey/vim-sort-motion'
 " to move line/selection in a direction
 Plug 'matze/vim-move'
 
-" ------ text objects ------
+" ------ Text objects ------
 " (s)urrounding (object/motion/command)
 Plug 'tpope/vim-surround'
 " consider Plug 'kana/vim-textobj-custom'
@@ -60,7 +60,7 @@ Plug 'michaeljsmith/vim-indent-object'
 " - ai for line above, aI for above+below
 " - ii for just indent
 
-" ------ smart stuff ------
+" ------ Smart stuff ------
 " Annoying auto-pairing - TODO replace..
 " remember (<M-e> to expand to end of line
 Plug 'jiangmiao/auto-pairs'
@@ -91,18 +91,18 @@ Plug 'editorconfig/editorconfig-vim'
 " Better, more reliable folding
 Plug 'konfekt/fastfold'
 
-" ------ file finding ------
+" ------ File finding ------
 Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 
-" ------ code completion ------
+" ------ Code completion ------
 Plug 'neoclide/coc.nvim', { 'branch': 'release' }
 
-" ------ linting ------
+" ------ Linting ------
 Plug 'dense-analysis/ale'
 
-" ------ cosmetics ------
+" ------ Cosmetics ------
 Plug 'psliwka/vim-smoothie' " smud scrolling
 Plug 'machakann/vim-highlightedyank'
 if filereadable(expand('~/git/wal.vim/colors/wal.vim'))
@@ -117,11 +117,11 @@ Plug 'mhinz/vim-startify' " start page
 Plug 'Yggdroot/indentLine'
 Plug 'ryanoasis/vim-devicons'
 
-" ------ distraction-free writing ------
+" ------ Distraction-free writing ------
 Plug 'junegunn/goyo.vim'
 Plug 'junegunn/limelight.vim'
 
-" ------ langs ------
+" ------ Languages ------
 " Plug 'dag/vim-fish'
 " Plug 'cespare/vim-toml'
 " Plug 'Vimjas/vim-python-pep8-indent'
@@ -133,7 +133,7 @@ let g:polyglot_disabled = ['rust', 'markdown', 'pandoc', 'tex',
                         \  'plaintex', 'tex', 'plaintex', 'latex']
 Plug 'sheerun/vim-polyglot'
 Plug 'alx741/vim-hindent' " only a supplement to polyglot's default
-
+let g:hindent_on_save = 0 " (disable since it puts you at start of file)
 
 " ------ LaTeX ------
 Plug 'xuhdev/vim-latex-live-preview', { 'for': 'tex' }
@@ -143,6 +143,9 @@ Plug 'lervag/vimtex'
 " ------ Markdown ------
 Plug 'vim-pandoc/vim-pandoc'
 Plug 'vim-pandoc/vim-pandoc-syntax'
+
+" ------ Miscellaneous ------
+Plug 'aurieh/discord.nvim', { 'do': ':UpdateRemotePlugins'}
 
 call plug#end()
 
@@ -516,7 +519,6 @@ let g:startify_custom_indices = ['f', 'd', 'g', 'h', 'a', 'l', 'w', 'o',
                               \  'o', 'p', 'u', 'r', 'c', 'n', 'x', 'm',
                               \  'D', 'A', 'F', 'T', 'E', 'L', 'K']
 
-
 let g:startify_custom_header = startify#pad(g:mood_ascii)
 " let g:startify_custom_header = startify#pad(split(system('fortune startify | figlet -f doom'), '\n'))
 
@@ -524,8 +526,8 @@ let g:startify_custom_footer = startify#pad(split(system('fortune quotes'), '\n'
 
 augroup startifyfixes
     autocmd!
-    autocmd User Startified setlocal cursorline
-    autocmd User StartifyReady :IndentLinesDisable
+    autocmd User Startified           setlocal cursorline
+    autocmd User StartifyReady        :IndentLinesDisable
     autocmd User StartifyBufferOpened :IndentLinesEnable
 augroup END
 
@@ -535,6 +537,12 @@ let g:startify_lists = [
     \ { 'header': ['   🟉🟊🟉 Sessions 🟉🟊🟉'],                  'type': 'sessions' },
     \ ]
 
+" Save session on exit (if this is a session)
+let g:startify_session_persistence = 1
+
+" Bindings for session saving/listing
+nnoremap <leader>ls :SSave<CR>
+nnoremap <leader>ll :SClose<CR>
 
 "  }}}
 
