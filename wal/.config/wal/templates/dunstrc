@@ -8,7 +8,7 @@
     geometry = "480-12+56"
 
     # Show multiple notifications in the same box
-    separator_height = 4
+    separator_height = 3
     separator_color = "{color7}"
 
     # Add vertical padding to the inside of the notification
@@ -18,7 +18,7 @@
     horizontal_padding = 12
 
     # The frame color and width of the notification
-    frame_color = "{color4}"
+    frame_color = "{color7}"
     frame_width = 3
 
     # How long a user needs to be idle for sticky notifications
@@ -58,16 +58,16 @@
 
 # Coloring notifications based on urgency
 [urgency_low]
-    background = "{color8}"
-    foreground = "{color15}"
+    background = "{color0}"
+    foreground = "{foreground}"
 
 [urgency_normal]
-    background = "{color0}"
-    foreground = "{color15}"
+    background = "{background}"
+    foreground = "{foreground}"
 
 [urgency_critical]
     background = "{color9}"
-    foreground = "{color0}"
+    foreground = "{background}"
     timeout = 0
 
 # Application specifics
