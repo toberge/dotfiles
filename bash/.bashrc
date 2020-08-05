@@ -127,12 +127,12 @@ generate_custom_ps1() {
 
 # Change the window title of X terminals
 case ${TERM} in
-	xterm*|rxvt*|Eterm*|aterm|kterm|gnome*|interix|konsole*|alacritty*)
-		PROMPT_COMMAND='echo -ne "\033]0;${USER}@${HOSTNAME%%.*}:${PWD/#$HOME/\~}\007"'
-		;;
-	screen*)
-		PROMPT_COMMAND='echo -ne "\033_${USER}@${HOSTNAME%%.*}:${PWD/#$HOME/\~}\033\\"'
-		;;
+    xterm*|rxvt*|Eterm*|aterm|kterm|gnome*|interix|konsole*|alacritty*)
+        PROMPT_COMMAND='echo -ne "\033]0;${USER}@${HOSTNAME%%.*}:${PWD/#$HOME/\~}\007"'
+        ;;
+    screen*)
+        PROMPT_COMMAND='echo -ne "\033_${USER}@${HOSTNAME%%.*}:${PWD/#$HOME/\~}\033\\"'
+        ;;
 esac
 
 use_color=true
@@ -275,24 +275,6 @@ gpa() {
 ###################
 # CONFIG COMMANDS #
 ###################
-
-# external ip: probably curl ifconfig.me
-localip() {
-    ip addr show | grep 'inet .* global' | awk '{print $2}' | cut -d '/' -f 1
-}
-
-whatsmyip() {
-    curl icanhazip.com
-}
-
-# Setting default web browser and so on
-unscrew_defaults() {
-    xdg-settings set default-web-browser firefox.desktop
-}
-
-wacom() {
-    xsetwacom set "Wacom Bamboo 16FG 6x8 Pen stylus" MapToOutput 1920x1080+1920+0
-}
 
 # forcing redshift using default value
 shiftred() {

@@ -83,6 +83,13 @@ alias yi='yay -S'
 
 alias serve='python -m http.server'
 
+# escaped $2 won't get expanded - and it is awk syntax..
+# shellcheck disable=SC2142
+alias localip="ip addr show | grep 'inet .* global' | awk '{print \$2}' | cut -d '/' -f 1"
+alias whatsmyip='curl icanhazip.com'
+alias unscrew_defaults='xdg-settings set default-web-browser firefox.desktop'
+alias wacom='xsetwacom set "Wacom Bamboo 16FG 6x8 Pen stylus" MapToOutput 1920x1080+1920+0'
+
 #######################
 #    GIT SHORTCUTS    #
 #######################
