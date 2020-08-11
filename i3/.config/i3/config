@@ -19,9 +19,6 @@ set $shutter canberra-gtk-play -f $HOME/.sounds/shutter.wav
 
 set $volumestep 5
 
-#exec_always --no-startup-id wal -i $pywal
-exec_always --no-startup-id wal -R
-
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} blok below.
 font pango: Ubuntu Regular 11
@@ -65,8 +62,7 @@ focus_follows_mouse no # point of contention...
 floating_modifier $mod
 
 # start a terminal
-#bindsym $mod+Return exec gnome-terminal && wal -i $pywal # hacky solution...
-bindsym $mod+Return exec urxvt, exec $open
+bindsym $mod+Return exec alacritty, exec $open
 
 # kill focused window
 bindsym $mod+Shift+q kill, exec $close
@@ -167,15 +163,15 @@ bindsym XF86AudioNext exec playerctl next
 bindsym XF86AudioPrev exec playerctl previous
 
 
-# screenshot (requires scrot...)
+# screenshot (requires scrot&maim...)
 # copy-paste from this thread:
 # https://www.reddit.com/r/i3wm/comments/8yx7ju/i3_screenshot_application/
 # Desktop screenshot
-bindsym --release Print exec "scrot ~/Pictures/screens/$(date --iso-8601='seconds').png -m -e 'xclip -selection c -t image/png < $f'"; exec notify-send "scrot-ed entire screen", exec $apply
+bindsym --release Print exec screenshot full, exec $apply
 # Choose window
-bindsym --release Mod1+Sys_Req exec notify-send "select window"; exec "import -window `xwininfo | awk '/.*Window id:.*/ {print $4}'` ~/Pictures/screens/$(date --iso-8601='seconds').png", exec $apply
+bindsym --release Mod1+Sys_Req exec screenshot window, exec $apply
 # Selection screenshot
-bindsym --release Shift+Print exec notify-send "select area"; exec "scrot ~/Pictures/screens/$(date --iso-8601='seconds').png -s -e 'xclip -selection c -t image/png < $f'", exec $apply
+bindsym --release Shift+Print exec screenshot region, exec $apply
 
 # workspace-based startup shortcuts
 bindsym $mod+F1 exec $open; exec thunderbird
@@ -478,45 +474,5 @@ bindsym $mod+Shift+x exec lockmeup, exec $shutter
 # AUTOSTART SECTION #
 #####################
 
-exec --no-startup-id mpv $HOME/.sounds/startup.wav &
-
-# Compositor
-# remember -b to make compton run as bg process
-exec --no-startup-id picom -b --dbus --config ~/.config/picom/picom.conf
-
-# stop that tearing
-# create layout script with arandr or by hand, put there
-exec --no-startup-id ~/.local/bin/toggletearing.sh; ~/.screenlayout/default.sh
-
-# Polybar
-exec --no-startup-id ~/.config/polybar/launch.sh
-# exec --no-startup-id killall polybar; polybar -r sunset
-
-# system-specific twingles
-exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 & eval $(gnome-keyring-daemon -s --components=pkcs11,secrets,ssh,gpg) & # auth error
-
-# Dynamic touchpad settings script
-exec_always --no-startup-id ~/.local/bin/touchpad.sh
-
-# NUMLOCK ON LOGIN
-exec_always --no-startup-id numlockx on
-
-####################
-# various services
-exec --no-startup-id redshift-gtk # you got a config file now
-exec_always --no-startup-id dunst # colors adjusted thru pywal template
-
-exec --no-startup-id dropbox
-exec --no-startup-id pamac-tray # update notifier
-exec --no-startup-id nm-applet # install network-manager-applet
-
-# TODO investigate how to prevent xautolock from locking while playing video
-#exec --no-startup-id xautolock -time 12 -locker blurlock # time in mins
-
-# whenever you kill the gnome here...
-exec --no-startup-id /usr/bin/xfce-power-manager # for power management
-#exec --no-startup-id libinput-gestures-setup start # possible thing 4 touchpad gestures
-
-# To know what has changed in the home folder:
-# find ~/ -mmin -5 -type f
-
+# everything in one script
+exec --no-startup-id autostart.sh
