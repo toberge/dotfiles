@@ -122,14 +122,13 @@ Plug 'junegunn/goyo.vim'
 Plug 'junegunn/limelight.vim'
 
 " ------ Languages ------
-" Plug 'dag/vim-fish'
-" Plug 'cespare/vim-toml'
+Plug 'daveyarwood/vim-alda'
 " Plug 'Vimjas/vim-python-pep8-indent'
 " Plug 'vim-python/python-syntax'
 " let g:python_highlight_all = 1
 Plug 'rust-lang/rust.vim'
 let g:rustfmt_autosave = 1
-let g:polyglot_disabled = ['rust', 'markdown', 'pandoc', 'tex',
+let g:polyglot_disabled = ['rust', 'markdown', 'pandoc', 'mma',
                         \  'plaintex', 'tex', 'plaintex', 'latex']
 Plug 'sheerun/vim-polyglot'
 Plug 'alx741/vim-hindent' " only a supplement to polyglot's default
@@ -138,7 +137,6 @@ let g:hindent_on_save = 0 " (disable since it puts you at start of file)
 " ------ LaTeX ------
 Plug 'xuhdev/vim-latex-live-preview', { 'for': 'tex' }
 Plug 'lervag/vimtex'
-" vimtex?
 
 " ------ Markdown ------
 Plug 'vim-pandoc/vim-pandoc'
