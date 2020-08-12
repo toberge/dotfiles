@@ -2,13 +2,6 @@
 #
 # Simple, stupid battery warning script
 
-# Die if already started
-if test pgrep -f battery-warning &> /dev/null
-then
-    echo "Already started"
-    exit 1
-fi
-
 interval=${1:-60}
 critical_level=${2:-5}
 

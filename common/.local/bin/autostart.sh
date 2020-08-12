@@ -57,7 +57,7 @@ i3-gnome-pomodoro start
 [[  -d /sys/module/battery ]] && {
     ~/.local/bin/touchpad.sh &
     xfce4-power-manager
-    ~/.local/bin/battery-warning.sh &
+    pgrep -f battery-warning.sh || ~/.local/bin/battery-warning.sh &
 }
 
 # prevent gnome from nagging at admin access stuff
