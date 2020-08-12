@@ -21,7 +21,7 @@
 if has('nvim')
     if empty(glob('~/.local/share/nvim/site/autoload/plug.vim'))
         silent !curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs
-	    \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+            \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
         autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
     endif
 else
@@ -134,6 +134,8 @@ Plug 'sheerun/vim-polyglot'
 Plug 'alx741/vim-hindent' " only a supplement to polyglot's default
 let g:hindent_on_save = 0 " (disable since it puts you at start of file)
 
+let java_highlight_functions="style" " uhhhh necessary?
+
 " ------ LaTeX ------
 Plug 'xuhdev/vim-latex-live-preview', { 'for': 'tex' }
 Plug 'lervag/vimtex'
@@ -217,7 +219,7 @@ set cursorline " (with custom colorscheme it looks ok)
 augroup numbertoggle
     autocmd!
     autocmd BufEnter,FocusGained,InsertLeave * set number relativenumber
-    autocmd BufLeave,FocusLost,InsertEnter * set norelativenumber 
+    autocmd BufLeave,FocusLost,InsertEnter * set norelativenumber
 augroup END
 
 " show whitespace - which wal.vim does not highlight...
@@ -241,6 +243,9 @@ set title
 " }}}
 
 " ------ Editor settings ------{{{
+
+" Load abbreviation file
+call typos#fixemall()
 
 " lets you do 3x{ and 3x} in comments to enclose folds
 " zo opens, za closes *all* under cursor, zc closes, and so on
@@ -314,17 +319,22 @@ nnoremap <Leader>w :w<CR>
 " Quickly turn off search highlighting
 nnoremap <Leader>h :noh<CR>
 
+" let &t_TI = '\<Esc>[>4;2m'
+" let &t_TE = '\<Esc>[>4;m'
+" tested with: vim -Nu NONE + 'nno <C-i> :echom "C-i"<cr>' +'nno <tab> :echom "Tab"<cr>'
+" ...it didn't work, C-i is tied to TAB.
+
 " Open/close folds about as fast as in orgmode
-nnoremap <TAB> za
+" nnoremap <TAB> za (this breaks C-i, and C-TAB isn't mappable)
 nnoremap <S-TAB> zA
 
 " Handle annoying typos
-nnoremap :Q :q
-nnoremap :Q! :q!
-nnoremap :wQ :wq
-nnoremap :Wq :wq
-nnoremap :WQ :wq
-nnoremap :W :w
+cabbrev Q q
+cabbrev Q! q!
+cabbrev wQ wq
+cabbrev Wq wq
+cabbrev WQ wq
+cabbrev W w
 
 " arrow keys are banned {{{
 
@@ -570,7 +580,7 @@ command OpenPDF :!zathura /tmp/thing.pdf
 " ------ autopairs ------{{{
 
 au FileType markdown,latex let b:AutoPairs = AutoPairsDefine({
-\   '$' : '$', 
+\   '$' : '$',
 \   '$$' : '$$'
 \}, [])
 
@@ -619,9 +629,11 @@ let g:airline_powerline_fonts = 1
 
 " smoother separators
 let g:airline_right_sep = ''
-let g:airline_right_alt_sep = ''
 let g:airline_left_sep = ''
+let g:airline_right_alt_sep = ''
 let g:airline_left_alt_sep = ''
+
+" Don't show annoying
 
 " tabline ON
 let g:airline#extensions#tabline#enabled = 1
@@ -667,7 +679,7 @@ let NERDTreeIgnore = ['^node_modules$', '^__pycache__$']
 
 " use term colors!
 let $FZF_DEFAULT_OPTS = '--color=16'
-let $FZF_DEFAULT_COMMAND = 'fd --type f --hidden --follow -E node_modules -E .git -E out -E target'
+let $FZF_DEFAULT_COMMAND = 'fd --type f --hidden --follow -E node_modules -E .git -E out -E target -E .ccls-cache'
 
 " Set bindings based on git/not-git
 silent !git rev-parse --is-inside-work-tree &>/dev/null
@@ -681,7 +693,7 @@ nnoremap <Leader>fb :Buffers<CR>
 nnoremap <Leader>ff :Files<CR>
 nnoremap <Leader>fc :Commands<CR>
 " Remember that :Rg exists (ripgrep)
-nnoremap <Leader>r :Rg 
+nnoremap <Leader>r :Rg
 
 "  }}}
 
