@@ -1,4 +1,6 @@
-#!/usr/bin/env sh
+#!/usr/bin/env bash
+
+set -euo pipefail
 
 test -f _sounds/open.wav || exit 1
 
@@ -24,10 +26,7 @@ do
     symlink startup $sound
 done
 
-for sound in window-close
-do
-    symlink close $sound
-done
+symlink close window-close
 
 for sound in dialog-ok drag-accept
 do
@@ -39,8 +38,4 @@ do
     symlink browse $sound
 done
 
-for sound in window-open
-do
-    symlink open $sound
-done
-
+symlink open window-open

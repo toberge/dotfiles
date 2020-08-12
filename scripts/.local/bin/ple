@@ -30,19 +30,23 @@ IFS=';'
 while read -ra line
 do
     keyword=${line[0]}
-    count=${line[2]}
-    if [ "$1" == "$keyword" ]
-    then
-        command -v figlet &>/dev/null && {
-            figlet "$keyword"
-        } || echo "Playing some $keyword for ya"
-        echo "This list has been played $count times before."
-        sed -Ei "s/^(${keyword};[^;]+)(;.+)$/\1;$((count+1))/" "$LIST_FILE"
-        # temporary fix for $mpv not working
-        mpv --loop-playlist=inf --shuffle --no-video "${line[1]}"
-        exit
-    fi
+    [ "$1" == "$keyword" ] && {
+        url="${line[1]}"
+        count=${line[2]}
+        break;
+    }
 done < "$LIST_FILE"
 
-echo "No such playlist found, goodbye"
-exit 1
+if [ -z "${url:-}" ]
+then
+    echo "No such playlist found, goodbye"
+    exit 1
+else
+    command -v figlet &>/dev/null && {
+        figlet "$keyword"
+    } || echo "Playing some $keyword for ya"
+    echo "This list has been played $count times before."
+    sed -Ei "s/^(${keyword};[^;]+)(;.+)$/\1;$((count+1))/" "$LIST_FILE"
+    # temporary fix for $mpv not working
+    mpv --loop-playlist=inf --shuffle --no-video "${url}"
+fi

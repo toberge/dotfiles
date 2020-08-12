@@ -15,14 +15,18 @@ case ${1:-} in
     s|set)
         xbacklight -set "${2:-100}"
         ;;
-    *|show)
+    show|*)
         xbacklight -get
         ;;
 esac
 
-[ "${notify:-0}" -gt 0 ] && {
+if [ "${notify:-0}" -gt 0 ]
+then
     light=$(xbacklight -get)
-    command -v dunstify >/dev/null \
-        && dunstify -r 740 "Backlight ${light%.*}%" \
-        || notify-send "Backlight ${light%.*}%"
-} || true
+    if command -v dunstify >/dev/null
+    then
+        dunstify -r 740 "Backlight ${light%.*}%"
+    else
+        notify-send "Backlight ${light%.*}%"
+    fi
+fi

@@ -1,6 +1,15 @@
 #!/usr/bin/env bash
+#
+# Lockscreen script, just sets options for i3-lock-color
+#
+# Disabling the "referenced but not assigned" directive
+# since this script uses a ton of color variables from a template file
+# shellcheck disable=2154
+
+set -e
 
 # get those colors
+# shellcheck source=/dev/null # templated file, don't bother
 source "$HOME/.cache/wal/colors.sh"
 
 extraopts=""

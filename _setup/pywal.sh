@@ -12,7 +12,7 @@ done
 
 # symlink all glava templates
 mkdir -p  "${HOME}/.config/glava"
-for template in $(ls ${HOME}/.cache/wal/*.glsl)
+for template in "$HOME"/.cache/wal/*.glsl
 do
     ln -sf "${template}" "${HOME}/.config/glava/${template##*/}"
 done
@@ -21,7 +21,6 @@ done
 # and the option 
 # toolkit.legacyUserProfileCustomizations.stylesheets
 # to be set to *true* (in about:config)
-cd ${HOME}/.mozilla/firefox/*.default && \
+cd "$HOME"/.mozilla/firefox/*.default && \
 mkdir chrome && \
 ln -sf "${HOME}/.cache/wal/userContent.css" chrome/userContent.css
-

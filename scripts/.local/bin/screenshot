@@ -4,9 +4,13 @@
 #
 # scrot scripts gathered from
 # https://www.reddit.com/r/i3wm/comments/8yx7ju/i3_screenshot_application/
+#
+# Since scrot's --exec option uses $f for filename substitution:
+# shellcheck disable=2016
 
 get_colors() {
-    . $HOME/.cache/wal/colors.sh
+    # shellcheck source=/dev/null # templated file, ignore
+    . "$HOME"/.cache/wal/colors.sh
 }
 
 case $1 in
@@ -25,7 +29,8 @@ case $1 in
         ;;
     region|window) # region OR window with maim!
         get_colors
-        maim --select --highlight --color=$(hex2rgb "$color4"),0.5 \
+        maim --select --highlight \
+            --color="$(hex2rgb "${color4:-\#fffff}"),0.5" \
             --bordersize=2 \
             | xclip -selection clipboard -t image/png
         ;;

@@ -9,7 +9,7 @@ sudo pacman -Syu
 pacmans=()
 aurs=()
 
-while read line
+while read -r line
 do
     IFS=',' read -r -a args <<< "$line"
     case ${args[0]} in
@@ -23,7 +23,7 @@ do
             ;;
         \#\#\#|*)
             # commented out
-            echo ${args[@]}
+            echo "${args[@]}"
             ;;
     esac
 done < _setup/packages.csv
@@ -31,15 +31,16 @@ done < _setup/packages.csv
 echo
 echo Installing repo packages
 echo
-sudo pacman -S "${pacmans[@]}"
+sudo pacman --needed -S "${pacmans[@]}"
 
 echo
 echo Installing AUR packages
 echo
-yay -S "${aurs[@]}"
+yay --needed -S "${aurs[@]}"
 
-echo Listing stowable packages:
-ls -F .. | grep -E '^[^_].+/$' | sed 's/\///g'
+echo Stowable packages:
+echo [^_]*/ | sed 's/\///g'
+echo
 
 # maybe some autostowing here?
 

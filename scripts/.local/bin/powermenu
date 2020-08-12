@@ -19,6 +19,7 @@ if_no_tty() {
         urxvt -name "floater" -geometry "34x$((count+2))" -e bash \
             -c "loginctl list-sessions; echo -n 'There are active TTYs! '; read"
     else # no ttys doing anything, do as requested
+        # shellcheck disable=2068 # splitting is intended
         $@
     fi
 }
