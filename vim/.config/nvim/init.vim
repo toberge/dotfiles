@@ -296,6 +296,10 @@ let mapleader = " "
 " keep fingers on jklø
 " møving left/roight ain't that useful
 
+" moving up/down, however...
+nnoremap j gj
+nnoremap k gk
+
 " make use of ø
 map ø ;
 map Ø ,
