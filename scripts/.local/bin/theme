@@ -2,25 +2,45 @@
 
 path="$HOME/Pictures/wallpapers"
 
+dirsplay() {
+    for path in "$@"
+    do
+        printf "%s\n" "$path"/* | sed 's|.*/||' 
+    done
+}
+
+menu() { rofi -dmenu -i -p "$1"; }
+
 if [ -z "$1" ]
 then # no image specified, let user choose
-    # -i for case-insensitive search
-    category=$(ls $path | rofi -dmenu -i -p "Wallpaper category")
+    category=$(dirsplay "$path" | menu "Wallpaper category")
     [ -z "$category" ] && exit 1
-    wallpaper=$(ls $path/$category | rofi -dmenu -i -p "Wallpaper")
+    wallpaper=$(dirsplay "$path/$category" | menu "Wallpaper")
     [ -z "$wallpaper" ] && exit 1
     imagepath="$path/$category/$wallpaper"
-    colorscheme=$(echo auto $(ls $HOME/.config/wal/colorschemes/dark/ /usr/lib/python3.8/site-packages/pywal/colorschemes/dark/ | grep -vE "(:|^$)" | cut -d'.' -f1) | tr ' ' '\n' \
-        | rofi -dmenu -i -p "Colorscheme")
+    colortype=$(printf "light\ndark\n" | menu "Theme type")
+    [ -z "$colortype" ] && exit 1
+    colorscheme=$(echo auto "$(dirsplay {"$HOME"/.config/wal,/usr/lib/python3.8/site-packages/pywal}/colorschemes/"$colortype"/ \
+        | grep -vE "(:|^$)" | cut -d'.' -f1)" | tr ' ' '\n' \
+        | menu "Colorscheme")
     [[ "$colorscheme" == "auto" ]] && {
-        backend=$(echo wal $(wal --backend | head -n 5 | tail -n 4 | tr -d ' -') | tr ' ' '\n' \
-            | rofi -dmenu -i -p "Backend")
+        backend=$(echo wal "$(wal --backend | head -n 5 | tail -n 4 | tr -d ' -')" | tr ' ' '\n' \
+            | menu "Backend")
     }
 elif [ -f "$1" ]
 then # arg is a file
     imagepath="$1"
 else # not a file
     case $1 in # check aliases
+        butterfly|ashes|dark)
+            imagepath="$path/anime/butterfly.jpg"
+            colorscheme="ashes"
+            ;;
+        github|light)
+            imagepath="$path/landscapes/mountain_adjusted.jpg"
+            colorscheme="base16-github"
+            colortype="light"
+            ;;
         alpha|yokohama)
             imagepath="$path/anime/gelender.jpg"
             ;;
@@ -29,6 +49,7 @@ else # not a file
             ;;
         cyan|cyanide)
             imagepath="$path/minimal/cyanide plateau.jpg"
+            colorscheme="base16-onedark"
             ;;
         karen)
             imagepath="$path/anime/Karen Dark.png"
@@ -49,26 +70,31 @@ else # not a file
     esac
 fi
 
+walopts=""
+[[ "$colortype" == "light" ]] && walopts="$walopts -l"
+
 # Change wallpaper and colors through pywal
-if [[ "${colorscheme}" == "auto" ]]
+if [[ "$colorscheme" == "auto" ]]
 then # use backend
-    wal --backend "${backend}" -i "${imagepath}"
-else
-    # TODO set wallpaper thru other means
-    wal -i "${imagepath}"
-    wal --theme "${colorscheme}"
+    # shellcheck disable=SC2086
+    wal --backend "$backend" -i "$imagepath" $walopts
+else # use specific theme
+    feh --bg-fill "$imagepath"
+    # shellcheck disable=SC2086
+    wal --theme "$colorscheme" $walopts
 fi
 
 # Restart dunst
 killall dunst
 dunst &
 
-# Uncomment when steam themes work again
-# test -f /usr/bin/wal_steam && wal_steam -w
+# Theme spotify
+spicetify update
 
-# Set lock screen image
-# betterlockscreen -u "$imagepath"
-# [[ -f "$HOME/.cache/lockpaper" ]] && rm "$HOME/.cache/lockpaper"
+# Firefox could be riced automatically
+# - get rid of pywalfox & get your own userChrome.css
+
+# Set lock screen image (or maaaaaybe just a cached bg image?)
 # ln -s "$imagepath" "$HOME/.cache/lockpaper"
 
 # Reload wm
@@ -80,4 +106,3 @@ case $DESKTOP_SESSION in
         i3-msg reload
         ;;
 esac
-
