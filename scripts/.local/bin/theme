@@ -23,6 +23,7 @@ then # no image specified, let user choose
     colorscheme=$(echo auto "$(dirsplay {"$HOME"/.config/wal,/usr/lib/python3.8/site-packages/pywal}/colorschemes/"$colortype"/ \
         | grep -vE "(:|^$)" | cut -d'.' -f1)" | tr ' ' '\n' \
         | menu "Colorscheme")
+    [ -z "$colorscheme" ] && exit 1
     [[ "$colorscheme" == "auto" ]] && {
         backend=$(echo wal "$(wal --backend | head -n 5 | tail -n 4 | tr -d ' -')" | tr ' ' '\n' \
             | menu "Backend")

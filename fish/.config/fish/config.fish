@@ -9,3 +9,7 @@ source ~/.config/fish/theme.fish
 source ~/.bash_aliases
 [ "$TERM" = linux ] && bash ~/.cache/wal/colors-tty.sh
 # }}}
+
+# Misc {{{
+[ ! "$TERM" = linux ] && thefuck --alias | source
+# }}}

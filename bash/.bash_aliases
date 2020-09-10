@@ -54,12 +54,18 @@ alias q='exit'          # who wants to write exit all the time
 alias c='clear'
 alias f='fuck'          # less swearing in my history
 alias ':q'='echo "you aint using vim now"; sfx alert; wait; exit'
+
 alias vim='nvim'
 alias vi='nvim'
 alias v='nvim'
 alias r='ranger'
+
 alias tb='nc termbin.com 9999'
+
+alias w='which'
+alias mkd='mkdir'
 alias mkp='mkdir -p'    # mk whole path
+
 alias s='setsid -f'     # avoid having to bg and disown
 
 alias ll='ls -lh'
@@ -89,6 +95,7 @@ alias localip="ip addr show | grep 'inet .* global' | awk '{print \$2}' | cut -d
 alias whatsmyip='curl icanhazip.com'
 alias unscrew_defaults='xdg-settings set default-web-browser firefox.desktop'
 alias wacom='xsetwacom set "Wacom Bamboo 16FG 6x8 Pen stylus" MapToOutput 1920x1080+1920+0'
+alias webcam='mpv av://v4l2:/dev/video0 --profile=low-latency --untimed --x11-name=webcam'
 
 #######################
 #    GIT SHORTCUTS    #
@@ -110,3 +117,4 @@ alias gc='git commit'
 alias gca='git commit --amend'
 alias gcm='git commit -m'
 alias gl='git log --oneline --graph --all --decorate'
+alias glead='git shortlog -s -n --all --no-merges'

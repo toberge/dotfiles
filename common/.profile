@@ -5,7 +5,7 @@ export QT_QPA_PLATFORMTHEME="qt5ct"
 export QT_AUTO_SCREEN_SCALE_FACTOR=0
 
 export EDITOR=/usr/bin/nvim
-export PATH="$PATH:$HOME/.local/bin"
+export PATH="$HOME/.local/bin:$PATH"
 
 # force fzf colors
 export FZF_DEFAULT_OPTS='--color=16'

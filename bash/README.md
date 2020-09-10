@@ -2,8 +2,7 @@
 ```
 .
 ├── .bash_aliases
-├── .bashrc
-└── .profile
+└── .bashrc
 ```
 
 Bash run config, aliases and profile. Pretty standard stuff.
