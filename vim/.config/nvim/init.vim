@@ -73,6 +73,9 @@ Plug 'junegunn/vim-easy-align'
 Plug 'alvan/vim-closetag'
 " cwd to project root!
 Plug 'airblade/vim-rooter'
+let g:rooter_patterns = [
+            \ 'Makefile', 'CMakeLists.txt', 'package.json', 'cargo.toml',
+            \ '.git', '.git/', '_darcs/', '.hg/', '.bzr/', '.svn/']
 " TODO: configure this madness
 Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
@@ -627,6 +630,9 @@ autocmd! User GoyoLeave nested call <SID>goyo_leave()
 "  }}}
 
 " ------ airline ------{{{
+
+" Avoid duplicate insert mode indicator
+set noshowmode
 
 " glöphs
 let g:airline_powerline_fonts = 1
