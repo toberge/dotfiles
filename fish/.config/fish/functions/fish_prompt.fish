@@ -92,6 +92,13 @@ function fish_prompt --description 'Write out the prompt'
     printf '%s ' (fish_vcs_prompt)
     set_color normal
 
+    # Python venv
+    if set -q VIRTUAL_ENV
+        echo -ns "(" (set_color blue) " " \
+                 (set_color magenta) (basename "$VIRTUAL_ENV") \
+                 (set_color normal) ") "
+    end
+
     # End of prompt
     echo
     if [ "$is_tty" -eq 1 ]

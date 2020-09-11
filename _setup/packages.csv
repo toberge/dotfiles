@@ -104,6 +104,13 @@ PAC,ruby,ahem it's a dependency for some things
 NPM,how-2,search stackoverflow for answers
 #AUR,intellij-idea-ultimate-edition,IntelliJ
 #AUR,intellij-idea-ultimate-edition-jre,custom JRE for IntelliJ
+PIP,virtualfish,for displaying venv info in fish prompt
+###,#######,###
+###, MUSIC ,###
+###,#######,###
+PAC,musescore,regular notation software
+AUR,alda-bin,a music programming language
+PAC,soundfont-fluid,replace .gervill/soundbank-emg.sf2 with this one!
 ###,#############,###
 ###,    FLUFF    ,###
 ###,#############,###
