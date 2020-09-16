@@ -146,6 +146,8 @@ Plug 'lervag/vimtex'
 " ------ Markdown ------
 Plug 'vim-pandoc/vim-pandoc'
 Plug 'vim-pandoc/vim-pandoc-syntax'
+Plug 'dhruvasagar/vim-table-mode'
+" use <Leader>tm to toggle
 
 " ------ Miscellaneous ------
 Plug 'aurieh/discord.nvim', { 'do': ':UpdateRemotePlugins'}
@@ -304,9 +306,19 @@ nnoremap j gj
 nnoremap k gk
 
 " make use of ø
-map ø ;
-map Ø ,
+" map ø ;
+" map Ø ,
 " (since ; is in that spot on US layouts...)
+" NEVER MIND, make use of å for that?
+map å ;
+map Å ,
+
+" also let [ and ] be more accessible
+
+map ø [
+map æ ]
+map Ø {
+map Æ }
 
 " Fix a pesky inconsistency (C is c$, D is d$)
 nmap Y y$
@@ -322,6 +334,8 @@ nnoremap <Leader><Leader> <c-^>
 
 " Quick write (shift+: then releasing shift and pressing w<CR> is HARD)
 nnoremap <Leader>w :w<CR>
+" Even quicker write (C-s like normal folks...)
+nnoremap <C-s> :w<CR>
 
 " Quickly turn off search highlighting
 nnoremap <Leader>h :noh<CR>
