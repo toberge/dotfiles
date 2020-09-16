@@ -2,7 +2,7 @@
 #   JUMP TO FOLDERS   #
 #######################
 
-export SKOLE="$HOME/Dropbox/skoleting/ITHINGDA/"
+export SKOLE="$HOME/skul"
 
 alias ..='cd ..'
 alias ...='cd ../..'
@@ -10,12 +10,14 @@ alias ....='cd ../../..'
 
 alias bin='cd ~/.dotfiles/scripts/.local/bin/'
 alias cdj="cd $SKOLE/java"
-alias cds="cd $SKOLE/statistikk"
 alias cdc="cd $SKOLE/C"
 alias cdw="cd $SKOLE/web"
-alias cdm="cd $SKOLE/Matematikk\ 2"
+alias cdm="cd $SKOLE/Matematikk\ 3"
 alias cda="cd $SKOLE/algdat"
-alias cdf="cd $SKOLE/fysikk"
+alias cdf="cd $SKOLE/Fysikk\ 2"
+alias cds="cd ~/git/security"
+alias cdp="cd $SKOLE/sikkerhet/programvare"
+alias cdn="cd $SKOLE/sikkerhet/nettverk"
 alias cdd="cd $HOME/.dotfiles" # no longer a duplicate
 
 alias i3conf="vim $HOME/.config/i3/config"
