@@ -90,6 +90,7 @@ bspc rule -a Screenkey manage=off
 
 # floaters
 bspc rule -a '*:floater' state=floating # urxvt instances for dialogs
+bspc rule -a '*:webcam' state=floating # mpv instance with webcam
 bspc rule -a Lxappearance state=floating
 bspc rule -a qt5ct state=floating
 bspc rule -a alsamixer state=floating

@@ -192,7 +192,7 @@ super + {p, b, shift + p, alt + shift + p}
 
 # focus the next/previous node in the current desktop
 alt + {_,shift + } + Tab
-	bspc node -f {next,prev}.local
+	bspc node -f {next,prev}.local.leaf
 
 # focus the next/previous desktop in the current monitor
 ctrl + alt + {Left,Right,h,l}
