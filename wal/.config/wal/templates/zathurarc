@@ -1,7 +1,7 @@
 # Straight from Zathura-Pywal by Gideon Wolfe
 # (https://github.com/GideonWolfe/Zathura-Pywal)
 
-set recolor "true"
+# set recolor "true"
 
 set font "Ubuntu Regular 11"
 
@@ -33,8 +33,10 @@ set index-active-fg "{background}"
 set render-loading-bg "{background}"
 set render-loading-fg "{foreground}"
 
-set smooth-scroll true
+# disable statusbar (press <C-n> to bring it up again)
+set guioptions none
+
+set smooth-scroll true # doesn't work though
 set window-title-home-tilde true
 set statusbar-basename true
 set selection-clipboard clipboard
-
