@@ -1,7 +1,7 @@
 #!/usr/bin/env sh
 
 # symlink wal templates
-for template in dunstrc zathurarc alacritty.yml
+for template in dunstrc zathurarc alacritty.yml spectrwm.conf
 do
     folder=${template%%.*}
     folder=${folder%%rc}
