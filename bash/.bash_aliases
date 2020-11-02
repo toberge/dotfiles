@@ -89,7 +89,14 @@ alias yf='yay -Ss'
 alias yu='yay -Syu'
 alias yi='yay -S'
 
+# Clipboard
+alias copy='xclip -selection clipboard -i'
+alias paste='xclip -selection clipboard -o'
+
 alias serve='python -m http.server'
+
+alias dragon='dragon-drag-and-drop'
+alias drag='dragon-drag-and-drop'
 
 # The annoying first steps of cmaking
 alias cmk='mkdir build && cd build && cmake .. && make'
