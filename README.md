@@ -32,8 +32,8 @@ to install
 | --------------: | :------------------ |
 |     Color theme | base16-ashes maybe  |
 |  Window manager | bspwm               |
-|        Terminal | alacritty/URXvt     |
-|     Text editor | vim/vscode          |
+|        Terminal | alacritty/urxvt     |
+|     Text editor | vim/vscode/intellij |
 |        Launcher | rofi                |
 |             Bar | polybar             |
 |         Browser | Firefox/qutebrowser |
