@@ -126,6 +126,7 @@ Plug 'junegunn/limelight.vim'
 
 " ------ Languages ------
 Plug 'daveyarwood/vim-alda'
+Plug 'aliou/bats.vim'
 " Plug 'Vimjas/vim-python-pep8-indent'
 " Plug 'vim-python/python-syntax'
 " let g:python_highlight_all = 1
@@ -275,6 +276,12 @@ set t_vb= " but don't flash either!
 set mouse=a
 set cmdheight=2 " cmd height
 set notimeout ttimeout ttimeoutlen=200 " timeout on keycode not on mapping?
+
+" Fix matlab files recognized as... mma?
+augroup fixFiletype
+    au!
+    au BufRead,BufNewFile *.m set filetype=matlab
+augroup END
 
 " }}} editor
 
@@ -590,10 +597,15 @@ let g:livepreview_previewer = 'zathura'
 let g:pandoc#modules#disabled = ["spell"]
 let g:pandoc#folding#fastfolds = 1
 
+" disable conceal for now...
+" let g:pandoc#syntax#conceal#use = 0
+" (or not)
+
 " TODO: handle this in after/ftplugin or with a toggle command?
 " autocmd BufWritePost *.md :!pandoc % -o /tmp/thing.pdf
-command PDF :!pandoc %:t -o /tmp/thing.pdf
-command TogglePDF autocmd BufWritePost *.md :!pandoc % -o /tmp/thing.pdf
+" note: %:p gives full file path. vim-rooter messes with path.
+command PDF :!pandoc %:p -o /tmp/thing.pdf
+command TogglePDF autocmd BufWritePost *.md :!pandoc %:p -o /tmp/thing.pdf
 command OpenPDF :!zathura /tmp/thing.pdf
 
 " }}}
