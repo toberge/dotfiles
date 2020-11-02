@@ -25,7 +25,8 @@ os() {
 }
 
 distro() {
-    lsb_release -ds | tr -d '"' # add -rc
+    # lsb_release -ds | tr -d '"' # add -rc
+    head -n1 /etc/os-release | cut -d'"' -f2
 }
 
 wm() {

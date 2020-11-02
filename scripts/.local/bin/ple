@@ -22,6 +22,11 @@ mpv="mpv --loop-playlist=inf --shuffle --no-video"
     exit
 }
 
+# If arg starts with http, pray that it is an URL
+[  "${1%%http*}" = "" ] && {
+    $mpv "$1"
+}
+
 LIST_FILE=$HOME/.playlists
 [ -f "$LIST_FILE" ] || { echo "No playlist file"; exit 1; }
 
