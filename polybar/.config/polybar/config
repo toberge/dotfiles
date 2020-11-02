@@ -69,8 +69,8 @@ font-4 = "FiraMono Nerd Font:style=Medium:size=15;3"
 
 ;================ module order is down here =================
 
-modules-left = bspwm i3 _ ) __ xwindow __ )
-modules-center = calendar
+modules-left = bspwm i3 _ )
+modules-center = xwindow
 modules-right = ( __ pulseaudio __ pomodoro __ battery __ date __ (
 
 tray-position = right
@@ -107,7 +107,7 @@ offset-y = 4
 [bar/main]
 inherit = bar/anybar
 
-modules-center = calendar
+; modules-center = calendar
 
 tray-position = right
 tray-padding = 2
@@ -119,7 +119,8 @@ tray-padding = 2
 inherit = bar/anybar
 
 modules-center = xwindow
-modules-right = <-- pulseaudio pomodoro xbacklight battery date <--- _ _
+; modules-right = <-- pulseaudio pomodoro xbacklight battery date <--- _ _
+modules-right = ( __ pulseaudio __ pomodoro __ battery __ date __
 
 tray-position = none
 
