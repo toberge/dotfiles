@@ -84,6 +84,9 @@ super + space; {w, t, f}
 super + space; {p, z}
         {zathura, zathura} & sfx open
 
+super + plus
+        sfx menu & find ~/Documents -maxdepth 1 -type f -name "*.pdf" -print | sed -E 's/.*\///g' | rofi -dmenu -i | xargs -n1 -I % zathura ~/Documents/%
+
 # tools
 super + space; {c, l}
         {gnome-calculator, lxappearance} & sfx open

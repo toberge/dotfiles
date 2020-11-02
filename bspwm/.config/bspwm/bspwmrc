@@ -108,6 +108,11 @@ bspc rule -a RAIL state=floating
 # zathura got borked
 bspc rule -a Zathura state=tiled
 bspc rule -a Emacs state=tiled
+# matlab burns
+bspc rule -d "MATLAB R2019b - academic use:HG_Peer_OffScreenWindow" hidden=on
+
+# borderless stuff
+bspc rule -a com-group_finity-mascot-Main state=floating,border=off
 
 #
 # start stuff
