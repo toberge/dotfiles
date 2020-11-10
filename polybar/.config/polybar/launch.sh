@@ -1,5 +1,13 @@
 #!/usr/bin/env bash
 
+# Fetch pywal colors for transparent background
+# See https://github.com/dylanaraps/pywal/issues/132
+# (makes me want to switch to something else...)
+# shellcheck disable=1090
+source ~/.cache/wal/colors.sh
+# shellcheck disable=2154
+export background_transparent="#bf${background/'#'}"
+
 # Polybar somehow needs a timeout
 sleep .01
 

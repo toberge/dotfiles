@@ -36,14 +36,13 @@ include-file = ~/.config/polybar/decoration
 
 [bar/anybar]
 monitor = ${env:MONITOR}
-width = 1884
-height = 28
-offset-x = 18
-offset-y = 18
+height = 38
+offset-x = 0
+offset-y = 0
 radius = 0.0
 fixed-center = true
 
-background = ${colors.background}
+background = ${colors.background-transparent}
 foreground = ${colors.foreground}
 
 line-size = 3
