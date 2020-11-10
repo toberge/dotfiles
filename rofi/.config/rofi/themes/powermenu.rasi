@@ -53,10 +53,6 @@ listview {
   position: north;
 }
 
-textbox {
-  background-color: pink;
-}
-
 element {
   padding: 12;
   font: "Font Awesome 5 Free 64";

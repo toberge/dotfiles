@@ -85,7 +85,7 @@ super + space; {p, z}
         {zathura, zathura} & sfx open
 
 super + plus
-        sfx menu & find ~/Documents -maxdepth 1 -type f -name "*.pdf" -print | sed -E 's/.*\///g' | rofi -dmenu -i | xargs -n1 -I % zathura ~/Documents/%
+        sfx menu & find ~/Documents -maxdepth 1 -type f \( -name "*.pdf" -or -name "*.djvu" \) -print | sed -E 's/.*\///g' | rofi -dmenu -i | xargs -n1 -I % zathura ~/Documents/%
 
 # tools
 super + space; {c, l}

@@ -1,0 +1,57 @@
+configuration {
+  show-icons: false;
+  fake-transparency: false;
+  fullscreen: true;
+}
+
+@import "~/.cache/wal/colors.rasi"
+
+* {
+  /* set default font & colors */
+  font: "FiraMono Nerd Font 18";
+  text-color: @foreground;
+  background-color: #00000000;
+}
+
+window {
+  transparency: "real";
+  /* for actual transparency! */
+  background-color: @background-transparent;
+  fullscreen: true;
+  location: center;
+  anchor: center;
+}
+
+mainbox {
+  children: [ listview ];
+  padding: 30% 35%;
+  spacing: 2em;
+}
+
+inputbar {
+  children: [ prompt ];
+  padding: 0.5em;
+  margin: 0 2%;
+}
+
+inputbar, prompt, textbox-prompt-colon {
+  text-align: center;
+  position: center;
+}
+
+listview {
+  layout: vertical;
+  spacing: 16;
+  margin: 0 0 0 8%;
+  position: center;
+}
+
+element {
+  padding: 12;
+}
+
+element selected {
+  color: @accent;
+}
+
+/* vim:ft=css

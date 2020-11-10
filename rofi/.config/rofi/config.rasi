@@ -3,7 +3,7 @@ configuration {
   theme: "themes/box.rasi";
   modi: [window, drun, run, emoji, ssh, combi];
 
-  terminal: "urxvt";
+  terminal: "alacritty";
   fake-transparency: false;
 
   drun-display-format: "{icon} {name}";

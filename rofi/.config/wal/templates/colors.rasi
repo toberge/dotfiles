@@ -1,5 +1,6 @@
 * {{
   background:  {background};
+  background-transparent:  {background}f4;
   foreground:  {foreground};
   accent:      {color12}; /* bg of selected */
   accent-fg:   {background}; /* fg of selected */

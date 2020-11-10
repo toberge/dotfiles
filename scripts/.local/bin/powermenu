@@ -8,8 +8,19 @@ prompt=" ${HOSTNAME}: ${up#up } of /つ ◕_◕\つ"
 
 # Set font to Font Awesome 5 Free if this is gibberish
 # (or use a nerd font) hibernation icons: ,
-choice=$(echo -e "\n\n\n\n" | \
-    rofi -dmenu -theme ~/.config/rofi/themes/powermenu.rasi \
+# choices=$(echo -e "\n\n\n\n" | \
+
+WM="${DESKTOP_SESSION^^}"
+
+lock="  Lås skjermen"
+sleep="  Ta en blund"
+hibernate="  Sov godt og lenge"
+restart="  Start på nytt"
+poweroff="  Slå av ruklet"
+exit=" Forlat $WM"
+
+choice=$(echo -e "$lock\n$sleep\n$restart\n$poweroff\n$exit" | \
+    rofi -dmenu -theme ~/.config/rofi/themes/powermenu-fullscreen.rasi \
     -selected-row 0 -p "$prompt")
 
 if_no_tty() {
@@ -25,25 +36,25 @@ if_no_tty() {
 }
 
 case $choice in
-    )
+    "$lock")
         lockmeup
         ;;
-    )
+    "$poweroff")
         if_no_tty systemctl poweroff
         ;;
-    )
+    "$restart")
         if_no_tty systemctl reboot
         ;;
-    ) # haha no hibernation here
+    "$hibernate") # haha no hibernation here
         lockmeup &
         sleep .4 && systemctl hibernate
         ;;
-    )
+    "$sleep")
         # workaround for weird behaviour on thinkpad
         lockmeup &
         sleep .4 && systemctl suspend
         ;;
-    )
+    "$exit")
         case $DESKTOP_SESSION in
             bspwm)
                 bspc quit & sfx shutter
