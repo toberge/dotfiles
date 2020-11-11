@@ -10,7 +10,7 @@
 # *totally qualified dotfiles*
 ## Using GNU stow with simple packages
 
-![showcase](_showcase/2020-05-30_butterfly.png)
+![showcase](_showcase/2020-11-11_plateau.png)
 
 ## Naming convention:
 
@@ -30,7 +30,7 @@ to install
 
 |    type of deet | deet of deet        |
 | --------------: | :------------------ |
-|     Color theme | base16-ashes maybe  |
+|     Color theme | ashes/onedark/tanuki|
 |  Window manager | bspwm               |
 |        Terminal | alacritty/urxvt     |
 |     Text editor | vim/vscode/intellij |
@@ -64,6 +64,13 @@ Using spicetify to theme Spotify based on pywal colors, theme is [Lovelace](http
 [text to ASCII](http://www.patorjk.com/software/taag/#p=display&f=Slant&t=.dotfiles)  
 
 ## old showcases
+
+Modified github light theme:  
+(yes, the tray icons are too light – I didn't bother changing them)
+![fourth showcase](_showcase/2020-08-24_brightness.png)
+
+Pleasantly purple wallpaper with `ashes` colorscheme:
+![third showcase](_showcase/2020-05-30_butterfly.png)
 
 Way too dim colors:  
 ![second showcase](_showcase/2020-04-25_lake.png)
