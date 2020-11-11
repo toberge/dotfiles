@@ -10,7 +10,8 @@
 # *totally qualified dotfiles*
 ## Using GNU stow with simple packages
 
-![showcase](_showcase/2020-11-11_plateau.png)
+![showcase – 'normal' desktop](_showcase/2020-11-11_plateau.png)
+![showcase – powermenu](_showcase/2020-11-11_powermenu.png)
 
 ## Naming convention:
 
