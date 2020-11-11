@@ -29,7 +29,7 @@ case $1 in
         ;;
     region|window) # region OR window with maim!
         get_colors
-        maim --select --highlight \
+        maim --select --highlight --hidecursor \
             --color="$(hex2rgb "${color4:-\#fffff}"),0.5" \
             --bordersize=2 \
             | xclip -selection clipboard -t image/png

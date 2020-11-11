@@ -92,8 +92,11 @@ dunst &
 # Theme spotify
 spicetify update
 
+# Theme discord
+wal-discord -tu
+
 # Firefox could be riced automatically
-# - get rid of pywalfox & get your own userChrome.css
+# - get rid of pywalfox & get your own userChrome.css though...
 
 # Set lock screen image (or maaaaaybe just a cached bg image?)
 # ln -s "$imagepath" "$HOME/.cache/lockpaper"

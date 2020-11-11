@@ -37,7 +37,8 @@ if_no_tty() {
 
 case $choice in
     "$lock")
-        lockmeup
+        # Slight delay to make powermenu afterimage go away
+        sleep .2 && lockmeup & sfx shutter
         ;;
     "$poweroff")
         if_no_tty systemctl poweroff
