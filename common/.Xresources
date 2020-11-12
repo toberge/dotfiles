@@ -21,7 +21,7 @@ Xft.lcdfilter: lcddefault
     Xft.dpi: 96
 #endif
 
-Xcursor.theme:                    xcursor-breeze-snow
+! Xcursor.theme:                    xcursor-breeze-snow
 
 Xcursor.size:                     0
 

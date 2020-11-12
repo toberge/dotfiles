@@ -80,6 +80,7 @@ PAC,texlive-core,for basic latex
 PAC,texlive-latexextra,for the cancel package and more
 PAC,pdftk,for concating PDFs and more
 PAC,flameshot,screenshot GUI
+PAC,libqalculate,a natural-language calculator with unit conversion
 ###,#############,###
 ###,NORMAL STUFFS,###
 ###,#############,###

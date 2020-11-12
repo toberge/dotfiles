@@ -24,7 +24,7 @@ super + Tab
 super + ctrl + d
         rofi -dmenu -theme ~/.config/rofi/themes/cmd.rasi \
             | awk '\{ print"\""$0"; read -n1\"" \}' \
-            | xargs --no-run-if-empty urxvt -e bash -c \
+            | xargs --no-run-if-empty alacritty -e bash -c \
             & sfx menu
 
 # emoji keyboard, using rofi-emoji
