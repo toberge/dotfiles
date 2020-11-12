@@ -14,7 +14,7 @@
 
 window {
   /* approx 8x3em rows */
-  height: 23.9em; /* prev 23.74em */
+  height: 24.3em; /* prev 23.74em */
   width: 50%;
   location: center;
   transparency: "real";
@@ -25,7 +25,7 @@ window {
 mainbox {
   children: [ inputbar, listview ];
   border-radius: 1em;
-  border: 2px;
+  border: 3px;
   border-color: @accent;
 }
 
