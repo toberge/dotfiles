@@ -30,6 +30,8 @@ snippet template "Basic template" b
 ---
 title: "$1"
 author: "Tore Bergebakken"
+header-includes:
+- "\\\\usepackage[norsk]{babel}"
 ---
 
 # $2
@@ -438,6 +440,7 @@ snippet xx "cross" iA
 endsnippet
 
 priority 100
+context "math()"
 snippet ** "cdot" iA
 \cdot 
 endsnippet
