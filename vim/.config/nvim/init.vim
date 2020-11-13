@@ -153,6 +153,8 @@ Plug 'dhruvasagar/vim-table-mode'
 
 " ------ Miscellaneous ------
 Plug 'aurieh/discord.nvim', { 'do': ':UpdateRemotePlugins'}
+Plug 'skywind3000/asyncrun.vim'
+let g:asyncrun_open = 3 " cannot override
 
 call plug#end()
 
@@ -610,9 +612,9 @@ let g:pandoc#syntax#codeblocks#embeds#langs = [
 " TODO: handle this in after/ftplugin or with a toggle command?
 " autocmd BufWritePost *.md :!pandoc % -o /tmp/thing.pdf
 " note: %:p gives full file path. vim-rooter messes with path.
-command PDF :!pandoc %:p -o /tmp/thing.pdf
-command TogglePDF autocmd BufWritePost *.md :!pandoc %:p -o /tmp/thing.pdf
-command OpenPDF :!zathura /tmp/thing.pdf
+command PDF :AsyncRun pandoc %:p -o /tmp/thing.pdf
+command TogglePDF autocmd BufWritePost *.md :AsyncRun pandoc %:p -o /tmp/thing.pdf
+command OpenPDF :AsyncRun zathura /tmp/thing.pdf
 
 " }}}
 
