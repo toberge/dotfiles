@@ -142,6 +142,7 @@ let java_highlight_functions="style" " uhhhh necessary?
 
 " ------ LaTeX ------
 Plug 'xuhdev/vim-latex-live-preview', { 'for': 'tex' }
+let g:tex_flavor='latex'
 Plug 'lervag/vimtex'
 
 " ------ Markdown ------
@@ -596,6 +597,11 @@ let g:livepreview_previewer = 'zathura'
 " damn spellcheck...
 let g:pandoc#modules#disabled = ["spell"]
 let g:pandoc#folding#fastfolds = 1
+
+" syntax highlighting in code blocks
+let g:pandoc#syntax#codeblocks#embeds#langs = [
+\   "python", "haskell", "bash=sh", "javascript",
+\   "js=javascript", "c"]
 
 " disable conceal for now...
 " let g:pandoc#syntax#conceal#use = 0
