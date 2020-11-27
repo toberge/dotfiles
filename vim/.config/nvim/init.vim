@@ -296,6 +296,7 @@ filetype indent plugin on " let plugins decide indent
 " indentation of 4 spaces
 set shiftwidth=4
 set softtabstop=4
+set tabstop=4
 set expandtab
 
 set smarttab " tab to next intent
@@ -602,8 +603,11 @@ let g:pandoc#folding#fastfolds = 1
 
 " syntax highlighting in code blocks
 let g:pandoc#syntax#codeblocks#embeds#langs = [
-\   "python", "haskell", "bash=sh", "javascript",
-\   "js=javascript", "c"]
+\   "toml", "json", "yaml",
+\   "python", "haskell", "bash=sh",
+\   "javascript", "js=javascript", "css", "html",
+\   "java", "kotlin",
+\   "c", "cpp", "make", "rust"]
 
 " disable conceal for now...
 " let g:pandoc#syntax#conceal#use = 0
