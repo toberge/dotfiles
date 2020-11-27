@@ -55,6 +55,13 @@ ctrl + Print
 
 # Launch apps {{{
 
+# color picker
+super + u
+        colorpicker --one-shot --short | tee /tmp/color \
+            | xargs dunstify --icon none; \
+            xclip -selection clipboard -rmlastnl -i /tmp/color
+
+
 # ranger
 super + {_,shift + }e
         alacritty -e "ranger" & sfx open
@@ -141,6 +148,16 @@ super + {_,shift + }q
 # alternate between the tiled and monocle layout
 super + m
 	bspc desktop -l next & sfx toggle
+
+# toggle bar
+super + shift + f
+    if pgrep polybar; then \
+        killall -q polybar; bspc config top_padding 0; \
+    else \
+        ~/.config/polybar/launch.sh; \
+        sleep .4; \
+        bspc config border_width 3; \
+    fi
 
 # send the newest marked node to the newest preselected node
 super + y
