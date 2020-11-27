@@ -64,6 +64,16 @@ snippet vdo "vdots" iA
 \vdots
 endsnippet
 
+context "math()"
+snippet red "color something red" iA
+{\color{red}$1}$0
+endsnippet
+
+context "math()"
+snippet blue "color something blue" iA
+{\color{blue}$1}$0
+endsnippet
+
 snippet table "Table environment" b
 \begin{table}[${1:htpb}]
 	\centering
@@ -570,22 +580,22 @@ endsnippet
 
 context "math()"
 snippet OO "emptyset" iA
-\O
+\emptyset
 endsnippet
 
 context "math()"
 snippet RR "real" iA
-\R
+\mathbb{R}
 endsnippet
 
 context "math()"
 snippet QQ "Q" iA
-\Q
+\mathbb{Q}
 endsnippet
 
 context "math()"
 snippet ZZ "Z" iA
-\Z
+\mathbb{Z}
 endsnippet
 
 context "math()"
