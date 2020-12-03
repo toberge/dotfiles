@@ -89,6 +89,8 @@ alias yf='yay -Ss'
 alias yu='yay -Syu'
 alias yi='yay -S'
 
+alias py='python'
+
 # Clipboard
 alias copy='xclip -selection clipboard -i'
 alias paste='xclip -selection clipboard -o'
