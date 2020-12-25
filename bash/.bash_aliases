@@ -102,6 +102,8 @@ alias drag='dragon-drag-and-drop'
 
 # The annoying first steps of cmaking
 alias cmk='mkdir build && cd build && cmake .. && make'
+# Other annoyances
+alias cleantex='rm -f *.{aux,log,out}'
 
 # escaped $2 won't get expanded - and it is awk syntax..
 # shellcheck disable=SC2142

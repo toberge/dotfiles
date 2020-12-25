@@ -66,6 +66,9 @@ case $choice in
             openbox)
                 openbox --exit
                 ;;
+            spectrwm)
+                pkill spectrwm
+                ;;
             *)
                 # systemctl ext?
                 notify-send "NOT IMPLEMENTED"
