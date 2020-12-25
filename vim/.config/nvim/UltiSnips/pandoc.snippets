@@ -435,6 +435,16 @@ snippet mcal "mathcal" iA
 endsnippet
 
 context "math()"
+snippet bf "mathbf" iA
+\mathbf{$1}$0
+endsnippet
+
+context "math()"
+snippet bb "mathbb" iA
+\mathbb{$1}$0
+endsnippet
+
+context "math()"
 snippet lll "l" iA
 \ell
 endsnippet
@@ -665,6 +675,30 @@ priority 100
 context "math()"
 snippet "([a-zA-Z])hat" "hat" riA
 \hat{`!p snip.rv=match.group(1)`}
+endsnippet
+
+priority 1000
+context "math()"
+snippet ihat "hat" iA
+\hat{\imath}
+endsnippet
+
+priority 1000
+context "math()"
+snippet jhat "hat" iA
+\hat{\jmath}
+endsnippet
+
+priority 1000
+context "math()"
+snippet khat "hat" iA
+\hat{k}
+endsnippet
+
+priority 1000
+context "math()"
+snippet del "del" iA
+\delta{$1}$0
 endsnippet
 
 snippet letw "let omega" iA

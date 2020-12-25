@@ -85,6 +85,7 @@ Plug 'justinmk/vim-sneak'
 " in this way it does not conflict with CoC
 " (coc's snippets function messes with ultisnip code)
 let g:UltiSnipsExpandTrigger="<c-j>"
+" Maybe <s-tab>?
 let g:UltiSnipsJumpForwardTrigger="<c-j>"
 let g:UltiSnipsJumpBackwardTrigger="<c-k>"
 
