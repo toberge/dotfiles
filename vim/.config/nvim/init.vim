@@ -150,6 +150,7 @@ Plug 'lervag/vimtex'
 Plug 'vim-pandoc/vim-pandoc'
 Plug 'vim-pandoc/vim-pandoc-syntax'
 Plug 'dhruvasagar/vim-table-mode'
+let g:table_mode_corner='|'
 " use <Leader>tm to toggle
 
 " ------ Miscellaneous ------
@@ -605,7 +606,7 @@ let g:pandoc#folding#fastfolds = 1
 " syntax highlighting in code blocks
 let g:pandoc#syntax#codeblocks#embeds#langs = [
 \   "toml", "json", "yaml",
-\   "python", "haskell", "bash=sh",
+\   "python", "haskell", "bash=sh", "sh",
 \   "javascript", "js=javascript", "css", "html",
 \   "java", "kotlin",
 \   "c", "cpp", "make", "rust"]
