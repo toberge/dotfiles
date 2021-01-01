@@ -35,11 +35,11 @@ content = " "
 type = custom/text
 content = "  "
 
-[module/)]
+[module/rpar]
 type = custom/text
 content = ""
 
-[module/(]
+[module/lpar]
 type = custom/text
 content = ""
 
