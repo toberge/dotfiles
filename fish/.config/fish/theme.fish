@@ -2,9 +2,11 @@
 # from https://github.com/fish-shell/fish-shell/issues/3443#issuecomment-511227428
 set -U fish_color_autosuggestion      brblack
 set -U fish_color_cancel              -r
-set -U fish_color_command             brgreen
+# set -U fish_color_command             brgreen
+set -U fish_color_command             bryellow
 set -U fish_color_comment             brmagenta
-set -U fish_color_cwd                 green
+# set -U fish_color_cwd                 green
+set -U fish_color_cwd                 yellow
 set -U fish_color_cwd_root            red
 set -U fish_color_end                 brmagenta
 set -U fish_color_error               brred
