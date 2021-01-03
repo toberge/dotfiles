@@ -1,0 +1,20 @@
+#!/bin/sh
+#
+# Shorten a string, cut by word & with ellipsis
+# Usage: shorten <maxlen> <string>
+
+original=$2
+maxlen=$1
+
+if [ "${#original}" -lt "$maxlen" ]
+then
+    echo "$original"
+else
+    str=""
+    for word in $original
+    do
+        [ "${#str}" -gt "$maxlen" ] && break
+        str="$str $word"
+    done
+    echo "${str% *}"…
+fi
