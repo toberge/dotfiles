@@ -5,5 +5,5 @@ if [ -z "$title" ]
 then
     echo "No song playing"
 else
-    shorten 34 "$title"
+    shorten 23 "$title"
 fi

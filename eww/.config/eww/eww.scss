@@ -16,11 +16,12 @@ window {
     font-family: "Ubuntu Regular";
     font-size: 18px; // change this to scale up/down!
     border-radius: 0.5em;
+    border: solid 0.3em $btnColor;
 }
 
-// .widget {
-//     margin: 0.5em 0;
-// }
+.info, .music, .sliders {
+    margin: 0 0.3em;
+}
 
 .info {
     margin: 0.5em 0;
@@ -28,6 +29,7 @@ window {
 
 .music {
     margin-top: 0.2em;
+    margin-bottom: 0.5em;
 }
 
 .icon {
@@ -38,6 +40,10 @@ window {
 //     font-size: 1.5em;
 // }
 
+.time {
+    font-size: 4em;
+}
+
 .song-title,
 .date {
     font-weight: bold;
@@ -47,20 +53,21 @@ window {
     margin-top: 0.5em;
 }
 
+// Section header (data, music etc.)
 .header {
     background-color: $btnColor;
-    padding: 0.1em 7.5em;
+    padding: 0 7.5em;
 
     .inner-header {
+        padding: 0.2em 0;
         background-color: lighten($color: $btnColor, $amount: 10);
         font-weight: bold;
     }
 }
 
-.time {
-    font-size: 4em;
-}
-
+// General button styling
+// One big button: .single
+// Side buttons for media: .left | button | .right
 button {
     background-color: $btnColor;
     margin: 0.5em 0;
@@ -82,12 +89,13 @@ button {
     }
 }
 
+// Specific width to ensure even spacing
 .slider-icon {
-    min-width: 2.5em;
-    margin-left: 0.5em;
+    min-width: 2.1em;
+    margin-left: 0.3em;
 }
 
-// Unset part of sliders
+// Background part of sliders
 scale trough {
     all: unset;
     background-color: $sliderBgColor;
@@ -96,19 +104,13 @@ scale trough {
     min-width: 16em;
     margin: 0.5em;
 
-    // Set part of sliders
+    // Highlighted part of sliders
     highlight {
         all: unset;
         background-color: $sliderColor;
         color: transparent;
         border-radius: 0.3em;
     }
-}
-
-// idk if this does anything
-slider {
-    all: unset;
-    color: $sliderColor;
 }
 
 // Slider colors!

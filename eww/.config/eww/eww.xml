@@ -14,7 +14,7 @@
               <box class="inner-header">DATA</box>
           </box>
         <box orientation="h" space-evenly="false" class="volume">
-            <box class="slider-icon icon"> </box>
+            <box class="slider-icon icon"> </box>
             <scale min="0" max="100" value="{{volume}}" onchange="amixer sset Master {}%" />
         </box>
         <box orientation="h" space-evenly="false" class="backlight">
@@ -42,10 +42,10 @@
                 <box class="inner-header">MUSIC</box>
             </box>
             <box class="song-title">
-                <label text="{{song-title}}" limit-width="24" />
+                <label text="{{song-title}}" limit-width="23" />
             </box>
             <box>
-                <label text="{{song-artist}}" limit-width="24" />
+                <label text="{{song-artist}}" limit-width="23" />
             </box>
             <box orientation="h">
                 <button class="left icon" onclick='playerctl previous'>
@@ -109,9 +109,8 @@
 
   <windows>
     <window name="main_window">
-      <geometry x="16" y="48" width="300px" height="400"/>
-      <size x="240px" y="700px" />
-      <pos x="16px" y="64px" />
+      <!-- window gap 16, bar height 38 -->
+      <geometry x="10" y="50" />
       <widget>
         <sidepanel />
       </widget>
