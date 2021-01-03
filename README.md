@@ -11,6 +11,7 @@
 ## Using GNU stow with simple packages
 
 ![showcase – 'normal' desktop](_showcase/2020-11-11_plateau.png)
+![showcase – sidebar (eww)](_showcase/2021-01-03_eww.png)
 ![showcase – powermenu](_showcase/2020-11-11_powermenu.png)
 
 ## Naming convention:
