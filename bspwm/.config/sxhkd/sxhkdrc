@@ -106,6 +106,10 @@ super + space; {i, u}
 super + space; {m, s, d}
         {spotify, steam, discord} & sfx open
 
+# sidebar
+super + space; {super + space, space}
+        pgrep eww && eww kill || eww --detach open main_window
+
 # }}}
 
 # System control {{{

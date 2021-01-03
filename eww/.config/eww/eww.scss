@@ -1,0 +1,124 @@
+@import '/home/qualitanty/.cache/wal/colors.scss';
+
+$bgColor: $background;
+$btnColor: $color0;
+$fgColor: $foreground;
+$sliderBgColor: $btnColor;
+$sliderColor: $color9;
+
+* {
+    all: unset;
+}
+
+window {
+    background-color: $bgColor;
+    color: $fgColor;
+    font-family: "Ubuntu Regular";
+    font-size: 18px; // change this to scale up/down!
+    border-radius: 0.5em;
+}
+
+// .widget {
+//     margin: 0.5em 0;
+// }
+
+.info {
+    margin: 0.5em 0;
+}
+
+.music {
+    margin-top: 0.2em;
+}
+
+.icon {
+    font-family: "Font Awesome 5 Free";
+}
+
+// .music .icon {
+//     font-size: 1.5em;
+// }
+
+.song-title,
+.date {
+    font-weight: bold;
+}
+
+.song-title {
+    margin-top: 0.5em;
+}
+
+.header {
+    background-color: $btnColor;
+    padding: 0.1em 7.5em;
+
+    .inner-header {
+        background-color: lighten($color: $btnColor, $amount: 10);
+        font-weight: bold;
+    }
+}
+
+.time {
+    font-size: 4em;
+}
+
+button {
+    background-color: $btnColor;
+    margin: 0.5em 0;
+    min-height: 3em;
+    &:hover {
+        background-color: lighten($color: $btnColor, $amount: 10);
+    }
+    &.single {
+        margin: 0.5em;
+        border-radius: 0.5em;
+    }
+    &.left {
+        margin-left: 0.5em;
+        border-radius: 0.5em 0 0 0.5em;
+    }
+    &.right {
+        margin-right: 0.5em;
+        border-radius: 0 0.5em 0.5em 0;
+    }
+}
+
+.slider-icon {
+    min-width: 2.5em;
+    margin-left: 0.5em;
+}
+
+// Unset part of sliders
+scale trough {
+    all: unset;
+    background-color: $sliderBgColor;
+    border-radius: 0.3em;
+    min-height: 0.6em;
+    min-width: 16em;
+    margin: 0.5em;
+
+    // Set part of sliders
+    highlight {
+        all: unset;
+        background-color: $sliderColor;
+        color: transparent;
+        border-radius: 0.3em;
+    }
+}
+
+// idk if this does anything
+slider {
+    all: unset;
+    color: $sliderColor;
+}
+
+// Slider colors!
+
+.volume      scale trough highlight { background-color: $color4; }
+
+.backlight   scale trough highlight { background-color: $color3; }
+
+.temperature scale trough highlight { background-color: $color9; }
+
+.battery     scale trough highlight { background-color: $color5; }
+
+.disk-usage  scale trough highlight { background-color: $color2; }

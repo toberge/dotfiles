@@ -1,0 +1,12 @@
+#!/bin/sh
+
+title="$(playerctl metadata title)"
+if [ -z "$title" ]
+then
+    echo "No song playing"
+elif [ "${#title}" -lt 20 ]
+then
+    echo "$title"
+else
+    echo "$title" | awk '{ print $1" "$2" "$3"..." }'
+fi

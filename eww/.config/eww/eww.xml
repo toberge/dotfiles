@@ -1,0 +1,120 @@
+<eww>
+  <definitions>
+    <def name="info">
+      <box orientation="v" space-evenly="false" class="info" spacing="10">
+          <box class="time">{{time}}</box>
+          <box class="date">{{date}}</box>
+          <box class="uptime">Uptime: {{uptime}}</box>
+      </box>
+    </def>
+
+    <def name="sliders">
+      <box orientation="v" space-evenly="false" class="sliders" spacing="10">
+          <box class="header" orientation="h">
+              <box class="inner-header">DATA</box>
+          </box>
+        <box orientation="h" space-evenly="false" class="volume">
+            <box class="slider-icon icon"> </box>
+            <scale min="0" max="100" value="{{volume}}" onchange="amixer sset Master {}%" />
+        </box>
+        <box orientation="h" space-evenly="false" class="backlight">
+            <box class="slider-icon icon"> </box>
+            <scale min="0" max="100" value="{{backlight}}" onchange="backlight --notify set {}" />
+        </box>
+        <box orientation="h" space-evenly="false" class="temperature">
+            <box class="slider-icon icon"> </box>
+            <scale min="20" max="100" value="{{temperature}}" />
+        </box>
+        <box orientation="h" space-evenly="false" class="battery">
+            <box class="slider-icon icon"> </box>
+            <scale min="0" max="100" value="{{battery}}" />
+        </box>
+        <box orientation="h" space-evenly="false" class="disk-usage">
+            <box class="slider-icon icon"> </box>
+            <scale min="0" max="100" value="{{disk-usage}}" />
+        </box>
+      </box>
+    </def>
+
+    <def name="music">
+        <box orientation="v" class="music widget" space-evenly="false" spacing="5">
+            <box class="header" orientation="h">
+                <box class="inner-header">MUSIC</box>
+            </box>
+            <box class="song-title">
+                <label text="{{song-title}}" limit-width="24" />
+            </box>
+            <box>
+                <label text="{{song-artist}}" limit-width="24" />
+            </box>
+            <box orientation="h">
+                <button class="left icon" onclick='playerctl previous'>
+                    
+                </button>
+                <button class="icon" onclick='playerctl play-pause'>
+                    {{song-state}}
+                </button>
+                <button class="right icon" onclick='playerctl next'>
+                    
+                </button>
+            </box>
+        </box>
+    </def>
+
+    <def name="sidepanel">
+        <box orientation="v" space-evenly="false" spacing="10">
+            <info />
+            <sliders />
+            <music />
+        </box>
+    </def>
+  </definitions>
+
+  <variables>
+    <script-var name="volume" interval="30ms">
+        sh -c "volume -o generic | tr -d '%'"
+    </script-var>
+    <script-var name="backlight" interval="1s">
+        backlight get
+    </script-var>
+    <script-var name="battery" interval="4s">
+        percent
+    </script-var>
+    <script-var name="temperature" interval="10s">
+        temp
+    </script-var>
+    <script-var name="disk-usage" interval="30m">
+        df ~ --output=pcent | tail -n 1 | tr -d ' %'
+    </script-var>
+    <script-var name="time" interval="30s">
+        date +'%H:%M'
+    </script-var>
+    <script-var name="date" interval="1h">
+        date +'%A %d. %B %Y'
+    </script-var>
+    <script-var name="uptime" interval="1m">
+        up="$(uptime -p)"; echo ${up##up }
+    </script-var>
+    <script-var name="song-title" interval="50ms">
+        ~/.config/eww/scripts/song_title
+    </script-var>
+    <script-var name="song-artist" interval="50ms">
+        playerctl metadata artist
+    </script-var>
+    <script-var name="song-state" interval="30ms">
+        [ "$(playerctl status)" = "Paused" ] &amp;&amp; echo "" || echo ""
+    </script-var>
+  </variables>
+
+
+  <windows>
+    <window name="main_window">
+      <geometry x="16" y="48" width="300px" height="400"/>
+      <size x="240px" y="700px" />
+      <pos x="16px" y="64px" />
+      <widget>
+        <sidepanel />
+      </widget>
+    </window>
+  </windows>
+</eww>

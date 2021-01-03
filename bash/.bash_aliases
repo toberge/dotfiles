@@ -105,6 +105,9 @@ alias cmk='mkdir build && cd build && cmake .. && make'
 # Other annoyances
 alias cleantex='rm -f *.{aux,log,out}'
 
+# Debug features
+alias ewwdbg='GTK_DEBUG=interactive eww open main_window'
+
 # escaped $2 won't get expanded - and it is awk syntax..
 # shellcheck disable=SC2142
 alias localip="ip addr show | grep 'inet .* global' | awk '{print \$2}' | cut -d '/' -f 1"
