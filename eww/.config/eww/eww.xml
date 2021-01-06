@@ -5,6 +5,9 @@
           <box class="time">{{time}}</box>
           <box class="date">{{date}}</box>
           <box class="uptime">Uptime: {{uptime}}</box>
+          <!-- <box class="calendar"> -->
+          <!--     <label markup="{{events}}" /> -->
+          <!-- </box> -->
       </box>
     </def>
 
@@ -90,7 +93,10 @@
         date +'%H:%M'
     </script-var>
     <script-var name="date" interval="1h">
-        date +'%A %d. %B %Y'
+        date +'%A %d. %B %Y' | sed 's/.*/\u&amp;/'
+    </script-var>
+    <script-var name="events">
+        python -u ~/.local/bin/upcoming-events --eww
     </script-var>
     <script-var name="uptime" interval="1m">
         up="$(uptime -p)"; echo ${up##up }
