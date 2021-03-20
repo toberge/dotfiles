@@ -128,10 +128,10 @@ XF86MonBrightness{Up,Down}
 
 # volume
 XF86Audio{Raise,Lower}Volume
-        volume -nl {-i 5,-d 5} & sfx open
+        volume --notify {up, down} & sfx open
 
 XF86AudioMute
-        volume -mnl & sfx open
+        volume --notify mute & sfx open
 
 # media player
 XF86Audio{Play,Next,Prev,MicMute}
@@ -219,11 +219,11 @@ alt + {_,shift + } + Tab
 	bspc node -f {next,prev}.local.leaf
 
 # focus the next/previous desktop in the current monitor
-ctrl + alt + {Left,Right,h,l}
+ctrl + alt + {Left,Right}
 	bspc desktop -f {prev,next,prev,next}.occupied.local
 
 # move desktop left/right
-ctrl + alt + shift + {Left,Right,h,l}
+ctrl + alt + shift + {Left,Right}
 	bspc desktop -s {prev,next,prev,next} --follow
 
 # focus the last desktop

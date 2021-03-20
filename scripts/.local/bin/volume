@@ -1,0 +1,51 @@
+#!/bin/sh
+#
+# Set/mute/get volume using pactl
+# Sends notification if run with --notify
+
+[ "$1" = "--notify" ] && { should_notify=1; shift; }
+
+sink="$(pactl info | grep "Default Sink" | cut -d : -f 2 | tr -d ' ')"
+
+get_volume() {
+    pactl list | grep -E -A 10 "Name: $sink\$" | grep "Volume: front-left" | cut -d / -f 2 | tr -d ' '
+}
+
+is_muted() {
+    answer=$(pactl list | grep -E -A 10 "Name: $sink\$" | grep "Mute" | cut -d : -f 2 | tr -d ' ')
+    [ "$answer" = "yes" ]
+}
+
+notify() {
+    if command -v dunstify >/dev/null
+    then
+        dunstify -r 740 "$@"
+    else
+        notify-send "$@"
+    fi
+}
+
+case "$1" in
+    u|up)
+        pactl set-sink-volume "$sink" +"${2:-5}"%
+        ;;
+    d|down)
+        pactl set-sink-volume "$sink" -"${2:-5}"%
+        ;;
+    m|mute)
+        pactl set-sink-mute "$sink" toggle
+        ;;
+    show|*)
+        get_volume | tr -d '%'
+        ;;
+esac
+
+if [ "${should_notify:-0}" -gt 0 ]
+then
+    if [ "$1" = mute ] && is_muted
+    then
+        notify "Muted"
+    else
+        notify "Volume $(get_volume)"
+    fi
+fi
