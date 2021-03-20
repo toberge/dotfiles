@@ -21,6 +21,7 @@ done
 # and the option 
 # toolkit.legacyUserProfileCustomizations.stylesheets
 # to be set to *true* (in about:config)
-cd "$HOME"/.mozilla/firefox/*.default && \
-mkdir chrome && \
-ln -sf "${HOME}/.cache/wal/userContent.css" chrome/userContent.css
+# TODO: This does not work rn
+# cd "$HOME"/.mozilla/firefox/*.default && \
+# mkdir chrome && \
+# ln -sf "${HOME}/.cache/wal/userContent.css" chrome/userContent.css

@@ -17,8 +17,9 @@ case "$HOSTNAME" in
         ;;
     thinkpad) # laptop
         ~/.local/bin/trackpoint.sh &
+        # libinput-gestures-setup start &
         [[ "$(xrandr --query | grep -c " connected")" -eq 2 ]] \
-            && xrandr --output HDMI2 --auto --above eDP1
+            && xrandr --output HDMI2 --auto --right-of eDP1
         ;;
     *)
         ;;

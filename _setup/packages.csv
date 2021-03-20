@@ -3,7 +3,7 @@
 ###,##############,###
 PAC,stow,automatically symlinking files
 PAC,tlp,power-saving thingy
-PAC,yay,"an AUR helper (yeah, I know)"
+AUR,yay,"an AUR helper (yeah, I know)"
 PAC,ufw,too lazy to set up anything else
 PAC,playerctl,you wanna pause&skip your songs right?
 PAC,xorg-xbacklight,well yes
@@ -11,34 +11,32 @@ PAC,redshift,to save your eyes from death
 #AUR,sct,as a redshift alternative?
 AUR,xidlehook,a not-annoying xautolock
 PAC,xcape,making caps lock an escape key too
-PAC,nvim,finally ditching vim
-PIP,pynvim,for some nvim plugins
+PAC,xorg-xmodmap,make caps ctrl
+PAC,neovim,finally ditching vim
+PAC,python-pynvim,for some nvim plugins
 ###,##################,###
 ###,TERMINAL ILLNESSES,###
 ###,##################,###
-PAC,rxvt-unicode,terminal emulator
-PAC,urxvt-perls,URxvt Perl things
-AUR,urxvt-resize-font-git,font resize in URxvt
 PAC,ranger,terminal file manager
 PIP,ueberzug,for img previews in ranger
 PAC,tree,handy visualization of folder structure
-PAC,bash-completion,command completion for BASH
 PAC,tmux,terminal multiplexer disease
-AUR,tmuxline-git,airline for tmux
 PAC,ripgrep,speedy grep replacement
 PAC,bat,cat with highlighting
 PAC,fd,faster find with regex
+PAC,fzf,fuzzy finder
 ###,#####################,###
 ###,WINDOW MANAGER STUFFS,###
 ###,#####################,###
-PAC,i3-gaps,i3 window manager
-PAC,i3lock-color,nice screen locker
+PAC,xorg-xrdb,for fetching vars from Xresources
+###PAC,i3-gaps,i3 window manager
+AUR,i3lock-color,nice screen locker
 PAC,bspwm,another window manager
 PAC,sxhkd,hotkey daemon
 PAC,picom,compositor for X
 PAC,rofi,cute little menu thing
 PAC,dunst,for displaying notifications
-PAC,polybar,a nice & configurable bar
+AUR,polybar,a nice & configurable bar
 PAC,feh,for displaying images and setting wallpaper
 PAC,sxiv,it's better than feh...
 PAC,python-pywal,for generating and handling color schemes
@@ -49,7 +47,6 @@ PAC,numlockx,for setting numlock ON at login
 PAC,xorg-xinput,for changing touchpad scroll dir ++
 PAC,xclip,managing clipboard
 PAC,scrot,for taking scree-appindicatornshots
-PAC,pamac-tray-appindicator,for notifying about updates
 PAC,network-manager-applet,for network settings (nm-applet)
 AUR,gtk3-nocsd-git,get rid of those useless buttons
 PAC,zenity,minimalist dialogs
@@ -58,11 +55,13 @@ PIP,google-auth-httplib2,for calendar script
 PIP,google-auth-oauthlib,for calendar script
 PAC,python-dateutil,for calendar script
 GIT,pidswallow,window swallowing in BSPWM
+AUR,tela-icon-theme,nice icons
+AUR,xcursor-breeze,nice cursors
 ###,#############,###
 ###,    FONTS    ,###
 ###,#############,###
-PAC,otf-fira-code,"Fira Code, a nice monospace font with litigatures"
-AUR,nerd-fonts-fira-mono,"Fira Mono for litigature absence"
+AUR,ttf-fira-code,Fira Code – a nice monospace font with litigatures (the otf pkg is borked)
+AUR,nerd-fonts-fira-mono,Fira Mono for litigature absence
 PAC,ttf-ubuntu-font-family,"the Ubuntu font (I just like it)"
 PAC,otf-font-awesome,"Font Awesome, for text-based icons"
 PAC,powerline-fonts,Powerline fonts yes
@@ -80,6 +79,8 @@ PAC,texlive-core,for basic latex
 PAC,texlive-latexextra,for the cancel package and more
 PAC,pdftk,for concating PDFs and more
 PAC,flameshot,screenshot GUI
+PAC,maim,simple screenshot
+PAC,slop,simple screenshot
 PAC,libqalculate,a natural-language calculator with unit conversion
 ###,#############,###
 ###,NORMAL STUFFS,###
@@ -96,6 +97,7 @@ PAC,discord,chatter
 PAC,gnome-calculator,I need a friendly calculator
 PAC,thunar,a decent file manager
 PAC,tumbler,thumbnails in thunar
+AUR,zoom,am I a zoomer?
 ###,#############,###
 ###, PROGRAMMING ,###
 ###,#############,###
@@ -120,13 +122,10 @@ PAC,soundfont-fluid,replace .gervill/soundbank-emg.sf2 with this one!
 ###,#############,###
 PAC,fortune-mod,heh
 PAC,vim-airline,making vim look better
-PAC,sl,for shits & giggles
 PAC,xorg-xclock,for slamming time in my face
 YAY,i3-gnome-pomodoro-git,pomodoro timer
 YAY,rofi-emoji,emoji keyboard thing...
-YAY,i3-volume,for reasons but not good ones
-YAY,tty-clock,for literally no purpose whatsoever
-PAC,cmatrix,to pretend I'm a hackz0r
-PAC,neofetch,for showing off
+YAY,splatmoji,kaomoji keyboard too
+#YAY,i3-volume,for reasons but not good ones
+#YAY,tty-clock,for literally no purpose whatsoever
 PAC,glava,for fancy desktop music visualization
-AUR,cava,for music visualization in terminals

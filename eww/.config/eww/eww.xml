@@ -108,7 +108,7 @@
         playerctl metadata artist
     </script-var>
     <script-var name="song-state" interval="30ms">
-        [ "$(playerctl status)" = "Paused" ] &amp;&amp; echo "" || echo ""
+        [ "$(playerctl -i chromium status)" = "Playing" ] &amp;&amp; echo "" || echo ""
     </script-var>
   </variables>
 

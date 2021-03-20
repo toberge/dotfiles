@@ -14,7 +14,7 @@ case $1 in
     sxhkd)
         pkill sxhkd
         sleep .01
-        sxhkd &
+        SXHKD_SHELL=/bin/sh sxhkd &
         ;;
     spectrwm)
         pkill -HUP spectrwm
