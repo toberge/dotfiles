@@ -22,10 +22,10 @@
             }
         },
         "haskell": {
-            "command": "hie-wrapper",
+            "command": "haskell-language-server-wrapper",
             "args": ["--lsp"],
             "rootPatterns": [
-                "stack.yaml",   
+                "stack.yaml",
                 "cabal.config",
                 "package.yaml"  
             ],
