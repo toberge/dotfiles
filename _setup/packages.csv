@@ -85,6 +85,8 @@ PAC,libqalculate,a natural-language calculator with unit conversion
 ###,#############,###
 ###,NORMAL STUFFS,###
 ###,#############,###
+PAC,firefox,web browser
+PAC,thunderbird,email client
 PAC,mpv,video player
 PAC,youtube-dl,video stuff
 PAC,zathura,PDF viewer
@@ -96,7 +98,12 @@ AUR,spicetify-cli,theming spotify
 PAC,discord,chatter
 PAC,gnome-calculator,I need a friendly calculator
 PAC,thunar,a decent file manager
+PAC,gvfs,for trash and mounting
+PAC,file-roller,for archives
+PAC,thunar-archive-plugin,for quick zipping and unzipping
+PAC,thunar-media-tags-plugin,for media info
 PAC,tumbler,thumbnails in thunar
+PAC,ffmpegthumbnailer,video thumbnails in thunar
 AUR,zoom,am I a zoomer?
 ###,#############,###
 ###, PROGRAMMING ,###
