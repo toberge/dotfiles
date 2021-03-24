@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<actions>
+<action>
+	<icon>utilities-terminal</icon>
+	<name>Open Terminal Here</name>
+	<unique-id>1616088411499636-1</unique-id>
+	<command>alacritty --working-directory %f</command>
+	<description>Example for a custom action</description>
+	<patterns>*</patterns>
+	<startup-notify/>
+	<directories/>
+</action>
+<action>
+	<icon>emblem-web</icon>
+	<name>Upload to 0x0.st</name>
+	<unique-id>1616621035920066-1</unique-id>
+	<command>upload 0x0 %f</command>
+	<description></description>
+	<patterns>*</patterns>
+	<audio-files/>
+	<image-files/>
+	<other-files/>
+	<text-files/>
+	<video-files/>
+</action>
+<action>
+	<icon>accessories-image-viewer</icon>
+	<name>Upload to imgur</name>
+	<unique-id>1616621075582031-2</unique-id>
+	<command>upload imgur %f</command>
+	<description></description>
+	<patterns>*</patterns>
+	<image-files/>
+</action>
+</actions>

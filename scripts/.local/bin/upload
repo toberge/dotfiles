@@ -5,7 +5,7 @@
 # - imgur (requires imgur.sh)
 
 die() {
-    echo "$1" >&2
+    printf "$1\n" >&2
     exit 1
 }
 
@@ -31,6 +31,6 @@ case $1 in
             | clip && post_notif
         ;;
     *)
-        die "Unknown upload destination"
+        die "Unknown upload destination\nAllowed:\n\t- 0x0 (just curl)\n\t- imgur (requires imgur.sh)"
         ;;
 esac
