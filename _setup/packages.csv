@@ -116,6 +116,8 @@ NPM,how-2,search stackoverflow for answers
 #AUR,intellij-idea-ultimate-edition-jre,custom JRE for IntelliJ
 PIP,virtualfish,for displaying venv info in fish prompt
 PAC,ghc,Haskell compiler and interpreter
+PAC,stack,Haskell tool stack
+PAC,haskell-brittany,Haskell formatter
 AUR,haskell-language-server-bin,Haskell language server
 PAC,ghc-static,Static libs & docs - makes hls work...
 ###,#######,###

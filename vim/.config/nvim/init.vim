@@ -84,10 +84,10 @@ Plug 'justinmk/vim-sneak'
 
 " in this way it does not conflict with CoC
 " (coc's snippets function messes with ultisnip code)
-let g:UltiSnipsExpandTrigger="<c-j>"
+let g:UltiSnipsExpandTrigger="<tab>"
 " Maybe <s-tab>?
-let g:UltiSnipsJumpForwardTrigger="<c-j>"
-let g:UltiSnipsJumpBackwardTrigger="<c-k>"
+let g:UltiSnipsJumpForwardTrigger="<tab>"
+let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
 
 " Let vim be affected by .editorconfig files
 Plug 'editorconfig/editorconfig-vim'
@@ -102,9 +102,6 @@ Plug 'junegunn/fzf.vim'
 
 " ------ Code completion ------
 Plug 'neoclide/coc.nvim', { 'branch': 'release' }
-
-" ------ Linting ------
-Plug 'dense-analysis/ale'
 
 " ------ Cosmetics ------
 Plug 'psliwka/vim-smoothie' " smud scrolling
@@ -436,11 +433,11 @@ endif
 " ------ keybinds ------{{{
 
 " use tab like normal folks
-inoremap <silent><expr> <TAB>
-      \ pumvisible() ? "\<C-n>" :
-      \ <SID>check_back_space() ? "\<TAB>" :
-      \ coc#refresh()
-inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
+" inoremap <silent><expr> <TAB>
+"       \ pumvisible() ? "\<C-n>" :
+"       \ <SID>check_back_space() ? "\<TAB>" :
+"       \ coc#refresh()
+" inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
 
 function! s:check_back_space() abort
   let col = col('.') - 1
@@ -746,18 +743,3 @@ nnoremap <Leader>fc :Commands<CR>
 nnoremap <Leader>r :Rg
 
 "  }}}
-
-" ------ ALE ------{{{
-
-" Airline integration
-let g:airline#extensions#ale#enabled = 1
-
-" lint
-let g:ale_linters_explicit = 0
-
-" fix
-let g:ale_fix_on_save = 1
-
-" see ftplugin files for linter/fixer rules
-
-" }}}
