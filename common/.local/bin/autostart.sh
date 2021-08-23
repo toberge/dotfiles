@@ -3,10 +3,10 @@
 # CALICOMP startup tune
 sfx startup &
 
-picom="picom --daemon --dbus"
+picom="picom --daemon --dbus --experimental-backends"
 
 # monitor layout and device specifics
-case "$HOSTNAME" in
+case "${HOSTNAME:-$hostname}" in
     fuglekassa) # desktop
         # only set this option if it is off
         nvidia-settings -tq CurrentMetaMode | grep -q ForceFullCompositionPipeline=On \
@@ -19,7 +19,10 @@ case "$HOSTNAME" in
         ~/.local/bin/trackpoint.sh &
         # libinput-gestures-setup start &
         [[ "$(xrandr --query | grep -c " connected")" -eq 2 ]] \
-            && xrandr --output HDMI2 --auto --right-of eDP1
+            && xrandr --output DP-2 --auto --right-of eDP-1
+            # && xrandr --output HDMI-2 --auto --above eDP-1
+        # [[ "$(xrandr --query | grep -c " connected")" -eq 2 ]] \
+        #     && xrandr --output eDP-1 --off
         ;;
     *)
         ;;
@@ -37,9 +40,9 @@ $picom --config ~/.config/picom/picom.conf
 # numlock, I need you!
 numlockx on
 # Caps Lock go bye bye
-xmodmap ~/.Xmodmap
+#xmodmap ~/.Xmodmap
 # and become Escape
-pgrep xcape || xcape
+#pgrep xcape || xcape
 
 # increase speed of spamming
 xset r rate 360 42

@@ -1,4 +1,4 @@
-#!/bin/env bash
+#!/usr/bin/env bash
 
 # keybind daemon
 sxhkd &
@@ -15,7 +15,7 @@ monitors=($(xrandr --query | grep " connected" | cut -d" " -f1))
 # Handle multiple monitors
 if [[ $(echo ${monitors[@]} | wc -w) -eq 2 ]]
 then # split wses in half, prefer external
-    case $HOSTNAME in
+    case ${HOSTNAME:-hostname} in
         fuglekassa)
             bspc monitor ${monitors[0]} -d {1..5}
             bspc monitor ${monitors[1]} -d {6..10}

@@ -1,5 +1,6 @@
 {
-    "coc.preferences.formatOnSaveFiletypes": ["haskell"],
+    "coc.preferences.formatOnSaveFiletypes": ["haskell", "python"],
+    "python.formatting.provider": "black",
     "languageserver": {
         "ccls": {
             "command": "ccls",

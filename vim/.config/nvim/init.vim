@@ -117,6 +117,7 @@ let g:startify_files_number = 8 " not loadeeeeed
 Plug 'mhinz/vim-startify' " start page
 Plug 'Yggdroot/indentLine'
 Plug 'ryanoasis/vim-devicons'
+Plug 'junegunn/rainbow_parentheses.vim'
 
 " ------ Distraction-free writing ------
 Plug 'junegunn/goyo.vim'

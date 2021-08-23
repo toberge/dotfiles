@@ -4,7 +4,7 @@ case $1 in
     picom)
         pkill picom
         sleep .01
-        picom -b --dbus --config ~/.config/picom/picom.conf
+        picom -b --dbus --experimental-backends --config ~/.config/picom/picom.conf
         ;;
     dunst)
         pkill dunst

@@ -12,4 +12,3 @@ tapping=$(xinput list-props "$device" | grep 'Tapping Enabled (' | cut -d '(' -f
 
 xinput set-prop "$device" "$natural_scroll" 1
 xinput set-prop "$device" "$tapping" 1
-
