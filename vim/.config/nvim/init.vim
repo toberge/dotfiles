@@ -136,6 +136,7 @@ let g:polyglot_disabled = ['rust', 'markdown', 'pandoc', 'mma',
 Plug 'sheerun/vim-polyglot'
 Plug 'alx741/vim-hindent' " only a supplement to polyglot's default
 let g:hindent_on_save = 0 " (disable since it puts you at start of file)
+Plug 'Procrat/oz.vim'
 
 let java_highlight_functions="style" " uhhhh necessary?
 
