@@ -1,6 +1,5 @@
 configuration {
   /* let launcher be default */
-  theme: "themes/box.rasi";
   modi: [window, drun, run, emoji, ssh, combi];
 
   terminal: "alacritty";
@@ -15,5 +14,7 @@ configuration {
   /* TODO: check what this is */
   bw: 0;
 }
+
+@theme "themes/box.rasi"
 
 /* vim:ft=css

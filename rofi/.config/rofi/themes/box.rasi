@@ -33,7 +33,7 @@ element, inputbar, textbox {
   padding: 1em;
 }
 
-element selected {
+element selected, element-text selected, element-icon selected {
   background-color: @accent;
   color: @accent-fg;
 }
