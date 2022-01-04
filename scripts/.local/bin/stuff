@@ -1,0 +1,11 @@
+#!/bin/sh
+# Launch some things that might not've been launched yet
+
+# systray apps, screen filter
+for app in redshift-gtk dropbox pamac-tray nm-applet
+do
+    if ! pgrep $app > /dev/null
+    then # app not launched
+        nohup $app &
+    fi
+done

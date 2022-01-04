@@ -1,28 +1,28 @@
 #!/bin/sh
 #
-# Set/show backlight using xbacklight
+# Set/show backlight using `light`
 # Send notification if run with --notify
 
 [ "$1" = "--notify" ] && { notify=1; shift; }
 
 case ${1:-} in
     u|up)
-        xbacklight -inc "${2:-5}"
+        light -A "${2:-5}"
         ;;
     d|down)
-        xbacklight -dec "${2:-5}"
+        light -U "${2:-5}"
         ;;
     s|set)
-        xbacklight -set "${2:-100}"
+        light -S "${2:-100}"
         ;;
     show|*)
-        xbacklight -get
+        light
         ;;
 esac
 
 if [ "${notify:-0}" -gt 0 ]
 then
-    light=$(xbacklight -get)
+    light=$(light -G)
     if command -v dunstify >/dev/null
     then
         dunstify -r 740 "Backlight ${light%.*}%"

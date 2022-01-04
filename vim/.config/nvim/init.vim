@@ -131,8 +131,9 @@ Plug 'aliou/bats.vim'
 " let g:python_highlight_all = 1
 Plug 'rust-lang/rust.vim'
 let g:rustfmt_autosave = 1
+Plug 'dpc/vim-armasm'
 let g:polyglot_disabled = ['rust', 'markdown', 'pandoc', 'mma',
-                        \  'plaintex', 'tex', 'plaintex', 'latex']
+                        \  'plaintex', 'tex', 'plaintex', 'latex', 'r']
 Plug 'sheerun/vim-polyglot'
 Plug 'alx741/vim-hindent' " only a supplement to polyglot's default
 let g:hindent_on_save = 0 " (disable since it puts you at start of file)

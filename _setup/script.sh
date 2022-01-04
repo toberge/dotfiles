@@ -38,6 +38,10 @@ echo Installing AUR packages
 echo
 yay --needed -S "${aurs[@]}"
 
+echo
+echo Enabling time synchronization
+timedatectl set-ntp true
+
 echo Stowable packages:
 echo [^_]*/ | sed 's/\///g'
 echo
