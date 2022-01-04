@@ -154,7 +154,6 @@ let g:table_mode_corner='|'
 " use <Leader>tm to toggle
 
 " ------ Miscellaneous ------
-Plug 'aurieh/discord.nvim', { 'do': ':UpdateRemotePlugins'}
 Plug 'skywind3000/asyncrun.vim'
 let g:asyncrun_open = 3 " cannot override
 

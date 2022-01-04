@@ -50,7 +50,7 @@ element {
   padding: 12;
 }
 
-element selected {
+element-text selected {
   color: @accent;
 }
 
