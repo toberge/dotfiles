@@ -29,19 +29,19 @@ i3lock \
     --indicator \
     --blur=9 \
     --color="${color0#\#}" \
-    --greetertext="$(fortune 80% quotes 20% locked \
+    --greeter-text="$(fortune 80% quotes 20% locked \
                      || echo This screen is locked, I think)" \
-    --veriftext="Lemme see..." \
-    --wrongtext="$(fortune wrong || echo NOPE)" \
-    --noinputtext="<no input>" \
-    --datestr="%A %e. %B %Y" \
+    --verif-text="Lemme see..." \
+    --wrong-text="$(fortune wrong || echo NOPE)" \
+    --noinput-text="<no input>" \
+    --date-str="%A %e. %B %Y" \
     --{greeter,wrong,verif}-font="Ubuntu" \
-    --greetercolor="${color15#\#}ff" \
-    --{wrong,verif,time,date}color="${color15#\#}ff" \
-    --inside{,ver}color="${color0#\#}ff" \
-    --insidewrongcolor="${color9#\#}ff" \
-    --ring{,ver,wrong}color="${color8#\#}ff" \
-    --separatorcolor="${color0#\#}ff" \
+    --greeter-color="${color15#\#}ff" \
+    --{wrong,verif,time,date}-color="${color15#\#}ff" \
+    --inside{,ver}-color="${color0#\#}ff" \
+    --insidewrong-color="${color9#\#}ff" \
+    --ring{,ver,wrong}-color="${color8#\#}ff" \
+    --separator-color="${color0#\#}ff" \
     --line-uses-ring \
-    --keyhlcolor="${color14#\#}ff" \
-    --bshlcolor="${color9#\#}ff" \
+    --keyhl-color="${color14#\#}ff" \
+    --bshl-color="${color9#\#}ff" \
