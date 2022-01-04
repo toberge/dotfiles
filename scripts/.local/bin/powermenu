@@ -66,6 +66,9 @@ case $choice in
             openbox)
                 openbox --exit
                 ;;
+            qtile)
+                pkill qtile
+                ;;
             spectrwm)
                 pkill spectrwm
                 ;;
