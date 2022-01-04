@@ -6,3 +6,5 @@
 setup.sh
 # emacs
 \#*\#
+# ...if anything Python is run
+__pycache__
