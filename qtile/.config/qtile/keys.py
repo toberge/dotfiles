@@ -1,3 +1,6 @@
+#!/usr/bin/env python
+# coding=utf-8
+
 from libqtile.config import Click, Drag, Group, Key, KeyChord
 from libqtile.lazy import lazy
 from libqtile.utils import guess_terminal
@@ -169,4 +172,3 @@ for i in groups:
             ),
         ]
     )
-
