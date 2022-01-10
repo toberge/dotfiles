@@ -1,0 +1,4 @@
+#!/bin/sh
+# Remove last line in file
+
+sed -i '/^$/d' "$1"

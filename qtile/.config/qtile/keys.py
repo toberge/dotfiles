@@ -5,6 +5,8 @@ from libqtile.config import Click, Drag, Group, Key, KeyChord
 from libqtile.lazy import lazy
 from libqtile.utils import guess_terminal
 
+from groups import groups
+
 terminal = guess_terminal()
 mod = "mod4"
 alt = "mod1"
@@ -70,6 +72,7 @@ keys = [
         lazy.spawn("screenshot region"),
         desc="Take screenshot of a part of the screen",
     ),
+    Key([mod], "c", lazy.spawn("color"), desc="Pick a color from the screen"),
     # Media control
     Key(
         [],
@@ -117,6 +120,18 @@ keys = [
         lazy.spawn("rofi -show run"),
         desc="Launch terminal apps",
     ),
+    Key(
+        [mod],
+        "period",
+        lazy.spawn("rofi -show emoji"),
+        desc="Emoji keyboard",
+    ),
+    Key(
+        [mod, "shift"],
+        "period",
+        lazy.spawn("splatmoji --disable-emoji-db copy"),
+        desc="Emoji keyboard",
+    ),
     # Launch specific apps
     KeyChord(
         [mod],
@@ -143,17 +158,16 @@ mouse = [
     ),
 ]
 
-groups = [Group(i) for i in "1234567890"]
-
-for i in groups:
+for g in groups:
     keys.extend(
         [
             # mod + number of group = switch to group
             Key(
                 [mod],
-                i.name,
-                lazy.group[i.name].toscreen(),
-                desc="Switch to group {}".format(i.name),
+                g.name,
+                lazy.group[g.name].toscreen(int(g.screen_affinity), toggle=True),
+                lazy.to_screen(int(g.screen_affinity)),
+                desc="Switch to group {}".format(g.name),
             ),
             # # mod + shift + number of group = switch to & move focused window to group
             # Key(
@@ -166,9 +180,9 @@ for i in groups:
             # mod1 + shift + number of group = move focused window to group
             Key(
                 [mod, "shift"],
-                i.name,
-                lazy.window.togroup(i.name),
-                desc="move focused window to group {}".format(i.name),
+                g.name,
+                lazy.window.togroup(g.name),
+                desc="move focused window to group {}".format(g.name),
             ),
         ]
     )

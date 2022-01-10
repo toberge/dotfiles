@@ -4,24 +4,36 @@ import subprocess
 from libqtile import layout, hook
 from libqtile.config import Match
 
-from keys import keys, mouse, groups
+from keys import keys, mouse
+from groups import groups
 from colors import colors
-# from screens import screens  # also imports all bars
+from setups import setups, hostname
+
+setup = setups[hostname]
+
+# Hooks {{{
 
 
 @hook.subscribe.startup_once
 def autostart():
     subprocess.Popen(["sfx", "startup"])
     os.system("autorandr")
-    os.system("touchpad.sh")
-    os.system("trackpoint.sh")
     os.system("wal -R")
     os.system("~/.fehbg")
     os.system("numlockx on")
     os.system("xmodmap ~/.Xmodmap")
     os.system("xset r rate 360 42")
+
+    # Run setup-specific cmds
+    if setup.is_laptop:
+        os.system("touchpad.sh")
+        os.system("trackpoint.sh")
+        subprocess.Popen("xcape")
+    for cmd in setup.cmds:
+        os.system(cmd)
+
+    # Launch some background processes
     subprocess.Popen(["picom", "--daemon", "--dbus", "--experimental-backends"])
-    subprocess.Popen("xcape")
     subprocess.Popen(
         [
             "xidlehook",
@@ -32,10 +44,16 @@ def autostart():
             "lockmeup",
         ]
     )
+    # Avoid opening two Redshift instances since that causes flicker
     if os.waitstatus_to_exitcode(os.system("pgrep redshift-gtk")) > 0:
         subprocess.Popen("redshift-gtk")
     subprocess.Popen("nm-applet")
     subprocess.Popen("dropbox")
+
+
+@hook.subscribe.startup
+def always_start():
+    os.system("~/.fehbg")
 
 
 @hook.subscribe.client_new
@@ -58,6 +76,11 @@ def layout_sound():
     subprocess.Popen(["sfx", "open"])
 
 
+# }}}
+
+
+# Bar(s) {{{
+
 # TODO just have sep file
 # (but things just CRASH AND BURN when you do that, so...)
 # (current lead: stuff not being read as utf-8)
@@ -74,9 +97,10 @@ widget_defaults = {
     "padding": 4,
 }
 
-main_bar = Bar(
-    [
-        w.CurrentLayoutIcon(),
+
+def create_bar(main=False):
+    widgets = [
+        w.CurrentLayoutIcon(scale=0.8, foreground=colors["foreground"]),
         w.GroupBox(
             active=colors["foreground"],
             inactive=colors["color8"],
@@ -109,22 +133,42 @@ main_bar = Bar(
             format="{char} <span weight='bold'>{percent:2.0%}</span>",
         ),
         w.Clock(fmt=" <span weight='bold'>{}</span>"),
-        w.CPUGraph(
-            border_width=2,
-            border_color=colors["color7"],
-            graph_color=colors["color7"],
-            fill_color=colors["color7"],
-        ),
-        w.Systray(),
-    ],
-    bar_height,
-    background=colors["background"],
-    opacity=0.8,
-)
+    ]
+    if main:
+        widgets.append(w.Systray())
+    else:
+        widgets.append(
+            w.CPUGraph(
+                border_width=2,
+                border_color=colors["color7"],
+                graph_color=colors["color7"],
+                fill_color=colors["color7"],
+            )
+        )
+    return Bar(
+        widgets,
+        bar_height,
+        background=colors["background"],
+        opacity=0.8,
+    )
+
+
+# }}}
+
+# Screens {{{
 
 from libqtile.config import Screen
 
-screens = [Screen(top=main_bar), Screen()]
+
+screens = [
+    Screen(top=create_bar(main=True)),
+    *[Screen(top=create_bar()) for i in range(setup.screens - 1)],
+]
+
+# }}}
+
+
+# Layouts {{{
 
 layout_base_config = {
     "border_normal": colors["color8"],
@@ -139,12 +183,14 @@ floating_layout = layout.Floating(
     **layout_base_config,
     float_rules=[
         *layout.Floating.default_float_rules,
+        Match(wm_instance_class="floater"),
         Match(wm_class="Lxappearance"),
         Match(wm_class="zoom"),
         Match(wm_class="qt5ct"),
         Match(wm_class="MuseScore: Play Panel"),
         Match(wm_class="Gnome-calculator"),
         Match(wm_class="Godot"),
+        Match(wm_class="jetbrains-idea", title="win0"),
         Match(wm_class="Xclock"),
         Match(wm_class="MainApp"),
         Match(wm_class="Main"),
@@ -157,5 +203,14 @@ layouts = [
     layout.Floating(**layout_base_config),
 ]
 
+# }}}
+
+# Options {{{
+
+# Jesus Christ
+auto_minimize = False
+
 # Prevent trouble with Java applications
 wmname = "LG3D"
+
+# }}}

@@ -57,9 +57,7 @@ ctrl + Print
 
 # color picker
 super + u
-        colorpicker --one-shot --short | tee /tmp/color \
-            | xargs dunstify --icon none; \
-            xclip -selection clipboard -rmlastnl -i /tmp/color
+        color
 
 
 # ranger
