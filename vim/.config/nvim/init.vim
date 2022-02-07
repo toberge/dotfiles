@@ -127,12 +127,12 @@ Plug 'junegunn/limelight.vim'
 Plug 'daveyarwood/vim-alda'
 Plug 'aliou/bats.vim'
 " Plug 'Vimjas/vim-python-pep8-indent'
-" Plug 'vim-python/python-syntax'
+Plug 'vim-python/python-syntax'
 " let g:python_highlight_all = 1
 Plug 'rust-lang/rust.vim'
 let g:rustfmt_autosave = 1
 Plug 'dpc/vim-armasm'
-let g:polyglot_disabled = ['rust', 'markdown', 'pandoc', 'mma',
+let g:polyglot_disabled = ['rust', 'markdown', 'pandoc', 'mma', 'python',
                         \  'plaintex', 'tex', 'plaintex', 'latex', 'r']
 Plug 'sheerun/vim-polyglot'
 Plug 'alx741/vim-hindent' " only a supplement to polyglot's default
@@ -156,6 +156,7 @@ let g:table_mode_corner='|'
 " ------ Miscellaneous ------
 Plug 'skywind3000/asyncrun.vim'
 let g:asyncrun_open = 3 " cannot override
+Plug 'tpope/vim-fugitive'
 
 call plug#end()
 
@@ -406,7 +407,7 @@ nmap ga <Plug>(EasyAlign)
 let g:coc_global_extensions = [
     \ 'coc-snippets',
     \ 'coc-sh',
-    \ 'coc-python',
+    \ 'coc-pyright',
     \ 'coc-rust-analyzer',
     \ 'coc-tsserver',
     \ 'coc-html',
@@ -617,8 +618,8 @@ let g:pandoc#syntax#codeblocks#embeds#langs = [
 " TODO: handle this in after/ftplugin or with a toggle command?
 " autocmd BufWritePost *.md :!pandoc % -o /tmp/thing.pdf
 " note: %:p gives full file path. vim-rooter messes with path.
-command PDF :AsyncRun pandoc %:p -o /tmp/thing.pdf
-command TogglePDF autocmd BufWritePost *.md :AsyncRun pandoc %:p -o /tmp/thing.pdf
+command PDF :AsyncRun pandoc %:p --template eisvogel --listings -o /tmp/thing.pdf
+command TogglePDF autocmd BufWritePost *.md :AsyncRun pandoc %:p --template eisvogel --listings -o /tmp/thing.pdf
 command OpenPDF :AsyncRun zathura /tmp/thing.pdf
 
 " }}}
