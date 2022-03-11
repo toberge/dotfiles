@@ -19,8 +19,8 @@ case "${HOSTNAME:-$hostname}" in
         ~/.local/bin/trackpoint.sh &
         # libinput-gestures-setup start &
         [[ "$(xrandr --query | grep -c " connected")" -eq 2 ]] \
-            && xrandr --output DP-2 --auto --right-of eDP-1
-            # && xrandr --output HDMI-2 --auto --above eDP-1
+            && xrandr --output HDMI-2 --auto --above eDP-1
+            # && xrandr --output DP-2 --auto --right-of eDP-1
         # [[ "$(xrandr --query | grep -c " connected")" -eq 2 ]] \
         #     && xrandr --output eDP-1 --off
         ;;
@@ -40,9 +40,9 @@ $picom --config ~/.config/picom/picom.conf
 # numlock, I need you!
 numlockx on
 # Caps Lock go bye bye
-#xmodmap ~/.Xmodmap
+xmodmap ~/.Xmodmap
 # and become Escape
-#pgrep xcape || xcape
+pgrep xcape || xcape
 
 # increase speed of spamming
 xset r rate 360 42

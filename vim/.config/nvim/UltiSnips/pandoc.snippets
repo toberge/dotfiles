@@ -248,7 +248,7 @@ endsnippet
 
 context "math()"
 snippet lr{ "left\{ right\}" i
-\left\\{ ${1:${VISUAL}} \right\\} $0
+\left\\{ ${1:${VISUAL}} \right\\$0
 endsnippet
 
 context "math()"
@@ -699,7 +699,37 @@ endsnippet
 priority 1000
 context "math()"
 snippet del "del" iA
-\delta{$1}$0
+\delta
+endsnippet
+
+priority 1000
+context "math()"
+snippet Del "Del" iA
+\Delta
+endsnippet
+
+priority 1000
+context "math()"
+snippet par "partial differential" iA
+\partial 
+endsnippet
+
+priority 1000
+context "math()"
+snippet pdd "partial differential fraction x2" iA
+\frac{\partial $1}{\partial $2} $0
+endsnippet
+
+priority 1000
+context "math()"
+snippet pdi "partial differential fraction x1" iA
+\frac{\partial}{\partial $1} $0
+endsnippet
+
+priority 1000
+context "math()"
+snippet Del "Del" iA
+\Delta{$1}$0
 endsnippet
 
 snippet letw "let omega" iA

@@ -70,6 +70,7 @@ colors = load_colors()
 
 # Hooks {{{
 
+
 @hook.subscribe.startup_once
 def autostart():
     subprocess.Popen(["sfx", "startup"])
@@ -130,6 +131,7 @@ def float_sound():
 @hook.subscribe.layout_change
 def layout_sound():
     subprocess.Popen(["sfx", "open"])
+
 
 # }}}
 
@@ -277,7 +279,7 @@ floating_layout = layout.Floating(
         Match(wm_class="Xclock"),
         Match(wm_class="MainApp"),
         Match(wm_class="Main"),
-    ]
+    ],
 )
 
 layouts = [
@@ -302,7 +304,7 @@ keys = [
     # A list of available commands that can be bound to keys can be found
     # at https://docs.qtile.org/en/latest/manual/config/lazy.html
     # Switch between windows
-    Key([mod], "Return", lazy.layout.swap_main(), desc="Swap with main window"),
+    Key([mod], "g", lazy.layout.swap_main(), desc="Swap with main window"),
     Key([mod], "h", lazy.layout.left(), desc="Move focus to left"),
     Key([mod], "l", lazy.layout.right(), desc="Move focus to right"),
     Key([mod], "j", lazy.layout.down(), desc="Move focus down"),
@@ -337,7 +339,7 @@ keys = [
     Key([mod], "f", lazy.window.toggle_fullscreen(), desc="Toggle fullscreen"),
     Key([mod], "q", lazy.window.kill(), desc="Kill focused window"),
     Key([mod], "n", lazy.layout.normalize(), desc="Reset all window sizes"),
-    Key([mod, "shift"], "Return", lazy.spawn(terminal), desc="Launch terminal"),
+    Key([mod], "Return", lazy.spawn(terminal), desc="Launch terminal"),
     # Toggle between different layouts as defined below
     Key([mod], "Tab", lazy.next_layout(), desc="Toggle between layouts"),
     # System control
@@ -397,6 +399,12 @@ keys = [
     Key([mod], "r", lazy.spawncmd(), desc="Spawn a command using a prompt widget"),
     Key(
         [mod],
+        "e",
+        lazy.spawn("alacritty -e ranger"),
+        desc="Spawn the ranger file manager",
+    ),
+    Key(
+        [mod],
         "d",
         lazy.spawn("rofi -show drun -show-icons"),
         desc="Launch apps",
@@ -420,6 +428,9 @@ keys = [
         desc="Emoji keyboard",
     ),
     # Launch specific apps
+    Key(
+        [mod], "p", lazy.spawn("zathura /tmp/thing.pdf"), desc="Open active PDF preview"
+    ),
     KeyChord(
         [mod],
         "space",

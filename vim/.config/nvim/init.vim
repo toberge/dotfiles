@@ -158,6 +158,8 @@ Plug 'skywind3000/asyncrun.vim'
 let g:asyncrun_open = 3 " cannot override
 Plug 'tpope/vim-fugitive'
 
+Plug 'sk1418/HowMuch' " calculate visual
+
 call plug#end()
 
 " }}} plugs
@@ -337,8 +339,8 @@ map Æ }
 nmap Y y$
 
 " Insert blanks
-nmap <CR> o<Esc>k
-nmap <S-Enter> O<Esc>j
+"nmap <CR> o<Esc>k
+"nmap <S-Enter> O<Esc>j
 
 " Go to last open buffer (back-and-forth)
 " - since <c-^> is literally impossible to press
@@ -621,6 +623,8 @@ let g:pandoc#syntax#codeblocks#embeds#langs = [
 command PDF :AsyncRun pandoc %:p --template eisvogel --listings -o /tmp/thing.pdf
 command TogglePDF autocmd BufWritePost *.md :AsyncRun pandoc %:p --template eisvogel --listings -o /tmp/thing.pdf
 command OpenPDF :AsyncRun zathura /tmp/thing.pdf
+
+" au BufWrite *.py call CocActionAsync('format')
 
 " }}}
 

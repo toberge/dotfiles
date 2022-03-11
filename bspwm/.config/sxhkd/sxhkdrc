@@ -81,6 +81,10 @@ super + space; g; {h,j,k,l}
             --force-mod \
             & sfx open
 
+# zathura on current pdf
+super + p
+        zathura /tmp/thing.pdf
+
 # common apps
 super + space; {w, t, f}
         {firefox, thunderbird, thunar || nautilus} & sfx open
@@ -209,8 +213,8 @@ super + g
 	bspc node -s biggest.local || bspc node -s last.local
 
 # focus the node for the given path jump
-super + {p, b, shift + p, alt + shift + p}
-        bspc node -f @{parent,brother,first,second}
+super + {shift + p, b, alt + shift + p}
+        bspc node -f @{parent,brother,first}
 
 # focus the next/previous node in the current desktop
 alt + {_,shift + } + Tab
