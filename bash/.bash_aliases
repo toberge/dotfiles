@@ -42,6 +42,9 @@ alias more=less         # less is more - wait, that's the wrong way
 # color=auto does not work
 alias diff='diff --color=always'
 
+# ssh from alacritty always starts out bad:
+alias sssh='TERM=xterm-256color ssh'
+
 #######################
 #        TYPOS        #
 #######################
@@ -68,6 +71,7 @@ alias w='which'
 alias mkd='mkdir'
 alias mkp='mkdir -p'    # mk whole path
 
+alias o='xdg-open'      # Open things quickly
 alias s='setsid -f'     # avoid having to bg and disown
 
 alias ll='ls -lh'
@@ -135,5 +139,11 @@ alias gp='git push'
 alias gc='git commit'
 alias gca='git commit --amend'
 alias gcm='git commit -m'
+alias gb='git branch'
+alias gco='git checkout'
+alias gcb='git checkout -b'
+alias gst='git stash'
+alias gsm='git stash -m'
+alias gsp='git stash pop'
 alias gl='git log --oneline --graph --all --decorate'
 alias glead='git shortlog -s -n --all --no-merges'

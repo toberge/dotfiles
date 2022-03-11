@@ -29,11 +29,8 @@ setups = {
     "fuglekassa": Setup(
         screens=2,
         cmds=[
-            """
-nvidia-settings -tq CurrentMetaMode | grep -q ForceFullCompositionPipeline=On \
-    || nvidia-settings --assign CurrentMetaMode="nvidia-auto-select +0+0 { ForceFullCompositionPipeline = On }"'
-
-            """
+            "toggletearing.sh",
+            "xrandr --output HDMI-0 --auto --right-of DVI-D-0",
         ],
     ),
 }
@@ -78,34 +75,38 @@ def autostart():
     os.system("wal -R")
     os.system("~/.fehbg")
     os.system("numlockx on")
-    os.system("xmodmap ~/.Xmodmap")
     os.system("xset r rate 360 42")
+
+    # Launch some background processes
+    subprocess.Popen(["picom", "--daemon", "--dbus", "--experimental-backends"])
+    # Avoid opening two Redshift instances since that causes flicker
+    if os.waitstatus_to_exitcode(os.system("pgrep redshift-gtk")) > 0:
+        subprocess.Popen("redshift-gtk")
+    subprocess.Popen("nm-applet")
+    subprocess.Popen("dropbox")
 
     # Run setup-specific cmds
     if setup.is_laptop:
         os.system("touchpad.sh")
         os.system("trackpoint.sh")
         subprocess.Popen("xcape")
+        os.system("xmodmap ~/.Xmodmap")
+        subprocess.Popen(
+            [
+                "xidlehook",
+                "--not-when-fullscreen",
+                "--not-when-audio",
+                "--timer",
+                "600",
+                "lockmeup",
+            ]
+        )
+    else:
+        # Temp solution to arm pain: Use old kb
+        subprocess.Popen("xcape")
+        os.system("xmodmap ~/.Xmodmap")
     for cmd in setup.cmds:
         os.system(cmd)
-
-    # Launch some background processes
-    subprocess.Popen(["picom", "--daemon", "--dbus", "--experimental-backends"])
-    subprocess.Popen(
-        [
-            "xidlehook",
-            "--not-when-fullscreen",
-            "--not-when-audio",
-            "--timer",
-            "600",
-            "lockmeup",
-        ]
-    )
-    # Avoid opening two Redshift instances since that causes flicker
-    if os.waitstatus_to_exitcode(os.system("pgrep redshift-gtk")) > 0:
-        subprocess.Popen("redshift-gtk")
-    subprocess.Popen("nm-applet")
-    subprocess.Popen("dropbox")
 
 
 @hook.subscribe.startup
@@ -176,16 +177,19 @@ def create_bar(main=False):
             for path in ["/", "/home/"]
         ],
         w.PulseVolume(emoji=False, fmt="墳 <span weight='bold'>{}</span>"),
-        w.Battery(
-            battery="BAT0",
-            unknown_char="",
-            charge_char="",
-            discharge_char="",
-            empty_char="",
-            format="{char} <span weight='bold'>{percent:2.0%}</span>",
-        ),
-        w.Clock(fmt=" <span weight='bold'>{}</span>"),
     ]
+    if setup.is_laptop:
+        widgets.append(
+            w.Battery(
+                battery="BAT0",
+                unknown_char="",
+                charge_char="",
+                discharge_char="",
+                empty_char="",
+                format="{char} <span weight='bold'>{percent:2.0%}</span>",
+            )
+        )
+    widgets.append(w.Clock(fmt=" <span weight='bold'>{}</span>"))
     if main:
         widgets.append(w.Systray())
     else:
@@ -223,7 +227,7 @@ elif setup.is_laptop and setup.screens == 1:
 
 groups = [
     Group("1", screen_affinity=main_screen),
-    Group("2", spawn="firefox", screen_affinity=main_screen),
+    Group("2", spawn="firefox", matches=[], screen_affinity=main_screen),
     Group("3", screen_affinity=main_screen),
     Group("4", matches=[Match(wm_class="jetbrains-idea")], screen_affinity=main_screen),
     Group("5", screen_affinity=main_screen),
@@ -309,6 +313,13 @@ keys = [
     Key([mod], "l", lazy.layout.right(), desc="Move focus to right"),
     Key([mod], "j", lazy.layout.down(), desc="Move focus down"),
     Key([mod], "k", lazy.layout.up(), desc="Move focus up"),
+    Key([alt], "Tab", lazy.layout.next(), desc="Move window focus to other window"),
+    Key(
+        [alt, "shift"],
+        "Tab",
+        lazy.layout.previous(),
+        desc="Move window focus to other window",
+    ),
     Key([mod], "i", lazy.layout.next(), desc="Move window focus to other window"),
     Key([mod], "o", lazy.layout.previous(), desc="Move window focus to other window"),
     # Move windows between left/right columns or move up/down in current stack.
@@ -436,6 +447,13 @@ keys = [
         "space",
         [
             Key([], "w", lazy.spawn("firefox"), desc="Launch a web browser"),
+            Key([], "f", lazy.spawn("thunar"), desc="Launch graphical file manager"),
+            Key(
+                [],
+                "e",
+                lazy.spawn("alacritty -e ranger"),
+                desc="Launch terminal file manager",
+            ),
             Key([], "d", lazy.spawn("discord"), desc="Launch Discord"),
             Key([], "s", lazy.spawn("steam"), desc="Launch Steam"),
             Key([], "m", lazy.spawn("spotify"), desc="Launch Spotify"),
