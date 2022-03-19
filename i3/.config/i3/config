@@ -17,8 +17,6 @@ set $menu canberra-gtk-play -f $HOME/.sounds/menu.wav
 set $apply canberra-gtk-play -f $HOME/.sounds/apply.wav
 set $shutter canberra-gtk-play -f $HOME/.sounds/shutter.wav
 
-set $volumestep 5
-
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} blok below.
 font pango: Ubuntu Regular 11
@@ -146,14 +144,14 @@ bindsym $mod+minus scratchpad show, exec $apply
 # bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume 0 +5%, exec $open #increase sound volume
 # bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume 0 -5%, exec $open #decrease sound volume
 # bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute 0 toggle # mute sound
-bindsym XF86AudioRaiseVolume exec --no-startup-id volume -nl -i $volumestep, exec $open #increase sound volume
-bindsym XF86AudioLowerVolume exec --no-startup-id volume -nl -d $volumestep, exec $open #decrease sound volume
-bindsym XF86AudioMute exec --no-startup-id volume -mnl, exec $open # mute sound
+bindsym XF86AudioRaiseVolume exec --no-startup-id volume --notify up, exec $open #increase sound volume
+bindsym XF86AudioLowerVolume exec --no-startup-id volume --notify down, exec $open #decrease sound volume
+bindsym XF86AudioMute exec --no-startup-id volume --notify mute, exec $open # mute sound
 # SET SINK ID TO 0 not 2 like default idk. 
 
 # brightness maybe
-bindsym XF86MonBrightnessUp exec xbacklight -inc 10, exec $open
-bindsym XF86MonBrightnessDown exec xbacklight -dec 10, exec $open
+bindsym XF86MonBrightnessUp exec backlight --notify up, exec $open
+bindsym XF86MonBrightnessDown exec backlight --notify down, exec $open
 
 # Media player controls
 bindsym XF86AudioPlay exec playerctl play-pause # do the toggle
@@ -398,23 +396,7 @@ mode "$mode_gaps_outer" {
 
 ###############################################
 # Set shut down, restart and locking features
-bindsym $mod+Ctrl+x mode "$mode_system", exec $shutter
-set $mode_system (l)ock, (e)xit, switch_(u)ser, (s)uspend, (h)ibernate, (r)eboot, (Shift+s)hutdown
-mode "$mode_system" {
-    bindsym l exec --no-startup-id lockmeup, mode "default"
-    bindsym s exec --no-startup-id lockmeup & sleep .4 && systemctl hibernate, mode "default"
-    # i3exit uses dm-tool switch-to-greeter but that's LightDM?
-    bindsym u exec --no-startup-id i3-msg exit, mode "default"
-    bindsym e exec --no-startup-id i3-msg exit, mode "default"
-    bindsym h exec --no-startup-id lockmeup & sleep .4 && systemctl hibernate, mode "default"
-    bindsym r exec --no-startup-id systemctl reboot, mode "default"
-    bindsym Shift+s exec --no-startup-id systemctl poweroff, mode "default"
-
-    # exit system mode: "Enter" or "Escape"
-    bindsym Return mode "default", exec $close
-    bindsym Escape mode "default", exec $close
-}
-
+bindsym $mod+Ctrl+x exec powermenu, exec $menu
 
   ###################
  ## COLOR SECTION ##

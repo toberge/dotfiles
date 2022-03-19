@@ -106,7 +106,7 @@ label-unfocused-padding = 2
 
 ; visible = Active workspace on unfocused monitor
 label-visible = ${self.label-focused}
-label-visible-background = ${colors.secondary}
+label-visible-background = ${colors.background}
 label-visible-underline = ${self.label-focused-underline}
 label-visible-padding = ${self.label-focused-padding}
 

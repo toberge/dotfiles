@@ -118,7 +118,6 @@ tray-padding = 2
 inherit = bar/anybar
 
 modules-center = xwindow
-; modules-right = <-- pulseaudio pomodoro xbacklight battery date <--- _ _
 modules-right = lpar __ pulseaudio __ pomodoro __ battery __ date __
 
 tray-position = none

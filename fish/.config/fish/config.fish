@@ -2,6 +2,7 @@
 
 # Options {{{
 set fish_greeting
+set -x VIRTUAL_ENV_DISABLE_PROMPT true
 # }}}
 
 # Sourcing {{{

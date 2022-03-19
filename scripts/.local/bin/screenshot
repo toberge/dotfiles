@@ -31,7 +31,7 @@ case $1 in
         get_colors
         maim --select --highlight --hidecursor \
             --color="$(hex2rgb "${color4:-\#fffff}"),0.5" \
-            --bordersize=2 \
+            --bordersize=2 --nodecorations=1 \
             | xclip -selection clipboard -t image/png
         ;;
     *)

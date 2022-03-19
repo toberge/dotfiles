@@ -1,0 +1,10 @@
+#!/bin/sh
+#
+# Adds keybind for speedrun
+
+#killall sxhkd
+#sxhkd "$HOME/.config/sxhkd/speedrun" &
+
+# never miiiiind
+gsettings set wildmouse.urn global-hotkeys      true
+gsettings set wildmouse.urn keybind-start-split "<Ctrl>Return"
