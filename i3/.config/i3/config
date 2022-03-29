@@ -97,6 +97,9 @@ bindsym $mod+b split h; exec notify-send "splitting horizontally", exec $toggle
 # split in vertical orientation
 bindsym $mod+v split v; exec notify-send "splitting vertically", exec $toggle
 
+# go tabbed
+bindsym $mod+w layout tabbed; exec notify-send "tabbing", exec $toggle
+
 # toggle split direction (yay)
 bindsym $mod+t split toggle, exec $toggle
 bindsym $mod+Shift+t layout toggle split, exec $toggle
@@ -113,12 +116,12 @@ mode "$layout_mode" {
 
     bindsym Return mode "default", exec $close
     bindsym Escape mode "default", exec $close
-    bindsym $mod+s mode "default", exec $close
+    bindsym $mod+Plus mode "default", exec $close
 }
-bindsym $mod+s mode "$layout_mode", exec $shutter
+bindsym $mod+Plus mode "$layout_mode", exec $shutter
 
 # toggle tiling / floating
-bindsym $mod+Shift+space floating toggle, exec $toggle
+bindsym $mod+s floating toggle, exec $toggle
 
 # change focus between tiling / floating windows
 bindsym $mod+space focus mode_toggle, exec $toggle
@@ -164,12 +167,12 @@ bindsym XF86AudioPrev exec playerctl previous
 # screenshot (requires scrot&maim...)
 # copy-paste from this thread:
 # https://www.reddit.com/r/i3wm/comments/8yx7ju/i3_screenshot_application/
+# Advanced screenshot
+bindsym --release Print exec flameshot, exec $apply
 # Desktop screenshot
-bindsym --release Print exec screenshot full, exec $apply
-# Choose window
-bindsym --release Mod1+Sys_Req exec screenshot window, exec $apply
+bindsym --release Shift+Print exec screenshot full, exec $apply
 # Selection screenshot
-bindsym --release Shift+Print exec screenshot region, exec $apply
+bindsym --release Ctrl+Print exec screenshot region, exec $apply
 
 # workspace-based startup shortcuts
 bindsym $mod+F1 exec $open; exec thunderbird
@@ -446,6 +449,7 @@ bindsym $mod+d exec rofi -show drun -show-icons & $menu
 bindsym $mod+a exec "rofi -combi-modi window,drun -show combi -show-icons & $menu"
 bindsym $mod+Tab exec rofi -show window -show-icons & $menu
 bindsym $mod+period exec rofi -show emoji & sfx menu
+bindsym $mod+Shift+period exec splatmoji --disable-emoji-db copy & sfx menu
 
 # lock
 # bindsym $mod+Shift+x exec i3lock -uf --color=421820 # 475263
