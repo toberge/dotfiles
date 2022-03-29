@@ -34,6 +34,16 @@ echo
 sudo pacman --needed -S "${pacmans[@]}"
 
 echo
+echo Installing yay
+echo
+mkdir -p $HOME/.clones
+(
+cd $HOME/.clones
+git clone https://aur.archlinux.org/yay.git
+makepkg -si
+)
+
+echo
 echo Installing AUR packages
 echo
 yay --needed -S "${aurs[@]}"

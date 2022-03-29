@@ -1,6 +1,7 @@
 ###,##############,###
 ###,  ESSENTIALS  ,###
 ###,##############,###
+PAC,base-devel,basic dev stuff
 PAC,stow,automatically symlinking files
 PAC,tlp,power-saving thingy
 AUR,yay,"an AUR helper (yeah, I know)"
@@ -9,14 +10,16 @@ PAC,playerctl,you wanna pause&skip your songs right?
 PAC,xorg-xbacklight,well yes
 PAC,redshift,to save your eyes from death
 #AUR,sct,as a redshift alternative?
-AUR,xidlehook,a not-annoying xautolock
+#AUR,xidlehook,a not-annoying xautolock
 PAC,xcape,making caps lock an escape key too
 PAC,xorg-xmodmap,make caps ctrl
 PAC,neovim,finally ditching vim
 PAC,python-pynvim,for some nvim plugins
+PAC,xsel,for that copy-paste vim plugin
 ###,##################,###
 ###,TERMINAL ILLNESSES,###
 ###,##################,###
+PAC,fish,fish!
 PAC,ranger,terminal file manager
 PIP,ueberzug,for img previews in ranger
 PAC,tree,handy visualization of folder structure
@@ -61,7 +64,7 @@ AUR,xcursor-breeze,nice cursors
 ###,    FONTS    ,###
 ###,#############,###
 AUR,ttf-fira-code,Fira Code – a nice monospace font with litigatures (the otf pkg is borked)
-AUR,nerd-fonts-fira-mono,Fira Mono for litigature absence
+AUR,otf-nerd-fonts-fira-mono,Fira Mono for litigature absence
 PAC,ttf-ubuntu-font-family,"the Ubuntu font (I just like it)"
 PAC,otf-font-awesome,"Font Awesome, for text-based icons"
 PAC,powerline-fonts,Powerline fonts yes
@@ -85,6 +88,8 @@ PAC,libqalculate,a natural-language calculator with unit conversion
 ###,#############,###
 ###,NORMAL STUFFS,###
 ###,#############,###
+PAC,gnome-polkit,for basic stuff
+PAC,gnome-keyring,for auth stuff (e.g. vscode or nm-applet)
 PAC,firefox,web browser
 PAC,thunderbird,email client
 PAC,mpv,video player
@@ -94,12 +99,13 @@ PAC,zathura-pdf-mupdf,for PDF in zathura...
 AUR,dropbox,file sync thing
 PAC,keepassxc,mah passw0rdz
 AUR,spotify,music streaming
-AUR,spicetify-cli,theming spotify
+#AUR,spicetify-cli,theming spotify
 PAC,discord,chatter
 PAC,gnome-calculator,I need a friendly calculator
 PAC,thunar,a decent file manager
 PAC,gvfs,for trash and mounting
 PAC,file-roller,for archives
+PAC,thunar-volman,for volumes and so on
 PAC,thunar-archive-plugin,for quick zipping and unzipping
 PAC,thunar-media-tags-plugin,for media info
 PAC,tumbler,thumbnails in thunar
@@ -109,21 +115,28 @@ AUR,breaktimer-bin,finally - a break reminder that feels pleasant
 ###,#############,###
 ###, PROGRAMMING ,###
 ###,#############,###
+PAC,visual-studio-code-bin,Sometimes less painful than vim
 PAC,nodejs,Node JS y'know
 PAC,npm,package manager for Node
+PAC,python,Python
+PAC,python-pip,its package manager
 PAC,ruby,ahem it's a dependency for some things
 NPM,how-2,search stackoverflow for answers
 #AUR,intellij-idea-ultimate-edition,IntelliJ
 #AUR,intellij-idea-ultimate-edition-jre,custom JRE for IntelliJ
 PIP,virtualfish,for displaying venv info in fish prompt
+PAC,rustup,Rusty stuff
+PAC,gdb,Debugger
 PAC,ghc,Haskell compiler and interpreter
 PAC,stack,Haskell tool stack
-PAC,haskell-brittany,Haskell formatter
-AUR,haskell-language-server-bin,Haskell language server
+#AUR,haskell-brittany,Haskell formatter
+#AUR,haskell-language-server-bin,Haskell language server
 PAC,ghc-static,Static libs & docs - makes hls work...
+PIP,thefuck,:)))))
 ###,#######,###
 ###, MUSIC ,###
 ###,#######,###
+PAC,pavucontrol,volume mixer
 PAC,musescore,regular notation software
 AUR,alda-bin,a music programming language
 PAC,soundfont-fluid,replace .gervill/soundbank-emg.sf2 with this one!
@@ -133,7 +146,7 @@ PAC,soundfont-fluid,replace .gervill/soundbank-emg.sf2 with this one!
 PAC,fortune-mod,heh
 PAC,vim-airline,making vim look better
 PAC,xorg-xclock,for slamming time in my face
-YAY,rofi-emoji,emoji keyboard thing...
+PAC,rofi-emoji,emoji keyboard thing...
 YAY,splatmoji,kaomoji keyboard too
 #YAY,i3-volume,for reasons but not good ones
 #YAY,tty-clock,for literally no purpose whatsoever
