@@ -70,7 +70,7 @@ font-4 = "FiraMono Nerd Font:style=Medium:size=15;3"
 
 modules-left = bspwm i3 _ rpar
 modules-center = xwindow
-modules-right = lpar __ pulseaudio __ pomodoro __ battery __ date __ lpar
+modules-right = lpar __ pulseaudio __ battery __ date __ lpar
 
 tray-position = right
 tray-padding = 2
@@ -118,7 +118,7 @@ tray-padding = 2
 inherit = bar/anybar
 
 modules-center = xwindow
-modules-right = lpar __ pulseaudio __ pomodoro __ battery __ date __
+modules-right = lpar __ pulseaudio __ battery __ date __
 
 tray-position = none
 

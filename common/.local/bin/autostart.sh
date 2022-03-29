@@ -69,7 +69,7 @@ i3-gnome-pomodoro start
     eval "$(gnome-keyring-daemon -s --components=pkcs11,secrets,ssh,gpg)" &
 
 # systray apps, screen filter and notifications
-for app in redshift-gtk dunst dropbox pamac-tray nm-applet
+for app in redshift-gtk dunst dropbox pamac-tray nm-applet /opt/BreakTimer/breaktimer
 do
     if ! pgrep $app > /dev/null
     then # app not launched

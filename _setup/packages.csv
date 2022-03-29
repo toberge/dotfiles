@@ -105,6 +105,7 @@ PAC,thunar-media-tags-plugin,for media info
 PAC,tumbler,thumbnails in thunar
 PAC,ffmpegthumbnailer,video thumbnails in thunar
 AUR,zoom,am I a zoomer?
+AUR,breaktimer-bin,finally - a break reminder that feels pleasant
 ###,#############,###
 ###, PROGRAMMING ,###
 ###,#############,###
@@ -132,7 +133,6 @@ PAC,soundfont-fluid,replace .gervill/soundbank-emg.sf2 with this one!
 PAC,fortune-mod,heh
 PAC,vim-airline,making vim look better
 PAC,xorg-xclock,for slamming time in my face
-YAY,i3-gnome-pomodoro-git,pomodoro timer
 YAY,rofi-emoji,emoji keyboard thing...
 YAY,splatmoji,kaomoji keyboard too
 #YAY,i3-volume,for reasons but not good ones
