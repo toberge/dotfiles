@@ -620,8 +620,8 @@ let g:pandoc#syntax#codeblocks#embeds#langs = [
 " TODO: handle this in after/ftplugin or with a toggle command?
 " autocmd BufWritePost *.md :!pandoc % -o /tmp/thing.pdf
 " note: %:p gives full file path. vim-rooter messes with path.
-command PDF :AsyncRun pandoc %:p --template eisvogel --listings -o /tmp/thing.pdf
-command TogglePDF autocmd BufWritePost *.md :AsyncRun pandoc %:p --template eisvogel --listings -o /tmp/thing.pdf
+command PDF :AsyncRun pandoc %:p --template eisvogel --filter pandoc-fignos --citeproc --listings -o /tmp/thing.pdf
+command TogglePDF autocmd BufWritePost *.md :AsyncRun pandoc %:p --template eisvogel --filter pandoc-fignos --citeproc --listings -o /tmp/thing.pdf
 command OpenPDF :AsyncRun zathura /tmp/thing.pdf
 
 " au BufWrite *.py call CocActionAsync('format')
