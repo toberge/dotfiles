@@ -19,7 +19,7 @@ case "${HOSTNAME:-$hostname}" in
         ~/.local/bin/trackpoint.sh &
         # libinput-gestures-setup start &
         [[ "$(xrandr --query | grep -c " connected")" -eq 2 ]] \
-            && xrandr --output HDMI-2 --auto --above eDP-1
+            && xrandr --output HDMI2 --auto --above eDP1
             # && xrandr --output DP-2 --auto --right-of eDP-1
         # [[ "$(xrandr --query | grep -c " connected")" -eq 2 ]] \
         #     && xrandr --output eDP-1 --off
