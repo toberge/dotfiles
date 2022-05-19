@@ -622,6 +622,7 @@ let g:pandoc#syntax#codeblocks#embeds#langs = [
 " note: %:p gives full file path. vim-rooter messes with path.
 command PDF :AsyncRun pandoc %:p --template eisvogel --filter pandoc-fignos --citeproc --listings -o /tmp/thing.pdf
 command TogglePDF autocmd BufWritePost *.md :AsyncRun pandoc %:p --template eisvogel --filter pandoc-fignos --citeproc --listings -o /tmp/thing.pdf
+command ToggleBeamer autocmd BufWritePost *.md :AsyncRun pandoc %:p -t beamer --slide-level 2 --citeproc -o /tmp/thing.pdf
 command OpenPDF :AsyncRun zathura /tmp/thing.pdf
 
 " au BufWrite *.py call CocActionAsync('format')
