@@ -251,7 +251,7 @@ date-alt = " %Y-%m-%d"
 time = %H:%M
 time-alt = %H:%M:%S
 
-format-prefix = 
+format-prefix =  
 format-prefix-foreground = ${colors.foreground}
 
 label = %date% %time%
@@ -264,7 +264,7 @@ format-volume = <ramp-volume> <label-volume>
 label-volume = %percentage%%
 label-volume-foreground = ${root.foreground}
 
-label-muted =  OFF
+label-muted =   
 label-muted-foreground = ${colors.foreground-alt}
 
 ramp-volume-0 = 
@@ -282,11 +282,11 @@ time-format = %H:%M
 label-discharging = %time%
 ; only showing time when discharging - not needed at other times.
 
-format-charging = <ramp-capacity> <label-charging>
+format-charging = <ramp-capacity>    <label-charging>
 label-charging-foreground = ${colors.foreground}
-format-discharging = <ramp-capacity> <label-discharging>
+format-discharging = <ramp-capacity>    <label-discharging>
 label-discharging-foreground = ${self.label-charging-foreground}
-format-full = <ramp-capacity> <label-full>
+format-full = <ramp-capacity>    <label-full>
 label-full-foreground = ${self.label-charging-foreground}
 
 ramp-capacity-0 = 
