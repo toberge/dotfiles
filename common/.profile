@@ -1,7 +1,7 @@
 #!/bin/sh
 
 # Should export FULL_NAME and EMAIL
-source .private
+source "$HOME/.private"
 
 export GTK2_RC_FILES="$HOME/.gtkrc-2.0"
 
