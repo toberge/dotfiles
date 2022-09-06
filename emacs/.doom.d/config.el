@@ -47,6 +47,12 @@
       org-journal-date-format "%A %m. %B %Y"
       org-journal-file-format "%Y-%m-%d.org")
 
+(after! org
+    (load-library "ox-reveal")
+    (setq org-reveal-root "file:///home/qualitanty/.clones/reveal.js"))
+
+
+
 ;; Whenever you reconfigure a package, make sure to wrap your config in an
 ;; `after!' block, otherwise Doom's defaults may override your settings. E.g.
 ;;

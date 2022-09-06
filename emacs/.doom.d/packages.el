@@ -8,6 +8,10 @@
 (package! emacs-org-dnd :recipe
   (:host github :repo "xeals/emacs-org-dnd"))
 
+   (package! org-reveal)
+   (package! ox-reveal)
+
+
 ;; To install SOME-PACKAGE from MELPA, ELPA or emacsmirror:
 ;(package! some-package)
 
