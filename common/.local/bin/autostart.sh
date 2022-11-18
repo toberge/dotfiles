@@ -3,7 +3,7 @@
 # CALICOMP startup tune
 sfx startup &
 
-picom="picom --daemon --dbus --experimental-backends"
+picom="picom --daemon --dbus"
 
 # monitor layout and device specifics
 case "${HOSTNAME:-$hostname}" in
