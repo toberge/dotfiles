@@ -116,7 +116,7 @@ alias ewwdbg='GTK_DEBUG=interactive eww open main_window'
 # shellcheck disable=SC2142
 alias localip="ip addr show | grep 'inet .* global' | awk '{print \$2}' | cut -d '/' -f 1"
 alias whatsmyip='curl icanhazip.com'
-alias unscrew_defaults='xdg-settings set default-web-browser firefox.desktop'
+alias unscrew_defaults='xdg-settings set default-web-browser firefox.desktop && xdg-mime default thunar.desktop inode/directory'
 alias wacom='xsetwacom set "Wacom Bamboo 16FG 6x8 Pen stylus" MapToOutput 1920x1080+1920+0'
 alias webcam='mpv av://v4l2:/dev/video0 --profile=low-latency --untimed --x11-name=webcam'
 
@@ -124,7 +124,6 @@ alias webcam='mpv av://v4l2:/dev/video0 --profile=low-latency --untimed --x11-na
 #    GIT SHORTCUTS    #
 #######################
 
-alias g='git status' # to prevent GhostScript conflict
 alias ga='git add'
 alias gaa='git add -A'
 alias gd='git diff'
