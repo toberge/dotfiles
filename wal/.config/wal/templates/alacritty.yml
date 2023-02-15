@@ -13,7 +13,7 @@ window:
 
 font:
   normal:
-    family: FiraMono Nerd Font
+    family: FuraMono Nerd Font
     style: Medium
   italic:
     family: Ubuntu Mono
