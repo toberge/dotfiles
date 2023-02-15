@@ -1,5 +1,8 @@
 {
-    "coc.preferences.formatOnSaveFiletypes": ["haskell", "python"],
+    "coc.preferences.formatOnSaveFiletypes": [
+        "haskell",
+        "python"
+    ],
     "python.formatting.provider": "black",
     "languageserver": {
         "ccls": {
@@ -25,11 +28,13 @@
         },
         "haskell": {
             "command": "haskell-language-server-wrapper",
-            "args": ["--lsp"],
+            "args": [
+                "--lsp"
+            ],
             "rootPatterns": [
                 "stack.yaml",
                 "cabal.config",
-                "package.yaml"  
+                "package.yaml"
             ],
             "filetypes": [
                 "hs",
@@ -37,10 +42,17 @@
                 "haskell",
                 "lhaskell"
             ],
-            "initializationOptions": {
-                "languageServerHaskell": {
-                    "hlintOn": true,
-                    "formattingProvider": "brittany"
+            "settings": {
+                "haskell": {
+                    "checkParents": "CheckOnSave",
+                    "checkProject": true,
+                    "maxCompletions": 40,
+                    "formattingProvider": "brittany",
+                    "plugin": {
+                        "stan": {
+                            "globalOn": true
+                        }
+                    }
                 }
             }
         }
