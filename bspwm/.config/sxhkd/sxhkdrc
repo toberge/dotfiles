@@ -59,6 +59,9 @@ ctrl + Print
 super + u
         color
 
+# cursor indicator
+super + comma
+        find-cursor --color "#EEE8D5" --size 210 --distance 35
 
 # ranger
 super + {_,shift + }e

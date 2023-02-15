@@ -25,3 +25,5 @@ export _JAVA_AWT_WM_NONREPARENTING=1
 
 export ANDROID_SDK=/home/qualitanty/Android/Sdk
 export ANDROID_HOME=/home/qualitanty/Android/Sdk
+
+export HOSTNAME="$(cat /etc/hostname)"

@@ -104,6 +104,7 @@ PAC,discord,chatter
 PAC,gnome-calculator,I need a friendly calculator
 PAC,thunar,a decent file manager
 PAC,gvfs,for trash and mounting
+PAC,gvfs-mtp,for Android file transfer
 PAC,file-roller,for archives
 PAC,thunar-volman,for volumes and so on
 PAC,thunar-archive-plugin,for quick zipping and unzipping
