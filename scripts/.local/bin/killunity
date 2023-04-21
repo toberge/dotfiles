@@ -1,0 +1,7 @@
+#!/bin/sh
+
+for pid in "$(pidof Unity)"
+do
+    echo "Killing a devious Unity process..."
+    kill "$pid"
+done
