@@ -11,14 +11,14 @@ case "${HOSTNAME:-$hostname}" in
         # only set this option if it is off
         nvidia-settings -tq CurrentMetaMode | grep -q ForceFullCompositionPipeline=On \
             || nvidia-settings --assign CurrentMetaMode="nvidia-auto-select +0+0 { ForceFullCompositionPipeline = On }"
-        [[ "$(xrandr --query | grep -c " connected")" -eq 2 ]] \
+        [[ "$(xrandr --query | grep -c " connected")" -ge 2 ]] \
             && xrandr --output HDMI-0 --auto --right-of DVI-D-0
         picom="$picom --xrender-sync-fence" # --backend xrender if necessary
         ;;
     thinkpad) # laptop
         ~/.local/bin/trackpoint.sh &
         # libinput-gestures-setup start &
-        [[ "$(xrandr --query | grep -c " connected")" -eq 2 ]] \
+        [[ "$(xrandr --query | grep -c " connected")" -ge 2 ]] \
             && xrandr --output HDMI2 --auto --above eDP1
             # && xrandr --output DP-2 --auto --right-of eDP-1
         # [[ "$(xrandr --query | grep -c " connected")" -eq 2 ]] \

@@ -13,7 +13,7 @@ $HOME/.local/bin/autostart.sh &
 monitors=($(xrandr --query | grep " connected" | cut -d" " -f1))
 
 # Handle multiple monitors
-if [[ $(echo ${monitors[@]} | wc -w) -eq 2 ]]
+if [[ $(echo ${monitors[@]} | wc -w) -ge 2 ]]
 then # split wses in half, prefer external
     case ${HOSTNAME:-hostname} in
         fuglekassa)

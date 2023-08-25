@@ -149,3 +149,9 @@ alias gsm='git stash -m'
 alias gsp='git stash pop'
 alias gl='git log --oneline --graph --all --decorate'
 alias glead='git shortlog -s -n --all --no-merges'
+
+#######################
+#        MISC         #
+#######################
+
+alias killunity='kill -9 $(pidof Unity)'
