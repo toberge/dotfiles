@@ -1,7 +1,11 @@
 {
     "coc.preferences.formatOnSaveFiletypes": [
         "haskell",
-        "python"
+        "python",
+        "javascript",
+        "html",
+        "css",
+        "json"
     ],
     "python.formatting.provider": "black",
     "languageserver": {
