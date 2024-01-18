@@ -37,6 +37,7 @@ echo
 echo Installing yay
 echo
 mkdir -p $HOME/.clones
+# TODO don't install if existing
 (
 cd $HOME/.clones
 git clone https://aur.archlinux.org/yay.git

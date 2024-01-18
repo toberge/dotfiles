@@ -9,8 +9,6 @@ PAC,ufw,too lazy to set up anything else
 PAC,playerctl,you wanna pause&skip your songs right?
 PAC,xorg-xbacklight,well yes
 PAC,redshift,to save your eyes from death
-#AUR,sct,as a redshift alternative?
-#AUR,xidlehook,a not-annoying xautolock
 PAC,xcape,making caps lock an escape key too
 PAC,xorg-xmodmap,make caps ctrl
 PAC,neovim,finally ditching vim
@@ -19,6 +17,7 @@ PAC,xsel,for that copy-paste vim plugin
 ###,##################,###
 ###,TERMINAL ILLNESSES,###
 ###,##################,###
+PAC,alacritty,terminal
 PAC,fish,fish!
 PAC,ranger,terminal file manager
 PIP,ueberzug,for img previews in ranger
@@ -39,7 +38,7 @@ PAC,sxhkd,hotkey daemon
 PAC,picom,compositor for X
 PAC,rofi,cute little menu thing
 PAC,dunst,for displaying notifications
-AUR,polybar,a nice & configurable bar
+PAC,polybar,a nice & configurable bar
 PAC,feh,for displaying images and setting wallpaper
 PAC,sxiv,it's better than feh...
 PAC,python-pywal,for generating and handling color schemes
@@ -60,11 +59,12 @@ PAC,python-dateutil,for calendar script
 GIT,pidswallow,window swallowing in BSPWM
 AUR,tela-icon-theme,nice icons
 AUR,xcursor-breeze,nice cursors
+PAC,lightdm-gtk-greeter,login manager (could use gdm haha)
 ###,#############,###
 ###,    FONTS    ,###
 ###,#############,###
-AUR,ttf-fira-code,Fira Code – a nice monospace font with litigatures (the otf pkg is borked)
-AUR,otf-nerd-fonts-fira-mono,Fira Mono for litigature absence
+PAC,ttf-fira-code,Fira Code – a nice monospace font with litigatures (the otf pkg is borked)
+PAC,otf-firamono-nerd,Fira Mono for litigature absence
 PAC,ttf-ubuntu-font-family,"the Ubuntu font (I just like it)"
 PAC,otf-font-awesome,"Font Awesome, for text-based icons"
 PAC,powerline-fonts,Powerline fonts yes
@@ -77,9 +77,9 @@ PAC,gnu-netcat,an obvious tool
 ###,#############,###
 ###,    TOOLS    ,###
 ###,#############,###
-PAC,pandoc,for converting stuff to PDF
-PAC,texlive-core,for basic latex
-PAC,texlive-latexextra,for the cancel package and more
+#PAC,pandoc,for converting stuff to PDF
+#PAC,texlive-core,for basic latex
+#PAC,texlive-latexextra,for the cancel package and more
 PAC,pdftk,for concating PDFs and more
 PAC,flameshot,screenshot GUI
 PAC,maim,simple screenshot
@@ -88,20 +88,18 @@ PAC,libqalculate,a natural-language calculator with unit conversion
 ###,#############,###
 ###,NORMAL STUFFS,###
 ###,#############,###
-PAC,gnome-polkit,for basic stuff
+PAC,polkit-gnome,for basic stuff
 PAC,gnome-keyring,for auth stuff (e.g. vscode or nm-applet)
 PAC,firefox,web browser
-PAC,thunderbird,email client
 PAC,mpv,video player
 PAC,youtube-dl,video stuff
 PAC,zathura,PDF viewer
 PAC,zathura-pdf-mupdf,for PDF in zathura...
-AUR,dropbox,file sync thing
-PAC,keepassxc,mah passw0rdz
+#AUR,dropbox,file sync thing
+#PAC,keepassxc,mah passw0rdz
 AUR,spotify,music streaming
 #AUR,spicetify-cli,theming spotify
 PAC,discord,chatter
-PAC,gnome-calculator,I need a friendly calculator
 PAC,thunar,a decent file manager
 PAC,gvfs,for trash and mounting
 PAC,gvfs-mtp,for Android file transfer
@@ -111,12 +109,12 @@ PAC,thunar-archive-plugin,for quick zipping and unzipping
 PAC,thunar-media-tags-plugin,for media info
 PAC,tumbler,thumbnails in thunar
 PAC,ffmpegthumbnailer,video thumbnails in thunar
-AUR,zoom,am I a zoomer?
+#AUR,zoom,am I a zoomer?
 AUR,breaktimer-bin,finally - a break reminder that feels pleasant
 ###,#############,###
 ###, PROGRAMMING ,###
 ###,#############,###
-PAC,visual-studio-code-bin,Sometimes less painful than vim
+AUR,visual-studio-code-bin,Sometimes less painful than vim
 PAC,nodejs,Node JS y'know
 PAC,npm,package manager for Node
 PAC,python,Python
@@ -128,18 +126,18 @@ NPM,how-2,search stackoverflow for answers
 PIP,virtualfish,for displaying venv info in fish prompt
 PAC,rustup,Rusty stuff
 PAC,gdb,Debugger
-PAC,ghc,Haskell compiler and interpreter
-PAC,stack,Haskell tool stack
+#PAC,ghc,Haskell compiler and interpreter
+#PAC,stack,Haskell tool stack
 #AUR,haskell-brittany,Haskell formatter
 #AUR,haskell-language-server-bin,Haskell language server
-PAC,ghc-static,Static libs & docs - makes hls work...
+#PAC,ghc-static,Static libs & docs - makes hls work...
 PIP,thefuck,:)))))
 ###,#######,###
 ###, MUSIC ,###
 ###,#######,###
 PAC,pavucontrol,volume mixer
 PAC,musescore,regular notation software
-AUR,alda-bin,a music programming language
+#AUR,alda-bin,a music programming language
 PAC,soundfont-fluid,replace .gervill/soundbank-emg.sf2 with this one!
 ###,#############,###
 ###,    FLUFF    ,###
