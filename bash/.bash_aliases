@@ -86,6 +86,7 @@ alias pf='pacman -Ss'
 alias pu='sudo pacman -Syu'
 alias puu='sudo pacman -Syyuu'
 alias pi='sudo pacman -S'
+alias pr='sudo pacman -Rsc'
 
 alias y='yay'
 alias yq='yay -Q'

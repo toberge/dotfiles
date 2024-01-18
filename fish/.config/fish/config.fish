@@ -13,4 +13,5 @@ source ~/.bash_aliases
 
 # Misc {{{
 [ ! "$TERM" = linux ] && thefuck --alias | source
+direnv hook fish | source
 # }}}

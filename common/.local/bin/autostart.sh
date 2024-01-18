@@ -24,6 +24,10 @@ case "${HOSTNAME:-$hostname}" in
         # [[ "$(xrandr --query | grep -c " connected")" -eq 2 ]] \
         #     && xrandr --output eDP-1 --off
         ;;
+    workpad)
+        [[ "$(xrandr --query | grep -c " connected")" -eq 2 ]] \
+            && xrandr --output HDMI-1-0 --auto --right-of eDP1
+        ;;
     *)
         ;;
 esac
