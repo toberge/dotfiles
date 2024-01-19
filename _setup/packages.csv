@@ -27,6 +27,7 @@ PAC,ripgrep,speedy grep replacement
 PAC,bat,cat with highlighting
 PAC,fd,faster find with regex
 PAC,fzf,fuzzy finder
+PAC,direnv,useful for env vars
 ###,#####################,###
 ###,WINDOW MANAGER STUFFS,###
 ###,#####################,###
