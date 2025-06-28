@@ -1,0 +1,9 @@
+#!/bin/bash
+files=$(ls)
+for f in $files
+do
+    if [[ $f =~ .*\.pdf ]]
+    then
+        pdfgrep $1 $f -H -n
+    fi
+done
