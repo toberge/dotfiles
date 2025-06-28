@@ -3,8 +3,7 @@
 SOUND="$HOME/.sounds/$1.wav"
 if [[ -f "$SOUND" ]]
 then
-    canberra-gtk-play -f "$SOUND" \
-        || mpv "$SOUND"
+    play "$SOUND"
 else
     exit 1
 fi

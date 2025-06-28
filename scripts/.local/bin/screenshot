@@ -16,23 +16,33 @@ get_colors() {
 case $1 in
     full)
         path=~/Pictures/screens/"$(date  +'%FT%H:%M:%S')".png 
-        if bspc query -N -n focused.fullscreen
-        then # focused window is fullscreen, shoot that one only
-            scrot --focused "$path" \
-                --exec 'xclip -selection c -t image/png < $f' \
-                && notify-send "scrot-ed fullscreen window" 
-        else # shoot all monitors
-            scrot --multidisp "$path" \
-                --exec 'xclip -selection c -t image/png < $f' \
-                && notify-send "scrot-ed entire screen" 
+        if [[ "$DESKTOP_SESSION" -eq "hyprland" ]]
+        then
+            grim - | wl-copy
+        else
+            if bspc query -N -n focused.fullscreen
+            then # focused window is fullscreen, shoot that one only
+                scrot --focused "$path" \
+                    --exec 'xclip -selection c -t image/png < $f' \
+                    && notify-send "scrot-ed fullscreen window" 
+            else # shoot all monitors
+                scrot --multidisp "$path" \
+                    --exec 'xclip -selection c -t image/png < $f' \
+                    && notify-send "scrot-ed entire screen" 
+            fi
         fi
         ;;
     region|window) # region OR window with maim!
         get_colors
-        maim --select --highlight --hidecursor \
-            --color="$(hex2rgb "${color4:-\#fffff}"),0.5" \
-            --bordersize=2 --nodecorations=1 \
-            | xclip -selection clipboard -t image/png
+        if [[ "$DESKTOP_SESSION" -eq "hyprland" ]]
+        then
+            slurp | grim -g - - | wl-copy
+        else
+            maim --select --highlight --hidecursor \
+                --color="$(hex2rgb "${color4:-\#fffff}"),0.5" \
+                --bordersize=2 --nodecorations=1 \
+                | xclip -selection clipboard -t image/png
+        fi
         ;;
     *)
         echo "I'm sorry Dave, I'm afraid I can't do that"

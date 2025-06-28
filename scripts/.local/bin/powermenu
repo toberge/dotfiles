@@ -72,6 +72,9 @@ case $choice in
             spectrwm)
                 pkill spectrwm
                 ;;
+            hyprland)
+                hyprctl dispatch exit
+                ;;
             *)
                 # systemctl ext?
                 notify-send "NOT IMPLEMENTED"
