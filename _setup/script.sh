@@ -3,7 +3,13 @@
 set -eu # fail early
 
 echo Welcome to this SETUP SCRIPT THINGY
-echo First, let\'s check for updates...
+
+echo Performing initial steps...
+
+echo Remember to fill ~/.private with FULL_NAME and EMAIL!
+touch "$HOME/.private"
+
+echo Now, let\'s check for updates...
 sudo pacman -Syu
 
 pacmans=()
@@ -41,6 +47,7 @@ mkdir -p $HOME/.clones
 (
 cd $HOME/.clones
 git clone https://aur.archlinux.org/yay.git
+cd yay
 makepkg -si
 )
 
