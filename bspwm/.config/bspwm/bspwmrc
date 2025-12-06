@@ -10,7 +10,7 @@ $HOME/.local/bin/autostart.sh &
 # monitor config
 #
 
-monitors=($(xrandr --query | grep " connected" | cut -d" " -f1))
+monitors=($(xrandr --query | grep -v "None" | grep " connected" | cut -d" " -f1))
 
 # Handle multiple monitors
 if [[ $(echo ${monitors[@]} | wc -w) -ge 2 ]]

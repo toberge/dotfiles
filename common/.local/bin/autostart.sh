@@ -12,7 +12,7 @@ case "${HOSTNAME:-$hostname}" in
         nvidia-settings -tq CurrentMetaMode | grep -q ForceFullCompositionPipeline=On \
             || nvidia-settings --assign CurrentMetaMode="nvidia-auto-select +0+0 { ForceFullCompositionPipeline = On }"
         [[ "$(xrandr --query | grep -c " connected")" -ge 2 ]] \
-            && xrandr --output HDMI-0 --auto --right-of DVI-D-0
+            && xrandr --output DP-2 --auto --left-of HDMI-0
         picom="$picom --xrender-sync-fence" # --backend xrender if necessary
         ;;
     thinkpad) # laptop

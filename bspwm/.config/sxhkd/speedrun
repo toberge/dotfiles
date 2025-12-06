@@ -1,0 +1,8 @@
+# split timer - rain world workaround
+# switch, send key, switch back, switch DESKTOP too...
+F6
+        xdotool search --class urn windowactivate --sync %1 key 65 windowactivate $(xdotool getactivewindow) ; bspc desktop -f ^1 && bspc desktop -f last
+        #sh ~/.local/bin/timeskip
+        #win=$(xdotool getactivewindow); xdotool windowactivate --sync "$(xdotool search --class urn | head -1)" key space; xdotool windowactivate $win
+        #xdotool search --class urn windowactivate --sync %1 key space && xdotool windowactivate $(xdotool getactivewindow)
+        #xdotool key --window "$(xdotool search --class urn | head -1)" 65

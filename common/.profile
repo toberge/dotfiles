@@ -10,12 +10,10 @@ export QT_QPA_PLATFORMTHEME="qt5ct"
 export QT_AUTO_SCREEN_SCALE_FACTOR=0
 
 export EDITOR=/usr/bin/nvim
-export PATH="$HOME/.local/bin:$PATH:$HOME/.emacs.d/bin:$HOME/.cargo/bin"
+export PATH="$HOME/.local/bin:$PATH:$HOME/.cargo/bin"
 
 # force fzf colors
 export FZF_DEFAULT_OPTS='--color=16'
-
-xset -b # bell begone
 
 # fix sxhkd using fish
 export SXHKD_SHELL='/usr/bin/sh'
@@ -27,3 +25,5 @@ export ANDROID_SDK=/home/qualitanty/Android/Sdk
 export ANDROID_HOME=/home/qualitanty/Android/Sdk
 
 export HOSTNAME="$(cat /etc/hostname)"
+
+xset -b || true # bell begone

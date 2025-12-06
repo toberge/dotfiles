@@ -1,0 +1,39 @@
+#!/bin/sh
+#
+# Dotfile management script
+
+dotpath=${DOTFILES_PATH:-$HOME/.dotfiles}
+
+print_usage() {
+    cat << EOF
+Usage: dot [add [package]|rm] <file>
+
+Commands:
+
+    add - Move file to dotfiles directory.
+          Placed in specific or default stow package.
+
+    rm  - Remove file from dotfiles,
+          restoring it to its place in the file system.
+
+EOF
+}
+
+case ${1:-} in
+    add)
+        # not handling package rn
+        file=$2
+        pkg=${3:-common}
+        from=$(pwd)
+        to=$(readlink -f "$file")
+        to="$dotpath/${from%/home/*/}"
+        # mkdir -p $to
+        # mv "$from/$file" "$to/$file"
+        echo "$from/$file" "$to/$file"
+        ;;
+    rm)
+        ;;
+    *)
+        print_usage
+        ;;
+esac

@@ -1,0 +1,31 @@
+#!/usr/bin/env bash
+#
+# Backup things to
+# - Google Drive
+# - External hard drive (TODO)
+
+warn_deletion() {
+    echo -e "\033[31;1mWARNING: About to delete files. Continue? (Enter/Ctrl+C)"
+    read -r _
+}
+
+# See https://rclone.org/drive/ for setup
+# (run rclone config to start)
+sync_google() {
+    rclone sync gdrive:ymse\ saker/ ~/Drive/ --dry-run | grep -B delet \
+        && warn_deletion
+    echo -e "Syncing from cloud to disk \033[1mfirst\033[0m"
+    # this is not what we wanna do... but ok
+    rclone sync gdrive:ymse\ saker/ ~/Drive/ --progress
+    echo -e "Only \033[3mthen\033[0m will we sync from disk to cloud."
+}
+
+case $1 in
+    drive)
+        sync_google
+        ;;
+    *)
+        echo "What do you want?"
+        exit 1
+        ;;
+esac

@@ -17,7 +17,7 @@ xinput set-prop "$device" "$tapping" 1
 # Marble Mouse's xorg config does not work perfectly -_-
 device=$(xinput list | grep -i 'Logitech USB Trackball' | cut -d "=" -f 2 | cut -d "[" -f 1 | cut -f 1)
 
-# Specifically, the scroll button does not trigget when the option in that config is enabled, so enable it with xinput!
+# Specifically, the scroll button does not trigger when the option in that config is enabled, so enable it with xinput!
 scroll_method=$(xinput list-props "$device" | grep 'Scroll Method Enabled (' | cut -d '(' -f 2 | cut -d ')' -f 1)
 
 xinput set-prop "$device" "$scroll_method" 0, 0, 1
