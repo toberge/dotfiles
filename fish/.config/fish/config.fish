@@ -8,6 +8,7 @@ set -x VIRTUAL_ENV_DISABLE_PROMPT true
 # Sourcing {{{
 source ~/.config/fish/theme.fish
 source ~/.bash_aliases
+source ~/.profile
 [ "$TERM" = linux ] && bash ~/.cache/wal/colors-tty.sh
 # }}}
 

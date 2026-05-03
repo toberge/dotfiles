@@ -76,9 +76,9 @@ Plug 'airblade/vim-rooter'
 let g:rooter_patterns = [
             \ 'Makefile', 'CMakeLists.txt', 'package.json', 'cargo.toml',
             \ '.git', '.git/', '_darcs/', '.hg/', '.bzr/', '.svn/']
-" TODO: configure this madness
-Plug 'SirVer/ultisnips'
-Plug 'honza/vim-snippets'
+" TODO: configure this madness &f
+" Plug 'SirVer/ultisnips'
+" Plug 'honza/vim-snippets'
 Plug 'justinmk/vim-sneak'
 " mapped to s and S, less absurd than easymotion
 
@@ -96,12 +96,12 @@ Plug 'editorconfig/editorconfig-vim'
 Plug 'konfekt/fastfold'
 
 " ------ File finding ------
-Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
+"Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 
 " ------ Code completion ------
-Plug 'neoclide/coc.nvim', { 'branch': 'release' }
+"Plug 'neoclide/coc.nvim', { 'branch': 'release' }
 
 " ------ Cosmetics ------
 Plug 'psliwka/vim-smoothie' " smud scrolling
@@ -111,7 +111,7 @@ if filereadable(expand('~/git/wal.vim/colors/wal.vim'))
 else " Use dylan's version :(
     Plug 'dylanaraps/wal.vim'
 endif
-Plug 'chriskempson/base16-vim'
+"Plug 'chriskempson/base16-vim'
 Plug 'lilydjwg/colorizer' " hex colors
 let g:startify_files_number = 8 " not loadeeeeed
 Plug 'mhinz/vim-startify' " start page
@@ -135,9 +135,9 @@ Plug 'dpc/vim-armasm'
 let g:polyglot_disabled = ['rust', 'markdown', 'pandoc', 'mma', 'python',
                         \  'plaintex', 'tex', 'plaintex', 'latex', 'r']
 Plug 'sheerun/vim-polyglot'
-Plug 'alx741/vim-hindent' " only a supplement to polyglot's default
-let g:hindent_on_save = 0 " (disable since it puts you at start of file)
-Plug 'Procrat/oz.vim'
+"Plug 'alx741/vim-hindent' " only a supplement to polyglot's default
+"let g:hindent_on_save = 0 " (disable since it puts you at start of file)
+"Plug 'Procrat/oz.vim'
 
 let java_highlight_functions="style" " uhhhh necessary?
 
@@ -158,7 +158,7 @@ Plug 'skywind3000/asyncrun.vim'
 let g:asyncrun_open = 3 " cannot override
 Plug 'tpope/vim-fugitive'
 
-Plug 'sk1418/HowMuch' " calculate visual
+"Plug 'sk1418/HowMuch' " calculate visual
 
 call plug#end()
 
@@ -402,150 +402,6 @@ nmap ga <Plug>(EasyAlign)
 
 "  }}}
 
-" ------ Counquer[or] of Completion (sic) ------{{{
-
-" Preferred extensions (can be overridden)
-" C/C++ and Haskell setups are configured in coc-config.json
-let g:coc_global_extensions = [
-    \ 'coc-snippets',
-    \ 'coc-sh',
-    \ 'coc-pyright',
-    \ 'coc-rust-analyzer',
-    \ 'coc-tsserver',
-    \ 'coc-html',
-    \ 'coc-css',
-    \ 'coc-json',
-    \ 'coc-vimtex',
-    \ ]
-
-" Recommended defaults that idk about
-" see https://github.com/neoclide/coc.nvim#example-vim-configuration
-set hidden
-set shortmess+=c
-" set nowritebackup and nobackup if things get messed up (tsserver?)
-
-" Reduce delay
-set updatetime=300
-
-" signcolumn - the one next to line numbers by default
-if has("patch-8.1.1564")
-  " Recently vim can merge signcolumn and number column into one
-  set signcolumn=number
-else
-  set signcolumn=yes
-endif
-
-" ------ keybinds ------{{{
-
-" use tab like normal folks
-" inoremap <silent><expr> <TAB>
-"       \ pumvisible() ? "\<C-n>" :
-"       \ <SID>check_back_space() ? "\<TAB>" :
-"       \ coc#refresh()
-" inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
-
-function! s:check_back_space() abort
-  let col = col('.') - 1
-  return !col || getline('.')[col - 1]  =~# '\s'
-endfunction
-
-" use it for snippets too?
-let g:coc_snippet_next = '<tab>'
-
-" Use <c-space> to trigger completion.
-if has('nvim')
-  inoremap <silent><expr> <c-space> coc#refresh()
-else
-  inoremap <silent><expr> <c-@> coc#refresh()
-endif
-
-" Make <CR> to accept selected completion item or notify coc.nvim to format
-" <C-g>u breaks current undo, please make your own choice
-inoremap <silent><expr> <CR> coc#pum#visible() ? coc#pum#confirm()
-                              \: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
-
-" Use `[g` and `]g` to navigate diagnostics
-nmap <silent> [g <Plug>(coc-diagnostic-prev)
-nmap <silent> ]g <Plug>(coc-diagnostic-next)
-
-" GoTo code navigation.
-nmap <silent> <leader>gd <Plug>(coc-definition)
-nmap <silent> <leader>gy <Plug>(coc-type-definition)
-nmap <silent> <leader>gi <Plug>(coc-implementation)
-nmap <silent> <leader>gr <Plug>(coc-references)
-
-" Use K to show documentation in preview window.
-nnoremap <silent> K :call <SID>show_documentation()<CR>
-
-function! s:show_documentation()
-  if (index(['vim','help'], &filetype) >= 0)
-    execute 'h '.expand('<cword>')
-  else
-    call CocAction('doHover')
-  endif
-endfunction
-
-" Highlight the symbol and its references when holding the cursor.
-autocmd CursorHold * silent call CocActionAsync('highlight')
-
-" Symbol renaming.
-nmap <leader>rn <Plug>(coc-rename)
-
-" Formatting selected code.
-xmap <leader>f  <Plug>(coc-format-selected)
-nmap <leader>f  <Plug>(coc-format-selected)
-
-augroup mygroup
-  autocmd!
-  " Setup formatexpr specified filetype(s).
-  autocmd FileType typescript,json setl formatexpr=CocAction('formatSelected')
-  " Update signature help on jump placeholder.
-  autocmd User CocJumpPlaceholder call CocActionAsync('showSignatureHelp')
-augroup end
-
-" Applying codeAction to the selected region.
-" Example: `<leader>aap` for current paragraph
-xmap <leader>a  <Plug>(coc-codeaction-selected)
-nmap <leader>a  <Plug>(coc-codeaction-selected)
-
-" Remap keys for applying codeAction to the current buffer.
-nmap <leader>ac  <Plug>(coc-codeaction)
-" Apply AutoFix to problem on the current line.
-nmap <leader>qf  <Plug>(coc-fix-current)
-
-" Map function and class text objects
-" NOTE: Requires 'textDocument.documentSymbol' support from the language server.
-xmap if <Plug>(coc-funcobj-i)
-omap if <Plug>(coc-funcobj-i)
-xmap af <Plug>(coc-funcobj-a)
-omap af <Plug>(coc-funcobj-a)
-xmap ic <Plug>(coc-classobj-i)
-omap ic <Plug>(coc-classobj-i)
-xmap ac <Plug>(coc-classobj-a)
-omap ac <Plug>(coc-classobj-a)
-
-" Use CTRL-S for selections ranges.
-" Requires 'textDocument/selectionRange' support of LS, ex: coc-tsserver
-" nmap <silent> <C-s> <Plug>(coc-range-select)
-" xmap <silent> <C-s> <Plug>(coc-range-select)
-
-" Add `:Format` command to format current buffer.
-command! -nargs=0 Format :call CocAction('format')
-" Bind it!
-nnoremap <Leader>F :call CocAction('format')<CR>
-
-" Add `:Fold` command to fold current buffer.
-command! -nargs=? Fold :call     CocAction('fold', <f-args>)
-
-" Add `:OR` command for organize imports of the current buffer.
-command! -nargs=0 OR   :call     CocAction('runCommand', 'editor.action.organizeImport')
-
-" (see that section of the readme for more...)
-
-"  }}}
-
-"  }}}
-
 " ------ Startify ------{{{
 
 let g:mood_ascii = [
@@ -713,21 +569,6 @@ let g:airline#extensions#tabline#buffer_min_count = 2
 "       \'cwin' : '#I #W',
 "       \'y'    : '#F',
 "       \'z'    : '#H' }
-
-" }}}
-
-" ------ NERDTree ------{{{
-
-" NERDTree on ctrl+n
-let NERDTreeShowHidden=1
-map <silent> <C-n> :NERDTreeToggle<CR>
-map <leader>nf :NERDTreeFind<CR>
-
-" close NERDTree after a file is opened
-let g:NERDTreeQuitOnOpen=1
-
-" hide certain obnoxious folders
-let NERDTreeIgnore = ['^node_modules$', '^__pycache__$']
 
 " }}}
 

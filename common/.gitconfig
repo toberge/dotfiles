@@ -9,11 +9,13 @@
     cm = commit --message
     co = checkout
     cb = checkout -b
+    cp = cherry-pick
     d = diff
     ds = diff --staged
     f = fetch
     l = log --oneline --color --graph
     p = push
+    pf = push --force-with-lease
     r = rebase
     rc = rebase --continue
     ri = rebase --interactive

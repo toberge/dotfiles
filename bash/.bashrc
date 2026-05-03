@@ -309,3 +309,6 @@ jarun() {
 jack() {
   javac $1.java && java $1
 }
+
+# Created by `pipx` on 2026-03-09 21:05:22
+export PATH="$PATH:/var/home/qualitanty/.local/bin"
