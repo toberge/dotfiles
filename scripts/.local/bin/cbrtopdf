@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+set -eu
+
+tempdir="$(mktemp --directory)"
+name="${1%.*}"
+cp "${1}" "${tempdir}/${name}.rar"
+unrar e "${tempdir}/${name}.rar" "${tempdir}/"
+convert "${tempdir}/*.jpg" "${name}.pdf" 
+rm -r "${tempdir}"
