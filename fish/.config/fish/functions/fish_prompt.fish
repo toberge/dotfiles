@@ -99,6 +99,12 @@ function fish_prompt --description 'Write out the prompt'
                  (set_color normal) ") "
     end
 
+    # Distrobox
+    if set -q CONTAINER_ID
+        echo -ns "(" (set_color green) " $CONTAINER_ID" \
+                (set_color normal) ") "
+    end
+
     # End of prompt
     echo
     if [ "$is_tty" -eq 1 ]

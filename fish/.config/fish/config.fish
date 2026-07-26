@@ -13,6 +13,6 @@ source ~/.profile
 # }}}
 
 # Misc {{{
-[ ! "$TERM" = linux ] && thefuck --alias | source
+# [ ! "$TERM" = linux ] && thefuck --alias | source
 direnv hook fish | source
 # }}}
